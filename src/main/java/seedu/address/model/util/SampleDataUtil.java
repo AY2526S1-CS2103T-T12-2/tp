@@ -38,7 +38,7 @@ public class SampleDataUtil {
                     new Address("Blk 47 Tampines Street 20, #17-35"),EMPTY_REMARK,
                     getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                    new Address("Blk 45 Aljunied Street 85, #11-31"),EMPTY_REMARK,
+                    new Address("Blk 45 Aljunied Street 85, #11-31"),EMPTY_REMARK, 
                     getTagSet("colleagues"))
         };
     }
