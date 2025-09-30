@@ -21,7 +21,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Dylan Low
 
-<img src="images/dlywlotus.png" width="200px" height="200px">
+<img src="images/dlywlotus.png" width="200px">
 
 [[github](http://github.com/dlywlotus)]
 [[portfolio](team/johndoe.md)]
