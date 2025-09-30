@@ -19,7 +19,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 * Role: Project Advisor
 
-### Dylan Low 
+### Dylan Low
 
 <img src="images/dlywlotus.png" width="200px" height="200px">
 
