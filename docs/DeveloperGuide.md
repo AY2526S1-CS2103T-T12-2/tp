@@ -385,7 +385,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use case: Add a class**
+
+**MSS**
+
+1. TA types the command to add a class with CLASS_ID, MODULE_CODE, and DATE.
+2. TAbs validates the CLASS_ID format.
+3. TAbs checks that the CLASS_ID is unique.
+4. TAbs validates the MODULE_CODE format.
+5. TAbs validates the DATE format and ensures the date exists.
+6. TAbs creates the new class session.
+7. TAbs prompts the TA: “Class C1 [CS2103] has been created.”
+8. TAbs displays a panel containing the class description with no students.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. CLASS_ID format is invalid.
+
+    * 2a1. AddressBook shows error message: “A class with the CLASS_ID ‘<class ID>’ does not exist.”
+
+      Use case ends.
+
+* 3a. CLASS_ID already exists.
+
+    * 3a1. AddressBook shows error message: “A class with the CLASS_ID ‘C1’ already exists.”
+
+      Use case ends.
+
+* 4a. MODULE_CODE format is invalid.
+
+    * 4a1. AddressBook shows error message: “MODULE_CODE must follow the format of official module codes, e.g., CS2103.”
+
+      Use case ends.
+
+* 5a. DATE format is invalid.
+
+    * 5a1. AddressBook shows error message: “DATE must be in YYYY-MM-DD format and represent a valid calendar date.”
+
+      Use case ends.
+
+* 5b. DATE does not exist in the calendar.
+
+    * 5b1. AddressBook shows error message: “The specified DATE ‘2025-09-31’ is not a valid calendar date.”
+
+      Use case ends.
+
+* 1a. Missing parameters (CLASS_ID, MODULE_CODE, or DATE).
+
+    * 1a1. AddressBook shows error message: “Invalid command format! Usage: add_class [CLASS_ID] [MODULE_CODE] [DATE]”
+
+      Use case ends.
+
+
 *{More to be added}*
+
+
 
 ### Non-Functional Requirements
 
