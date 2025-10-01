@@ -40,7 +40,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ### Noah Seethor
 
-<img src="images/noahseethor.png" width="200px">
+<img src="images/noahseethorcodes.png" width="200px">
 
 [[github](http://github.com/noahseethorcodes)]
 [[portfolio](team/johndoe.md)]
