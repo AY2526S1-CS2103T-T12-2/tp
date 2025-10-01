@@ -273,18 +273,37 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### User stories
 
+Got it 👍 Here’s the **user stories table** we came up with for your TAbs project, rewritten in the same Markdown style as your reference. You can paste this directly into your **Developer Guide**.
+
+---
+
+### User stories
+
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
-
-*{More to be added}*
+| Priority | As a …                   | I want to …                            | So that I can…                                                  |
+| -------- | ------------------------ | -------------------------------------- | --------------------------------------------------------------- |
+| `* * *`  | TA                       | add a student to a class               | keep a record of students in my classes                         |
+| `* * *`  | TA                       | delete a student from a class          | remove students who are no longer in the class                  |
+| `* * *`  | TA                       | view a list of students in a class     | have an overview of my class roster                             |
+| `* * *`  | TA                       | add a class                            | keep a record of my classes                                     |
+| `* * *`  | TA                       | delete a class                         | remove ununsed or obsolete classes.                             |
+| `* * `   | TA                       | add details for my classes             | add important details about the classes (e.g. module name, time)|
+| `* * `   | TA                       | mark a student’s participation         | track engagement for tutorials and discussions                  |
+| `* * `   | TA                       | unmark a student’s participation       | undo marking a student’s participation in case of a mistake     |
+| `* * `   | TA                       | edit a student’s details.              | fix data entry mistakes without re-creating a new student       |
+| `* * `   | TA                       | search for a student by name or ID     | quickly locate their details without scrolling through the list |
+| `* *`    | TA                       | flag students who are underperforming  | remember which students to follow up with                       |
+| `* *`    | TA                       | tag students via groups                | organize students in a neat manner in the UI                    |
+| `* *`    | TA                       | filter students by group tags          | view only students from a specific group                        |
+| `* *`    | New TA                   | view a help message                    | see what commands I can use to navigate the app                 |
+| `* *`    | New TA                   | see the correct format for commands after making a mistake| Use the commands correctly thereafter        |
+| `* *`    | Busy TA                  | see a summary of the overall data      | quickly glean any urgent information I might need               |
+| `* *`    | Busy TA                  | see a summary of the data for a student| quickly check the progress and status of a student              |
+| `*`      | TA                       | upload profile pictures of my students | identify students more easily and match their name to their face|
+| `*`      | TA                       | export student lists to a file         | have an organised view of their progress (which is downloadable)|
+| `*`      | TA                       | import CSV to upload student data      | easily upload student profiles                                  |
+| `*`      | TA                       | archive past classes                   | keep my current workspace clean while still retaining old records for future reference|
 
 ### Use cases
 
