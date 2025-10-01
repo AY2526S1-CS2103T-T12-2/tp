@@ -9,7 +9,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 ## Project team
 
-### John Doe
+### Shane Arkar Kyaw
 
 <img src="images/shaneak03.png" width="200px">
 
