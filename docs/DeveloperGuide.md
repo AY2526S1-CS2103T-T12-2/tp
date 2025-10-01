@@ -360,6 +360,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
+**Use Case: View all students in a class**
+
+**MSS**
+
+1. User types command to list students of a class (e.g., `list_students c/C1`)
+2. AddressBook verifies that the class with the specified CLASS_ID exists
+3. AddressBook retrieves the list of students enrolled in the class
+4. AddressBook displays the list of students in the class
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The class ID is of invalid format, is missing, or does not exist.
+  * 2a1. AddressBook shows an error message:  
+      “A class with the CLASS_ID ‘<ID>’ does not exist.”
+
+      Use case ends.
+
+* 3a. The class exists but has no students enrolled.
+    * 3a1. AddressBook shows message:  
+      “The class <class description> has no students enrolled.”
+
+      Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
