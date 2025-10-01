@@ -288,32 +288,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TAbs` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a class**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list all existing classes that he/she is teaching
+2.  TAbs shows the list of classes
+3.  User requests to delete a specific class from the list
+4.  TAbs deletes the class
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 2a. TAbs displays that there are no existing classes.
+    * 2a1. TAbs prompts the user that there are no classes to be deleted.
 
-  Use case ends.
+      Use case ends.
 
-* 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+* 3a. TAbs detects that the class ID does not exist.
 
-      Use case resumes at step 2.
+    * 3a1. TAbs informs the user that the class ID does not exist
+    * 3a2. User requests to delete another class with an existing class ID
 
-*{More to be added}*
+      Use case resumes from step 4.
 
 ### Non-Functional Requirements
 
