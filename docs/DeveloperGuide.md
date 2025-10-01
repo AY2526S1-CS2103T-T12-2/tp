@@ -326,7 +326,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Matriculation number**: The unique identification number of each student (e.g., A1938293R)
+* **(Tutorial) Class**: Each class is part of a module, which is specified by a module code (e.g., CS1231S)
+and a timeslot (e.g., Wednesdays 2pm to 4pm). Students can be marked as being present for each class.
 
 --------------------------------------------------------------------------------------------------------------------
 
