@@ -270,13 +270,6 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**: manage contacts faster than a typical mouse/GUI driven app
 
-
-### User stories
-
-Got it 👍 Here’s the **user stories table** we came up with for your TAbs project, rewritten in the same Markdown style as your reference. You can paste this directly into your **Developer Guide**.
-
----
-
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
