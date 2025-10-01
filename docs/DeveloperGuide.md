@@ -268,7 +268,8 @@ _{Explain here how the data archiving feature will be implemented}_
 * May not be technical, but are willing to learn simple systems
 * Appreciate clear, straightforward tools that reduce the effort needed to manage information.
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: provide teaching assistants with a way to manage their
+classes and their students within each class
 
 ### User stories
 
@@ -326,7 +327,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. TAbs informs the user that the class ID does not exist
     * 3a2. User requests to delete another class with an existing class ID
 
-      Use case resumes from step 4.
+    Use case resumes from step 4.    
+
+**Use case: Delete a student from a class**
+
+**MSS**
+
+1.  User types command to delete the student.
+2.  AddressBook removes the student from the specified class.
+3.  AddressBook prompts user that deletion was successful.
+4.  AddressBook displays the updated list of students from the class.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The student list for the class is empty.
+
+  Use case ends.
+
+* 1b. The class id is of invalid form, is missing or does not exist in
+  the AddressBook.
+
+    * 1b1. AddressBook shows an error message.
+
+      Use case ends.
+
+* 1c. The student id is of invalid form, is missing or does not exist in
+  the AddressBook.
+
+    * 1c1. AddressBook shows and error message.
+
+      Use case ends.
+
+*{More to be added}*
 
 ### Non-Functional Requirements
 
