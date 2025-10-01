@@ -317,11 +317,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `17` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+## Usability
+- Clear messages for success/errors.
+- Case-insensitive commands (where valid).
+- GUI updates reflect actions immediately.
 
-*{More to be added}*
+## Performance
+- Commands execute within 300ms (≤1000 students).
+- Supports fast operations with large data sets.
+
+## Scalability
+- Handles up to 200 classes and 5000 students.
+
+## Portability
+- Runs on Windows, macOS, Linux with Java 17+.
+
+## Documentation
+- User and developer guides included.
+
+
 
 ### Glossary
 
