@@ -317,22 +317,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-## Usability
+#### Usability
 - Clear messages for success/errors.
-- Case-insensitive commands (where valid).
 - GUI updates reflect actions immediately.
 
-## Performance
+#### Performance
 - Commands execute within 300ms (≤1000 students).
 - Supports fast operations with large data sets.
 
-## Scalability
+#### Scalability
 - Handles up to 200 classes and 5000 students.
 
-## Portability
+#### Portability
 - Runs on Windows, macOS, Linux with Java 17+.
 
-## Documentation
+#### Documentation
 - User and developer guides included.
 
 
