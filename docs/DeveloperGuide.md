@@ -303,6 +303,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TAbs` and the **Actor** is the `user`, unless specified otherwise)
 
+<<<<<<< HEAD
 **Use case: Add a class**
 
 **MSS**
@@ -325,6 +326,68 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
+=======
+**Use case: Add a student to a class**
+
+**Postcondition (on success):**
+
+* The student (identified by `STUDENT_ID`) is added to the specified class (`CLASS_ID`) and appears in that class’ student list.
+
+**MSS**
+
+1. TA **requests to add a student** by providing `STUDENT_ID` and `CLASS_ID`.
+2. TAbs **validates** that `STUDENT_ID` is 9 alphanumeric characters (case-insensitive).
+3. TAbs **validates** that `CLASS_ID` confirms that the class exists.
+4. TAbs **checks for duplicates** according to project rules.
+5. TAbs **creates the new student entry** in the specified class.
+6. TAbs **updates the class student list** to include the new student.
+7. TAbs **confirms** the addition to the TA (e.g., “Student A1234567Z has been added to Class C1”).
+8. Use case ends.
+
+### Extensions
+
+**1a. Missing or extra parameters**
+
+* 1a. TAbs informs the TA of incorrect usage and shows the correct format:
+* Use case ends.
+
+**2a. `STUDENT_ID` format invalid**
+
+* 2a. TAbs informs the TA:
+
+  ```
+  STUDENT_ID must contain 9 alphanumeric characters only.
+  ```
+* Use case ends.
+
+**3a. `CLASS_ID` format invalid or class does not exist**
+
+* 3a. TAbs informs the TA:
+
+  ```
+  A class with the CLASS_ID '<class ID>' does not exist.
+  ```
+* Use case ends.
+
+**4a. Duplicate student within the same class**
+
+* 4a. TAbs rejects the request and informs the user:
+
+  ```
+  A student with STUDENT_ID <student_id> already exists in class C1.
+  ```
+* Use case ends.
+
+**4b. Case-insensitive duplicate `STUDENT_ID` (system-wide consistency check, if enforced)**
+
+* Condition: A `STUDENT_ID` matching case-insensitively is already recorded in the system but mapped to a conflicting `NAME`.
+* 4b1. TAbs rejects the request and informs the TA of the conflict (example):
+
+  ```
+  A student with STUDENT_ID A1234567Z already exists with a different name.
+  ```
+* Use case ends.
+>>>>>>> 92ca5aa5 (Add add student use case to DG)
 
 **Use case: Delete a class**
 
