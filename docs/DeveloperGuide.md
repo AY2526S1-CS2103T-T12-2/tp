@@ -323,8 +323,25 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. TAbs informs the TA that the identifier is already in use  
       Use case ends
 
+**Use case: Add a student to a class**
 
+**MSS**
 
+1. TA requests to add a student to a class.
+2. TAbs creates the new student entry in the specified class.
+3. TAbs confirms the addition of the student to the TA.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. Invalid or missing details are provided.
+    * 1a1. TAbs informs the TA of the invalid input  
+      Use case ends
+
+* 2a. The student already exists in the class.
+    * 2a1. TAbs informs the TA that the student is already in the class.  
+      Use case ends
 
 **Use case: Delete a class**
 
