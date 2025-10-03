@@ -323,7 +323,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The class already exists in the system.
     * 2a1. TAbs informs the TA that the class already exists.
       
-        Use case resumes from step 1.
+        Use case ends.
 
 
 **Use case: UC2 - Delete a class**
