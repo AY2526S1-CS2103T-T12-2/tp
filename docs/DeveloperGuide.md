@@ -301,29 +301,78 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `TAbs` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `TAbs` and the **Actor** is the `TA`, unless specified otherwise)
 
-**Use case: Add a class**
+**Use case: UC1 - Add a class**
 
 **MSS**
 
-1. TA requests to add a new class
-2. TAbs creates the class
-3. TAbs confirms the creation of the class
+1. TA requests to add a new class.
+2. TAbs creates the class.
+3. TAbs confirms the creation of the class.
 
    Use case ends.
 
 **Extensions**
 
 * 1a. Invalid or missing details are provided.
-    * 1a1. TAbs informs the TA of the invalid input  
-      Use case ends
+    * 1a1. TAbs informs the TA of the invalid input. 
+      
+        Use case resumes from step 1.
 
-* 2a. The class identifier already exists.
-    * 2a1. TAbs informs the TA that the identifier is already in use  
-      Use case ends
+* 2a. The class already exists in the system.
+    * 2a1. TAbs informs the TA that the class already exists.
+      
+        Use case resumes from step 1.
 
-**Use case: Add a student to a class**
+
+**Use case: UC2 - Delete a class**
+
+**MSS**
+
+1.  TA requests to delete a specific class from the list.
+2.  TAbs deletes the class.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. There are no existing classes.
+    * 1a1. TAbs displays that there are no classes to be deleted.
+
+      Use case ends.
+
+* 1b. TAbs detects that the class does not exist.
+    * 1b1. TAbs informs the TA that the class does not exist.
+    * 1b2. TAbs prompts the TA to delete another class.
+
+      Use case resumes from step 1.
+
+
+**Use Case: UC3 - View all students in a class**
+
+**MSS**
+
+1. TA requests to list all the students in a particular class.
+2. TAbs shows the list of students in the class.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. TAbs detects that the class does not exist.
+    * 1a1. TAbs informs the TA that the class ID does not exist.
+    * 1a2. TA prompts the TA to view students in another class.
+
+      Use case resumes from step 1.
+
+* 1b. TAbs detects that the class exists but has no students enrolled.
+    * 1b1. TAbs prompts the TA that there are no students in the class
+
+      Use case ends.
+
+
+**Use case: UC4 - Add a student to a class**
 
 **MSS**
 
@@ -336,41 +385,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Invalid or missing details are provided.
-    * 1a1. TAbs informs the TA of the invalid input  
-      Use case ends
+    * 1a1. TAbs informs the TA of the invalid input. 
+      
+        Use case resumes from step 1.
 
 * 2a. The student already exists in the class.
     * 2a1. TAbs informs the TA that the student is already in the class.  
-      Use case ends
-
-**Use case: Delete a class**
-
-**MSS**
-
-1.  User requests to list all existing classes that he/she is teaching
-2.  TAbs shows the list of classes
-3.  User requests to delete a specific class from the list
-4.  TAbs deletes the class
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. TAbs displays that there are no existing classes.
-    * 2a1. TAbs prompts the user that there are no classes to be deleted
-
-      Use case ends.
+      
+        Use case ends.
 
 
-* 3a. TAbs detects that the class ID does not exist.
-    * 3a1. TAbs informs the user that the class ID does not exist
-    * 3a2. User requests to delete another class with an existing class ID
-
-      Use case resumes from step 4.
-
-*{Use case for adding students to be added}*
-
-**Use case: Delete a student from a class**
+**Use case: UC5 - Delete a student from a class**
 
 **MSS**
 
@@ -384,48 +409,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The student list for the class is empty.
+    * 1a1. TAbs informs the TA that there are no students to be deleted.
 
-  Use case ends.
+        Use case ends.
 
-* 1b. The class id is of invalid form, is missing or does not exist in
-  the AddressBook.
-
+* 1b. Invalid or missing details are provided.
     * 1b1. AddressBook shows an error message.
-
-      Use case ends.
-
-* 1c. The student id is of invalid form, is missing or does not exist in
-  the AddressBook.
-
-    * 1c1. AddressBook shows and error message.
-
-      Use case ends.
-
-**Use Case: View all students in a class**
-
-**MSS**
-
-1. User requests to list all existing classes that he/she is teaching
-2. TAbs shows the list of classes
-3. User requests to list all the students in a particular class
-4. TAbs shows the list of students in the class
-
-   Use case ends.
-
-**Extensions**
-
-* 3a. TAbs detects that the class ID does not exist.
-    * 3a1. TAbs informs the user that the class ID does not exist.
-    * 3a2. User requests to view students in another class with an existing class ID.
-
-      Use case resumes from step 4.
-
-* 4b. TAbs detects that the class exists but has no students enrolled.
-    * 4b1. TAbs prompts the user that there are no students in the class
-
-      Use case ends.
-
-*{More to be added}*
+        
+      Use case resumes from step 1.
 
 
 ### Non-Functional Requirements
