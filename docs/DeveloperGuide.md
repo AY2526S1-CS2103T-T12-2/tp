@@ -303,6 +303,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `TAbs` and the **Actor** is the `user`, unless specified otherwise)
 
+**Use case: Add a class**
+
+**MSS**
+
+1. TA requests to add a new class
+2. TAbs creates the class
+3. TAbs confirms the creation of the class
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Invalid or missing details are provided.
+    * 1a1. TAbs informs the TA of the invalid input  
+      Use case ends
+
+* 2a. The class identifier already exists.
+    * 2a1. TAbs informs the TA that the identifier is already in use  
+      Use case ends
+
+
+
+
 **Use case: Delete a class**
 
 **MSS**
@@ -317,17 +340,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. TAbs displays that there are no existing classes.
-    * 2a1. TAbs prompts the user that there are no classes to be deleted.
+    * 2a1. TAbs prompts the user that there are no classes to be deleted
 
       Use case ends.
 
 
 * 3a. TAbs detects that the class ID does not exist.
-
     * 3a1. TAbs informs the user that the class ID does not exist
     * 3a2. User requests to delete another class with an existing class ID
 
-    Use case resumes from step 4.    
+      Use case resumes from step 4.
+
+*{Use case for adding students to be added}*
 
 **Use case: Delete a student from a class**
 
@@ -374,8 +398,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 3a. TAbs detects that the class ID does not exist.
-  * 3a1. TAbs informs the user that the class ID does not exist.
-  * 3a2. User requests to view students in another class with an existing class ID.
+    * 3a1. TAbs informs the user that the class ID does not exist.
+    * 3a2. User requests to view students in another class with an existing class ID.
 
       Use case resumes from step 4.
 
@@ -384,32 +408,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Add a class**
-
-**MSS**
-
-1. TA requests to add a new class
-2. TAbs creates the class
-3. TAbs confirms the creation of the class
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. Invalid or missing details are provided.
-    * 1a1. TAbs informs the TA of the invalid input  
-      Use case ends
-
-* 2a. The class identifier already exists.
-    * 2a1. TAbs informs the TA that the identifier is already in use  
-      Use case ends
-
-
-
-
-
 *{More to be added}*
-
 
 
 ### Non-Functional Requirements
