@@ -399,10 +399,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User types command to delete the student.
-2.  AddressBook removes the student from the specified class.
-3.  AddressBook prompts user that deletion was successful.
-4.  AddressBook displays the updated list of students from the class.
+1.  TA requests to delete a student from a class.
+2.  TAbs removes the student from the specified class.
+3.  TAbs confirms deletion of the student to the TA.
+4.  TAbs displays the updated list of students from the class.
 
     Use case ends.
 
@@ -414,8 +414,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
         Use case ends.
 
 * 1b. Invalid or missing details are provided.
-    * 1b1. AddressBook shows an error message.
-        
+    * 1b1. TAbs informs the TA of the invalid input.
+
       Use case resumes from step 1.
 
 
