@@ -6,7 +6,6 @@ import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
-import seedu.tabs.logic.commands.AddCommand;
 import seedu.tabs.logic.commands.DeleteTutorialCommand;
 import seedu.tabs.logic.parser.exceptions.ParseException;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;

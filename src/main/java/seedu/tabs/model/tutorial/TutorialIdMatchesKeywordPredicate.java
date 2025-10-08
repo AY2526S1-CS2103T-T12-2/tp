@@ -4,7 +4,11 @@ import java.util.function.Predicate;
 
 import seedu.tabs.commons.util.ToStringBuilder;
 
+/**
+ * Tests that a {@code Tutorial}'s {@code ID} matches the given keyword exactly (case sensitive).
+ */
 public class TutorialIdMatchesKeywordPredicate implements Predicate<Tutorial> {
+
     private final String keyword;
 
     public TutorialIdMatchesKeywordPredicate(String keyword) { this.keyword = keyword; }

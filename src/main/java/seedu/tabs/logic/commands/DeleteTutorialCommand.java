@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
-import seedu.tabs.commons.core.index.Index;
 import seedu.tabs.commons.util.ToStringBuilder;
 import seedu.tabs.logic.Messages;
 import seedu.tabs.logic.commands.exceptions.CommandException;
