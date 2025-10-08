@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.tabs.logic.commands.AddCommand;
 import seedu.tabs.logic.commands.ClearCommand;
-import seedu.tabs.logic.commands.DeleteCommand;
+import seedu.tabs.logic.commands.DeleteTutorialCommand;
 import seedu.tabs.logic.commands.EditCommand;
 import seedu.tabs.logic.commands.EditCommand.EditTutorialDescriptor;
 import seedu.tabs.logic.commands.ExitCommand;
@@ -48,9 +48,9 @@ public class TAbsParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        DeleteTutorialCommand command = (DeleteTutorialCommand) parser.parseCommand(
+                DeleteTutorialCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteTutorialCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

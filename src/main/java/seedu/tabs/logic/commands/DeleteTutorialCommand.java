@@ -14,7 +14,7 @@ import seedu.tabs.model.tutorial.Tutorial;
 /**
  * Deletes a tutorial identified using it's displayed index from the TAbs.
  */
-public class DeleteCommand extends Command {
+public class DeleteTutorialCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -27,7 +27,7 @@ public class DeleteCommand extends Command {
 
     private final Index targetIndex;
 
-    public DeleteCommand(Index targetIndex) {
+    public DeleteTutorialCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -52,12 +52,12 @@ public class DeleteCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof DeleteCommand)) {
+        if (!(other instanceof DeleteTutorialCommand)) {
             return false;
         }
 
-        DeleteCommand otherDeleteCommand = (DeleteCommand) other;
-        return targetIndex.equals(otherDeleteCommand.targetIndex);
+        DeleteTutorialCommand otherDeleteTutorialCommand = (DeleteTutorialCommand) other;
+        return targetIndex.equals(otherDeleteTutorialCommand.targetIndex);
     }
 
     @Override

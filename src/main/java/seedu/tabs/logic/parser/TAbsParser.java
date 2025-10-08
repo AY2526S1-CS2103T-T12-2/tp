@@ -11,7 +11,7 @@ import seedu.tabs.commons.core.LogsCenter;
 import seedu.tabs.logic.commands.AddCommand;
 import seedu.tabs.logic.commands.ClearCommand;
 import seedu.tabs.logic.commands.Command;
-import seedu.tabs.logic.commands.DeleteCommand;
+import seedu.tabs.logic.commands.DeleteTutorialCommand;
 import seedu.tabs.logic.commands.EditCommand;
 import seedu.tabs.logic.commands.ExitCommand;
 import seedu.tabs.logic.commands.FindCommand;
@@ -59,7 +59,7 @@ public class TAbsParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
+        case DeleteTutorialCommand.COMMAND_WORD:
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
