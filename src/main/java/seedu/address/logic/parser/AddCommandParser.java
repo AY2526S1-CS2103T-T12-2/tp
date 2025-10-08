@@ -16,7 +16,7 @@ import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Date;
 import seedu.address.model.tutorial.TutorialId;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.Phone;
+import seedu.address.model.tutorial.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -40,12 +40,12 @@ public class AddCommandParser implements Parser<AddCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
         TutorialId tutorialId = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_PHONE).get());
         Date date = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Tutorial aTutorial = new Tutorial(tutorialId, phone, date, address, tagList);
+        Tutorial aTutorial = new Tutorial(tutorialId, moduleCode, date, address, tagList);
 
         return new AddCommand(aTutorial);
     }

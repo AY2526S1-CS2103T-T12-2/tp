@@ -33,7 +33,7 @@ public class TutorialTest {
         assertFalse(ALICE.isSameTutorial(null));
 
         // same name, all other attributes different -> returns true
-        Tutorial editedAlice = new TutorialBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
+        Tutorial editedAlice = new TutorialBuilder(ALICE).withModuleCode(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTutorial(editedAlice));
 
@@ -73,8 +73,8 @@ public class TutorialTest {
         Tutorial editedAlice = new TutorialBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different phone -> returns false
-        editedAlice = new TutorialBuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
+        // different moduleCode -> returns false
+        editedAlice = new TutorialBuilder(ALICE).withModuleCode(VALID_PHONE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different date -> returns false
@@ -92,7 +92,7 @@ public class TutorialTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Tutorial.class.getCanonicalName() + "{name=" + ALICE.getName() + ", phone=" + ALICE.getPhone()
+        String expected = Tutorial.class.getCanonicalName() + "{name=" + ALICE.getName() + ", moduleCode=" + ALICE.getModuleCode()
                 + ", date=" + ALICE.getEmail() + ", address=" + ALICE.getAddress() + ", tags=" + ALICE.getTags() + "}";
         assertEquals(expected, ALICE.toString());
     }

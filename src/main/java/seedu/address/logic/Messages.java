@@ -37,8 +37,8 @@ public class Messages {
     public static String format(Tutorial aTutorial) {
         final StringBuilder builder = new StringBuilder();
         builder.append(aTutorial.getName())
-                .append("; Phone: ")
-                .append(aTutorial.getPhone())
+                .append("; ModuleCode: ")
+                .append(aTutorial.getModuleCode())
                 .append("; Email: ")
                 .append(aTutorial.getEmail())
                 .append("; Address: ")

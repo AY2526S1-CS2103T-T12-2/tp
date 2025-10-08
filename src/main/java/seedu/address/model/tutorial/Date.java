@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tutorial's date in the address book.
+ * Represents a Tutorial's date in the TAbs.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
  */
 public class Date {

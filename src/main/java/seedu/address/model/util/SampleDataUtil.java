@@ -10,7 +10,7 @@ import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Date;
 import seedu.address.model.tutorial.TutorialId;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.Phone;
+import seedu.address.model.tutorial.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,22 +19,22 @@ import seedu.address.model.tag.Tag;
 public class SampleDataUtil {
     public static Tutorial[] getSampleTutorials() {
         return new Tutorial[] {
-            new Tutorial(new TutorialId("Alex Yeoh"), new Phone("87438807"), new Date("alexyeoh@example.com"),
+            new Tutorial(new TutorialId("Alex Yeoh"), new ModuleCode("87438807"), new Date("alexyeoh@example.com"),
                 new Address("Blk 30 Geylang Street 29, #06-40"),
                 getTagSet("friends")),
-            new Tutorial(new TutorialId("Bernice Yu"), new Phone("99272758"), new Date("berniceyu@example.com"),
+            new Tutorial(new TutorialId("Bernice Yu"), new ModuleCode("99272758"), new Date("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
                 getTagSet("colleagues", "friends")),
-            new Tutorial(new TutorialId("Charlotte Oliveiro"), new Phone("93210283"), new Date("charlotte@example.com"),
+            new Tutorial(new TutorialId("Charlotte Oliveiro"), new ModuleCode("93210283"), new Date("charlotte@example.com"),
                 new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours")),
-            new Tutorial(new TutorialId("David Li"), new Phone("91031282"), new Date("lidavid@example.com"),
+            new Tutorial(new TutorialId("David Li"), new ModuleCode("91031282"), new Date("lidavid@example.com"),
                 new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
                 getTagSet("family")),
-            new Tutorial(new TutorialId("Irfan Ibrahim"), new Phone("92492021"), new Date("irfan@example.com"),
+            new Tutorial(new TutorialId("Irfan Ibrahim"), new ModuleCode("92492021"), new Date("irfan@example.com"),
                 new Address("Blk 47 Tampines Street 20, #17-35"),
                 getTagSet("classmates")),
-            new Tutorial(new TutorialId("Roy Balakrishnan"), new Phone("92624417"), new Date("royb@example.com"),
+            new Tutorial(new TutorialId("Roy Balakrishnan"), new ModuleCode("92624417"), new Date("royb@example.com"),
                 new Address("Blk 45 Aljunied Street 85, #11-31"),
                 getTagSet("colleagues"))
         };

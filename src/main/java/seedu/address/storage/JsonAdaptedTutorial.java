@@ -14,7 +14,7 @@ import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Date;
 import seedu.address.model.tutorial.TutorialId;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.Phone;
+import seedu.address.model.tutorial.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -25,7 +25,7 @@ class JsonAdaptedTutorial {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tutorial's %s field is missing!";
 
     private final String name;
-    private final String phone;
+    private final String moduleCode;
     private final String date;
     private final String address;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
@@ -34,11 +34,11 @@ class JsonAdaptedTutorial {
      * Constructs a {@code JsonAdaptedTutorial} with the given tutorial details.
      */
     @JsonCreator
-    public JsonAdaptedTutorial(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedTutorial(@JsonProperty("name") String name, @JsonProperty("moduleCode") String moduleCode,
             @JsonProperty("date") String date, @JsonProperty("address") String address,
             @JsonProperty("tags") List<JsonAdaptedTag> tags) {
         this.name = name;
-        this.phone = phone;
+        this.moduleCode = moduleCode;
         this.date = date;
         this.address = address;
         if (tags != null) {
@@ -51,7 +51,7 @@ class JsonAdaptedTutorial {
      */
     public JsonAdaptedTutorial(Tutorial source) {
         name = source.getName().fullName;
-        phone = source.getPhone().value;
+        moduleCode = source.getModuleCode().value;
         date = source.getEmail().value;
         address = source.getAddress().value;
         tags.addAll(source.getTags().stream()
@@ -78,13 +78,13 @@ class JsonAdaptedTutorial {
         }
         final TutorialId modelTutorialId = new TutorialId(name);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        if (moduleCode == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName()));
         }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
+        if (!ModuleCode.isValidModuleCode(moduleCode)) {
+            throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
-        final Phone modelPhone = new Phone(phone);
+        final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
 
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
@@ -103,7 +103,7 @@ class JsonAdaptedTutorial {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(tutorialTags);
-        return new Tutorial(modelTutorialId, modelPhone, modelDate, modelAddress, modelTags);
+        return new Tutorial(modelTutorialId, modelModuleCode, modelDate, modelAddress, modelTags);
     }
 
 }

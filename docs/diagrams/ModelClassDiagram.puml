@@ -17,7 +17,7 @@ Class Tutorial
 Class Address
 Class Email
 Class Name
-Class Phone
+Class ModuleCode
 Class Tag
 
 Class I #FFFFFF
@@ -38,7 +38,7 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 TAbs *--> "1" UniqueTutorialList
 UniqueTutorialList --> "~* all" Tutorial
 Tutorial *--> Name
-Tutorial *--> Phone
+Tutorial *--> ModuleCode
 Tutorial *--> Email
 Tutorial *--> Address
 Tutorial *--> "*" Tag
@@ -46,8 +46,8 @@ Tutorial *--> "*" Tag
 Tutorial -[hidden]up--> I
 UniqueTutorialList -[hidden]right-> I
 
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
+Name -[hidden]right-> ModuleCode
+ModuleCode -[hidden]right-> Address
 Address -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Tutorial

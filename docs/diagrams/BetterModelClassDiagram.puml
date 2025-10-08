@@ -15,7 +15,7 @@ UniqueTutorialList -right-> Tutorial
 Tutorial -up-> "*" Tag
 
 Tutorial *--> Name
-Tutorial *--> Phone
+Tutorial *--> ModuleCode
 Tutorial *--> Email
 Tutorial *--> Address
 @enduml

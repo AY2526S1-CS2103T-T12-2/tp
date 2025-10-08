@@ -16,11 +16,11 @@ If you can type fast, TAbs can get your class management tasks done faster than 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/se-edu/TAbs-level3/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your TAbs.
 
-1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar addressbook.jar` command to run the application.<br>
+1. Open a command terminal, `cd` into the folder you put the jar file in, and use the `java -jar TAbs.jar` command to run the application.<br>
    A GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
@@ -76,7 +76,7 @@ Format: `help`
 
 ### Adding a tutorial: `add`
 
-Adds a tutorial to the address book.
+Adds a tutorial to the TAbs.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
@@ -90,13 +90,13 @@ Examples:
 
 ### Listing all tutorials : `list`
 
-Shows a list of all tutorials in the address book.
+Shows a list of all tutorials in the TAbs.
 
 Format: `list`
 
 ### Editing a tutorial : `edit`
 
-Edits an existing tutorial in the address book.
+Edits an existing tutorial in the TAbs.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
@@ -108,7 +108,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
     specifying any tags after it.
 
 Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and date address of the 1st tutorial to be `91234567` and `johndoe@example.com` respectively.
+*  `edit 1 p/91234567 e/johndoe@example.com` Edits the moduleCode number and date address of the 1st tutorial to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd tutorial to be `Betsy Crower` and clears all existing tags.
 
 ### Locating tutorials by name: `find`
@@ -131,7 +131,7 @@ Examples:
 
 ### Deleting a tutorial : `delete`
 
-Deletes the specified tutorial from the address book.
+Deletes the specified tutorial from the TAbs.
 
 Format: `delete INDEX`
 
@@ -140,12 +140,12 @@ Format: `delete INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd tutorial in the address book.
+* `list` followed by `delete 2` deletes the 2nd tutorial in the TAbs.
 * `find Betsy` followed by `delete 1` deletes the 1st tutorial in the results of the `find` command.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all entries from the TAbs.
 
 Format: `clear`
 
@@ -161,7 +161,7 @@ TAbs data are saved in the hard disk automatically after any command that change
 
 ### Editing the data file
 
-TAbs data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+TAbs data are saved automatically as a JSON file `[JAR file location]/data/TAbs.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TAbs will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>

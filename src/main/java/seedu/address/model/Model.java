@@ -35,17 +35,17 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' TAbs file path.
      */
     Path getTAbsFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' TAbs file path.
      */
     void setTAbsFilePath(Path tabsFilePath);
 
     /**
-     * Replaces address book data with the data in {@code tabs}.
+     * Replaces TAbs data with the data in {@code tabs}.
      */
     void setTAbs(ReadOnlyTAbs tabs);
 
@@ -53,26 +53,26 @@ public interface Model {
     ReadOnlyTAbs getTAbs();
 
     /**
-     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the address book.
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the TAbs.
      */
     boolean hasTutorial(Tutorial aTutorial);
 
     /**
      * Deletes the given tutorial.
-     * The tutorial must exist in the address book.
+     * The tutorial must exist in the TAbs.
      */
     void deleteTutorial(Tutorial target);
 
     /**
      * Adds the given tutorial.
-     * {@code tutorial} must not already exist in the address book.
+     * {@code tutorial} must not already exist in the TAbs.
      */
     void addTutorial(Tutorial aTutorial);
 
     /**
      * Replaces the given tutorial {@code target} with {@code editedTutorial}.
-     * {@code target} must exist in the address book.
-     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in the address book.
+     * {@code target} must exist in the TAbs.
+     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in the TAbs.
      */
     void setTutorial(Tutorial target, Tutorial editedTutorial);
 

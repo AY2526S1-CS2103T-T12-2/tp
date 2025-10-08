@@ -41,7 +41,7 @@ import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Date;
 import seedu.address.model.tutorial.TutorialId;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.Phone;
+import seedu.address.model.tutorial.ModuleCode;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.TutorialBuilder;
 
@@ -74,7 +74,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedTutorialString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_NAME));
 
-        // multiple phones
+        // multiple moduleCodes
         assertParseFailure(parser, PHONE_DESC_AMY + validExpectedTutorialString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
@@ -102,7 +102,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_EMAIL_DESC + validExpectedTutorialString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
 
-        // invalid phone
+        // invalid moduleCode
         assertParseFailure(parser, INVALID_PHONE_DESC + validExpectedTutorialString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
@@ -120,7 +120,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, validExpectedTutorialString + INVALID_EMAIL_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_EMAIL));
 
-        // invalid phone
+        // invalid moduleCode
         assertParseFailure(parser, validExpectedTutorialString + INVALID_PHONE_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_PHONE));
 
@@ -145,7 +145,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 
-        // missing phone prefix
+        // missing moduleCode prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
 
@@ -168,9 +168,9 @@ public class AddCommandParserTest {
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, TutorialId.MESSAGE_CONSTRAINTS);
 
-        // invalid phone
+        // invalid moduleCode
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, ModuleCode.MESSAGE_CONSTRAINTS);
 
         // invalid date
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB

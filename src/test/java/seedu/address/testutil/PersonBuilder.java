@@ -7,7 +7,7 @@ import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Date;
 import seedu.address.model.tutorial.TutorialId;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.Phone;
+import seedu.address.model.tutorial.ModuleCode;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -22,7 +22,7 @@ public class TutorialBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private TutorialId tutorialId;
-    private Phone phone;
+    private ModuleCode moduleCode;
     private Date date;
     private Address address;
     private Set<Tag> tags;
@@ -32,7 +32,7 @@ public class TutorialBuilder {
      */
     public TutorialBuilder() {
         tutorialId = new TutorialId(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
+        moduleCode = new ModuleCode(DEFAULT_PHONE);
         date = new Date(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
@@ -43,7 +43,7 @@ public class TutorialBuilder {
      */
     public TutorialBuilder(Tutorial tutorialToCopy) {
         tutorialId = tutorialToCopy.getName();
-        phone = tutorialToCopy.getPhone();
+        moduleCode = tutorialToCopy.getModuleCode();
         date = tutorialToCopy.getEmail();
         address = tutorialToCopy.getAddress();
         tags = new HashSet<>(tutorialToCopy.getTags());
@@ -74,10 +74,10 @@ public class TutorialBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code Tutorial} that we are building.
+     * Sets the {@code ModuleCode} of the {@code Tutorial} that we are building.
      */
-    public TutorialBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
+    public TutorialBuilder withModuleCode(String moduleCode) {
+        this.moduleCode = new ModuleCode(moduleCode);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class TutorialBuilder {
     }
 
     public Tutorial build() {
-        return new Tutorial(tutorialId, phone, date, address, tags);
+        return new Tutorial(tutorialId, moduleCode, date, address, tags);
     }
 
 }

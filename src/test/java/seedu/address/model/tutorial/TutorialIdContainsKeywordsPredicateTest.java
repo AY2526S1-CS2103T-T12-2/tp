@@ -68,9 +68,9 @@ public class TutorialIdContainsKeywordsPredicateTest {
         predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("Carol"));
         assertFalse(predicate.test(new TutorialBuilder().withName("Alice Bob").build()));
 
-        // Keywords match phone, date and address, but does not match name
+        // Keywords match moduleCode, date and address, but does not match name
         predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("12345", "alice@date.com", "Main", "Street"));
-        assertFalse(predicate.test(new TutorialBuilder().withName("Alice").withPhone("12345")
+        assertFalse(predicate.test(new TutorialBuilder().withName("Alice").withModuleCode("12345")
                 .withEmail("alice@date.com").withAddress("Main Street").build()));
     }
 

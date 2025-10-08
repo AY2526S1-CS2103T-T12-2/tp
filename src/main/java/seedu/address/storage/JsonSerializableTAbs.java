@@ -41,7 +41,7 @@ class JsonSerializableTAbs {
     }
 
     /**
-     * Converts this address book into the model's {@code TAbs} object.
+     * Converts this TAbs into the model's {@code TAbs} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

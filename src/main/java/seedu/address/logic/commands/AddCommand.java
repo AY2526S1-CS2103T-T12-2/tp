@@ -14,13 +14,13 @@ import seedu.address.model.Model;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
- * Adds a tutorial to the address book.
+ * Adds a tutorial to the TAbs.
  */
 public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to the TAbs. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -36,7 +36,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New tutorial added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This tutorial already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This tutorial already exists in the TAbs";
 
     private final Tutorial toAdd;
 

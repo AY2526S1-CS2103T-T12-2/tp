@@ -60,7 +60,7 @@ public class TAbs implements ReadOnlyTAbs {
     //// tutorial-level operations
 
     /**
-     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the address book.
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the TAbs.
      */
     public boolean hasTutorial(Tutorial aTutorial) {
         requireNonNull(aTutorial);
@@ -68,8 +68,8 @@ public class TAbs implements ReadOnlyTAbs {
     }
 
     /**
-     * Adds a tutorial to the address book.
-     * The tutorial must not already exist in the address book.
+     * Adds a tutorial to the TAbs.
+     * The tutorial must not already exist in the TAbs.
      */
     public void addTutorial(Tutorial p) {
         tutorials.add(p);
@@ -77,8 +77,8 @@ public class TAbs implements ReadOnlyTAbs {
 
     /**
      * Replaces the given tutorial {@code target} in the list with {@code editedTutorial}.
-     * {@code target} must exist in the address book.
-     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in the address book.
+     * {@code target} must exist in the TAbs.
+     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in the TAbs.
      */
     public void setTutorial(Tutorial target, Tutorial editedTutorial) {
         requireNonNull(editedTutorial);
@@ -88,7 +88,7 @@ public class TAbs implements ReadOnlyTAbs {
 
     /**
      * Removes {@code key} from this {@code TAbs}.
-     * {@code key} must exist in the address book.
+     * {@code key} must exist in the TAbs.
      */
     public void removeTutorial(Tutorial key) {
         tutorials.remove(key);

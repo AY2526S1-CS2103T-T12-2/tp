@@ -9,7 +9,7 @@ import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Date;
 import seedu.address.model.tutorial.TutorialId;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.Phone;
+import seedu.address.model.tutorial.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,7 +33,7 @@ public class EditTutorialDescriptorBuilder {
     public EditTutorialDescriptorBuilder(Tutorial aTutorial) {
         descriptor = new EditTutorialDescriptor();
         descriptor.setName(aTutorial.getName());
-        descriptor.setPhone(aTutorial.getPhone());
+        descriptor.setModuleCode(aTutorial.getModuleCode());
         descriptor.setEmail(aTutorial.getEmail());
         descriptor.setAddress(aTutorial.getAddress());
         descriptor.setTags(aTutorial.getTags());
@@ -48,10 +48,10 @@ public class EditTutorialDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditTutorialDescriptor} that we are building.
+     * Sets the {@code ModuleCode} of the {@code EditTutorialDescriptor} that we are building.
      */
-    public EditTutorialDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
+    public EditTutorialDescriptorBuilder withModuleCode(String moduleCode) {
+        descriptor.setModuleCode(new ModuleCode(moduleCode));
         return this;
     }
 

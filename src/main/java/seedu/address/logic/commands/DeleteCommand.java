@@ -12,7 +12,7 @@ import seedu.address.model.Model;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
- * Deletes a tutorial identified using it's displayed index from the address book.
+ * Deletes a tutorial identified using it's displayed index from the TAbs.
  */
 public class DeleteCommand extends Command {
 

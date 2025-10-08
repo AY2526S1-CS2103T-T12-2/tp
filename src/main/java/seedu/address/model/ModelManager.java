@@ -14,7 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the TAbs data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -29,7 +29,7 @@ public class ModelManager implements Model {
     public ModelManager(ReadOnlyTAbs tabs, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(tabs, userPrefs);
 
-        logger.fine("Initializing with address book: " + tabs + " and user prefs " + userPrefs);
+        logger.fine("Initializing with TAbs: " + tabs + " and user prefs " + userPrefs);
 
         this.TAbs = new TAbs(tabs);
         this.userPrefs = new UserPrefs(userPrefs);

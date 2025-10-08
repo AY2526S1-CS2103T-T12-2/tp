@@ -41,7 +41,7 @@ import seedu.address.logic.commands.EditCommand.EditTutorialDescriptor;
 import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Date;
 import seedu.address.model.tutorial.TutorialId;
-import seedu.address.model.tutorial.Phone;
+import seedu.address.model.tutorial.ModuleCode;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditTutorialDescriptorBuilder;
 
@@ -84,13 +84,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, TutorialId.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, "1" + INVALID_PHONE_DESC, ModuleCode.MESSAGE_CONSTRAINTS); // invalid moduleCode
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid phone followed by valid date
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
+        // invalid moduleCode followed by valid date
+        assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, ModuleCode.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Tutorial} being edited,
         // parsing it together with a valid tag results in error
@@ -110,7 +110,7 @@ public class EditCommandParserTest {
                 + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withModuleCode(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -122,7 +122,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_PERSON;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder().withModuleCode(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -138,9 +138,9 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
+        // moduleCode
         userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
-        descriptor = new EditTutorialDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
+        descriptor = new EditTutorialDescriptorBuilder().withModuleCode(VALID_PHONE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 

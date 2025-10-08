@@ -18,7 +18,7 @@ public class Tutorial {
 
     // Identity fields
     private final TutorialId tutorialId;
-    private final Phone phone;
+    private final ModuleCode moduleCode;
     private final Date date;
 
     // Data fields
@@ -28,10 +28,10 @@ public class Tutorial {
     /**
      * Every field must be present and not null.
      */
-    public Tutorial(TutorialId tutorialId, Phone phone, Date date, Address address, Set<Tag> tags) {
-        requireAllNonNull(tutorialId, phone, date, address, tags);
+    public Tutorial(TutorialId tutorialId, ModuleCode moduleCode, Date date, Address address, Set<Tag> tags) {
+        requireAllNonNull(tutorialId, moduleCode, date, address, tags);
         this.tutorialId = tutorialId;
-        this.phone = phone;
+        this.moduleCode = moduleCode;
         this.date = date;
         this.address = address;
         this.tags.addAll(tags);
@@ -41,8 +41,8 @@ public class Tutorial {
         return tutorialId;
     }
 
-    public Phone getPhone() {
-        return phone;
+    public ModuleCode getModuleCode() {
+        return moduleCode;
     }
 
     public Date getEmail() {
@@ -93,7 +93,7 @@ public class Tutorial {
 
         Tutorial otherTutorial = (Tutorial) other;
         return tutorialId.equals(otherTutorial.tutorialId)
-                && phone.equals(otherTutorial.phone)
+                && moduleCode.equals(otherTutorial.moduleCode)
                 && date.equals(otherTutorial.date)
                 && address.equals(otherTutorial.address)
                 && tags.equals(otherTutorial.tags);
@@ -102,14 +102,14 @@ public class Tutorial {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(tutorialId, phone, date, address, tags);
+        return Objects.hash(tutorialId, moduleCode, date, address, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("name", tutorialId)
-                .add("phone", phone)
+                .add("moduleCode", moduleCode)
                 .add("date", date)
                 .add("address", address)
                 .add("tags", tags)

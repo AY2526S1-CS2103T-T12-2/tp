@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of an TAbs
  */
 public interface ReadOnlyTAbs {
 

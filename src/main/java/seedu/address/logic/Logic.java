@@ -34,7 +34,7 @@ public interface Logic {
     ObservableList<Tutorial> getFilteredTutorialList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' TAbs file path.
      */
     Path getTAbsFilePath();
 

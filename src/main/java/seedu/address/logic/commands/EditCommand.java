@@ -25,11 +25,11 @@ import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Date;
 import seedu.address.model.tutorial.TutorialId;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.Phone;
+import seedu.address.model.tutorial.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing tutorial in the address book.
+ * Edits the details of an existing tutorial in the TAbs.
  */
 public class EditCommand extends Command {
 
@@ -50,7 +50,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Tutorial: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This tutorial already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This tutorial already exists in the TAbs.";
 
     private final Index index;
     private final EditTutorialDescriptor editTutorialDescriptor;
@@ -96,12 +96,12 @@ public class EditCommand extends Command {
         assert tutorialToEdit != null;
 
         TutorialId updatedTutorialId = editTutorialDescriptor.getName().orElse(tutorialToEdit.getName());
-        Phone updatedPhone = editTutorialDescriptor.getPhone().orElse(tutorialToEdit.getPhone());
+        ModuleCode updatedModuleCode = editTutorialDescriptor.getModuleCode().orElse(tutorialToEdit.getModuleCode());
         Date updatedDate = editTutorialDescriptor.getEmail().orElse(tutorialToEdit.getEmail());
         Address updatedAddress = editTutorialDescriptor.getAddress().orElse(tutorialToEdit.getAddress());
         Set<Tag> updatedTags = editTutorialDescriptor.getTags().orElse(tutorialToEdit.getTags());
 
-        return new Tutorial(updatedTutorialId, updatedPhone, updatedDate, updatedAddress, updatedTags);
+        return new Tutorial(updatedTutorialId, updatedModuleCode, updatedDate, updatedAddress, updatedTags);
     }
 
     @Override
@@ -134,7 +134,7 @@ public class EditCommand extends Command {
      */
     public static class EditTutorialDescriptor {
         private TutorialId tutorialId;
-        private Phone phone;
+        private ModuleCode moduleCode;
         private Date date;
         private Address address;
         private Set<Tag> tags;
@@ -147,7 +147,7 @@ public class EditCommand extends Command {
          */
         public EditTutorialDescriptor(EditTutorialDescriptor toCopy) {
             setName(toCopy.tutorialId);
-            setPhone(toCopy.phone);
+            setModuleCode(toCopy.moduleCode);
             setEmail(toCopy.date);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -157,7 +157,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(tutorialId, phone, date, address, tags);
+            return CollectionUtil.isAnyNonNull(tutorialId, moduleCode, date, address, tags);
         }
 
         public void setName(TutorialId tutorialId) {
@@ -168,12 +168,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(tutorialId);
         }
 
-        public void setPhone(Phone phone) {
-            this.phone = phone;
+        public void setModuleCode(ModuleCode moduleCode) {
+            this.moduleCode = moduleCode;
         }
 
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
+        public Optional<ModuleCode> getModuleCode() {
+            return Optional.ofNullable(moduleCode);
         }
 
         public void setEmail(Date date) {
@@ -222,7 +222,7 @@ public class EditCommand extends Command {
 
             EditTutorialDescriptor otherEditTutorialDescriptor = (EditTutorialDescriptor) other;
             return Objects.equals(tutorialId, otherEditTutorialDescriptor.tutorialId)
-                    && Objects.equals(phone, otherEditTutorialDescriptor.phone)
+                    && Objects.equals(moduleCode, otherEditTutorialDescriptor.moduleCode)
                     && Objects.equals(date, otherEditTutorialDescriptor.date)
                     && Objects.equals(address, otherEditTutorialDescriptor.address)
                     && Objects.equals(tags, otherEditTutorialDescriptor.tags);
@@ -232,7 +232,7 @@ public class EditCommand extends Command {
         public String toString() {
             return new ToStringBuilder(this)
                     .add("name", tutorialId)
-                    .add("phone", phone)
+                    .add("moduleCode", moduleCode)
                     .add("date", date)
                     .add("address", address)
                     .add("tags", tags)

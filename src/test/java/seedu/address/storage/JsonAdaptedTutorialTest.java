@@ -15,7 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Date;
 import seedu.address.model.tutorial.TutorialId;
-import seedu.address.model.tutorial.Phone;
+import seedu.address.model.tutorial.ModuleCode;
 
 public class JsonAdaptedTutorialTest {
     private static final String INVALID_NAME = "R@chel";
@@ -25,7 +25,7 @@ public class JsonAdaptedTutorialTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
+    private static final String VALID_PHONE = BENSON.getModuleCode().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
@@ -54,17 +54,17 @@ public class JsonAdaptedTutorialTest {
     }
 
     @Test
-    public void toModelType_invalidPhone_throwsIllegalValueException() {
+    public void toModelType_invalidModuleCode_throwsIllegalValueException() {
         JsonAdaptedTutorial tutorial =
                 new JsonAdaptedTutorial(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
+        String expectedMessage = ModuleCode.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, tutorial::toModelType);
     }
 
     @Test
-    public void toModelType_nullPhone_throwsIllegalValueException() {
+    public void toModelType_nullModuleCode_throwsIllegalValueException() {
         JsonAdaptedTutorial tutorial = new JsonAdaptedTutorial(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutorial::toModelType);
     }
 
