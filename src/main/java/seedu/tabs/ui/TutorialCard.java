@@ -18,7 +18,7 @@ public class TutorialCard extends UiPart<Region> {
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
-     * As a consequence, UI elements' variable classIds cannot be set to such keywords
+     * As a consequence, UI elements' variable tutorialIds cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
      * @see <a href="https://github.com/se-edu/TAbs-level4/issues/336">The issue on TAbs level 4</a>
@@ -29,7 +29,7 @@ public class TutorialCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label classId;
+    private Label tutorialId;
     @FXML
     private Label id;
     @FXML
@@ -48,7 +48,7 @@ public class TutorialCard extends UiPart<Region> {
         super(FXML);
         this.aTutorial = aTutorial;
         id.setText(displayedIndex + ". ");
-        classId.setText(aTutorial.getName().fullName);
+        tutorialId.setText(aTutorial.getName().fullName);
         moduleCode.setText(aTutorial.getModuleCode().value);
         address.setText(aTutorial.getAddress().value);
         date.setText(aTutorial.getEmail().value);

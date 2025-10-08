@@ -76,7 +76,7 @@ public abstract class UiPart<T> {
     }
 
     /**
-     * Returns the FXML file URL for the specified FXML file classId within {@link #FXML_FILE_FOLDER}.
+     * Returns the FXML file URL for the specified FXML file tutorialId within {@link #FXML_FILE_FOLDER}.
      */
     private static URL getFxmlFileUrl(String fxmlFileName) {
         requireNonNull(fxmlFileName);
