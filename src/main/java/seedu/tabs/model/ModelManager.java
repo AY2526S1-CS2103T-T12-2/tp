@@ -19,7 +19,7 @@ import seedu.tabs.model.tutorial.Tutorial;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final TAbs TAbs;
+    private final TAbs tabs;
     private final UserPrefs userPrefs;
     private final FilteredList<Tutorial> filteredTutorials;
 
@@ -31,9 +31,9 @@ public class ModelManager implements Model {
 
         logger.fine("Initializing with TAbs: " + tabs + " and user prefs " + userPrefs);
 
-        this.TAbs = new TAbs(tabs);
+        this.tabs = new TAbs(tabs);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTutorials = new FilteredList<>(this.TAbs.getTutorialList());
+        filteredTutorials = new FilteredList<>(this.tabs.getTutorialList());
     }
 
     public ModelManager() {
@@ -79,28 +79,28 @@ public class ModelManager implements Model {
 
     @Override
     public void setTAbs(ReadOnlyTAbs tabs) {
-        this.TAbs.resetData(tabs);
+        this.tabs.resetData(tabs);
     }
 
     @Override
     public ReadOnlyTAbs getTAbs() {
-        return TAbs;
+        return tabs;
     }
 
     @Override
     public boolean hasTutorial(Tutorial aTutorial) {
         requireNonNull(aTutorial);
-        return TAbs.hasTutorial(aTutorial);
+        return tabs.hasTutorial(aTutorial);
     }
 
     @Override
     public void deleteTutorial(Tutorial target) {
-        TAbs.removeTutorial(target);
+        tabs.removeTutorial(target);
     }
 
     @Override
     public void addTutorial(Tutorial aTutorial) {
-        TAbs.addTutorial(aTutorial);
+        tabs.addTutorial(aTutorial);
         updateFilteredTutorialList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -108,7 +108,7 @@ public class ModelManager implements Model {
     public void setTutorial(Tutorial target, Tutorial editedTutorial) {
         requireAllNonNull(target, editedTutorial);
 
-        TAbs.setTutorial(target, editedTutorial);
+        tabs.setTutorial(target, editedTutorial);
     }
 
     //=========== Filtered Tutorial List Accessors =============================================================
@@ -140,7 +140,7 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return TAbs.equals(otherModelManager.TAbs)
+        return tabs.equals(otherModelManager.tabs)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredTutorials.equals(otherModelManager.filteredTutorials);
     }

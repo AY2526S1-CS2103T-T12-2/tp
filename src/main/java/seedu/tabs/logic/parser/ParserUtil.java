@@ -9,11 +9,11 @@ import java.util.Set;
 import seedu.tabs.commons.core.index.Index;
 import seedu.tabs.commons.util.StringUtil;
 import seedu.tabs.logic.parser.exceptions.ParseException;
+import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
-import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.tutorial.ModuleCode;
-import seedu.tabs.model.student.Student;
+import seedu.tabs.model.tutorial.TutorialId;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

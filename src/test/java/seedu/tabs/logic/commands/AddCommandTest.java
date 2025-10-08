@@ -18,10 +18,10 @@ import javafx.collections.ObservableList;
 import seedu.tabs.commons.core.GuiSettings;
 import seedu.tabs.logic.Messages;
 import seedu.tabs.logic.commands.exceptions.CommandException;
-import seedu.tabs.model.TAbs;
 import seedu.tabs.model.Model;
 import seedu.tabs.model.ReadOnlyTAbs;
 import seedu.tabs.model.ReadOnlyUserPrefs;
+import seedu.tabs.model.TAbs;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.testutil.TutorialBuilder;
 

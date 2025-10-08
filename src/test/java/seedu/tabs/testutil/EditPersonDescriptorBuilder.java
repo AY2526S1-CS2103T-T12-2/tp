@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.tabs.logic.commands.EditCommand.EditTutorialDescriptor;
+import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
-import seedu.tabs.model.tutorial.TutorialId;
-import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.ModuleCode;
-import seedu.tabs.model.student.Student;
+import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialId;
 
 /**
  * A utility class to help with building EditTutorialDescriptor objects.
@@ -32,9 +32,9 @@ public class EditTutorialDescriptorBuilder {
      */
     public EditTutorialDescriptorBuilder(Tutorial aTutorial) {
         descriptor = new EditTutorialDescriptor();
-        descriptor.setName(aTutorial.getName());
+        descriptor.setName(aTutorial.getTutorialId());
         descriptor.setModuleCode(aTutorial.getModuleCode());
-        descriptor.setEmail(aTutorial.getEmail());
+        descriptor.setEmail(aTutorial.getDate());
         descriptor.setAddress(aTutorial.getAddress());
         descriptor.setStudents(aTutorial.getStudents());
     }

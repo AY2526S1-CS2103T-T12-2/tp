@@ -38,11 +38,11 @@ import seedu.tabs.commons.core.index.Index;
 import seedu.tabs.logic.Messages;
 import seedu.tabs.logic.commands.EditCommand;
 import seedu.tabs.logic.commands.EditCommand.EditTutorialDescriptor;
+import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
-import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.tutorial.ModuleCode;
-import seedu.tabs.model.student.Student;
+import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.testutil.EditTutorialDescriptorBuilder;
 
 public class EditCommandParserTest {

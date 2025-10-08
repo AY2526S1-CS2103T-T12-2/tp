@@ -48,10 +48,10 @@ public class TutorialCard extends UiPart<Region> {
         super(FXML);
         this.aTutorial = aTutorial;
         id.setText(displayedIndex + ". ");
-        tutorialId.setText(aTutorial.getName().fullName);
+        tutorialId.setText(aTutorial.getTutorialId().fullName);
         moduleCode.setText(aTutorial.getModuleCode().value);
         address.setText(aTutorial.getAddress().value);
-        date.setText(aTutorial.getEmail().value);
+        date.setText(aTutorial.getDate().value);
         aTutorial.getStudents().stream()
                 .sorted(Comparator.comparing(student -> student.studentName))
                 .forEach(student -> students.getChildren().add(new Label(student.studentName)));

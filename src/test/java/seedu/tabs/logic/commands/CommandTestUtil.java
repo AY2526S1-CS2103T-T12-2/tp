@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_CLASS_ID;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 import static seedu.tabs.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -15,10 +15,10 @@ import java.util.List;
 
 import seedu.tabs.commons.core.index.Index;
 import seedu.tabs.logic.commands.exceptions.CommandException;
-import seedu.tabs.model.TAbs;
 import seedu.tabs.model.Model;
-import seedu.tabs.model.tutorial.TutorialIdContainsKeywordsPredicate;
+import seedu.tabs.model.TAbs;
 import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialIdContainsKeywordsPredicate;
 import seedu.tabs.testutil.EditTutorialDescriptorBuilder;
 
 /**
@@ -37,8 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_CLASS_ID + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_CLASS_ID + VALID_NAME_BOB;
+    public static final String NAME_DESC_AMY = " " + PREFIX_TUTORIAL_ID + VALID_NAME_AMY;
+    public static final String NAME_DESC_BOB = " " + PREFIX_TUTORIAL_ID + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_MODULE_CODE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_MODULE_CODE + VALID_PHONE_BOB;
     public static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
@@ -48,7 +48,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_STUDENT + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_STUDENT + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_CLASS_ID + "James&"; // '&' not allowed in names
+    public static final String INVALID_NAME_DESC = " " + PREFIX_TUTORIAL_ID + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_MODULE_CODE + "911a"; // 'a' not allowed in moduleCodes
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
@@ -119,7 +119,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTutorialList().size());
 
         Tutorial aTutorial = model.getFilteredTutorialList().get(targetIndex.getZeroBased());
-        final String[] splitName = aTutorial.getName().fullName.split("\\s+");
+        final String[] splitName = aTutorial.getTutorialId().fullName.split("\\s+");
         model.updateFilteredTutorialList(new TutorialIdContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTutorialList().size());

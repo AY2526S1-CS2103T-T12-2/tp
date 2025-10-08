@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_CLASS_ID;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -32,7 +32,8 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_CLASS_ID, PREFIX_MODULE_CODE, PREFIX_DATE, PREFIX_ADDRESS, PREFIX_STUDENT);
+                ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL_ID, PREFIX_MODULE_CODE, PREFIX_DATE,
+                        PREFIX_ADDRESS, PREFIX_STUDENT);
 
         Index index;
 
@@ -42,15 +43,16 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_CLASS_ID, PREFIX_MODULE_CODE, PREFIX_DATE, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID, PREFIX_MODULE_CODE, PREFIX_DATE, PREFIX_ADDRESS);
 
         EditTutorialDescriptor editTutorialDescriptor = new EditTutorialDescriptor();
 
-        if (argMultimap.getValue(PREFIX_CLASS_ID).isPresent()) {
-            editTutorialDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_CLASS_ID).get()));
+        if (argMultimap.getValue(PREFIX_TUTORIAL_ID).isPresent()) {
+            editTutorialDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(PREFIX_TUTORIAL_ID).get()));
         }
         if (argMultimap.getValue(PREFIX_MODULE_CODE).isPresent()) {
-            editTutorialDescriptor.setModuleCode(ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get()));
+            editTutorialDescriptor.setModuleCode(ParserUtil.parseModuleCode(
+                    argMultimap.getValue(PREFIX_MODULE_CODE).get()));
         }
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             editTutorialDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_DATE).get()));

@@ -36,11 +36,11 @@ public class Messages {
      */
     public static String format(Tutorial aTutorial) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(aTutorial.getName())
+        builder.append(aTutorial.getTutorialId())
                 .append("; ModuleCode: ")
                 .append(aTutorial.getModuleCode())
                 .append("; Email: ")
-                .append(aTutorial.getEmail())
+                .append(aTutorial.getDate())
                 .append("; Address: ")
                 .append(aTutorial.getAddress())
                 .append("; Students: ");

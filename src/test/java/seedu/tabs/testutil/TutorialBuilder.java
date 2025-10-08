@@ -3,12 +3,12 @@ package seedu.tabs.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
-import seedu.tabs.model.tutorial.TutorialId;
-import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.ModuleCode;
-import seedu.tabs.model.student.Student;
+import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.util.SampleDataUtil;
 
 /**
@@ -42,9 +42,9 @@ public class TutorialBuilder {
      * Initializes the TutorialBuilder with the data of {@code tutorialToCopy}.
      */
     public TutorialBuilder(Tutorial tutorialToCopy) {
-        tutorialId = tutorialToCopy.getName();
+        tutorialId = tutorialToCopy.getTutorialId();
         moduleCode = tutorialToCopy.getModuleCode();
-        date = tutorialToCopy.getEmail();
+        date = tutorialToCopy.getDate();
         address = tutorialToCopy.getAddress();
         students = new HashSet<>(tutorialToCopy.getStudents());
     }

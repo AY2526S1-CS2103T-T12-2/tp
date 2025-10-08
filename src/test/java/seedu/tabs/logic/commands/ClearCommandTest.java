@@ -5,9 +5,9 @@ import static seedu.tabs.testutil.TypicalTutorials.getTypicalTAbs;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.tabs.model.TAbs;
 import seedu.tabs.model.Model;
 import seedu.tabs.model.ModelManager;
+import seedu.tabs.model.TAbs;
 import seedu.tabs.model.UserPrefs;
 
 public class ClearCommandTest {

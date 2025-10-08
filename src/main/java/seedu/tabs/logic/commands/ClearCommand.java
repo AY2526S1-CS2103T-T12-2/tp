@@ -2,8 +2,8 @@ package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.tabs.model.TAbs;
 import seedu.tabs.model.Model;
+import seedu.tabs.model.TAbs;
 
 /**
  * Clears the TAbs.

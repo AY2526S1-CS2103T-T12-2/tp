@@ -37,7 +37,7 @@ public class Tutorial {
         this.students.addAll(students);
     }
 
-    public TutorialId getName() {
+    public TutorialId getTutorialId() {
         return tutorialId;
     }
 
@@ -45,7 +45,7 @@ public class Tutorial {
         return moduleCode;
     }
 
-    public Date getEmail() {
+    public Date getDate() {
         return date;
     }
 
@@ -73,7 +73,7 @@ public class Tutorial {
         }
 
         return otherTutorial != null
-                && otherTutorial.getName().equals(getName());
+                && otherTutorial.getTutorialId().equals(getTutorialId());
     }
 
     /**

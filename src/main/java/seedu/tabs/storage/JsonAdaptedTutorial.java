@@ -10,12 +10,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.tabs.commons.exceptions.IllegalValueException;
+import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
-import seedu.tabs.model.tutorial.TutorialId;
-import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.ModuleCode;
-import seedu.tabs.model.student.Student;
+import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialId;
 
 /**
  * Jackson-friendly version of {@link Tutorial}.
@@ -50,9 +50,9 @@ class JsonAdaptedTutorial {
      * Converts a given {@code Tutorial} into this class for Jackson use.
      */
     public JsonAdaptedTutorial(Tutorial source) {
-        name = source.getName().fullName;
+        name = source.getTutorialId().fullName;
         moduleCode = source.getModuleCode().value;
-        date = source.getEmail().value;
+        date = source.getDate().value;
         address = source.getAddress().value;
         students.addAll(source.getStudents().stream()
                 .map(JsonAdaptedStudent::new)
@@ -71,7 +71,8 @@ class JsonAdaptedTutorial {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialId.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    TutorialId.class.getSimpleName()));
         }
         if (!TutorialId.isValidName(name)) {
             throw new IllegalValueException(TutorialId.MESSAGE_CONSTRAINTS);
@@ -79,7 +80,8 @@ class JsonAdaptedTutorial {
         final TutorialId modelTutorialId = new TutorialId(name);
 
         if (moduleCode == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ModuleCode.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ModuleCode.class.getSimpleName()));
         }
         if (!ModuleCode.isValidModuleCode(moduleCode)) {
             throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);

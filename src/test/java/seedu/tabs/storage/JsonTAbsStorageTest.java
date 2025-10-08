@@ -16,8 +16,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import seedu.tabs.commons.exceptions.DataLoadingException;
-import seedu.tabs.model.TAbs;
 import seedu.tabs.model.ReadOnlyTAbs;
+import seedu.tabs.model.TAbs;
 
 public class JsonTAbsStorageTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonTAbsStorageTest");

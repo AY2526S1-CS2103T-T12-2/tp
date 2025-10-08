@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.tabs.commons.exceptions.IllegalValueException;
-import seedu.tabs.model.TAbs;
 import seedu.tabs.model.ReadOnlyTAbs;
+import seedu.tabs.model.TAbs;
 import seedu.tabs.model.tutorial.Tutorial;
 
 /**
@@ -46,15 +46,15 @@ class JsonSerializableTAbs {
      * @throws IllegalValueException if there were any data constraints violated.
      */
     public TAbs toModelType() throws IllegalValueException {
-        TAbs TAbs = new TAbs();
+        TAbs tabs = new TAbs();
         for (JsonAdaptedTutorial jsonAdaptedTutorial : tutorials) {
             Tutorial aTutorial = jsonAdaptedTutorial.toModelType();
-            if (TAbs.hasTutorial(aTutorial)) {
+            if (tabs.hasTutorial(aTutorial)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            TAbs.addTutorial(aTutorial);
+            tabs.addTutorial(aTutorial);
         }
-        return TAbs;
+        return tabs;
     }
 
 }

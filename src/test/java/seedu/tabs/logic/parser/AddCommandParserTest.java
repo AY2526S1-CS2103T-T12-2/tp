@@ -26,8 +26,8 @@ import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_CLASS_ID;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.tabs.testutil.TypicalTutorials.AMY;
@@ -37,12 +37,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.tabs.logic.Messages;
 import seedu.tabs.logic.commands.AddCommand;
+import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
-import seedu.tabs.model.tutorial.TutorialId;
-import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.ModuleCode;
-import seedu.tabs.model.student.Student;
+import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.testutil.TutorialBuilder;
 
 public class AddCommandParserTest {
@@ -72,7 +72,7 @@ public class AddCommandParserTest {
 
         // multiple names
         assertParseFailure(parser, NAME_DESC_AMY + validExpectedTutorialString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_CLASS_ID));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
 
         // multiple moduleCodes
         assertParseFailure(parser, PHONE_DESC_AMY + validExpectedTutorialString,
@@ -90,13 +90,13 @@ public class AddCommandParserTest {
         assertParseFailure(parser,
                 validExpectedTutorialString + PHONE_DESC_AMY + DATE_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
                         + validExpectedTutorialString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_CLASS_ID, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_MODULE_CODE));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_MODULE_CODE));
 
         // invalid value followed by valid value
 
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + validExpectedTutorialString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_CLASS_ID));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
 
         // invalid date
         assertParseFailure(parser, INVALID_DATE_DESC + validExpectedTutorialString,
@@ -114,7 +114,7 @@ public class AddCommandParserTest {
 
         // invalid name
         assertParseFailure(parser, validExpectedTutorialString + INVALID_NAME_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_CLASS_ID));
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
 
         // invalid date
         assertParseFailure(parser, validExpectedTutorialString + INVALID_DATE_DESC,

@@ -3,9 +3,9 @@ package seedu.tabs.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_CLASS_ID;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -21,12 +21,12 @@ import seedu.tabs.commons.util.ToStringBuilder;
 import seedu.tabs.logic.Messages;
 import seedu.tabs.logic.commands.exceptions.CommandException;
 import seedu.tabs.model.Model;
+import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
-import seedu.tabs.model.tutorial.TutorialId;
-import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.ModuleCode;
-import seedu.tabs.model.student.Student;
+import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialId;
 
 /**
  * Edits the details of an existing tutorial in the TAbs.
@@ -39,7 +39,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed tutorial list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_CLASS_ID + "NAME] "
+            + "[" + PREFIX_TUTORIAL_ID + "NAME] "
             + "[" + PREFIX_MODULE_CODE + "PHONE] "
             + "[" + PREFIX_DATE + "DATE] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
@@ -92,12 +92,13 @@ public class EditCommand extends Command {
      * Creates and returns a {@code Tutorial} with the details of {@code tutorialToEdit}
      * edited with {@code editTutorialDescriptor}.
      */
-    private static Tutorial createEditedTutorial(Tutorial tutorialToEdit, EditTutorialDescriptor editTutorialDescriptor) {
+    private static Tutorial createEditedTutorial(Tutorial tutorialToEdit,
+                                                 EditTutorialDescriptor editTutorialDescriptor) {
         assert tutorialToEdit != null;
 
-        TutorialId updatedTutorialId = editTutorialDescriptor.getName().orElse(tutorialToEdit.getName());
+        TutorialId updatedTutorialId = editTutorialDescriptor.getName().orElse(tutorialToEdit.getTutorialId());
         ModuleCode updatedModuleCode = editTutorialDescriptor.getModuleCode().orElse(tutorialToEdit.getModuleCode());
-        Date updatedDate = editTutorialDescriptor.getEmail().orElse(tutorialToEdit.getEmail());
+        Date updatedDate = editTutorialDescriptor.getEmail().orElse(tutorialToEdit.getDate());
         Address updatedAddress = editTutorialDescriptor.getAddress().orElse(tutorialToEdit.getAddress());
         Set<Student> updatedStudents = editTutorialDescriptor.getStudents().orElse(tutorialToEdit.getStudents());
 

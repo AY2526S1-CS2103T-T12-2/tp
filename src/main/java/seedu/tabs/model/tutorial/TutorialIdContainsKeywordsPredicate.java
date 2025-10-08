@@ -19,7 +19,8 @@ public class TutorialIdContainsKeywordsPredicate implements Predicate<Tutorial> 
     @Override
     public boolean test(Tutorial aTutorial) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(aTutorial.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                        aTutorial.getTutorialId().fullName, keyword));
     }
 
     @Override
@@ -33,7 +34,8 @@ public class TutorialIdContainsKeywordsPredicate implements Predicate<Tutorial> 
             return false;
         }
 
-        TutorialIdContainsKeywordsPredicate otherTutorialIdContainsKeywordsPredicate = (TutorialIdContainsKeywordsPredicate) other;
+        TutorialIdContainsKeywordsPredicate otherTutorialIdContainsKeywordsPredicate =
+                (TutorialIdContainsKeywordsPredicate) other;
         return keywords.equals(otherTutorialIdContainsKeywordsPredicate.keywords);
     }
 

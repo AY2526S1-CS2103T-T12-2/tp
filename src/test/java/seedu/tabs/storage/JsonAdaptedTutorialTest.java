@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
 import seedu.tabs.commons.exceptions.IllegalValueException;
 import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
-import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.tutorial.ModuleCode;
+import seedu.tabs.model.tutorial.TutorialId;
 
 public class JsonAdaptedTutorialTest {
     private static final String INVALID_NAME = "R@chel";
@@ -24,9 +24,9 @@ public class JsonAdaptedTutorialTest {
     private static final String INVALID_DATE = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
+    private static final String VALID_NAME = BENSON.getTutorialId().toString();
     private static final String VALID_PHONE = BENSON.getModuleCode().toString();
-    private static final String VALID_DATE = BENSON.getEmail().toString();
+    private static final String VALID_DATE = BENSON.getDate().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final List<JsonAdaptedStudent> VALID_STUDENTS = BENSON.getStudents().stream()
             .map(JsonAdaptedStudent::new)

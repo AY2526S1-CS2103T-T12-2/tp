@@ -2,16 +2,16 @@ package seedu.tabs.testutil;
 
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_CLASS_ID;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 
 import java.util.Set;
 
 import seedu.tabs.logic.commands.AddCommand;
 import seedu.tabs.logic.commands.EditCommand.EditTutorialDescriptor;
-import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.student.Student;
+import seedu.tabs.model.tutorial.Tutorial;
 
 /**
  * A utility class for Tutorial.
@@ -30,9 +30,9 @@ public class TutorialUtil {
      */
     public static String getTutorialDetails(Tutorial aTutorial) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_CLASS_ID + aTutorial.getName().fullName + " ");
+        sb.append(PREFIX_TUTORIAL_ID + aTutorial.getTutorialId().fullName + " ");
         sb.append(PREFIX_MODULE_CODE + aTutorial.getModuleCode().value + " ");
-        sb.append(PREFIX_DATE + aTutorial.getEmail().value + " ");
+        sb.append(PREFIX_DATE + aTutorial.getDate().value + " ");
         sb.append(PREFIX_ADDRESS + aTutorial.getAddress().value + " ");
         aTutorial.getStudents().stream().forEach(
             s -> sb.append(PREFIX_STUDENT + s.studentName + " ")
@@ -45,7 +45,7 @@ public class TutorialUtil {
      */
     public static String getEditTutorialDescriptorDetails(EditTutorialDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_CLASS_ID).append(name.fullName).append(" "));
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_TUTORIAL_ID).append(name.fullName).append(" "));
         descriptor.getModuleCode().ifPresent(moduleCode -> sb.append(PREFIX_MODULE_CODE).append(moduleCode.value).append(" "));
         descriptor.getEmail().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
