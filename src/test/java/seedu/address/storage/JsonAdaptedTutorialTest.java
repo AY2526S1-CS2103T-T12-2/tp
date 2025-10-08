@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tutorial.Address;
-import seedu.address.model.tutorial.Email;
-import seedu.address.model.tutorial.ClassId;
+import seedu.address.model.tutorial.Date;
+import seedu.address.model.tutorial.TutorialId;
 import seedu.address.model.tutorial.Phone;
 
 public class JsonAdaptedTutorialTest {
@@ -42,14 +42,14 @@ public class JsonAdaptedTutorialTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedTutorial tutorial =
                 new JsonAdaptedTutorial(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = ClassId.MESSAGE_CONSTRAINTS;
+        String expectedMessage = TutorialId.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, tutorial::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedTutorial tutorial = new JsonAdaptedTutorial(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassId.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialId.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutorial::toModelType);
     }
 
@@ -72,14 +72,14 @@ public class JsonAdaptedTutorialTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedTutorial tutorial =
                 new JsonAdaptedTutorial(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Email.MESSAGE_CONSTRAINTS;
+        String expectedMessage = Date.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, tutorial::toModelType);
     }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedTutorial tutorial = new JsonAdaptedTutorial(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutorial::toModelType);
     }
 

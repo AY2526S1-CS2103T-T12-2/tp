@@ -39,8 +39,8 @@ import seedu.address.logic.Messages;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditTutorialDescriptor;
 import seedu.address.model.tutorial.Address;
-import seedu.address.model.tutorial.Email;
-import seedu.address.model.tutorial.ClassId;
+import seedu.address.model.tutorial.Date;
+import seedu.address.model.tutorial.TutorialId;
 import seedu.address.model.tutorial.Phone;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditTutorialDescriptorBuilder;
@@ -83,13 +83,13 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, ClassId.MESSAGE_CONSTRAINTS); // invalid name
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, TutorialId.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Date.MESSAGE_CONSTRAINTS); // invalid date
         assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid phone followed by valid email
+        // invalid phone followed by valid date
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Tutorial} being edited,
@@ -100,7 +100,7 @@ public class EditCommandParserTest {
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AMY + VALID_PHONE_AMY,
-                ClassId.MESSAGE_CONSTRAINTS);
+                TutorialId.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -144,7 +144,7 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // email
+        // date
         userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
         descriptor = new EditTutorialDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);

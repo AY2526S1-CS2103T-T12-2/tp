@@ -10,8 +10,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorial.Address;
-import seedu.address.model.tutorial.Email;
-import seedu.address.model.tutorial.ClassId;
+import seedu.address.model.tutorial.Date;
+import seedu.address.model.tutorial.TutorialId;
 import seedu.address.model.tutorial.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -41,13 +41,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static ClassId parseName(String name) throws ParseException {
+    public static TutorialId parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!ClassId.isValidName(trimmedName)) {
-            throw new ParseException(ClassId.MESSAGE_CONSTRAINTS);
+        if (!TutorialId.isValidName(trimmedName)) {
+            throw new ParseException(TutorialId.MESSAGE_CONSTRAINTS);
         }
-        return new ClassId(trimmedName);
+        return new TutorialId(trimmedName);
     }
 
     /**
@@ -81,18 +81,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String email} into an {@code Email}.
+     * Parses a {@code String date} into an {@code Email}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code email} is invalid.
+     * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
+    public static Date parseEmail(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedEmail = date.trim();
+        if (!Date.isValidEmail(trimmedEmail)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new Email(trimmedEmail);
+        return new Date(trimmedEmail);
     }
 
     /**

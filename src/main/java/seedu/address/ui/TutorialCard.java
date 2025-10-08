@@ -37,7 +37,7 @@ public class TutorialCard extends UiPart<Region> {
     @FXML
     private Label address;
     @FXML
-    private Label email;
+    private Label date;
     @FXML
     private FlowPane tags;
 
@@ -51,7 +51,7 @@ public class TutorialCard extends UiPart<Region> {
         name.setText(aTutorial.getName().fullName);
         phone.setText(aTutorial.getPhone().value);
         address.setText(aTutorial.getAddress().value);
-        email.setText(aTutorial.getEmail().value);
+        date.setText(aTutorial.getEmail().value);
         aTutorial.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -13,8 +13,8 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorial.Address;
-import seedu.address.model.tutorial.Email;
-import seedu.address.model.tutorial.ClassId;
+import seedu.address.model.tutorial.Date;
+import seedu.address.model.tutorial.TutorialId;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.Phone;
 import seedu.address.model.tag.Tag;
@@ -39,13 +39,13 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS);
-        ClassId classId = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        TutorialId tutorialId = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Date date = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Tutorial aTutorial = new Tutorial(classId, phone, email, address, tagList);
+        Tutorial aTutorial = new Tutorial(tutorialId, phone, date, address, tagList);
 
         return new AddCommand(aTutorial);
     }

@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.tutorial.ClassIdContainsKeywordsPredicate;
+import seedu.address.model.tutorial.TutorialIdContainsKeywordsPredicate;
 import seedu.address.testutil.TAbsBuilder;
 
 public class ModelManagerTest {
@@ -118,7 +118,7 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredTutorialList(new ClassIdContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredTutorialList(new TutorialIdContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(TAbs, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

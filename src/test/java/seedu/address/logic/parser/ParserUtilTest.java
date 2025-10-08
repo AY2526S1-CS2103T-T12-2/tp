@@ -15,8 +15,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorial.Address;
-import seedu.address.model.tutorial.Email;
-import seedu.address.model.tutorial.ClassId;
+import seedu.address.model.tutorial.Date;
+import seedu.address.model.tutorial.TutorialId;
 import seedu.address.model.tutorial.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -68,15 +68,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        ClassId expectedClassId = new ClassId(VALID_NAME);
-        assertEquals(expectedClassId, ParserUtil.parseName(VALID_NAME));
+        TutorialId expectedTutorialId = new TutorialId(VALID_NAME);
+        assertEquals(expectedTutorialId, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        ClassId expectedClassId = new ClassId(VALID_NAME);
-        assertEquals(expectedClassId, ParserUtil.parseName(nameWithWhitespace));
+        TutorialId expectedTutorialId = new TutorialId(VALID_NAME);
+        assertEquals(expectedTutorialId, ParserUtil.parseName(nameWithWhitespace));
     }
 
     @Test
@@ -137,15 +137,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(VALID_EMAIL));
+        Date expectedDate = new Date(VALID_EMAIL);
+        assertEquals(expectedDate, ParserUtil.parseEmail(VALID_EMAIL));
     }
 
     @Test
     public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
-        Email expectedEmail = new Email(VALID_EMAIL);
-        assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+        String dateWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
+        Date expectedDate = new Date(VALID_EMAIL);
+        assertEquals(expectedDate, ParserUtil.parseEmail(dateWithWhitespace));
     }
 
     @Test

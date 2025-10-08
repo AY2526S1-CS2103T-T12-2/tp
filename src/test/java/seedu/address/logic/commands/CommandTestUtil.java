@@ -17,7 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.TAbs;
 import seedu.address.model.Model;
-import seedu.address.model.tutorial.ClassIdContainsKeywordsPredicate;
+import seedu.address.model.tutorial.TutorialIdContainsKeywordsPredicate;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.EditTutorialDescriptorBuilder;
 
@@ -120,7 +120,7 @@ public class CommandTestUtil {
 
         Tutorial aTutorial = model.getFilteredTutorialList().get(targetIndex.getZeroBased());
         final String[] splitName = aTutorial.getName().fullName.split("\\s+");
-        model.updateFilteredTutorialList(new ClassIdContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredTutorialList(new TutorialIdContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTutorialList().size());
     }

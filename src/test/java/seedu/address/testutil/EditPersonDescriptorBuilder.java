@@ -6,8 +6,8 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditTutorialDescriptor;
 import seedu.address.model.tutorial.Address;
-import seedu.address.model.tutorial.Email;
-import seedu.address.model.tutorial.ClassId;
+import seedu.address.model.tutorial.Date;
+import seedu.address.model.tutorial.TutorialId;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.Phone;
 import seedu.address.model.tag.Tag;
@@ -43,7 +43,7 @@ public class EditTutorialDescriptorBuilder {
      * Sets the {@code Name} of the {@code EditTutorialDescriptor} that we are building.
      */
     public EditTutorialDescriptorBuilder withName(String name) {
-        descriptor.setName(new ClassId(name));
+        descriptor.setName(new TutorialId(name));
         return this;
     }
 
@@ -58,8 +58,8 @@ public class EditTutorialDescriptorBuilder {
     /**
      * Sets the {@code Email} of the {@code EditTutorialDescriptor} that we are building.
      */
-    public EditTutorialDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+    public EditTutorialDescriptorBuilder withEmail(String date) {
+        descriptor.setEmail(new Date(date));
         return this;
     }
 

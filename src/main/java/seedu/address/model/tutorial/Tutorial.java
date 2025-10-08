@@ -17,9 +17,9 @@ import seedu.address.model.tag.Tag;
 public class Tutorial {
 
     // Identity fields
-    private final ClassId classId;
+    private final TutorialId tutorialId;
     private final Phone phone;
-    private final Email email;
+    private final Date date;
 
     // Data fields
     private final Address address;
@@ -28,25 +28,25 @@ public class Tutorial {
     /**
      * Every field must be present and not null.
      */
-    public Tutorial(ClassId classId, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(classId, phone, email, address, tags);
-        this.classId = classId;
+    public Tutorial(TutorialId tutorialId, Phone phone, Date date, Address address, Set<Tag> tags) {
+        requireAllNonNull(tutorialId, phone, date, address, tags);
+        this.tutorialId = tutorialId;
         this.phone = phone;
-        this.email = email;
+        this.date = date;
         this.address = address;
         this.tags.addAll(tags);
     }
 
-    public ClassId getName() {
-        return classId;
+    public TutorialId getName() {
+        return tutorialId;
     }
 
     public Phone getPhone() {
         return phone;
     }
 
-    public Email getEmail() {
-        return email;
+    public Date getEmail() {
+        return date;
     }
 
     public Address getAddress() {
@@ -92,9 +92,9 @@ public class Tutorial {
         }
 
         Tutorial otherTutorial = (Tutorial) other;
-        return classId.equals(otherTutorial.classId)
+        return tutorialId.equals(otherTutorial.tutorialId)
                 && phone.equals(otherTutorial.phone)
-                && email.equals(otherTutorial.email)
+                && date.equals(otherTutorial.date)
                 && address.equals(otherTutorial.address)
                 && tags.equals(otherTutorial.tags);
     }
@@ -102,15 +102,15 @@ public class Tutorial {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(classId, phone, email, address, tags);
+        return Objects.hash(tutorialId, phone, date, address, tags);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .add("name", classId)
+                .add("name", tutorialId)
                 .add("phone", phone)
-                .add("email", email)
+                .add("date", date)
                 .add("address", address)
                 .add("tags", tags)
                 .toString();

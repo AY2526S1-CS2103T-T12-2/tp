@@ -44,7 +44,7 @@ public class EditTutorialDescriptorTest {
         editedAmy = new EditTutorialDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different email -> returns false
+        // different date -> returns false
         editedAmy = new EditTutorialDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
@@ -62,7 +62,7 @@ public class EditTutorialDescriptorTest {
         EditTutorialDescriptor editTutorialDescriptor = new EditTutorialDescriptor();
         String expected = EditTutorialDescriptor.class.getCanonicalName() + "{name="
                 + editTutorialDescriptor.getName().orElse(null) + ", phone="
-                + editTutorialDescriptor.getPhone().orElse(null) + ", email="
+                + editTutorialDescriptor.getPhone().orElse(null) + ", date="
                 + editTutorialDescriptor.getEmail().orElse(null) + ", address="
                 + editTutorialDescriptor.getAddress().orElse(null) + ", tags="
                 + editTutorialDescriptor.getTags().orElse(null) + "}";

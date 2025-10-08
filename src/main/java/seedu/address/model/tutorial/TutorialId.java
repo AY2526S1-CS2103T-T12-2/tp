@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Tutorial's name in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
-public class ClassId {
+public class TutorialId {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -25,7 +25,7 @@ public class ClassId {
      *
      * @param name A valid name.
      */
-    public ClassId(String name) {
+    public TutorialId(String name) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         fullName = name;
@@ -51,12 +51,12 @@ public class ClassId {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ClassId)) {
+        if (!(other instanceof TutorialId)) {
             return false;
         }
 
-        ClassId otherClassId = (ClassId) other;
-        return fullName.equals(otherClassId.fullName);
+        TutorialId otherTutorialId = (TutorialId) other;
+        return fullName.equals(otherTutorialId.fullName);
     }
 
     @Override
