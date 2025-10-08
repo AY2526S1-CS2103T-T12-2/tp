@@ -63,11 +63,11 @@ public class Tutorial {
 
     /**
      * Returns true if both classes have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * This defines a weaker notion of equality between two tutorials.
      *
      * TO BE CHANGED.
      */
-    public boolean isSamePerson(Tutorial otherTutorial) {
+    public boolean isSameTutorial(Tutorial otherTutorial) {
         if (otherTutorial == this) {
             return true;
         }

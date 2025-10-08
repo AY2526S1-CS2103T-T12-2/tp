@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalTutorials.ALICE;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -18,45 +18,45 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.TAbs;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyTAbs;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.TutorialBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullTutorial_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Tutorial validTutorial = new PersonBuilder().build();
+    public void execute_tutorialAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingTutorialAdded modelStub = new ModelStubAcceptingTutorialAdded();
+        Tutorial validTutorial = new TutorialBuilder().build();
 
         CommandResult commandResult = new AddCommand(validTutorial).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validTutorial)),
                 commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validTutorial), modelStub.personsAdded);
+        assertEquals(Arrays.asList(validTutorial), modelStub.tutorialsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Tutorial validTutorial = new PersonBuilder().build();
+    public void execute_duplicateTutorial_throwsCommandException() {
+        Tutorial validTutorial = new TutorialBuilder().build();
         AddCommand addCommand = new AddCommand(validTutorial);
-        ModelStub modelStub = new ModelStubWithPerson(validTutorial);
+        ModelStub modelStub = new ModelStubWithTutorial(validTutorial);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Tutorial alice = new PersonBuilder().withName("Alice").build();
-        Tutorial bob = new PersonBuilder().withName("Bob").build();
+        Tutorial alice = new TutorialBuilder().withName("Alice").build();
+        Tutorial bob = new TutorialBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -73,7 +73,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different tutorial -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -119,85 +119,85 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Tutorial aTutorial) {
+        public void addTutorial(Tutorial aTutorial) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setAddressBook(ReadOnlyTAbs newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyTAbs getAddressBook() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public boolean hasPerson(Tutorial aTutorial) {
+        public boolean hasTutorial(Tutorial aTutorial) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Tutorial target) {
+        public void deleteTutorial(Tutorial target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Tutorial target, Tutorial editedTutorial) {
+        public void setTutorial(Tutorial target, Tutorial editedTutorial) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Tutorial> getFilteredPersonList() {
+        public ObservableList<Tutorial> getFilteredTutorialList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Tutorial> predicate) {
+        public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single tutorial.
      */
-    private class ModelStubWithPerson extends ModelStub {
+    private class ModelStubWithTutorial extends ModelStub {
         private final Tutorial aTutorial;
 
-        ModelStubWithPerson(Tutorial aTutorial) {
+        ModelStubWithTutorial(Tutorial aTutorial) {
             requireNonNull(aTutorial);
             this.aTutorial = aTutorial;
         }
 
         @Override
-        public boolean hasPerson(Tutorial aTutorial) {
+        public boolean hasTutorial(Tutorial aTutorial) {
             requireNonNull(aTutorial);
-            return this.aTutorial.isSamePerson(aTutorial);
+            return this.aTutorial.isSameTutorial(aTutorial);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the tutorial being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Tutorial> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingTutorialAdded extends ModelStub {
+        final ArrayList<Tutorial> tutorialsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Tutorial aTutorial) {
+        public boolean hasTutorial(Tutorial aTutorial) {
             requireNonNull(aTutorial);
-            return personsAdded.stream().anyMatch(aTutorial::isSamePerson);
+            return tutorialsAdded.stream().anyMatch(aTutorial::isSameTutorial);
         }
 
         @Override
-        public void addPerson(Tutorial aTutorial) {
+        public void addTutorial(Tutorial aTutorial) {
             requireNonNull(aTutorial);
-            personsAdded.add(aTutorial);
+            tutorialsAdded.add(aTutorial);
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+        public ReadOnlyTAbs getAddressBook() {
+            return new TAbs();
         }
     }
 

@@ -19,25 +19,25 @@ import seedu.address.model.tutorial.Tutorial;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private final TAbs TAbs;
     private final UserPrefs userPrefs;
     private final FilteredList<Tutorial> filteredTutorials;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyTAbs addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.TAbs = new TAbs(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredTutorials = new FilteredList<>(this.addressBook.getPersonList());
+        filteredTutorials = new FilteredList<>(this.TAbs.getTutorialList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new TAbs(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -78,52 +78,52 @@ public class ModelManager implements Model {
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+    public void setAddressBook(ReadOnlyTAbs addressBook) {
+        this.TAbs.resetData(addressBook);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+    public ReadOnlyTAbs getAddressBook() {
+        return TAbs;
     }
 
     @Override
-    public boolean hasPerson(Tutorial aTutorial) {
+    public boolean hasTutorial(Tutorial aTutorial) {
         requireNonNull(aTutorial);
-        return addressBook.hasPerson(aTutorial);
+        return TAbs.hasTutorial(aTutorial);
     }
 
     @Override
-    public void deletePerson(Tutorial target) {
-        addressBook.removePerson(target);
+    public void deleteTutorial(Tutorial target) {
+        TAbs.removeTutorial(target);
     }
 
     @Override
-    public void addPerson(Tutorial aTutorial) {
-        addressBook.addPerson(aTutorial);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addTutorial(Tutorial aTutorial) {
+        TAbs.addTutorial(aTutorial);
+        updateFilteredTutorialList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
-    public void setPerson(Tutorial target, Tutorial editedTutorial) {
+    public void setTutorial(Tutorial target, Tutorial editedTutorial) {
         requireAllNonNull(target, editedTutorial);
 
-        addressBook.setPerson(target, editedTutorial);
+        TAbs.setTutorial(target, editedTutorial);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered Tutorial List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Tutorial} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Tutorial> getFilteredPersonList() {
+    public ObservableList<Tutorial> getFilteredTutorialList() {
         return filteredTutorials;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Tutorial> predicate) {
+    public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
         requireNonNull(predicate);
         filteredTutorials.setPredicate(predicate);
     }
@@ -140,7 +140,7 @@ public class ModelManager implements Model {
         }
 
         ModelManager otherModelManager = (ModelManager) other;
-        return addressBook.equals(otherModelManager.addressBook)
+        return TAbs.equals(otherModelManager.TAbs)
                 && userPrefs.equals(otherModelManager.userPrefs)
                 && filteredTutorials.equals(otherModelManager.filteredTutorials);
     }

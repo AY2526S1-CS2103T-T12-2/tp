@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalTutorials.ALICE;
+import static seedu.address.testutil.TypicalTutorials.BOB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,161 +15,161 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.tutorial.exceptions.DuplicatePersonException;
-import seedu.address.model.tutorial.exceptions.PersonNotFoundException;
-import seedu.address.testutil.PersonBuilder;
+import seedu.address.model.tutorial.exceptions.DuplicateTutorialException;
+import seedu.address.model.tutorial.exceptions.TutorialNotFoundException;
+import seedu.address.testutil.TutorialBuilder;
 
 public class UniqueTutorialListTest {
 
-    private final UniquePersonList uniquePersonList = new UniquePersonList();
+    private final UniqueTutorialList uniqueTutorialList = new UniqueTutorialList();
 
     @Test
-    public void contains_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.contains(null));
+    public void contains_nullTutorial_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTutorialList.contains(null));
     }
 
     @Test
-    public void contains_personNotInList_returnsFalse() {
-        assertFalse(uniquePersonList.contains(ALICE));
+    public void contains_tutorialNotInList_returnsFalse() {
+        assertFalse(uniqueTutorialList.contains(ALICE));
     }
 
     @Test
-    public void contains_personInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        assertTrue(uniquePersonList.contains(ALICE));
+    public void contains_tutorialInList_returnsTrue() {
+        uniqueTutorialList.add(ALICE);
+        assertTrue(uniqueTutorialList.contains(ALICE));
     }
 
     @Test
-    public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
-        uniquePersonList.add(ALICE);
-        Tutorial editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void contains_tutorialWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueTutorialList.add(ALICE);
+        Tutorial editedAlice = new TutorialBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(uniquePersonList.contains(editedAlice));
+        assertTrue(uniqueTutorialList.contains(editedAlice));
     }
 
     @Test
-    public void add_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.add(null));
+    public void add_nullTutorial_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTutorialList.add(null));
     }
 
     @Test
-    public void add_duplicatePerson_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.add(ALICE));
+    public void add_duplicateTutorial_throwsDuplicateTutorialException() {
+        uniqueTutorialList.add(ALICE);
+        assertThrows(DuplicateTutorialException.class, () -> uniqueTutorialList.add(ALICE));
     }
 
     @Test
-    public void setPerson_nullTargetPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(null, ALICE));
+    public void setTutorial_nullTargetTutorial_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTutorialList.setTutorial(null, ALICE));
     }
 
     @Test
-    public void setPerson_nullEditedPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPerson(ALICE, null));
+    public void setTutorial_nullEditedTutorial_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTutorialList.setTutorial(ALICE, null));
     }
 
     @Test
-    public void setPerson_targetPersonNotInList_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.setPerson(ALICE, ALICE));
+    public void setTutorial_targetTutorialNotInList_throwsTutorialNotFoundException() {
+        assertThrows(TutorialNotFoundException.class, () -> uniqueTutorialList.setTutorial(ALICE, ALICE));
     }
 
     @Test
-    public void setPerson_editedPersonIsSamePerson_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(ALICE);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setTutorial_editedTutorialIsSameTutorial_success() {
+        uniqueTutorialList.add(ALICE);
+        uniqueTutorialList.setTutorial(ALICE, ALICE);
+        UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();
+        expectedUniqueTutorialList.add(ALICE);
+        assertEquals(expectedUniqueTutorialList, uniqueTutorialList);
     }
 
     @Test
-    public void setPerson_editedPersonHasSameIdentity_success() {
-        uniquePersonList.add(ALICE);
-        Tutorial editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+    public void setTutorial_editedTutorialHasSameIdentity_success() {
+        uniqueTutorialList.add(ALICE);
+        Tutorial editedAlice = new TutorialBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        uniquePersonList.setPerson(ALICE, editedAlice);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(editedAlice);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+        uniqueTutorialList.setTutorial(ALICE, editedAlice);
+        UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();
+        expectedUniqueTutorialList.add(editedAlice);
+        assertEquals(expectedUniqueTutorialList, uniqueTutorialList);
     }
 
     @Test
-    public void setPerson_editedPersonHasDifferentIdentity_success() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.setPerson(ALICE, BOB);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setTutorial_editedTutorialHasDifferentIdentity_success() {
+        uniqueTutorialList.add(ALICE);
+        uniqueTutorialList.setTutorial(ALICE, BOB);
+        UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();
+        expectedUniqueTutorialList.add(BOB);
+        assertEquals(expectedUniqueTutorialList, uniqueTutorialList);
     }
 
     @Test
-    public void setPerson_editedPersonHasNonUniqueIdentity_throwsDuplicatePersonException() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.add(BOB);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPerson(ALICE, BOB));
+    public void setTutorial_editedTutorialHasNonUniqueIdentity_throwsDuplicateTutorialException() {
+        uniqueTutorialList.add(ALICE);
+        uniqueTutorialList.add(BOB);
+        assertThrows(DuplicateTutorialException.class, () -> uniqueTutorialList.setTutorial(ALICE, BOB));
     }
 
     @Test
-    public void remove_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.remove(null));
+    public void remove_nullTutorial_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTutorialList.remove(null));
     }
 
     @Test
-    public void remove_personDoesNotExist_throwsPersonNotFoundException() {
-        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.remove(ALICE));
+    public void remove_tutorialDoesNotExist_throwsTutorialNotFoundException() {
+        assertThrows(TutorialNotFoundException.class, () -> uniqueTutorialList.remove(ALICE));
     }
 
     @Test
-    public void remove_existingPerson_removesPerson() {
-        uniquePersonList.add(ALICE);
-        uniquePersonList.remove(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void remove_existingTutorial_removesTutorial() {
+        uniqueTutorialList.add(ALICE);
+        uniqueTutorialList.remove(ALICE);
+        UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();
+        assertEquals(expectedUniqueTutorialList, uniqueTutorialList);
     }
 
     @Test
-    public void setPersons_nullUniquePersonList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((UniquePersonList) null));
+    public void setTutorials_nullUniqueTutorialList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTutorialList.setTutorials((UniqueTutorialList) null));
     }
 
     @Test
-    public void setPersons_uniquePersonList_replacesOwnListWithProvidedUniquePersonList() {
-        uniquePersonList.add(ALICE);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        uniquePersonList.setPersons(expectedUniquePersonList);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+    public void setTutorials_uniqueTutorialList_replacesOwnListWithProvidedUniqueTutorialList() {
+        uniqueTutorialList.add(ALICE);
+        UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();
+        expectedUniqueTutorialList.add(BOB);
+        uniqueTutorialList.setTutorials(expectedUniqueTutorialList);
+        assertEquals(expectedUniqueTutorialList, uniqueTutorialList);
     }
 
     @Test
-    public void setPersons_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniquePersonList.setPersons((List<Tutorial>) null));
+    public void setTutorials_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueTutorialList.setTutorials((List<Tutorial>) null));
     }
 
     @Test
-    public void setPersons_list_replacesOwnListWithProvidedList() {
-        uniquePersonList.add(ALICE);
+    public void setTutorials_list_replacesOwnListWithProvidedList() {
+        uniqueTutorialList.add(ALICE);
         List<Tutorial> tutorialList = Collections.singletonList(BOB);
-        uniquePersonList.setPersons(tutorialList);
-        UniquePersonList expectedUniquePersonList = new UniquePersonList();
-        expectedUniquePersonList.add(BOB);
-        assertEquals(expectedUniquePersonList, uniquePersonList);
+        uniqueTutorialList.setTutorials(tutorialList);
+        UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();
+        expectedUniqueTutorialList.add(BOB);
+        assertEquals(expectedUniqueTutorialList, uniqueTutorialList);
     }
 
     @Test
-    public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
+    public void setTutorials_listWithDuplicateTutorials_throwsDuplicateTutorialException() {
         List<Tutorial> listWithDuplicateTutorials = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicateTutorials));
+        assertThrows(DuplicateTutorialException.class, () -> uniqueTutorialList.setTutorials(listWithDuplicateTutorials));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-            -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+            -> uniqueTutorialList.asUnmodifiableObservableList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        assertEquals(uniquePersonList.asUnmodifiableObservableList().toString(), uniquePersonList.toString());
+        assertEquals(uniqueTutorialList.asUnmodifiableObservableList().toString(), uniqueTutorialList.toString());
     }
 }

@@ -8,90 +8,90 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.tutorial.exceptions.DuplicatePersonException;
-import seedu.address.model.tutorial.exceptions.PersonNotFoundException;
+import seedu.address.model.tutorial.exceptions.DuplicateTutorialException;
+import seedu.address.model.tutorial.exceptions.TutorialNotFoundException;
 
 /**
- * A list of persons that enforces uniqueness between its elements and does not allow nulls.
- * A person is considered unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of
- * persons uses Person#isSamePerson(Person) for equality so as to ensure that the person being added or updated is
- * unique in terms of identity in the UniquePersonList. However, the removal of a person uses Person#equals(Object) so
- * as to ensure that the person with exactly the same fields will be removed.
+ * A list of tutorials that enforces uniqueness between its elements and does not allow nulls.
+ * A tutorial is considered unique by comparing using {@code Tutorial#isSameTutorial(Tutorial)}. As such, adding and updating of
+ * tutorials uses Tutorial#isSameTutorial(Tutorial) for equality so as to ensure that the tutorial being added or updated is
+ * unique in terms of identity in the UniqueTutorialList. However, the removal of a tutorial uses Tutorial#equals(Object) so
+ * as to ensure that the tutorial with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Tutorial#isSamePerson(Tutorial)
+ * @see Tutorial#isSameTutorial(Tutorial)
  */
-public class UniquePersonList implements Iterable<Tutorial> {
+public class UniqueTutorialList implements Iterable<Tutorial> {
 
     private final ObservableList<Tutorial> internalList = FXCollections.observableArrayList();
     private final ObservableList<Tutorial> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent person as the given argument.
+     * Returns true if the list contains an equivalent tutorial as the given argument.
      */
     public boolean contains(Tutorial toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSamePerson);
+        return internalList.stream().anyMatch(toCheck::isSameTutorial);
     }
 
     /**
-     * Adds a person to the list.
-     * The person must not already exist in the list.
+     * Adds a tutorial to the list.
+     * The tutorial must not already exist in the list.
      */
     public void add(Tutorial toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicatePersonException();
+            throw new DuplicateTutorialException();
         }
         internalList.add(toAdd);
     }
 
     /**
-     * Replaces the person {@code target} in the list with {@code editedPerson}.
+     * Replaces the tutorial {@code target} in the list with {@code editedTutorial}.
      * {@code target} must exist in the list.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the list.
+     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in the list.
      */
-    public void setPerson(Tutorial target, Tutorial editedTutorial) {
+    public void setTutorial(Tutorial target, Tutorial editedTutorial) {
         requireAllNonNull(target, editedTutorial);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new PersonNotFoundException();
+            throw new TutorialNotFoundException();
         }
 
-        if (!target.isSamePerson(editedTutorial) && contains(editedTutorial)) {
-            throw new DuplicatePersonException();
+        if (!target.isSameTutorial(editedTutorial) && contains(editedTutorial)) {
+            throw new DuplicateTutorialException();
         }
 
         internalList.set(index, editedTutorial);
     }
 
     /**
-     * Removes the equivalent person from the list.
-     * The person must exist in the list.
+     * Removes the equivalent tutorial from the list.
+     * The tutorial must exist in the list.
      */
     public void remove(Tutorial toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new PersonNotFoundException();
+            throw new TutorialNotFoundException();
         }
     }
 
-    public void setPersons(UniquePersonList replacement) {
+    public void setTutorials(UniqueTutorialList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Replaces the contents of this list with {@code tutorials}.
+     * {@code tutorials} must not contain duplicate tutorials.
      */
-    public void setPersons(List<Tutorial> aTutorials) {
+    public void setTutorials(List<Tutorial> aTutorials) {
         requireAllNonNull(aTutorials);
-        if (!personsAreUnique(aTutorials)) {
-            throw new DuplicatePersonException();
+        if (!tutorialsAreUnique(aTutorials)) {
+            throw new DuplicateTutorialException();
         }
 
         internalList.setAll(aTutorials);
@@ -116,12 +116,12 @@ public class UniquePersonList implements Iterable<Tutorial> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UniquePersonList)) {
+        if (!(other instanceof UniqueTutorialList)) {
             return false;
         }
 
-        UniquePersonList otherUniquePersonList = (UniquePersonList) other;
-        return internalList.equals(otherUniquePersonList.internalList);
+        UniqueTutorialList otherUniqueTutorialList = (UniqueTutorialList) other;
+        return internalList.equals(otherUniqueTutorialList.internalList);
     }
 
     @Override
@@ -135,12 +135,12 @@ public class UniquePersonList implements Iterable<Tutorial> {
     }
 
     /**
-     * Returns true if {@code persons} contains only unique persons.
+     * Returns true if {@code tutorials} contains only unique tutorials.
      */
-    private boolean personsAreUnique(List<Tutorial> aTutorials) {
+    private boolean tutorialsAreUnique(List<Tutorial> aTutorials) {
         for (int i = 0; i < aTutorials.size() - 1; i++) {
             for (int j = i + 1; j < aTutorials.size(); j++) {
-                if (aTutorials.get(i).isSamePerson(aTutorials.get(j))) {
+                if (aTutorials.get(i).isSameTutorial(aTutorials.get(j))) {
                     return false;
                 }
             }

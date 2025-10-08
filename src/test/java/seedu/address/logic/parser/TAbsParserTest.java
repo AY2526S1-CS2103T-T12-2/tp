@@ -17,7 +17,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditCommand.EditTutorialDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
@@ -25,18 +25,18 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorial.NameContainsKeywordsPredicate;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.testutil.EditPersonDescriptorBuilder;
-import seedu.address.testutil.PersonBuilder;
-import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.EditTutorialDescriptorBuilder;
+import seedu.address.testutil.TutorialBuilder;
+import seedu.address.testutil.TutorialUtil;
 
-public class AddressBookParserTest {
+public class TAbsParserTest {
 
     private final AddressBookParser parser = new AddressBookParser();
 
     @Test
     public void parseCommand_add() throws Exception {
-        Tutorial aTutorial = new PersonBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(PersonUtil.getAddCommand(aTutorial));
+        Tutorial aTutorial = new TutorialBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(TutorialUtil.getAddCommand(aTutorial));
         assertEquals(new AddCommand(aTutorial), command);
     }
 
@@ -55,10 +55,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        Tutorial aTutorial = new PersonBuilder().build();
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(aTutorial).build();
+        Tutorial aTutorial = new TutorialBuilder().build();
+        EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder(aTutorial).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + PersonUtil.getEditPersonDescriptorDetails(descriptor));
+                + INDEX_FIRST_PERSON.getOneBased() + " " + TutorialUtil.getEditTutorialDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
     }
 

@@ -47,41 +47,41 @@ public interface Model {
     /**
      * Replaces address book data with the data in {@code addressBook}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setAddressBook(ReadOnlyTAbs addressBook);
 
     /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyTAbs getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the address book.
      */
-    boolean hasPerson(Tutorial aTutorial);
+    boolean hasTutorial(Tutorial aTutorial);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given tutorial.
+     * The tutorial must exist in the address book.
      */
-    void deletePerson(Tutorial target);
+    void deleteTutorial(Tutorial target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given tutorial.
+     * {@code tutorial} must not already exist in the address book.
      */
-    void addPerson(Tutorial aTutorial);
+    void addTutorial(Tutorial aTutorial);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given tutorial {@code target} with {@code editedTutorial}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in the address book.
      */
-    void setPerson(Tutorial target, Tutorial editedTutorial);
+    void setTutorial(Tutorial target, Tutorial editedTutorial);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Tutorial> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered tutorial list */
+    ObservableList<Tutorial> getFilteredTutorialList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered tutorial list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Tutorial> predicate);
+    void updateFilteredTutorialList(Predicate<Tutorial> predicate);
 }

@@ -29,14 +29,14 @@ import seedu.address.model.tutorial.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing tutorial in the address book.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the tutorial identified "
+            + "by the index number used in the displayed tutorial list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -48,58 +48,58 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Tutorial: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This tutorial already exists in the address book.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditTutorialDescriptor editTutorialDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the tutorial in the filtered tutorial list to edit
+     * @param editTutorialDescriptor details to edit the tutorial with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditTutorialDescriptor editTutorialDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editTutorialDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editTutorialDescriptor = new EditTutorialDescriptor(editTutorialDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Tutorial> lastShownList = model.getFilteredPersonList();
+        List<Tutorial> lastShownList = model.getFilteredTutorialList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
         Tutorial tutorialToEdit = lastShownList.get(index.getZeroBased());
-        Tutorial editedTutorial = createEditedPerson(tutorialToEdit, editPersonDescriptor);
+        Tutorial editedTutorial = createEditedTutorial(tutorialToEdit, editTutorialDescriptor);
 
-        if (!tutorialToEdit.isSamePerson(editedTutorial) && model.hasPerson(editedTutorial)) {
+        if (!tutorialToEdit.isSameTutorial(editedTutorial) && model.hasTutorial(editedTutorial)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(tutorialToEdit, editedTutorial);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.setTutorial(tutorialToEdit, editedTutorial);
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedTutorial)));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code Tutorial} with the details of {@code tutorialToEdit}
+     * edited with {@code editTutorialDescriptor}.
      */
-    private static Tutorial createEditedPerson(Tutorial tutorialToEdit, EditPersonDescriptor editPersonDescriptor) {
+    private static Tutorial createEditedTutorial(Tutorial tutorialToEdit, EditTutorialDescriptor editTutorialDescriptor) {
         assert tutorialToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(tutorialToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(tutorialToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(tutorialToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(tutorialToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(tutorialToEdit.getTags());
+        Name updatedName = editTutorialDescriptor.getName().orElse(tutorialToEdit.getName());
+        Phone updatedPhone = editTutorialDescriptor.getPhone().orElse(tutorialToEdit.getPhone());
+        Email updatedEmail = editTutorialDescriptor.getEmail().orElse(tutorialToEdit.getEmail());
+        Address updatedAddress = editTutorialDescriptor.getAddress().orElse(tutorialToEdit.getAddress());
+        Set<Tag> updatedTags = editTutorialDescriptor.getTags().orElse(tutorialToEdit.getTags());
 
         return new Tutorial(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
@@ -117,35 +117,35 @@ public class EditCommand extends Command {
 
         EditCommand otherEditCommand = (EditCommand) other;
         return index.equals(otherEditCommand.index)
-                && editPersonDescriptor.equals(otherEditCommand.editPersonDescriptor);
+                && editTutorialDescriptor.equals(otherEditCommand.editTutorialDescriptor);
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
                 .add("index", index)
-                .add("editPersonDescriptor", editPersonDescriptor)
+                .add("editTutorialDescriptor", editTutorialDescriptor)
                 .toString();
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the tutorial with. Each non-empty field value will replace the
+     * corresponding field value of the tutorial.
      */
-    public static class EditPersonDescriptor {
+    public static class EditTutorialDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditTutorialDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditTutorialDescriptor(EditTutorialDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -216,16 +216,16 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditTutorialDescriptor)) {
                 return false;
             }
 
-            EditPersonDescriptor otherEditPersonDescriptor = (EditPersonDescriptor) other;
-            return Objects.equals(name, otherEditPersonDescriptor.name)
-                    && Objects.equals(phone, otherEditPersonDescriptor.phone)
-                    && Objects.equals(email, otherEditPersonDescriptor.email)
-                    && Objects.equals(address, otherEditPersonDescriptor.address)
-                    && Objects.equals(tags, otherEditPersonDescriptor.tags);
+            EditTutorialDescriptor otherEditTutorialDescriptor = (EditTutorialDescriptor) other;
+            return Objects.equals(name, otherEditTutorialDescriptor.name)
+                    && Objects.equals(phone, otherEditTutorialDescriptor.phone)
+                    && Objects.equals(email, otherEditTutorialDescriptor.email)
+                    && Objects.equals(address, otherEditTutorialDescriptor.address)
+                    && Objects.equals(tags, otherEditTutorialDescriptor.tags);
         }
 
         @Override

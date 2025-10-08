@@ -11,28 +11,28 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of tutorials.
  */
-public class PersonListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonListPanel.class);
+public class TutorialListPanel extends UiPart<Region> {
+    private static final String FXML = "TutorialListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(TutorialListPanel.class);
 
     @FXML
-    private ListView<Tutorial> personListView;
+    private ListView<Tutorial> tutorialListView;
 
     /**
-     * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
+     * Creates a {@code TutorialListPanel} with the given {@code ObservableList}.
      */
-    public PersonListPanel(ObservableList<Tutorial> tutorialList) {
+    public TutorialListPanel(ObservableList<Tutorial> tutorialList) {
         super(FXML);
-        personListView.setItems(tutorialList);
-        personListView.setCellFactory(listView -> new PersonListViewCell());
+        tutorialListView.setItems(tutorialList);
+        tutorialListView.setCellFactory(listView -> new TutorialListViewCell());
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Tutorial} using a {@code TutorialCard}.
      */
-    class PersonListViewCell extends ListCell<Tutorial> {
+    class TutorialListViewCell extends ListCell<Tutorial> {
         @Override
         protected void updateItem(Tutorial aTutorial, boolean empty) {
             super.updateItem(aTutorial, empty);
@@ -41,7 +41,7 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(aTutorial, getIndex() + 1).getRoot());
+                setGraphic(new TutorialCard(aTutorial, getIndex() + 1).getRoot());
             }
         }
     }
