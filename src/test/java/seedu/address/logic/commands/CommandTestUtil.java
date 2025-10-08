@@ -17,7 +17,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.TAbs;
 import seedu.address.model.Model;
-import seedu.address.model.tutorial.NameContainsKeywordsPredicate;
+import seedu.address.model.tutorial.ClassIdContainsKeywordsPredicate;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.EditTutorialDescriptorBuilder;
 
@@ -104,11 +104,11 @@ public class CommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        TAbs expectedTAbs = new TAbs(actualModel.getAddressBook());
+        TAbs expectedTAbs = new TAbs(actualModel.getTAbs());
         List<Tutorial> expectedFilteredList = new ArrayList<>(actualModel.getFilteredTutorialList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedTAbs, actualModel.getAddressBook());
+        assertEquals(expectedTAbs, actualModel.getTAbs());
         assertEquals(expectedFilteredList, actualModel.getFilteredTutorialList());
     }
     /**
@@ -120,7 +120,7 @@ public class CommandTestUtil {
 
         Tutorial aTutorial = model.getFilteredTutorialList().get(targetIndex.getZeroBased());
         final String[] splitName = aTutorial.getName().fullName.split("\\s+");
-        model.updateFilteredTutorialList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredTutorialList(new ClassIdContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTutorialList().size());
     }

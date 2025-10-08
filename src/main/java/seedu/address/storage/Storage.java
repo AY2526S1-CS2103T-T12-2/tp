@@ -12,7 +12,7 @@ import seedu.address.model.UserPrefs;
 /**
  * API of the Storage component
  */
-public interface Storage extends AddressBookStorage, UserPrefsStorage {
+public interface Storage extends TAbsStorage, UserPrefsStorage {
 
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataLoadingException;
@@ -21,12 +21,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException;
 
     @Override
-    Path getAddressBookFilePath();
+    Path getTAbsFilePath();
 
     @Override
-    Optional<ReadOnlyTAbs> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyTAbs> readTAbs() throws DataLoadingException;
 
     @Override
-    void saveAddressBook(ReadOnlyTAbs addressBook) throws IOException;
+    void saveTAbs(ReadOnlyTAbs tabs) throws IOException;
 
 }

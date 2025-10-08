@@ -1,5 +1,5 @@
 {
-  "_comment": "AddressBook save file which contains the same Tutorial values as in TypicalTutorials#getTypicalAddressBook()",
+  "_comment": "TAbs save file which contains the same Tutorial values as in TypicalTutorials#getTypicalTAbs()",
   "tutorials" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",

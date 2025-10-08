@@ -14,34 +14,34 @@ import seedu.address.model.ReadOnlyTAbs;
 import seedu.address.model.tutorial.Tutorial;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable TAbs that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "tabs")
+class JsonSerializableTAbs {
 
     public static final String MESSAGE_DUPLICATE_PERSON = "Tutorials list contains duplicate tutorial(s).";
 
     private final List<JsonAdaptedTutorial> tutorials = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given tutorials.
+     * Constructs a {@code JsonSerializableTAbs} with the given tutorials.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("tutorials") List<JsonAdaptedTutorial> tutorials) {
+    public JsonSerializableTAbs(@JsonProperty("tutorials") List<JsonAdaptedTutorial> tutorials) {
         this.tutorials.addAll(tutorials);
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyTAbs} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableTAbs}.
      */
-    public JsonSerializableAddressBook(ReadOnlyTAbs source) {
+    public JsonSerializableTAbs(ReadOnlyTAbs source) {
         tutorials.addAll(source.getTutorialList().stream().map(JsonAdaptedTutorial::new).collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code TAbs} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

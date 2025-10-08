@@ -24,11 +24,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the TAbs.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getTAbs()
      */
-    ReadOnlyTAbs getAddressBook();
+    ReadOnlyTAbs getTAbs();
 
     /** Returns an unmodifiable view of the filtered list of tutorials */
     ObservableList<Tutorial> getFilteredTutorialList();
@@ -36,7 +36,7 @@ public interface Logic {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTAbsFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

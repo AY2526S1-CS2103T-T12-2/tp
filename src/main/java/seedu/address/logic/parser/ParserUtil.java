@@ -11,7 +11,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Email;
-import seedu.address.model.tutorial.Name;
+import seedu.address.model.tutorial.ClassId;
 import seedu.address.model.tutorial.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -41,13 +41,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
+    public static ClassId parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        if (!ClassId.isValidName(trimmedName)) {
+            throw new ParseException(ClassId.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new ClassId(trimmedName);
     }
 
     /**

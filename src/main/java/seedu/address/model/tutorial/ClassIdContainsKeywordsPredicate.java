@@ -9,10 +9,10 @@ import seedu.address.commons.util.ToStringBuilder;
 /**
  * Tests that a {@code Tutorial}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Tutorial> {
+public class ClassIdContainsKeywordsPredicate implements Predicate<Tutorial> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public ClassIdContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -29,12 +29,12 @@ public class NameContainsKeywordsPredicate implements Predicate<Tutorial> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof NameContainsKeywordsPredicate)) {
+        if (!(other instanceof ClassIdContainsKeywordsPredicate)) {
             return false;
         }
 
-        NameContainsKeywordsPredicate otherNameContainsKeywordsPredicate = (NameContainsKeywordsPredicate) other;
-        return keywords.equals(otherNameContainsKeywordsPredicate.keywords);
+        ClassIdContainsKeywordsPredicate otherClassIdContainsKeywordsPredicate = (ClassIdContainsKeywordsPredicate) other;
+        return keywords.equals(otherClassIdContainsKeywordsPredicate.keywords);
     }
 
     @Override

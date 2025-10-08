@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.EditCommand.EditTutorialDescriptor;
 import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Email;
-import seedu.address.model.tutorial.Name;
+import seedu.address.model.tutorial.ClassId;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.Phone;
 import seedu.address.model.tag.Tag;
@@ -43,7 +43,7 @@ public class EditTutorialDescriptorBuilder {
      * Sets the {@code Name} of the {@code EditTutorialDescriptor} that we are building.
      */
     public EditTutorialDescriptorBuilder withName(String name) {
-        descriptor.setName(new Name(name));
+        descriptor.setName(new ClassId(name));
         return this;
     }
 

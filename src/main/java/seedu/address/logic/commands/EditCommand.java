@@ -23,7 +23,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Email;
-import seedu.address.model.tutorial.Name;
+import seedu.address.model.tutorial.ClassId;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.Phone;
 import seedu.address.model.tag.Tag;
@@ -95,13 +95,13 @@ public class EditCommand extends Command {
     private static Tutorial createEditedTutorial(Tutorial tutorialToEdit, EditTutorialDescriptor editTutorialDescriptor) {
         assert tutorialToEdit != null;
 
-        Name updatedName = editTutorialDescriptor.getName().orElse(tutorialToEdit.getName());
+        ClassId updatedClassId = editTutorialDescriptor.getName().orElse(tutorialToEdit.getName());
         Phone updatedPhone = editTutorialDescriptor.getPhone().orElse(tutorialToEdit.getPhone());
         Email updatedEmail = editTutorialDescriptor.getEmail().orElse(tutorialToEdit.getEmail());
         Address updatedAddress = editTutorialDescriptor.getAddress().orElse(tutorialToEdit.getAddress());
         Set<Tag> updatedTags = editTutorialDescriptor.getTags().orElse(tutorialToEdit.getTags());
 
-        return new Tutorial(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Tutorial(updatedClassId, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class EditCommand extends Command {
      * corresponding field value of the tutorial.
      */
     public static class EditTutorialDescriptor {
-        private Name name;
+        private ClassId classId;
         private Phone phone;
         private Email email;
         private Address address;
@@ -146,7 +146,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditTutorialDescriptor(EditTutorialDescriptor toCopy) {
-            setName(toCopy.name);
+            setName(toCopy.classId);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
@@ -157,15 +157,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(classId, phone, email, address, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setName(ClassId classId) {
+            this.classId = classId;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<ClassId> getName() {
+            return Optional.ofNullable(classId);
         }
 
         public void setPhone(Phone phone) {
@@ -221,7 +221,7 @@ public class EditCommand extends Command {
             }
 
             EditTutorialDescriptor otherEditTutorialDescriptor = (EditTutorialDescriptor) other;
-            return Objects.equals(name, otherEditTutorialDescriptor.name)
+            return Objects.equals(classId, otherEditTutorialDescriptor.classId)
                     && Objects.equals(phone, otherEditTutorialDescriptor.phone)
                     && Objects.equals(email, otherEditTutorialDescriptor.email)
                     && Objects.equals(address, otherEditTutorialDescriptor.address)
@@ -231,7 +231,7 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("name", name)
+                    .add("name", classId)
                     .add("phone", phone)
                     .add("email", email)
                     .add("address", address)

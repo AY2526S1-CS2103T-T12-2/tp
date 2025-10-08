@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Email;
-import seedu.address.model.tutorial.Name;
+import seedu.address.model.tutorial.ClassId;
 import seedu.address.model.tutorial.Phone;
 import seedu.address.model.tag.Tag;
 
@@ -68,15 +68,15 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(VALID_NAME));
+        ClassId expectedClassId = new ClassId(VALID_NAME);
+        assertEquals(expectedClassId, ParserUtil.parseName(VALID_NAME));
     }
 
     @Test
     public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        Name expectedName = new Name(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+        ClassId expectedClassId = new ClassId(VALID_NAME);
+        assertEquals(expectedClassId, ParserUtil.parseName(nameWithWhitespace));
     }
 
     @Test

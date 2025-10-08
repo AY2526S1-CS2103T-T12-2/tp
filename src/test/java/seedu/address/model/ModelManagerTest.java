@@ -15,8 +15,8 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
-import seedu.address.model.tutorial.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.model.tutorial.ClassIdContainsKeywordsPredicate;
+import seedu.address.testutil.TAbsBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new TAbs(), new TAbs(modelManager.getAddressBook()));
+        assertEquals(new TAbs(), new TAbs(modelManager.getTAbs()));
     }
 
     @Test
@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setTAbsFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setTAbsFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,15 +61,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setTAbsFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setTAbsFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
+    public void setTAbsFilePath_validPath_setsTAbsFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+        modelManager.setTAbsFilePath(path);
+        assertEquals(path, modelManager.getTAbsFilePath());
     }
 
     @Test
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasTutorial_tutorialNotInAddressBook_returnsFalse() {
+    public void hasTutorial_tutorialNotInTAbs_returnsFalse() {
         assertFalse(modelManager.hasTutorial(ALICE));
     }
 
     @Test
-    public void hasTutorial_tutorialInAddressBook_returnsTrue() {
+    public void hasTutorial_tutorialInTAbs_returnsTrue() {
         modelManager.addTutorial(ALICE);
         assertTrue(modelManager.hasTutorial(ALICE));
     }
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TAbs TAbs = new AddressBookBuilder().withTutorial(ALICE).withTutorial(BENSON).build();
+        TAbs TAbs = new TAbsBuilder().withTutorial(ALICE).withTutorial(BENSON).build();
         TAbs differentTAbs = new TAbs();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -113,12 +113,12 @@ public class ModelManagerTest {
         // different types -> returns false
         assertFalse(modelManager.equals(5));
 
-        // different addressBook -> returns false
+        // different tabs -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentTAbs, userPrefs)));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredTutorialList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredTutorialList(new ClassIdContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(TAbs, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
@@ -126,7 +126,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setTAbsFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(TAbs, differentUserPrefs)));
     }
 }

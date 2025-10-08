@@ -109,12 +109,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getTAbsFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setTAbsFilePath(Path tabsFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,12 +124,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyTAbs newData) {
+        public void setTAbs(ReadOnlyTAbs newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyTAbs getAddressBook() {
+        public ReadOnlyTAbs getTAbs() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -196,7 +196,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyTAbs getAddressBook() {
+        public ReadOnlyTAbs getTAbs() {
             return new TAbs();
         }
     }

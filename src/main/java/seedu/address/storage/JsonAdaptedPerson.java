@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Email;
-import seedu.address.model.tutorial.Name;
+import seedu.address.model.tutorial.ClassId;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.Phone;
 import seedu.address.model.tag.Tag;
@@ -71,12 +71,12 @@ class JsonAdaptedTutorial {
         }
 
         if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ClassId.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!ClassId.isValidName(name)) {
+            throw new IllegalValueException(ClassId.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final ClassId modelClassId = new ClassId(name);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -103,7 +103,7 @@ class JsonAdaptedTutorial {
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(tutorialTags);
-        return new Tutorial(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Tutorial(modelClassId, modelPhone, modelEmail, modelAddress, modelTags);
     }
 
 }

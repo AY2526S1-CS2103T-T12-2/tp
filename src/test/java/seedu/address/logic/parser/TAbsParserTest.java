@@ -23,7 +23,7 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tutorial.NameContainsKeywordsPredicate;
+import seedu.address.model.tutorial.ClassIdContainsKeywordsPredicate;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.testutil.EditTutorialDescriptorBuilder;
 import seedu.address.testutil.TutorialBuilder;
@@ -31,7 +31,7 @@ import seedu.address.testutil.TutorialUtil;
 
 public class TAbsParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final TAbsParser parser = new TAbsParser();
 
     @Test
     public void parseCommand_add() throws Exception {
@@ -73,7 +73,7 @@ public class TAbsParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new ClassIdContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

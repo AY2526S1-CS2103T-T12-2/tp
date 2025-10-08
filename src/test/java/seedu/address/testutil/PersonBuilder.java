@@ -5,7 +5,7 @@ import java.util.Set;
 
 import seedu.address.model.tutorial.Address;
 import seedu.address.model.tutorial.Email;
-import seedu.address.model.tutorial.Name;
+import seedu.address.model.tutorial.ClassId;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.Phone;
 import seedu.address.model.tag.Tag;
@@ -21,7 +21,7 @@ public class TutorialBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
-    private Name name;
+    private ClassId classId;
     private Phone phone;
     private Email email;
     private Address address;
@@ -31,7 +31,7 @@ public class TutorialBuilder {
      * Creates a {@code TutorialBuilder} with the default details.
      */
     public TutorialBuilder() {
-        name = new Name(DEFAULT_NAME);
+        classId = new ClassId(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
@@ -42,7 +42,7 @@ public class TutorialBuilder {
      * Initializes the TutorialBuilder with the data of {@code tutorialToCopy}.
      */
     public TutorialBuilder(Tutorial tutorialToCopy) {
-        name = tutorialToCopy.getName();
+        classId = tutorialToCopy.getName();
         phone = tutorialToCopy.getPhone();
         email = tutorialToCopy.getEmail();
         address = tutorialToCopy.getAddress();
@@ -53,7 +53,7 @@ public class TutorialBuilder {
      * Sets the {@code Name} of the {@code Tutorial} that we are building.
      */
     public TutorialBuilder withName(String name) {
-        this.name = new Name(name);
+        this.classId = new ClassId(name);
         return this;
     }
 
@@ -90,7 +90,7 @@ public class TutorialBuilder {
     }
 
     public Tutorial build() {
-        return new Tutorial(name, phone, email, address, tags);
+        return new Tutorial(classId, phone, email, address, tags);
     }
 
 }

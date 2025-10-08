@@ -8,7 +8,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showTutorialAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalTutorials.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTutorials.getTypicalTAbs;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,7 +25,7 @@ import seedu.address.model.tutorial.Tutorial;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalTAbs(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -35,7 +35,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(tutorialToDelete));
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getTAbs(), new UserPrefs());
         expectedModel.deleteTutorial(tutorialToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -59,7 +59,7 @@ public class DeleteCommandTest {
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS,
                 Messages.format(tutorialToDelete));
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getTAbs(), new UserPrefs());
         expectedModel.deleteTutorial(tutorialToDelete);
         showNoTutorial(expectedModel);
 
@@ -72,7 +72,7 @@ public class DeleteCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getTutorialList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getTAbs().getTutorialList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 

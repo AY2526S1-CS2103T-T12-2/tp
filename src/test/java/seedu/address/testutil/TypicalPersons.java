@@ -60,9 +60,9 @@ public class TypicalTutorials {
     private TypicalTutorials() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical tutorials.
+     * Returns an {@code TAbs} with all the typical tutorials.
      */
-    public static TAbs getTypicalAddressBook() {
+    public static TAbs getTypicalTAbs() {
         TAbs ab = new TAbs();
         for (Tutorial aTutorial : getTypicalTutorials()) {
             ab.addTutorial(aTutorial);

@@ -11,36 +11,36 @@ import seedu.address.model.TAbs;
 /**
  * Represents a storage for {@link TAbs}.
  */
-public interface AddressBookStorage {
+public interface TAbsStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getTAbsFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyTAbs}.
+     * Returns TAbs data as a {@link ReadOnlyTAbs}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataLoadingException if loading the data from storage failed.
      */
-    Optional<ReadOnlyTAbs> readAddressBook() throws DataLoadingException;
+    Optional<ReadOnlyTAbs> readTAbs() throws DataLoadingException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getTAbsFilePath()
      */
-    Optional<ReadOnlyTAbs> readAddressBook(Path filePath) throws DataLoadingException;
+    Optional<ReadOnlyTAbs> readTAbs(Path filePath) throws DataLoadingException;
 
     /**
      * Saves the given {@link ReadOnlyTAbs} to the storage.
-     * @param addressBook cannot be null.
+     * @param tabs cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyTAbs addressBook) throws IOException;
+    void saveTAbs(ReadOnlyTAbs tabs) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyTAbs)
+     * @see #saveTAbs(ReadOnlyTAbs)
      */
-    void saveAddressBook(ReadOnlyTAbs addressBook, Path filePath) throws IOException;
+    void saveTAbs(ReadOnlyTAbs tabs, Path filePath) throws IOException;
 
 }

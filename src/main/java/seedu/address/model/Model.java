@@ -37,20 +37,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getTAbsFilePath();
 
     /**
      * Sets the user prefs' address book file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setTAbsFilePath(Path tabsFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces address book data with the data in {@code tabs}.
      */
-    void setAddressBook(ReadOnlyTAbs addressBook);
+    void setTAbs(ReadOnlyTAbs tabs);
 
-    /** Returns the AddressBook */
-    ReadOnlyTAbs getAddressBook();
+    /** Returns the TAbs */
+    ReadOnlyTAbs getTAbs();
 
     /**
      * Returns true if a tutorial with the same identity as {@code tutorial} exists in the address book.

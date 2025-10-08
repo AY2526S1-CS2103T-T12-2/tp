@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTutorials.ALICE;
-import static seedu.address.testutil.TypicalTutorials.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalTutorials.getTypicalTAbs;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -37,8 +37,8 @@ public class TAbsTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        TAbs newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlyTAbs_replacesData() {
+        TAbs newData = getTypicalTAbs();
         TAbs.resetData(newData);
         assertEquals(newData, TAbs);
     }
@@ -60,18 +60,18 @@ public class TAbsTest {
     }
 
     @Test
-    public void hasTutorial_tutorialNotInAddressBook_returnsFalse() {
+    public void hasTutorial_tutorialNotInTAbs_returnsFalse() {
         assertFalse(TAbs.hasTutorial(ALICE));
     }
 
     @Test
-    public void hasTutorial_tutorialInAddressBook_returnsTrue() {
+    public void hasTutorial_tutorialInTAbs_returnsTrue() {
         TAbs.addTutorial(ALICE);
         assertTrue(TAbs.hasTutorial(ALICE));
     }
 
     @Test
-    public void hasTutorial_tutorialWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasTutorial_tutorialWithSameIdentityFieldsInTAbs_returnsTrue() {
         TAbs.addTutorial(ALICE);
         Tutorial editedAlice = new TutorialBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -90,7 +90,7 @@ public class TAbsTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose tutorials list can violate interface constraints.
+     * A stub ReadOnlyTAbs whose tutorials list can violate interface constraints.
      */
     private static class TAbsStub implements ReadOnlyTAbs {
         private final ObservableList<Tutorial> aTutorials = FXCollections.observableArrayList();

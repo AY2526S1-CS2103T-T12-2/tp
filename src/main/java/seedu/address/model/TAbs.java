@@ -31,7 +31,7 @@ public class TAbs implements ReadOnlyTAbs {
     public TAbs() {}
 
     /**
-     * Creates an AddressBook using the Tutorials in the {@code toBeCopied}
+     * Creates an TAbs using the Tutorials in the {@code toBeCopied}
      */
     public TAbs(ReadOnlyTAbs toBeCopied) {
         this();
@@ -49,7 +49,7 @@ public class TAbs implements ReadOnlyTAbs {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code TAbs} with {@code newData}.
      */
     public void resetData(ReadOnlyTAbs newData) {
         requireNonNull(newData);
@@ -87,7 +87,7 @@ public class TAbs implements ReadOnlyTAbs {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code TAbs}.
      * {@code key} must exist in the address book.
      */
     public void removeTutorial(Tutorial key) {

@@ -24,14 +24,14 @@ public class ModelManager implements Model {
     private final FilteredList<Tutorial> filteredTutorials;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given tabs and userPrefs.
      */
-    public ModelManager(ReadOnlyTAbs addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyTAbs tabs, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(tabs, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + tabs + " and user prefs " + userPrefs);
 
-        this.TAbs = new TAbs(addressBook);
+        this.TAbs = new TAbs(tabs);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredTutorials = new FilteredList<>(this.TAbs.getTutorialList());
     }
@@ -65,25 +65,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getTAbsFilePath() {
+        return userPrefs.getTAbsFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setTAbsFilePath(Path tabsFilePath) {
+        requireNonNull(tabsFilePath);
+        userPrefs.setTAbsFilePath(tabsFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== TAbs ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyTAbs addressBook) {
-        this.TAbs.resetData(addressBook);
+    public void setTAbs(ReadOnlyTAbs tabs) {
+        this.TAbs.resetData(tabs);
     }
 
     @Override
-    public ReadOnlyTAbs getAddressBook() {
+    public ReadOnlyTAbs getTAbs() {
         return TAbs;
     }
 
@@ -115,7 +115,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Tutorial} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedTAbs}
      */
     @Override
     public ObservableList<Tutorial> getFilteredTutorialList() {

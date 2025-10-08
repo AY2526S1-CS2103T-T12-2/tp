@@ -6,24 +6,24 @@ import seedu.address.model.tutorial.Tutorial;
 /**
  * A utility class to help with building Addressbook objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withTutorial("John", "Doe").build();}
+ *     {@code TAbs ab = new TAbsBuilder().withTutorial("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class TAbsBuilder {
 
     private TAbs TAbs;
 
-    public AddressBookBuilder() {
+    public TAbsBuilder() {
         TAbs = new TAbs();
     }
 
-    public AddressBookBuilder(TAbs TAbs) {
+    public TAbsBuilder(TAbs TAbs) {
         this.TAbs = TAbs;
     }
 
     /**
-     * Adds a new {@code Tutorial} to the {@code AddressBook} that we are building.
+     * Adds a new {@code Tutorial} to the {@code TAbs} that we are building.
      */
-    public AddressBookBuilder withTutorial(Tutorial aTutorial) {
+    public TAbsBuilder withTutorial(Tutorial aTutorial) {
         TAbs.addTutorial(aTutorial);
         return this;
     }
