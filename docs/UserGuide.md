@@ -16,7 +16,7 @@ If you can type fast, TAbs can get your class management tasks done faster than 
 1. Ensure you have Java `17` or above installed in your Computer.<br>
    **Mac users:** Ensure you have the precise JDK version prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
-1. Download the latest `.jar` file from [here](https://github.com/se-edu/TAbs-level3/releases).
+1. Download the latest `.jar` file from [here](https://github.com/se-edu/addressbook-level3/releases).
 
 1. Copy the file to the folder you want to use as the _home folder_ for your TAbs.
 
@@ -161,7 +161,7 @@ TAbs data are saved in the hard disk automatically after any command that change
 
 ### Editing the data file
 
-TAbs data are saved automatically as a JSON file `[JAR file location]/data/TAbs.json`. Advanced users are welcome to update data directly by editing that data file.
+TAbs data are saved automatically as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 If your changes to the data file makes its format invalid, TAbs will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
