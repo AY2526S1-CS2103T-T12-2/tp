@@ -5,6 +5,7 @@ import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import seedu.tabs.commons.core.index.Index;
 import seedu.tabs.logic.commands.DeleteTutorialCommand;
 import seedu.tabs.logic.parser.exceptions.ParseException;
+import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -17,13 +18,13 @@ public class DeleteCommandParser implements Parser<DeleteTutorialCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public DeleteTutorialCommand parse(String args) throws ParseException {
-        try {
-            Index index = ParserUtil.parseIndex(args);
-            return new DeleteTutorialCommand(index);
-        } catch (ParseException pe) {
+        String trimmedArgs = args.trim();
+        if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTutorialCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTutorialCommand.MESSAGE_USAGE));
         }
+
+        return new DeleteTutorialCommand(new TutorialIdMatchesKeywordPredicate(trimmedArgs));
     }
 
 }
