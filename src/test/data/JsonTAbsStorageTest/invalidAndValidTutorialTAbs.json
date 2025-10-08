@@ -1,13 +1,16 @@
 {
-  "tutorials": [ {
-    "tutorialId": "Valid Tutorial",
-    "moduleCode": "9482424",
-    "date": "hans@example.com",
-    "address": "4th street"
-  }, {
-    "tutorialId": "Tutorial With Invalid ModuleCode Field",
-    "moduleCode": "948asdf2424",
-    "date": "hans@example.com",
-    "address": "4th street"
-  } ]
+  "tutorials": [
+    {
+      "tutorialId": "Valid Tutorial",
+      "moduleCode": "9482424",
+      "date": "hans@example.com",
+      "address": "4th street"
+    },
+    {
+      "tutorialId": "Tutorial With Invalid ModuleCode Field",
+      "moduleCode": "948asdf2424",
+      "date": "hans@example.com",
+      "address": "4th street"
+    }
+  ]
 }

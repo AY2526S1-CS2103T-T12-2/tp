@@ -92,8 +92,10 @@ public class TutorialTest {
 
     @Test
     public void toStringMethod() {
-        String expected = Tutorial.class.getCanonicalName() + "{name=" + ALICE.getTutorialId() + ", moduleCode=" + ALICE.getModuleCode()
-                + ", date=" + ALICE.getDate() + ", tabs=" + ALICE.getAddress() + ", students=" + ALICE.getStudents() + "}";
+        String expected = Tutorial.class.getCanonicalName() + "{tutorialId=" + ALICE.getTutorialId()
+                + ", moduleCode=" + ALICE.getModuleCode()
+                + ", date=" + ALICE.getDate() + ", tabs=" + ALICE.getAddress()
+                + ", students=" + ALICE.getStudents() + "}";
         assertEquals(expected, ALICE.toString());
     }
 }

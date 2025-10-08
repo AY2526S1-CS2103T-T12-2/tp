@@ -95,13 +95,13 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TAbs TAbs = new TAbsBuilder().withTutorial(ALICE).withTutorial(BENSON).build();
+        TAbs tabs = new TAbsBuilder().withTutorial(ALICE).withTutorial(BENSON).build();
         TAbs differentTAbs = new TAbs();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(TAbs, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(TAbs, userPrefs);
+        modelManager = new ModelManager(tabs, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(tabs, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -119,7 +119,7 @@ public class ModelManagerTest {
         // different filteredList -> returns false
         String[] keywords = ALICE.getTutorialId().fullName.split("\\s+");
         modelManager.updateFilteredTutorialList(new TutorialIdContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(TAbs, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(tabs, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredTutorialList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +127,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setTAbsFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(TAbs, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(tabs, differentUserPrefs)));
     }
 }

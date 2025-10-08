@@ -58,10 +58,11 @@ public class AddCommandParserTest {
 
 
         // multiple students - all accepted
-        Tutorial expectedTutorialMultipleStudents = new TutorialBuilder(BOB).withStudents(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
-                .build();
+        Tutorial expectedTutorialMultipleStudents =
+                new TutorialBuilder(BOB).withStudents(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
         assertParseSuccess(parser,
-                NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB + ADDRESS_DESC_BOB
+                        + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 new AddCommand(expectedTutorialMultipleStudents));
     }
 
@@ -88,9 +89,10 @@ public class AddCommandParserTest {
 
         // multiple fields repeated
         assertParseFailure(parser,
-                validExpectedTutorialString + PHONE_DESC_AMY + DATE_DESC_AMY + NAME_DESC_AMY + ADDRESS_DESC_AMY
-                        + validExpectedTutorialString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID, PREFIX_ADDRESS, PREFIX_DATE, PREFIX_MODULE_CODE));
+                validExpectedTutorialString + PHONE_DESC_AMY + DATE_DESC_AMY + NAME_DESC_AMY
+                        + ADDRESS_DESC_AMY + validExpectedTutorialString,
+                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID, PREFIX_ADDRESS,
+                        PREFIX_DATE, PREFIX_MODULE_CODE));
 
         // invalid value followed by valid value
 
@@ -190,7 +192,7 @@ public class AddCommandParserTest {
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                        + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

@@ -1,46 +1,61 @@
 {
   "_comment": "TAbs save file which contains the same Tutorial values as in TypicalTutorials#getTypicalTAbs()",
-  "tutorials" : [ {
-    "tutorialId" : "Alice Pauline",
-    "moduleCode" : "94351253",
-    "date" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
-    "students" : [ "friends" ]
-  }, {
-    "tutorialId" : "Benson Meier",
-    "moduleCode" : "98765432",
-    "date" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
-    "students" : [ "owesMoney", "friends" ]
-  }, {
-    "tutorialId" : "Carl Kurz",
-    "moduleCode" : "95352563",
-    "date" : "heinz@example.com",
-    "address" : "wall street",
-    "students" : [ ]
-  }, {
-    "tutorialId" : "Daniel Meier",
-    "moduleCode" : "87652533",
-    "date" : "cornelia@example.com",
-    "address" : "10th street",
-    "students" : [ "friends" ]
-  }, {
-    "tutorialId" : "Elle Meyer",
-    "moduleCode" : "9482224",
-    "date" : "werner@example.com",
-    "address" : "michegan ave",
-    "students" : [ ]
-  }, {
-    "tutorialId" : "Fiona Kunz",
-    "moduleCode" : "9482427",
-    "date" : "lydia@example.com",
-    "address" : "little tokyo",
-    "students" : [ ]
-  }, {
-    "tutorialId" : "George Best",
-    "moduleCode" : "9482442",
-    "date" : "anna@example.com",
-    "address" : "4th street",
-    "students" : [ ]
-  } ]
+  "tutorials": [
+    {
+      "tutorialId": "Alice Pauline",
+      "moduleCode": "94351253",
+      "date": "alice@example.com",
+      "address": "123, Jurong West Ave 6, #08-111",
+      "students": [
+        "friends"
+      ]
+    },
+    {
+      "tutorialId": "Benson Meier",
+      "moduleCode": "98765432",
+      "date": "johnd@example.com",
+      "address": "311, Clementi Ave 2, #02-25",
+      "students": [
+        "owesMoney",
+        "friends"
+      ]
+    },
+    {
+      "tutorialId": "Carl Kurz",
+      "moduleCode": "95352563",
+      "date": "heinz@example.com",
+      "address": "wall street",
+      "students": []
+    },
+    {
+      "tutorialId": "Daniel Meier",
+      "moduleCode": "87652533",
+      "date": "cornelia@example.com",
+      "address": "10th street",
+      "students": [
+        "friends"
+      ]
+    },
+    {
+      "tutorialId": "Elle Meyer",
+      "moduleCode": "9482224",
+      "date": "werner@example.com",
+      "address": "michegan ave",
+      "students": []
+    },
+    {
+      "tutorialId": "Fiona Kunz",
+      "moduleCode": "9482427",
+      "date": "lydia@example.com",
+      "address": "little tokyo",
+      "students": []
+    },
+    {
+      "tutorialId": "George Best",
+      "moduleCode": "9482442",
+      "date": "anna@example.com",
+      "address": "4th street",
+      "students": []
+    }
+  ]
 }

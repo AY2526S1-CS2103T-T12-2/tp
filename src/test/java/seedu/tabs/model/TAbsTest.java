@@ -24,23 +24,23 @@ import seedu.tabs.testutil.TutorialBuilder;
 
 public class TAbsTest {
 
-    private final TAbs TAbs = new TAbs();
+    private final TAbs tabs = new TAbs();
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), TAbs.getTutorialList());
+        assertEquals(Collections.emptyList(), tabs.getTutorialList());
     }
 
     @Test
     public void resetData_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> TAbs.resetData(null));
+        assertThrows(NullPointerException.class, () -> tabs.resetData(null));
     }
 
     @Test
     public void resetData_withValidReadOnlyTAbs_replacesData() {
         TAbs newData = getTypicalTAbs();
-        TAbs.resetData(newData);
-        assertEquals(newData, TAbs);
+        tabs.resetData(newData);
+        assertEquals(newData, tabs);
     }
 
     @Test
@@ -51,42 +51,42 @@ public class TAbsTest {
         List<Tutorial> newTutorials = Arrays.asList(ALICE, editedAlice);
         TAbsStub newData = new TAbsStub(newTutorials);
 
-        assertThrows(DuplicateTutorialException.class, () -> TAbs.resetData(newData));
+        assertThrows(DuplicateTutorialException.class, () -> tabs.resetData(newData));
     }
 
     @Test
     public void hasTutorial_nullTutorial_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> TAbs.hasTutorial(null));
+        assertThrows(NullPointerException.class, () -> tabs.hasTutorial(null));
     }
 
     @Test
     public void hasTutorial_tutorialNotInTAbs_returnsFalse() {
-        assertFalse(TAbs.hasTutorial(ALICE));
+        assertFalse(tabs.hasTutorial(ALICE));
     }
 
     @Test
     public void hasTutorial_tutorialInTAbs_returnsTrue() {
-        TAbs.addTutorial(ALICE);
-        assertTrue(TAbs.hasTutorial(ALICE));
+        tabs.addTutorial(ALICE);
+        assertTrue(tabs.hasTutorial(ALICE));
     }
 
     @Test
     public void hasTutorial_tutorialWithSameIdentityFieldsInTAbs_returnsTrue() {
-        TAbs.addTutorial(ALICE);
+        tabs.addTutorial(ALICE);
         Tutorial editedAlice = new TutorialBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withStudents(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(TAbs.hasTutorial(editedAlice));
+        assertTrue(tabs.hasTutorial(editedAlice));
     }
 
     @Test
     public void getTutorialList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> TAbs.getTutorialList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> tabs.getTutorialList().remove(0));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = TAbs.class.getCanonicalName() + "{tutorials=" + TAbs.getTutorialList() + "}";
-        assertEquals(expected, TAbs.toString());
+        String expected = TAbs.class.getCanonicalName() + "{tutorials=" + tabs.getTutorialList() + "}";
+        assertEquals(expected, tabs.toString());
     }
 
     /**

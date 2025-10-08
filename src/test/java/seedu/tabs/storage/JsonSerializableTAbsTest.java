@@ -16,7 +16,7 @@ import seedu.tabs.testutil.TypicalTutorials;
 public class JsonSerializableTAbsTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTAbsTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalTutorialsTAbs.json");
+    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalTutorialTAbs.json");
     private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidTutorialTAbs.json");
     private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicateTutorialTAbs.json");
 
@@ -24,9 +24,9 @@ public class JsonSerializableTAbsTest {
     public void toModelType_typicalTutorialsFile_success() throws Exception {
         JsonSerializableTAbs dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
                 JsonSerializableTAbs.class).get();
-        TAbs TAbsFromFile = dataFromFile.toModelType();
+        TAbs tabsFromFile = dataFromFile.toModelType();
         TAbs typicalTutorialsTAbs = TypicalTutorials.getTypicalTAbs();
-        assertEquals(TAbsFromFile, typicalTutorialsTAbs);
+        assertEquals(tabsFromFile, typicalTutorialsTAbs);
     }
 
     @Test

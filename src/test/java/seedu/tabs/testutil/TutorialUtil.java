@@ -35,7 +35,7 @@ public class TutorialUtil {
         sb.append(PREFIX_DATE + aTutorial.getDate().value + " ");
         sb.append(PREFIX_ADDRESS + aTutorial.getAddress().value + " ");
         aTutorial.getStudents().stream().forEach(
-            s -> sb.append(PREFIX_STUDENT + s.studentName + " ")
+                s -> sb.append(PREFIX_STUDENT + s.studentName + " ")
         );
         return sb.toString();
     }
@@ -46,7 +46,8 @@ public class TutorialUtil {
     public static String getEditTutorialDescriptorDetails(EditTutorialDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_TUTORIAL_ID).append(name.fullName).append(" "));
-        descriptor.getModuleCode().ifPresent(moduleCode -> sb.append(PREFIX_MODULE_CODE).append(moduleCode.value).append(" "));
+        descriptor.getModuleCode().ifPresent(moduleCode -> sb.append(PREFIX_MODULE_CODE)
+                .append(moduleCode.value).append(" "));
         descriptor.getEmail().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getStudents().isPresent()) {

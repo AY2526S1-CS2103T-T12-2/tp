@@ -57,7 +57,8 @@ public class TypicalTutorials {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalTutorials() {} // prevents instantiation
+    private TypicalTutorials() {
+    } // prevents instantiation
 
     /**
      * Returns an {@code TAbs} with all the typical tutorials.

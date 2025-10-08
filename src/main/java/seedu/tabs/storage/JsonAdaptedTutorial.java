@@ -24,7 +24,7 @@ class JsonAdaptedTutorial {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Tutorial's %s field is missing!";
 
-    private final String name;
+    private final String tutorialId;
     private final String moduleCode;
     private final String date;
     private final String address;
@@ -37,7 +37,7 @@ class JsonAdaptedTutorial {
     public JsonAdaptedTutorial(@JsonProperty("name") String name, @JsonProperty("moduleCode") String moduleCode,
             @JsonProperty("date") String date, @JsonProperty("tabs") String address,
             @JsonProperty("students") List<JsonAdaptedStudent> students) {
-        this.name = name;
+        this.tutorialId = name;
         this.moduleCode = moduleCode;
         this.date = date;
         this.address = address;
@@ -50,7 +50,7 @@ class JsonAdaptedTutorial {
      * Converts a given {@code Tutorial} into this class for Jackson use.
      */
     public JsonAdaptedTutorial(Tutorial source) {
-        name = source.getTutorialId().fullName;
+        tutorialId = source.getTutorialId().fullName;
         moduleCode = source.getModuleCode().value;
         date = source.getDate().value;
         address = source.getAddress().value;
@@ -70,14 +70,14 @@ class JsonAdaptedTutorial {
             tutorialStudents.add(student.toModelType());
         }
 
-        if (name == null) {
+        if (tutorialId == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TutorialId.class.getSimpleName()));
         }
-        if (!TutorialId.isValidName(name)) {
+        if (!TutorialId.isValidName(tutorialId)) {
             throw new IllegalValueException(TutorialId.MESSAGE_CONSTRAINTS);
         }
-        final TutorialId modelTutorialId = new TutorialId(name);
+        final TutorialId modelTutorialId = new TutorialId(tutorialId);
 
         if (moduleCode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

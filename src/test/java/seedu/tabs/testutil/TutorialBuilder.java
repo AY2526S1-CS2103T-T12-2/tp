@@ -60,7 +60,7 @@ public class TutorialBuilder {
     /**
      * Parses the {@code students} into a {@code Set<Student>} and set it to the {@code Tutorial} that we are building.
      */
-    public TutorialBuilder withStudents(String ... students) {
+    public TutorialBuilder withStudents(String... students) {
         this.students = SampleDataUtil.getStudentSet(students);
         return this;
     }

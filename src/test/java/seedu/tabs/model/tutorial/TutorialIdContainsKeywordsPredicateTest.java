@@ -19,14 +19,17 @@ public class TutorialIdContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        TutorialIdContainsKeywordsPredicate firstPredicate = new TutorialIdContainsKeywordsPredicate(firstPredicateKeywordList);
-        TutorialIdContainsKeywordsPredicate secondPredicate = new TutorialIdContainsKeywordsPredicate(secondPredicateKeywordList);
+        TutorialIdContainsKeywordsPredicate firstPredicate =
+                new TutorialIdContainsKeywordsPredicate(firstPredicateKeywordList);
+        TutorialIdContainsKeywordsPredicate secondPredicate =
+                new TutorialIdContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TutorialIdContainsKeywordsPredicate firstPredicateCopy = new TutorialIdContainsKeywordsPredicate(firstPredicateKeywordList);
+        TutorialIdContainsKeywordsPredicate firstPredicateCopy =
+                new TutorialIdContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -42,7 +45,8 @@ public class TutorialIdContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        TutorialIdContainsKeywordsPredicate predicate = new TutorialIdContainsKeywordsPredicate(Collections.singletonList("Alice"));
+        TutorialIdContainsKeywordsPredicate predicate =
+                new TutorialIdContainsKeywordsPredicate(Collections.singletonList("Alice"));
         assertTrue(predicate.test(new TutorialBuilder().withName("Alice Bob").build()));
 
         // Multiple keywords
@@ -61,7 +65,8 @@ public class TutorialIdContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        TutorialIdContainsKeywordsPredicate predicate = new TutorialIdContainsKeywordsPredicate(Collections.emptyList());
+        TutorialIdContainsKeywordsPredicate predicate =
+                new TutorialIdContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new TutorialBuilder().withName("Alice").build()));
 
         // Non-matching keyword

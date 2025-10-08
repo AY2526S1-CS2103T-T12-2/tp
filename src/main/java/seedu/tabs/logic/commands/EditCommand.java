@@ -232,11 +232,11 @@ public class EditCommand extends Command {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .add("name", tutorialId)
+                    .add("tutorialId", tutorialId)
                     .add("moduleCode", moduleCode)
                     .add("date", date)
                     .add("tabs", address)
-                    .add("tags", students)
+                    .add("students", students)
                     .toString();
         }
     }

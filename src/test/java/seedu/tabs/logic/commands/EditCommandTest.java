@@ -41,7 +41,8 @@ public class EditCommandTest {
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder(editedTutorial).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedTutorial));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                Messages.format(editedTutorial));
 
         Model expectedModel = new ModelManager(new TAbs(model.getTAbs()), new UserPrefs());
         expectedModel.setTutorial(model.getFilteredTutorialList().get(0), editedTutorial);
@@ -62,7 +63,8 @@ public class EditCommandTest {
                 .withModuleCode(VALID_PHONE_BOB).withStudents(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastTutorial, descriptor);
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedTutorial));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                Messages.format(editedTutorial));
 
         Model expectedModel = new ModelManager(new TAbs(model.getTAbs()), new UserPrefs());
         expectedModel.setTutorial(lastTutorial, editedTutorial);
@@ -75,7 +77,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, new EditTutorialDescriptor());
         Tutorial editedTutorial = model.getFilteredTutorialList().get(INDEX_FIRST_PERSON.getZeroBased());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedTutorial));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                Messages.format(editedTutorial));
 
         Model expectedModel = new ModelManager(new TAbs(model.getTAbs()), new UserPrefs());
 
@@ -91,7 +94,8 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
                 new EditTutorialDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
-        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedTutorial));
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
+                Messages.format(editedTutorial));
 
         Model expectedModel = new ModelManager(new TAbs(model.getTAbs()), new UserPrefs());
         expectedModel.setTutorial(model.getFilteredTutorialList().get(0), editedTutorial);

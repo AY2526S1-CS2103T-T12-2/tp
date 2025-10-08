@@ -159,13 +159,14 @@ public class UniqueTutorialListTest {
     @Test
     public void setTutorials_listWithDuplicateTutorials_throwsDuplicateTutorialException() {
         List<Tutorial> listWithDuplicateTutorials = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateTutorialException.class, () -> uniqueTutorialList.setTutorials(listWithDuplicateTutorials));
+        assertThrows(DuplicateTutorialException.class, () -> uniqueTutorialList.setTutorials(
+                listWithDuplicateTutorials));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueTutorialList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> uniqueTutorialList.asUnmodifiableObservableList()
+                .remove(0));
     }
 
     @Test

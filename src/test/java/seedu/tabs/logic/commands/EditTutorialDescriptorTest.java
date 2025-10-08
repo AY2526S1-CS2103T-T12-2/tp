@@ -60,7 +60,7 @@ public class EditTutorialDescriptorTest {
     @Test
     public void toStringMethod() {
         EditTutorialDescriptor editTutorialDescriptor = new EditTutorialDescriptor();
-        String expected = EditTutorialDescriptor.class.getCanonicalName() + "{name="
+        String expected = EditTutorialDescriptor.class.getCanonicalName() + "{tutorialId="
                 + editTutorialDescriptor.getName().orElse(null) + ", moduleCode="
                 + editTutorialDescriptor.getModuleCode().orElse(null) + ", date="
                 + editTutorialDescriptor.getEmail().orElse(null) + ", tabs="
