@@ -21,11 +21,11 @@ import seedu.address.commons.util.ToStringBuilder;
 import seedu.address.logic.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
+import seedu.address.model.tutorial.Address;
+import seedu.address.model.tutorial.Email;
+import seedu.address.model.tutorial.Name;
+import seedu.address.model.tutorial.Tutorial;
+import seedu.address.model.tutorial.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -70,38 +70,38 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<Tutorial> lastShownList = model.getFilteredPersonList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        Tutorial tutorialToEdit = lastShownList.get(index.getZeroBased());
+        Tutorial editedTutorial = createEditedPerson(tutorialToEdit, editPersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
+        if (!tutorialToEdit.isSamePerson(editedTutorial) && model.hasPerson(editedTutorial)) {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
-        model.setPerson(personToEdit, editedPerson);
+        model.setPerson(tutorialToEdit, editedTutorial);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedPerson)));
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedTutorial)));
     }
 
     /**
      * Creates and returns a {@code Person} with the details of {@code personToEdit}
      * edited with {@code editPersonDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static Tutorial createEditedPerson(Tutorial tutorialToEdit, EditPersonDescriptor editPersonDescriptor) {
+        assert tutorialToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editPersonDescriptor.getName().orElse(tutorialToEdit.getName());
+        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(tutorialToEdit.getPhone());
+        Email updatedEmail = editPersonDescriptor.getEmail().orElse(tutorialToEdit.getEmail());
+        Address updatedAddress = editPersonDescriptor.getAddress().orElse(tutorialToEdit.getAddress());
+        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(tutorialToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+        return new Tutorial(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags);
     }
 
     @Override
