@@ -6,7 +6,7 @@ package seedu.tabs.logic.parser;
 public class CliSyntax {
 
     /* Prefix definitions */
-    public static final Prefix PREFIX_TUTORIAL_ID = new Prefix("n/");
+    public static final Prefix PREFIX_TUTORIAL_ID = new Prefix("t/");
     public static final Prefix PREFIX_MODULE_CODE = new Prefix("p/");
     public static final Prefix PREFIX_DATE = new Prefix("e/");
     public static final Prefix PREFIX_ADDRESS = new Prefix("a/");
