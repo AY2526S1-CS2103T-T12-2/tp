@@ -36,7 +36,7 @@ import static seedu.tabs.testutil.TypicalTutorials.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.tabs.logic.Messages;
-import seedu.tabs.logic.commands.AddCommand;
+import seedu.tabs.logic.commands.AddTutorialCommand;
 import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
@@ -46,7 +46,7 @@ import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.testutil.TutorialBuilder;
 
 public class AddCommandParserTest {
-    private AddCommandParser parser = new AddCommandParser();
+    private AddTutorialCommandParser parser = new AddTutorialCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
@@ -54,7 +54,7 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedTutorial));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND, new AddTutorialCommand(expectedTutorial));
 
 
         // multiple students - all accepted
@@ -63,7 +63,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser,
                 NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB + ADDRESS_DESC_BOB
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                new AddCommand(expectedTutorialMultipleStudents));
+                new AddTutorialCommand(expectedTutorialMultipleStudents));
     }
 
     @Test
@@ -136,12 +136,12 @@ public class AddCommandParserTest {
         // zero students
         Tutorial expectedTutorial = new TutorialBuilder(AMY).withStudents().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + DATE_DESC_AMY + ADDRESS_DESC_AMY,
-                new AddCommand(expectedTutorial));
+                new AddTutorialCommand(expectedTutorial));
     }
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + PHONE_DESC_BOB + DATE_DESC_BOB + ADDRESS_DESC_BOB,
@@ -153,10 +153,6 @@ public class AddCommandParserTest {
 
         // missing date prefix
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_DATE_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing tabs prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB + VALID_ADDRESS_BOB,
                 expectedMessage);
 
         // all prefixes missing
@@ -193,6 +189,6 @@ public class AddCommandParserTest {
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
                         + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE));
     }
 }

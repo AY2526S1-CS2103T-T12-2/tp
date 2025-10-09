@@ -14,9 +14,9 @@ import seedu.tabs.model.Model;
 import seedu.tabs.model.tutorial.Tutorial;
 
 /**
- * Adds a tutorial to the TAbs.
+ * Adds a tutorial to the TAbs using the new tutorial specification.
  */
-public class AddCommand extends Command {
+public class AddTutorialCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
@@ -25,27 +25,27 @@ public class AddCommand extends Command {
             + PREFIX_TUTORIAL_ID + "TUTORIAL_ID "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
             + PREFIX_DATE + "DATE "
-            + PREFIX_ADDRESS + "ADDRESS "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_STUDENT + "STUDENT]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TUTORIAL_ID + "C123 "
             + PREFIX_MODULE_CODE + "CS2103T "
-            + PREFIX_DATE + "2025-01-15 "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_STUDENT + "friends "
-            + PREFIX_STUDENT + "owesMoney";
+            + PREFIX_DATE + "2025-03-15 "
+            + PREFIX_ADDRESS + "COM1-B103 "
+            + PREFIX_STUDENT + "student1 "
+            + PREFIX_STUDENT + "student2";
 
     public static final String MESSAGE_SUCCESS = "New tutorial added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This tutorial already exists in the TAbs";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the TAbs";
 
     private final Tutorial toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Tutorial}
+     * Creates an AddTutorialCommand to add the specified {@code Tutorial}
      */
-    public AddCommand(Tutorial aTutorial) {
-        requireNonNull(aTutorial);
-        toAdd = aTutorial;
+    public AddTutorialCommand(Tutorial tutorial) {
+        requireNonNull(tutorial);
+        toAdd = tutorial;
     }
 
     @Override
@@ -53,12 +53,14 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasTutorial(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL);
         }
 
         model.addTutorial(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
+
+
 
     @Override
     public boolean equals(Object other) {
@@ -66,13 +68,12 @@ public class AddCommand extends Command {
             return true;
         }
 
-        // instanceof handles nulls
-        if (!(other instanceof AddCommand)) {
+        if (!(other instanceof AddTutorialCommand)) {
             return false;
         }
 
-        AddCommand otherAddCommand = (AddCommand) other;
-        return toAdd.equals(otherAddCommand.toAdd);
+        AddTutorialCommand otherAddTutorialCommand = (AddTutorialCommand) other;
+        return toAdd.equals(otherAddTutorialCommand.toAdd);
     }
 
     @Override
@@ -82,3 +83,4 @@ public class AddCommand extends Command {
                 .toString();
     }
 }
+

@@ -18,6 +18,8 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d tutorials listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGES_STUDENTS_LISTED_OVERVIEW = "Displaying all students enrolled in tutorial!";
+
 
     /**
      * Returns an error message indicating the duplicate prefixes.
@@ -39,7 +41,7 @@ public class Messages {
         builder.append(aTutorial.getTutorialId())
                 .append("; ModuleCode: ")
                 .append(aTutorial.getModuleCode())
-                .append("; Email: ")
+                .append("; Date: ")
                 .append(aTutorial.getDate())
                 .append("; Address: ")
                 .append(aTutorial.getAddress())

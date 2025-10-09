@@ -67,7 +67,7 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleTutorialsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        TutorialIdContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        TutorialIdContainsKeywordsPredicate predicate = preparePredicate("C303 C505 T606");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTutorialList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);

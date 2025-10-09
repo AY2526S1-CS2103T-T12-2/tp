@@ -1,9 +1,9 @@
 {
   "tutorials": [
     {
-      "tutorialId": "Tutorial with invalid tutorialId field: Ha!ns Mu@ster",
-      "moduleCode": "9482424",
-      "date": "hans@example.com",
+      "tutorialId": "Invalid@ID!",
+      "moduleCode": "InvalidModule",
+      "date": "invalid-date",
       "address": "4th street"
     }
   ]

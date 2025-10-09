@@ -8,7 +8,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.tabs.commons.core.LogsCenter;
-import seedu.tabs.logic.commands.AddCommand;
+import seedu.tabs.logic.commands.AddStudentCommand;
+import seedu.tabs.logic.commands.AddTutorialCommand;
 import seedu.tabs.logic.commands.ClearCommand;
 import seedu.tabs.logic.commands.Command;
 import seedu.tabs.logic.commands.DeleteTutorialCommand;
@@ -17,6 +18,7 @@ import seedu.tabs.logic.commands.ExitCommand;
 import seedu.tabs.logic.commands.FindCommand;
 import seedu.tabs.logic.commands.HelpCommand;
 import seedu.tabs.logic.commands.ListCommand;
+import seedu.tabs.logic.commands.ListStudentsCommand;
 import seedu.tabs.logic.parser.exceptions.ParseException;
 
 /**
@@ -53,8 +55,8 @@ public class TAbsParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddTutorialCommand.COMMAND_WORD:
+            return new AddTutorialCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
@@ -76,6 +78,12 @@ public class TAbsParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case ListStudentsCommand.COMMAND_WORD:
+            return new ListStudentsCommandParser().parse(arguments);
+
+        case AddStudentCommand.COMMAND_WORD:
+            return new AddStudentCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

@@ -4,38 +4,34 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tabs.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tutorial's name in the TAbs.
- * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
+ * Represents a Tutorial's ID in the TAbs.
+ * Guarantees: immutable; is valid as declared in {@link #isValidTutorialId(String)}
  */
 public class TutorialId {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Names should only contain alphanumeric characters and spaces, and it should not be blank";
+            "Tutorial IDs should start with 'C' or 'T' followed by numbers (e.g., C123, T456, CT789)";
 
-    /*
-     * The first character of the tabs must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String VALIDATION_REGEX = "(C|T|CT)\\d+";
 
     public final String fullName;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code TutorialId}.
      *
-     * @param name A valid name.
+     * @param tutorialId A valid tutorial ID.
      */
-    public TutorialId(String name) {
-        requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+    public TutorialId(String tutorialId) {
+        requireNonNull(tutorialId);
+        checkArgument(isValidTutorialId(tutorialId), MESSAGE_CONSTRAINTS);
+        fullName = tutorialId.toUpperCase();
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid tutorial ID.
      */
-    public static boolean isValidName(String test) {
-        return test.matches(VALIDATION_REGEX);
+    public static boolean isValidTutorialId(String test) {
+        return test.toUpperCase().matches(VALIDATION_REGEX);
     }
 
 

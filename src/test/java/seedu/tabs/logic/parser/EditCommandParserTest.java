@@ -110,7 +110,7 @@ public class EditCommandParserTest {
                 + DATE_DESC_AMY + ADDRESS_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
 
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withModuleCode(VALID_PHONE_BOB).withEmail(VALID_DATE_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withModuleCode(VALID_PHONE_BOB).withDate(VALID_DATE_AMY).withAddress(VALID_ADDRESS_AMY)
                 .withStudents(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -123,7 +123,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + DATE_DESC_AMY;
 
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder().withModuleCode(VALID_PHONE_BOB)
-                .withEmail(VALID_DATE_AMY).build();
+                .withDate(VALID_DATE_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -146,7 +146,7 @@ public class EditCommandParserTest {
 
         // date
         userInput = targetIndex.getOneBased() + DATE_DESC_AMY;
-        descriptor = new EditTutorialDescriptorBuilder().withEmail(VALID_DATE_AMY).build();
+        descriptor = new EditTutorialDescriptorBuilder().withDate(VALID_DATE_AMY).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
