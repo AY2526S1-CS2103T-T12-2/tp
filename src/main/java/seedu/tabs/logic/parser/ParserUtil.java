@@ -104,7 +104,7 @@ public class ParserUtil {
     public static Student parseStudent(String studentId) throws ParseException {
         requireNonNull(studentId);
         String trimmedStudent = studentId.trim();
-        if (!Student.isValidStudentName(trimmedStudent)) {
+        if (!Student.isValidStudentId(trimmedStudent)) {
             throw new ParseException(Student.MESSAGE_CONSTRAINTS);
         }
         return new Student(trimmedStudent);
@@ -116,8 +116,8 @@ public class ParserUtil {
     public static Set<Student> parseStudents(Collection<String> studentIds) throws ParseException {
         requireNonNull(studentIds);
         final Set<Student> studentSet = new HashSet<>();
-        for (String studentName : studentIds) {
-            studentSet.add(parseStudent(studentName));
+        for (String studentId : studentIds) {
+            studentSet.add(parseStudent(studentId));
         }
         return studentSet;
     }

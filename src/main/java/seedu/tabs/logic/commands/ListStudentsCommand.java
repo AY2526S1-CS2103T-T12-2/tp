@@ -54,7 +54,7 @@ public class ListStudentsCommand extends Command {
         }
 
         for (int i = 0; i < studentList.size(); i++) {
-            listOfStudents = listOfStudents + (i + 1) + ". " + studentList.get(i).studentName + "\n";
+            listOfStudents = listOfStudents + (i + 1) + ". " + studentList.get(i).studentId + "\n";
         }
 
         return new CommandResult(listOfStudents);
