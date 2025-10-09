@@ -8,6 +8,7 @@ import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.tabs.testutil.Assert.assertThrows;
 import static seedu.tabs.testutil.TypicalTutorials.ALICE;
 import static seedu.tabs.testutil.TypicalTutorials.BOB;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,20 +31,20 @@ public class UniqueTutorialListTest {
 
     @Test
     public void contains_tutorialNotInList_returnsFalse() {
-        assertFalse(uniqueTutorialList.contains(ALICE));
+        assertFalse(uniqueTutorialList.contains(TUTORIAL_CS2103T_C101));
     }
 
     @Test
     public void contains_tutorialInList_returnsTrue() {
-        uniqueTutorialList.add(ALICE);
-        assertTrue(uniqueTutorialList.contains(ALICE));
+        uniqueTutorialList.add(TUTORIAL_CS2103T_C101);
+        assertTrue(uniqueTutorialList.contains(TUTORIAL_CS2103T_C101));
     }
 
     @Test
     public void contains_tutorialWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueTutorialList.add(ALICE);
-        Tutorial editedAlice = new TutorialBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withStudents(VALID_TAG_HUSBAND)
-                .build();
+        uniqueTutorialList.add(TUTORIAL_CS2103T_C101);
+        Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101)
+                .withAddress(VALID_ADDRESS_BOB).withStudents(VALID_TAG_HUSBAND).build();
         assertTrue(uniqueTutorialList.contains(editedAlice));
     }
 
@@ -85,8 +86,8 @@ public class UniqueTutorialListTest {
     @Test
     public void setTutorial_editedTutorialHasSameIdentity_success() {
         uniqueTutorialList.add(ALICE);
-        Tutorial editedAlice = new TutorialBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withStudents(VALID_TAG_HUSBAND)
-                .build();
+        Tutorial editedAlice = new TutorialBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+                .withStudents(VALID_TAG_HUSBAND).build();
         uniqueTutorialList.setTutorial(ALICE, editedAlice);
         UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();
         expectedUniqueTutorialList.add(editedAlice);

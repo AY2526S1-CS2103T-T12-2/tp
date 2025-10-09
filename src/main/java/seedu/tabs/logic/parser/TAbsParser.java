@@ -8,8 +8,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.tabs.commons.core.LogsCenter;
-import seedu.tabs.logic.commands.AddCommand;
 import seedu.tabs.logic.commands.AddStudentCommand;
+import seedu.tabs.logic.commands.AddTutorialCommand;
 import seedu.tabs.logic.commands.ClearCommand;
 import seedu.tabs.logic.commands.Command;
 import seedu.tabs.logic.commands.DeleteCommand;
@@ -55,8 +55,8 @@ public class TAbsParser {
 
         switch (commandWord) {
 
-        case AddCommand.COMMAND_WORD:
-            return new AddCommandParser().parse(arguments);
+        case AddTutorialCommand.COMMAND_WORD:
+            return new AddTutorialCommandParser().parse(arguments);
 
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);

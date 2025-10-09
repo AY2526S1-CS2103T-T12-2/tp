@@ -58,7 +58,7 @@ public class EditTutorialDescriptorBuilder {
     /**
      * Sets the {@code Email} of the {@code EditTutorialDescriptor} that we are building.
      */
-    public EditTutorialDescriptorBuilder withEmail(String date) {
+    public EditTutorialDescriptorBuilder withDate(String date) {
         descriptor.setEmail(new Date(date));
         return this;
     }

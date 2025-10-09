@@ -18,7 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.tabs.logic.commands.AddCommand;
+import seedu.tabs.logic.commands.AddTutorialCommand;
 import seedu.tabs.logic.commands.CommandResult;
 import seedu.tabs.logic.commands.ListCommand;
 import seedu.tabs.logic.commands.exceptions.CommandException;
@@ -170,7 +170,7 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveTAbs method by executing an add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
+        String addCommand = AddTutorialCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
                 + DATE_DESC_AMY + ADDRESS_DESC_AMY;
         Tutorial expectedTutorial = new TutorialBuilder(AMY).withStudents().build();
         ModelManager expectedModel = new ModelManager();

@@ -45,7 +45,7 @@ public class EditTutorialDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different date -> returns false
-        editedAmy = new EditTutorialDescriptorBuilder(DESC_AMY).withEmail(VALID_DATE_BOB).build();
+        editedAmy = new EditTutorialDescriptorBuilder(DESC_AMY).withDate(VALID_DATE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tabs -> returns false

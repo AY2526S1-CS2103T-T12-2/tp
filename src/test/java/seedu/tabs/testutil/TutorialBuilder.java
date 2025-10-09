@@ -16,10 +16,10 @@ import seedu.tabs.model.util.SampleDataUtil;
  */
 public class TutorialBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_DATE = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_NAME = "C999";
+    public static final String DEFAULT_PHONE = "CS9999";
+    public static final String DEFAULT_DATE = "2025-12-31";
+    public static final String DEFAULT_ADDRESS = "999, Test Ave 9, #09-999";
 
     private TutorialId tutorialId;
     private ModuleCode moduleCode;
@@ -82,9 +82,9 @@ public class TutorialBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code Tutorial} that we are building.
+     * Sets the {@code Date} of the {@code Tutorial} that we are building.
      */
-    public TutorialBuilder withEmail(String date) {
+    public TutorialBuilder withDate(String date) {
         this.date = new Date(date);
         return this;
     }

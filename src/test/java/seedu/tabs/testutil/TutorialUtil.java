@@ -8,7 +8,7 @@ import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 
 import java.util.Set;
 
-import seedu.tabs.logic.commands.AddCommand;
+import seedu.tabs.logic.commands.AddTutorialCommand;
 import seedu.tabs.logic.commands.EditCommand.EditTutorialDescriptor;
 import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Tutorial;
@@ -22,7 +22,7 @@ public class TutorialUtil {
      * Returns an add command string for adding the {@code tutorial}.
      */
     public static String getAddCommand(Tutorial aTutorial) {
-        return AddCommand.COMMAND_WORD + " " + getTutorialDetails(aTutorial);
+        return AddTutorialCommand.COMMAND_WORD + " " + getTutorialDetails(aTutorial);
     }
 
     /**

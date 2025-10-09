@@ -15,35 +15,40 @@ public class TutorialIdTest {
 
     @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
-        String invalidName = "";
+        String invalidName = "InvalidFormat";
         assertThrows(IllegalArgumentException.class, () -> new TutorialId(invalidName));
     }
 
     @Test
     public void isValidName() {
         // null name
-        assertThrows(NullPointerException.class, () -> TutorialId.isValidName(null));
+        assertThrows(NullPointerException.class, () -> TutorialId.isValidTutorialId(null));
 
         // invalid name
-        assertFalse(TutorialId.isValidName("")); // empty string
-        assertFalse(TutorialId.isValidName(" ")); // spaces only
-        assertFalse(TutorialId.isValidName("^")); // only non-alphanumeric characters
-        assertFalse(TutorialId.isValidName("peter*")); // contains non-alphanumeric characters
+        assertFalse(TutorialId.isValidTutorialId("")); // empty string
+        assertFalse(TutorialId.isValidTutorialId(" ")); // spaces only
+        assertFalse(TutorialId.isValidTutorialId("^")); // only non-alphanumeric characters
+        assertFalse(TutorialId.isValidTutorialId("peter*")); // contains non-alphanumeric characters
+        assertFalse(TutorialId.isValidTutorialId("peter jack")); // doesn't match required pattern
+        assertFalse(TutorialId.isValidTutorialId("12345")); // numbers only, no prefix
+        assertFalse(TutorialId.isValidTutorialId("ABC123")); // wrong prefix
+        assertFalse(TutorialId.isValidTutorialId("C")); // no numbers
+        assertFalse(TutorialId.isValidTutorialId("T")); // no numbers
 
-        // valid name
-        assertTrue(TutorialId.isValidName("peter jack")); // alphabets only
-        assertTrue(TutorialId.isValidName("12345")); // numbers only
-        assertTrue(TutorialId.isValidName("peter the 2nd")); // alphanumeric characters
-        assertTrue(TutorialId.isValidName("Capital Tan")); // with capital letters
-        assertTrue(TutorialId.isValidName("David Roger Jackson Ray Jr 2nd")); // long names
+        // valid name - follows [CT]\d+ pattern
+        assertTrue(TutorialId.isValidTutorialId("C123")); // C prefix with numbers
+        assertTrue(TutorialId.isValidTutorialId("T456")); // T prefix with numbers
+        assertTrue(TutorialId.isValidTutorialId("CT789")); // CT prefix with numbers
+        assertTrue(TutorialId.isValidTutorialId("C1")); // single digit
+        assertTrue(TutorialId.isValidTutorialId("T12345")); // multiple digits
     }
 
     @Test
     public void equals() {
-        TutorialId tutorialId = new TutorialId("Valid Name");
+        TutorialId tutorialId = new TutorialId("C123");
 
         // same values -> returns true
-        assertTrue(tutorialId.equals(new TutorialId("Valid Name")));
+        assertTrue(tutorialId.equals(new TutorialId("C123")));
 
         // same object -> returns true
         assertTrue(tutorialId.equals(tutorialId));
@@ -55,6 +60,6 @@ public class TutorialIdTest {
         assertFalse(tutorialId.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(tutorialId.equals(new TutorialId("Other Valid Name")));
+        assertFalse(tutorialId.equals(new TutorialId("T456")));
     }
 }

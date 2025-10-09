@@ -1,18 +1,18 @@
 {
   "tutorials": [
     {
-      "tutorialId": "Alice Pauline",
-      "moduleCode": "94351253",
-      "date": "alice@example.com",
+      "tutorialId": "C101",
+      "moduleCode": "CS2103T",
+      "date": "2025-01-10",
       "address": "123, Jurong West Ave 6, #08-111",
       "students": [
         "friends"
       ]
     },
     {
-      "tutorialId": "Alice Pauline",
-      "moduleCode": "94351253",
-      "date": "pauline@example.com",
+      "tutorialId": "C101",
+      "moduleCode": "CS2103T",
+      "date": "2025-01-15",
       "address": "4th street"
     }
   ]

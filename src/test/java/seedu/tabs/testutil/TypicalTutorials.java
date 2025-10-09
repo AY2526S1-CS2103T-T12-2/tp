@@ -23,39 +23,53 @@ import seedu.tabs.model.tutorial.Tutorial;
  */
 public class TypicalTutorials {
 
-    public static final Tutorial ALICE = new TutorialBuilder().withName("Alice Pauline")
-            .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withModuleCode("94351253")
+    public static final Tutorial TUTORIAL_CS2103T_C101 = new TutorialBuilder().withName("C101")
+            .withAddress("123, Jurong West Ave 6, #08-111").withDate("2025-01-10")
+            .withModuleCode("CS2103T")
             .withStudents("friends").build();
-    public static final Tutorial BENSON = new TutorialBuilder().withName("Benson Meier")
+    public static final Tutorial TUTORIAL_MA1521_T202 = new TutorialBuilder().withName("T202")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withModuleCode("98765432")
+            .withDate("2025-01-15").withModuleCode("MA1521")
             .withStudents("owesMoney", "friends").build();
-    public static final Tutorial CARL = new TutorialBuilder().withName("Carl Kurz").withModuleCode("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
-    public static final Tutorial DANIEL = new TutorialBuilder().withName("Daniel Meier").withModuleCode("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withStudents("friends").build();
-    public static final Tutorial ELLE = new TutorialBuilder().withName("Elle Meyer").withModuleCode("9482224")
-            .withEmail("werner@example.com").withAddress("michegan ave").build();
-    public static final Tutorial FIONA = new TutorialBuilder().withName("Fiona Kunz").withModuleCode("9482427")
-            .withEmail("lydia@example.com").withAddress("little tokyo").build();
-    public static final Tutorial GEORGE = new TutorialBuilder().withName("George Best").withModuleCode("9482442")
-            .withEmail("anna@example.com").withAddress("4th street").build();
+    public static final Tutorial TUTORIAL_CS1010_C303 = new TutorialBuilder().withName("C303").withModuleCode("CS1010")
+            .withDate("2025-01-20").withAddress("wall street").build();
+    public static final Tutorial TUTORIAL_ST2334_T404 = new TutorialBuilder().withName("T404").withModuleCode("ST2334")
+            .withDate("2025-01-25").withAddress("10th street").withStudents("friends").build();
+    public static final Tutorial TUTORIAL_CS2040_C505 = new TutorialBuilder().withName("C505").withModuleCode("CS2040")
+            .withDate("2025-02-01").withAddress("michegan ave").build();
+    public static final Tutorial TUTORIAL_MA2001_T606 = new TutorialBuilder().withName("T606").withModuleCode("MA2001")
+            .withDate("2025-02-05").withAddress("little tokyo").build();
+    public static final Tutorial TUTORIAL_EE2026_C707 = new TutorialBuilder().withName("C707").withModuleCode("EE2026")
+            .withDate("2025-02-10").withAddress("4th street").build();
 
     // Manually added
-    public static final Tutorial HOON = new TutorialBuilder().withName("Hoon Meier").withModuleCode("8482424")
-            .withEmail("stefan@example.com").withAddress("little india").build();
-    public static final Tutorial IDA = new TutorialBuilder().withName("Ida Mueller").withModuleCode("8482131")
-            .withEmail("hans@example.com").withAddress("chicago ave").build();
+    public static final Tutorial TUTORIAL_GE1401_T808 = new TutorialBuilder().withName("T808").withModuleCode("GE1401")
+            .withDate("2025-02-15").withAddress("little india").build();
+    public static final Tutorial TUTORIAL_CS3230_C909 = new TutorialBuilder().withName("C909").withModuleCode("CS3230")
+            .withDate("2025-02-20").withAddress("chicago ave").build();
 
     // Manually added - Tutorial's details found in {@code CommandTestUtil}
-    public static final Tutorial AMY = new TutorialBuilder().withName(VALID_NAME_AMY).withModuleCode(VALID_PHONE_AMY)
-            .withEmail(VALID_DATE_AMY).withAddress(VALID_ADDRESS_AMY).withStudents(VALID_TAG_FRIEND).build();
-    public static final Tutorial BOB = new TutorialBuilder().withName(VALID_NAME_BOB).withModuleCode(VALID_PHONE_BOB)
-            .withEmail(VALID_DATE_BOB).withAddress(VALID_ADDRESS_BOB).withStudents(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+    public static final Tutorial TUTORIAL_TEST_C123 = new TutorialBuilder().withName(VALID_NAME_AMY)
+            .withModuleCode(VALID_PHONE_AMY).withDate(VALID_DATE_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withStudents(VALID_TAG_FRIEND).build();
+    public static final Tutorial TUTORIAL_TEST_T456 = new TutorialBuilder().withName(VALID_NAME_BOB)
+            .withModuleCode(VALID_PHONE_BOB).withDate(VALID_DATE_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withStudents(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
-    public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
+    // Aliases for backward compatibility with existing tests
+    public static final Tutorial ALICE = TUTORIAL_CS2103T_C101;
+    public static final Tutorial BOB = TUTORIAL_TEST_T456;
+    public static final Tutorial CARL = TUTORIAL_CS1010_C303;
+    public static final Tutorial DANIEL = TUTORIAL_ST2334_T404;
+    public static final Tutorial ELLE = TUTORIAL_CS2040_C505;
+    public static final Tutorial FIONA = TUTORIAL_MA2001_T606;
+    public static final Tutorial GEORGE = TUTORIAL_EE2026_C707;
+    public static final Tutorial HOON = TUTORIAL_GE1401_T808;
+    public static final Tutorial IDA = TUTORIAL_CS3230_C909;
+    public static final Tutorial AMY = TUTORIAL_TEST_C123;
+    public static final Tutorial BENSON = TUTORIAL_MA1521_T202;
+
+    public static final String KEYWORD_MATCHING_MEIER = "T"; // A keyword that matches tutorials starting with T
 
     private TypicalTutorials() {
     } // prevents instantiation
@@ -72,6 +86,7 @@ public class TypicalTutorials {
     }
 
     public static List<Tutorial> getTypicalTutorials() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(TUTORIAL_CS2103T_C101, TUTORIAL_MA1521_T202, TUTORIAL_CS1010_C303,
+                TUTORIAL_ST2334_T404, TUTORIAL_CS2040_C505, TUTORIAL_MA2001_T606, TUTORIAL_EE2026_C707));
     }
 }

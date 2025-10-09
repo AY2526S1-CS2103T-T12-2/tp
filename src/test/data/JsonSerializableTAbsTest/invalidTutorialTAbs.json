@@ -1,8 +1,8 @@
 {
   "tutorials": [
     {
-      "tutorialId": "Hans Muster",
-      "moduleCode": "9482424",
+      "tutorialId": "Invalid123",
+      "moduleCode": "InvalidModule",
       "date": "invalid@date!3e",
       "address": "4th street"
     }

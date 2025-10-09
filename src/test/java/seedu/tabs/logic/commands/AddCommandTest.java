@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.testutil.Assert.assertThrows;
-import static seedu.tabs.testutil.TypicalTutorials.ALICE;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class AddCommandTest {
 
     @Test
     public void constructor_nullTutorial_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddTutorialCommand(null));
     }
 
     @Test
@@ -37,9 +37,9 @@ public class AddCommandTest {
         ModelStubAcceptingTutorialAdded modelStub = new ModelStubAcceptingTutorialAdded();
         Tutorial validTutorial = new TutorialBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validTutorial).execute(modelStub);
+        CommandResult commandResult = new AddTutorialCommand(validTutorial).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validTutorial)),
+        assertEquals(String.format(AddTutorialCommand.MESSAGE_SUCCESS, Messages.format(validTutorial)),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validTutorial), modelStub.tutorialsAdded);
     }
@@ -47,24 +47,25 @@ public class AddCommandTest {
     @Test
     public void execute_duplicateTutorial_throwsCommandException() {
         Tutorial validTutorial = new TutorialBuilder().build();
-        AddCommand addCommand = new AddCommand(validTutorial);
+        AddTutorialCommand addCommand = new AddTutorialCommand(validTutorial);
         ModelStub modelStub = new ModelStubWithTutorial(validTutorial);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL, (
+                ) -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Tutorial alice = new TutorialBuilder().withName("Alice").build();
-        Tutorial bob = new TutorialBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Tutorial alice = new TutorialBuilder().withName("C101").build();
+        Tutorial bob = new TutorialBuilder().withName("T202").build();
+        AddTutorialCommand addAliceCommand = new AddTutorialCommand(alice);
+        AddTutorialCommand addBobCommand = new AddTutorialCommand(bob);
 
         // same object -> returns true
         assertTrue(addAliceCommand.equals(addAliceCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
+        AddTutorialCommand addAliceCommandCopy = new AddTutorialCommand(alice);
         assertTrue(addAliceCommand.equals(addAliceCommandCopy));
 
         // different types -> returns false
@@ -79,8 +80,8 @@ public class AddCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddCommand addCommand = new AddCommand(ALICE);
-        String expected = AddCommand.class.getCanonicalName() + "{toAdd=" + ALICE + "}";
+        AddTutorialCommand addCommand = new AddTutorialCommand(TUTORIAL_CS2103T_C101);
+        String expected = AddTutorialCommand.class.getCanonicalName() + "{toAdd=" + TUTORIAL_CS2103T_C101 + "}";
         assertEquals(expected, addCommand.toString());
     }
 

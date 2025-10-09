@@ -41,7 +41,7 @@ public class Messages {
         builder.append(aTutorial.getTutorialId())
                 .append("; ModuleCode: ")
                 .append(aTutorial.getModuleCode())
-                .append("; Email: ")
+                .append("; Date: ")
                 .append(aTutorial.getDate())
                 .append("; Address: ")
                 .append(aTutorial.getAddress())

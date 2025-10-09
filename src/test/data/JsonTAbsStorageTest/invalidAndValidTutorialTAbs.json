@@ -1,15 +1,15 @@
 {
   "tutorials": [
     {
-      "tutorialId": "Valid Tutorial",
-      "moduleCode": "9482424",
-      "date": "hans@example.com",
+      "tutorialId": "C123",
+      "moduleCode": "CS2103T",
+      "date": "2025-01-10",
       "address": "4th street"
     },
     {
-      "tutorialId": "Tutorial With Invalid ModuleCode Field",
-      "moduleCode": "948asdf2424",
-      "date": "hans@example.com",
+      "tutorialId": "InvalidID",
+      "moduleCode": "InvalidModule",
+      "date": "2025-01-10",
       "address": "4th street"
     }
   ]

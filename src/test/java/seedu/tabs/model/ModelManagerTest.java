@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.tabs.testutil.Assert.assertThrows;
-import static seedu.tabs.testutil.TypicalTutorials.ALICE;
-import static seedu.tabs.testutil.TypicalTutorials.BENSON;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_MA1521_T202;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasTutorial_tutorialNotInTAbs_returnsFalse() {
-        assertFalse(modelManager.hasTutorial(ALICE));
+        assertFalse(modelManager.hasTutorial(TUTORIAL_CS2103T_C101));
     }
 
     @Test
     public void hasTutorial_tutorialInTAbs_returnsTrue() {
-        modelManager.addTutorial(ALICE);
-        assertTrue(modelManager.hasTutorial(ALICE));
+        modelManager.addTutorial(TUTORIAL_CS2103T_C101);
+        assertTrue(modelManager.hasTutorial(TUTORIAL_CS2103T_C101));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TAbs tabs = new TAbsBuilder().withTutorial(ALICE).withTutorial(BENSON).build();
+        TAbs tabs = new TAbsBuilder().withTutorial(TUTORIAL_CS2103T_C101).withTutorial(TUTORIAL_MA1521_T202).build();
         TAbs differentTAbs = new TAbs();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,7 +117,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentTAbs, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getTutorialId().fullName.split("\\s+");
+        String[] keywords = TUTORIAL_CS2103T_C101.getTutorialId().fullName.split("\\s+");
         modelManager.updateFilteredTutorialList(new TutorialIdContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(tabs, userPrefs)));
 
