@@ -9,9 +9,9 @@ import static seedu.tabs.commons.util.AppUtil.checkArgument;
  */
 public class Student {
 
-    public static final String MESSAGE_CONSTRAINTS = "Students names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
-
+    public static final String MESSAGE_CONSTRAINTS = "Student id should be of the form AXXXXXX$"
+            + "where the X's are numbers and the $ is any capital letter.";
+    public static final String VALIDATION_REGEX = "A\\d{7}[A-Z]";
     public final String studentName;
 
     /**

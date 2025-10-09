@@ -26,15 +26,15 @@ public class TypicalTutorials {
     public static final Tutorial TUTORIAL_CS2103T_C101 = new TutorialBuilder().withName("C101")
             .withAddress("123, Jurong West Ave 6, #08-111").withDate("2025-01-10")
             .withModuleCode("CS2103T")
-            .withStudents("friends").build();
+            .withStudents(VALID_TAG_HUSBAND).build();
     public static final Tutorial TUTORIAL_MA1521_T202 = new TutorialBuilder().withName("T202")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withDate("2025-01-15").withModuleCode("MA1521")
-            .withStudents("owesMoney", "friends").build();
+            .withStudents(VALID_TAG_HUSBAND).build();
     public static final Tutorial TUTORIAL_CS1010_C303 = new TutorialBuilder().withName("C303").withModuleCode("CS1010")
             .withDate("2025-01-20").withAddress("wall street").build();
     public static final Tutorial TUTORIAL_ST2334_T404 = new TutorialBuilder().withName("T404").withModuleCode("ST2334")
-            .withDate("2025-01-25").withAddress("10th street").withStudents("friends").build();
+            .withDate("2025-01-25").withAddress("10th street").withStudents(VALID_TAG_HUSBAND).build();
     public static final Tutorial TUTORIAL_CS2040_C505 = new TutorialBuilder().withName("C505").withModuleCode("CS2040")
             .withDate("2025-02-01").withAddress("michegan ave").build();
     public static final Tutorial TUTORIAL_MA2001_T606 = new TutorialBuilder().withName("T606").withModuleCode("MA2001")
