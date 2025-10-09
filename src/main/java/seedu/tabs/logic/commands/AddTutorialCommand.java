@@ -28,15 +28,15 @@ public class AddTutorialCommand extends Command {
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_STUDENT + "STUDENT]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TUTORIAL_ID + "C123 "
+            + PREFIX_TUTORIAL_ID + "T123 "
             + PREFIX_MODULE_CODE + "CS2103T "
             + PREFIX_DATE + "2025-03-15 "
             + PREFIX_ADDRESS + "COM1-B103 "
-            + PREFIX_STUDENT + "student1 "
-            + PREFIX_STUDENT + "student2";
+            + PREFIX_STUDENT + "A1231231Y "
+            + PREFIX_STUDENT + "A3213213Y";
 
     public static final String MESSAGE_SUCCESS = "New tutorial added: %1$s";
-    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the TAbs";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in TAbs";
 
     private final Tutorial toAdd;
 

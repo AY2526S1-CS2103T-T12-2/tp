@@ -33,7 +33,8 @@ public class DeleteStudentCommandParser {
         }
 
         String studentId = argMultimap.getValue(PREFIX_STUDENT).orElse("");
+        Student student = ParserUtil.parseStudent(studentId);
 
-        return new DeleteStudentCommand(index, new Student(studentId));
+        return new DeleteStudentCommand(index, student);
     }
 }

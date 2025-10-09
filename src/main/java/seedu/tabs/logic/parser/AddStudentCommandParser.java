@@ -33,7 +33,8 @@ public class AddStudentCommandParser {
         }
 
         String studentId = argMultimap.getValue(PREFIX_STUDENT).orElse("");
+        Student student = ParserUtil.parseStudent(studentId);
 
-        return new AddStudentCommand(index, new Student(studentId));
+        return new AddStudentCommand(index, student);
     }
 }

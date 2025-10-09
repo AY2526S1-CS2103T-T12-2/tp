@@ -7,6 +7,7 @@ import static seedu.tabs.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.tabs.testutil.Assert.assertThrows;
 import static seedu.tabs.testutil.TypicalTutorials.ALICE;
@@ -85,7 +86,7 @@ public class TutorialTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different students -> returns false
-        editedAlice = new TutorialBuilder(ALICE).withStudents(VALID_TAG_HUSBAND).build();
+        editedAlice = new TutorialBuilder(ALICE).withStudents(VALID_TAG_FRIEND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 

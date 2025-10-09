@@ -53,7 +53,7 @@ public class TutorialCard extends UiPart<Region> {
         address.setText(aTutorial.getAddress().value);
         date.setText(aTutorial.getDate().value);
         aTutorial.getStudents().stream()
-                .sorted(Comparator.comparing(student -> student.studentName))
-                .forEach(student -> students.getChildren().add(new Label(student.studentName)));
+                .sorted(Comparator.comparing(student -> student.studentId))
+                .forEach(student -> students.getChildren().add(new Label(student.studentId)));
     }
 }
