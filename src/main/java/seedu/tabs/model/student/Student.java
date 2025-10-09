@@ -5,30 +5,33 @@ import static seedu.tabs.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Student in the TAbs.
- * Guarantees: immutable; name is valid as declared in {@link #isValidStudentName(String)}
+ * Guarantees: immutable; student id is valid as declared in {@link #isValidStudentId(String)}
  */
 public class Student {
 
-    public static final String MESSAGE_CONSTRAINTS = "Student id should be of the form AXXXXXX$"
-            + "where the X's are numbers and the $ is any capital letter.";
+    public static final String MESSAGE_CONSTRAINTS =
+            "Invalid format: Student ids should follow the format, AXXXXXXX$,\n"
+                    + "where the X's represent any 7 single digit numbers\n"
+                    + "and the $ represents any capital letter.";
     public static final String VALIDATION_REGEX = "A\\d{7}[A-Z]";
-    public final String studentName;
+
+    public final String studentId;
 
     /**
      * Constructs a {@code Student}.
      *
-     * @param studentName A valid student name.
+     * @param studentId A valid student id.
      */
-    public Student(String studentName) {
-        requireNonNull(studentName);
-        checkArgument(isValidStudentName(studentName), MESSAGE_CONSTRAINTS);
-        this.studentName = studentName;
+    public Student(String studentId) {
+        requireNonNull(studentId);
+        checkArgument(isValidStudentId(studentId), MESSAGE_CONSTRAINTS);
+        this.studentId = studentId;
     }
 
     /**
-     * Returns true if a given string is a valid student name.
+     * Returns true if a given string is a valid student id.
      */
-    public static boolean isValidStudentName(String test) {
+    public static boolean isValidStudentId(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -44,19 +47,19 @@ public class Student {
         }
 
         Student otherStudent = (Student) other;
-        return studentName.equals(otherStudent.studentName);
+        return studentId.equals(otherStudent.studentId);
     }
 
     @Override
     public int hashCode() {
-        return studentName.hashCode();
+        return studentId.hashCode();
     }
 
     /**
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + studentName + ']';
+        return '[' + studentId + ']';
     }
 
 }

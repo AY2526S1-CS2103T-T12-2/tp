@@ -35,7 +35,7 @@ public class TutorialUtil {
         sb.append(PREFIX_DATE + aTutorial.getDate().value + " ");
         sb.append(PREFIX_ADDRESS + aTutorial.getAddress().value + " ");
         aTutorial.getStudents().stream().forEach(
-                s -> sb.append(PREFIX_STUDENT + s.studentName + " ")
+                s -> sb.append(PREFIX_STUDENT + s.studentId + " ")
         );
         return sb.toString();
     }
@@ -55,7 +55,7 @@ public class TutorialUtil {
             if (students.isEmpty()) {
                 sb.append(PREFIX_STUDENT);
             } else {
-                students.forEach(s -> sb.append(PREFIX_STUDENT).append(s.studentName).append(" "));
+                students.forEach(s -> sb.append(PREFIX_STUDENT).append(s.studentId).append(" "));
             }
         }
         return sb.toString();

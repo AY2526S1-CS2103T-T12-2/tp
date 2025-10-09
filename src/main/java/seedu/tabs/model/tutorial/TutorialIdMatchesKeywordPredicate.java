@@ -11,7 +11,9 @@ public class TutorialIdMatchesKeywordPredicate implements Predicate<Tutorial> {
 
     private final String keyword;
 
-    public TutorialIdMatchesKeywordPredicate(String keyword) { this.keyword = keyword; }
+    public TutorialIdMatchesKeywordPredicate(String keyword) {
+        this.keyword = keyword;
+    }
 
     @Override
     public boolean test(Tutorial aTutorial) {

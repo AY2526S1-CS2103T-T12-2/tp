@@ -11,26 +11,26 @@ import seedu.tabs.model.student.Student;
  */
 class JsonAdaptedStudent {
 
-    private final String studentName;
+    private final String studentId;
 
     /**
-     * Constructs a {@code JsonAdaptedStudent} with the given {@code studentName}.
+     * Constructs a {@code JsonAdaptedStudent} with the given {@code studentId}.
      */
     @JsonCreator
-    public JsonAdaptedStudent(String studentName) {
-        this.studentName = studentName;
+    public JsonAdaptedStudent(String studentId) {
+        this.studentId = studentId;
     }
 
     /**
      * Converts a given {@code Student} into this class for Jackson use.
      */
     public JsonAdaptedStudent(Student source) {
-        studentName = source.studentName;
+        studentId = source.studentId;
     }
 
     @JsonValue
-    public String getStudentName() {
-        return studentName;
+    public String getstudentId() {
+        return studentId;
     }
 
     /**
@@ -39,10 +39,10 @@ class JsonAdaptedStudent {
      * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
-        if (!Student.isValidStudentName(studentName)) {
+        if (!Student.isValidStudentId(studentId)) {
             throw new IllegalValueException(Student.MESSAGE_CONSTRAINTS);
         }
-        return new Student(studentName);
+        return new Student(studentId);
     }
 
 }

@@ -12,15 +12,15 @@ public class StudentTest {
     }
 
     @Test
-    public void constructor_invalidStudentName_throwsIllegalArgumentException() {
-        String invalidStudentName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Student(invalidStudentName));
+    public void constructor_invalidStudentId_throwsIllegalArgumentException() {
+        String invalidStudentId = "";
+        assertThrows(IllegalArgumentException.class, () -> new Student(invalidStudentId));
     }
 
     @Test
-    public void isValidStudentName() {
-        // null student name
-        assertThrows(NullPointerException.class, () -> Student.isValidStudentName(null));
+    public void isValidStudentId() {
+        // null student id
+        assertThrows(NullPointerException.class, () -> Student.isValidStudentId(null));
     }
 
 }
