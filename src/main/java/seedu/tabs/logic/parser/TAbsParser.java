@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 
 import seedu.tabs.commons.core.LogsCenter;
 import seedu.tabs.logic.commands.AddCommand;
+import seedu.tabs.logic.commands.AddStudentCommand;
 import seedu.tabs.logic.commands.ClearCommand;
 import seedu.tabs.logic.commands.Command;
 import seedu.tabs.logic.commands.DeleteCommand;
@@ -80,6 +81,9 @@ public class TAbsParser {
 
         case ListStudentsCommand.COMMAND_WORD:
             return new ListStudentsCommandParser().parse(arguments);
+
+        case AddStudentCommand.COMMAND_WORD:
+            return new AddStudentCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);

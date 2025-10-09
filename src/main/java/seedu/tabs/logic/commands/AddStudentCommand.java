@@ -1,29 +1,25 @@
 package seedu.tabs.logic.commands;
 
-import seedu.tabs.commons.core.index.Index;
-import seedu.tabs.logic.Messages;
-import seedu.tabs.logic.commands.exceptions.CommandException;
-import seedu.tabs.model.Model;
-import seedu.tabs.model.student.Student;
-import seedu.tabs.model.tutorial.*;
+import static java.util.Objects.requireNonNull;
+import static seedu.tabs.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.tabs.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import seedu.tabs.commons.core.index.Index;
+import seedu.tabs.logic.Messages;
+import seedu.tabs.logic.commands.exceptions.CommandException;
+import seedu.tabs.model.Model;
+import seedu.tabs.model.student.Student;
+import seedu.tabs.model.tutorial.Tutorial;
 
 /**
  * Adds a student to a tutorial
  */
-public class AddStudentCommand extends Command{
+public class AddStudentCommand extends Command {
     public static final String COMMAND_WORD = "add_student";
-
-    private final Index index;
-    private final Student student;
-
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add a student identified by the given student ID "
             + "to the index number of the tutorial in the last tutorial listing. "
@@ -32,6 +28,9 @@ public class AddStudentCommand extends Command{
             + "Example: " + COMMAND_WORD + " 1 "
             + "id/A0123456Z.";
     public static final String MESSAGE_SUCCESS = "New student %1$s added to tutorial %2$s";
+
+    private final Index index;
+    private final Student student;
 
     /**
      * @param index     of the tutorial in the filtered tutorial list to add the student
