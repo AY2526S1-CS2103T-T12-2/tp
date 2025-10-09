@@ -15,35 +15,40 @@ public class ModuleCodeTest {
 
     @Test
     public void constructor_invalidModuleCode_throwsIllegalArgumentException() {
-        String invalidModuleCode = "";
+        String invalidModuleCode = "invalid";
         assertThrows(IllegalArgumentException.class, () -> new ModuleCode(invalidModuleCode));
     }
 
     @Test
     public void isValidModuleCode() {
-        // null moduleCode number
+        // null moduleCode
         assertThrows(NullPointerException.class, () -> ModuleCode.isValidModuleCode(null));
 
-        // invalid moduleCode numbers
+        // invalid moduleCode
         assertFalse(ModuleCode.isValidModuleCode("")); // empty string
         assertFalse(ModuleCode.isValidModuleCode(" ")); // spaces only
-        assertFalse(ModuleCode.isValidModuleCode("91")); // less than 3 numbers
-        assertFalse(ModuleCode.isValidModuleCode("moduleCode")); // non-numeric
-        assertFalse(ModuleCode.isValidModuleCode("9011p041")); // alphabets within digits
-        assertFalse(ModuleCode.isValidModuleCode("9312 1534")); // spaces within digits
+        assertFalse(ModuleCode.isValidModuleCode("91")); // too short
+        assertFalse(ModuleCode.isValidModuleCode("moduleCode")); // no numbers
+        assertFalse(ModuleCode.isValidModuleCode("C1234")); // only 1 letter prefix
+        assertFalse(ModuleCode.isValidModuleCode("ABCD1234")); // too many letters prefix (4 letters)
+        assertFalse(ModuleCode.isValidModuleCode("CS123")); // too few digits
+        assertFalse(ModuleCode.isValidModuleCode("CS12345")); // too many digits
 
-        // valid moduleCode numbers
-        assertTrue(ModuleCode.isValidModuleCode("911")); // exactly 3 numbers
-        assertTrue(ModuleCode.isValidModuleCode("93121534"));
-        assertTrue(ModuleCode.isValidModuleCode("124293842033123")); // long moduleCode numbers
+        // valid moduleCode
+        assertTrue(ModuleCode.isValidModuleCode("CS2103")); // 2 letters + 4 digits
+        assertTrue(ModuleCode.isValidModuleCode("CS2103T")); // 2 letters + 4 digits + 1 letter
+        assertTrue(ModuleCode.isValidModuleCode("cs2103t")); // lowercase (should be converted to uppercase)
+        assertTrue(ModuleCode.isValidModuleCode("MA1521")); // 2 letters + 4 digits
+        assertTrue(ModuleCode.isValidModuleCode("ST2334")); // 2 letters + 4 digits
+        assertTrue(ModuleCode.isValidModuleCode("ENG1000E")); // 3 letters + 4 digits + 1 letter
     }
 
     @Test
     public void equals() {
-        ModuleCode moduleCode = new ModuleCode("999");
+        ModuleCode moduleCode = new ModuleCode("CS2103T");
 
         // same values -> returns true
-        assertTrue(moduleCode.equals(new ModuleCode("999")));
+        assertTrue(moduleCode.equals(new ModuleCode("CS2103T")));
 
         // same object -> returns true
         assertTrue(moduleCode.equals(moduleCode));
@@ -55,6 +60,6 @@ public class ModuleCodeTest {
         assertFalse(moduleCode.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(moduleCode.equals(new ModuleCode("995")));
+        assertFalse(moduleCode.equals(new ModuleCode("MA1521")));
     }
 }

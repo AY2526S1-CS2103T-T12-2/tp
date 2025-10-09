@@ -44,7 +44,7 @@ public class ParserUtil {
     public static TutorialId parseName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
-        if (!TutorialId.isValidName(trimmedName)) {
+        if (!TutorialId.isValidTutorialId(trimmedName)) {
             throw new ParseException(TutorialId.MESSAGE_CONSTRAINTS);
         }
         return new TutorialId(trimmedName);
@@ -89,7 +89,7 @@ public class ParserUtil {
     public static Date parseEmail(String date) throws ParseException {
         requireNonNull(date);
         String trimmedEmail = date.trim();
-        if (!Date.isValidEmail(trimmedEmail)) {
+        if (!Date.isValidDate(trimmedEmail)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
         return new Date(trimmedEmail);
@@ -121,4 +121,7 @@ public class ParserUtil {
         }
         return studentSet;
     }
+
+    // New parsing methods for add_tutorial command
+
 }

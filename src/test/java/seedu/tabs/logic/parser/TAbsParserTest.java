@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.tabs.logic.commands.AddCommand;
+import seedu.tabs.logic.commands.AddTutorialCommand;
 import seedu.tabs.logic.commands.ClearCommand;
 import seedu.tabs.logic.commands.DeleteCommand;
 import seedu.tabs.logic.commands.EditCommand;
@@ -36,8 +36,8 @@ public class TAbsParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         Tutorial aTutorial = new TutorialBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(TutorialUtil.getAddCommand(aTutorial));
-        assertEquals(new AddCommand(aTutorial), command);
+        AddTutorialCommand command = (AddTutorialCommand) parser.parseCommand(TutorialUtil.getAddCommand(aTutorial));
+        assertEquals(new AddTutorialCommand(aTutorial), command);
     }
 
     @Test

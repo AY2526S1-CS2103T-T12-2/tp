@@ -20,58 +20,39 @@ public class DateTest {
     }
 
     @Test
-    public void isValidEmail() {
+    public void isValidDate() {
         // null date
-        assertThrows(NullPointerException.class, () -> Date.isValidEmail(null));
+        assertThrows(NullPointerException.class, () -> Date.isValidDate(null));
 
         // blank date
-        assertFalse(Date.isValidEmail("")); // empty string
-        assertFalse(Date.isValidEmail(" ")); // spaces only
+        assertFalse(Date.isValidDate("")); // empty string
+        assertFalse(Date.isValidDate(" ")); // spaces only
 
-        // missing parts
-        assertFalse(Date.isValidEmail("@example.com")); // missing local part
-        assertFalse(Date.isValidEmail("peterjackexample.com")); // missing '@' symbol
-        assertFalse(Date.isValidEmail("peterjack@")); // missing domain name
+        // invalid date formats
+        assertFalse(Date.isValidDate("2025/01/15")); // wrong separator
+        assertFalse(Date.isValidDate("24-01-15")); // wrong year format
+        assertFalse(Date.isValidDate("2025-1-15")); // missing leading zero in month
+        assertFalse(Date.isValidDate("2025-01-5")); // missing leading zero in day
+        assertFalse(Date.isValidDate("15-01-2025")); // wrong order
+        assertFalse(Date.isValidDate("abcd-01-15")); // non-numeric year
+        assertFalse(Date.isValidDate("2025-ab-15")); // non-numeric month
+        assertFalse(Date.isValidDate("2025-01-ab")); // non-numeric day
 
-        // invalid parts
-        assertFalse(Date.isValidEmail("peterjack@-")); // invalid domain name
-        assertFalse(Date.isValidEmail("peterjack@exam_ple.com")); // underscore in domain name
-        assertFalse(Date.isValidEmail("peter jack@example.com")); // spaces in local part
-        assertFalse(Date.isValidEmail("peterjack@exam ple.com")); // spaces in domain name
-        assertFalse(Date.isValidEmail(" peterjack@example.com")); // leading space
-        assertFalse(Date.isValidEmail("peterjack@example.com ")); // trailing space
-        assertFalse(Date.isValidEmail("peterjack@@example.com")); // double '@' symbol
-        assertFalse(Date.isValidEmail("peter@jack@example.com")); // '@' symbol in local part
-        assertFalse(Date.isValidEmail("-peterjack@example.com")); // local part starts with a hyphen
-        assertFalse(Date.isValidEmail("peterjack-@example.com")); // local part ends with a hyphen
-        assertFalse(Date.isValidEmail("peter..jack@example.com")); // local part has two consecutive periods
-        assertFalse(Date.isValidEmail("peterjack@example@com")); // '@' symbol in domain name
-        assertFalse(Date.isValidEmail("peterjack@.example.com")); // domain name starts with a period
-        assertFalse(Date.isValidEmail("peterjack@example.com.")); // domain name ends with a period
-        assertFalse(Date.isValidEmail("peterjack@-example.com")); // domain name starts with a hyphen
-        assertFalse(Date.isValidEmail("peterjack@example.com-")); // domain name ends with a hyphen
-        assertFalse(Date.isValidEmail("peterjack@example.c")); // top level domain has less than two chars
-
-        // valid date
-        assertTrue(Date.isValidEmail("PeterJack_1190@example.com")); // underscore in local part
-        assertTrue(Date.isValidEmail("PeterJack.1190@example.com")); // period in local part
-        assertTrue(Date.isValidEmail("PeterJack+1190@example.com")); // '+' symbol in local part
-        assertTrue(Date.isValidEmail("PeterJack-1190@example.com")); // hyphen in local part
-        assertTrue(Date.isValidEmail("a@bc")); // minimal
-        assertTrue(Date.isValidEmail("test@localhost")); // alphabets only
-        assertTrue(Date.isValidEmail("123@145")); // numeric local part and domain name
-        assertTrue(Date.isValidEmail("a1+be.d@example1.com")); // mixture of alphanumeric and special characters
-        assertTrue(Date.isValidEmail("peter_jack@very-very-very-long-example.com")); // long domain name
-        assertTrue(Date.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
-        assertTrue(Date.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
+        // valid dates
+        assertTrue(Date.isValidDate("2025-01-15")); // standard format
+        assertTrue(Date.isValidDate("2023-12-31")); // end of year
+        assertTrue(Date.isValidDate("2024-02-29")); // leap year (2024 is a leap year)
+        assertTrue(Date.isValidDate("2000-01-01")); // start of millennium
+        assertTrue(Date.isValidDate("1999-06-15")); // past date
+        assertTrue(Date.isValidDate("2030-08-22")); // future date
     }
 
     @Test
     public void equals() {
-        Date date = new Date("valid@date");
+        Date date = new Date("2025-01-15");
 
         // same values -> returns true
-        assertTrue(date.equals(new Date("valid@date")));
+        assertTrue(date.equals(new Date("2025-01-15")));
 
         // same object -> returns true
         assertTrue(date.equals(date));
@@ -83,6 +64,6 @@ public class DateTest {
         assertFalse(date.equals(5.0f));
 
         // different values -> returns false
-        assertFalse(date.equals(new Date("other.valid@date")));
+        assertFalse(date.equals(new Date("2025-02-20")));
     }
 }

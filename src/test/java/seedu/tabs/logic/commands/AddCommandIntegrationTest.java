@@ -15,7 +15,7 @@ import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.testutil.TutorialBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code AddCommand}.
+ * Contains integration tests (interaction with the Model) for {@code AddTutorialCommand}.
  */
 public class AddCommandIntegrationTest {
 
@@ -33,16 +33,16 @@ public class AddCommandIntegrationTest {
         Model expectedModel = new ModelManager(model.getTAbs(), new UserPrefs());
         expectedModel.addTutorial(validTutorial);
 
-        assertCommandSuccess(new AddCommand(validTutorial), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, Messages.format(validTutorial)),
+        assertCommandSuccess(new AddTutorialCommand(validTutorial), model,
+                String.format(AddTutorialCommand.MESSAGE_SUCCESS, Messages.format(validTutorial)),
                 expectedModel);
     }
 
     @Test
     public void execute_duplicateTutorial_throwsCommandException() {
         Tutorial tutorialInList = model.getTAbs().getTutorialList().get(0);
-        assertCommandFailure(new AddCommand(tutorialInList), model,
-                AddCommand.MESSAGE_DUPLICATE_PERSON);
+        assertCommandFailure(new AddTutorialCommand(tutorialInList), model,
+                AddTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL);
     }
 
 }

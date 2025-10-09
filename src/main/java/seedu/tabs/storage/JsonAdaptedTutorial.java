@@ -74,7 +74,7 @@ class JsonAdaptedTutorial {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TutorialId.class.getSimpleName()));
         }
-        if (!TutorialId.isValidName(tutorialId)) {
+        if (!TutorialId.isValidTutorialId(tutorialId)) {
             throw new IllegalValueException(TutorialId.MESSAGE_CONSTRAINTS);
         }
         final TutorialId modelTutorialId = new TutorialId(tutorialId);
@@ -91,7 +91,7 @@ class JsonAdaptedTutorial {
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-        if (!Date.isValidEmail(date)) {
+        if (!Date.isValidDate(date)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelDate = new Date(date);

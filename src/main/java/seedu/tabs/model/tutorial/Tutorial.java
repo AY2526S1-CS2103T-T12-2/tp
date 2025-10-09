@@ -29,12 +29,12 @@ public class Tutorial {
      * Every field must be present and not null.
      */
     public Tutorial(TutorialId tutorialId, ModuleCode moduleCode, Date date, Address address, Set<Student> students) {
-        requireAllNonNull(tutorialId, moduleCode, date, address, students);
+        requireAllNonNull(tutorialId, moduleCode, date);
         this.tutorialId = tutorialId;
         this.moduleCode = moduleCode;
         this.date = date;
-        this.address = address;
-        this.students.addAll(students);
+        this.address = address != null ? address : new Address("No address specified");
+        this.students.addAll(students != null ? students : new HashSet<>());
     }
 
     public TutorialId getTutorialId() {

@@ -4,33 +4,32 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tabs.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tutorial's moduleCode number in the TAbs.
+ * Represents a Tutorial's module code in the TAbs.
  * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}
  */
 public class ModuleCode {
 
-
     public static final String MESSAGE_CONSTRAINTS =
-            "ModuleCode numbers should only contain numbers, and it should be at least 3 digits long";
-    public static final String VALIDATION_REGEX = "\\d{3,}";
+            "Module codes should follow university format (e.g., CS2103T, MA1521, ST2334, GEQ1000)";
+    public static final String VALIDATION_REGEX = "[A-Z]{2,3}\\d{4}[A-Z]?";
     public final String value;
 
     /**
      * Constructs a {@code ModuleCode}.
      *
-     * @param moduleCode A valid moduleCode number.
+     * @param moduleCode A valid module code.
      */
     public ModuleCode(String moduleCode) {
         requireNonNull(moduleCode);
         checkArgument(isValidModuleCode(moduleCode), MESSAGE_CONSTRAINTS);
-        value = moduleCode;
+        value = moduleCode.toUpperCase();
     }
 
     /**
-     * Returns true if a given string is a valid moduleCode number.
+     * Returns true if a given string is a valid module code.
      */
     public static boolean isValidModuleCode(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.toUpperCase().matches(VALIDATION_REGEX);
     }
 
     @Override

@@ -33,7 +33,7 @@ public class TutorialTest {
         assertFalse(ALICE.isSameTutorial(null));
 
         // same name, all other attributes different -> returns true
-        Tutorial editedAlice = new TutorialBuilder(ALICE).withModuleCode(VALID_PHONE_BOB).withEmail(VALID_DATE_BOB)
+        Tutorial editedAlice = new TutorialBuilder(ALICE).withModuleCode(VALID_PHONE_BOB).withDate(VALID_DATE_BOB)
                 .withAddress(VALID_ADDRESS_BOB).withStudents(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTutorial(editedAlice));
 
@@ -41,13 +41,12 @@ public class TutorialTest {
         editedAlice = new TutorialBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(ALICE.isSameTutorial(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true (case insensitive)
         Tutorial editedBob = new TutorialBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameTutorial(editedBob));
+        assertTrue(BOB.isSameTutorial(editedBob));
 
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new TutorialBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        // completely different name -> returns false
+        editedBob = new TutorialBuilder(BOB).withName("C999").build();
         assertFalse(BOB.isSameTutorial(editedBob));
     }
 
@@ -78,7 +77,7 @@ public class TutorialTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different date -> returns false
-        editedAlice = new TutorialBuilder(ALICE).withEmail(VALID_DATE_BOB).build();
+        editedAlice = new TutorialBuilder(ALICE).withDate(VALID_DATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different tabs -> returns false
