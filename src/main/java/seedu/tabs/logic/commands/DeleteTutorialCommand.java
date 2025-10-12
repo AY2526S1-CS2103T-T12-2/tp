@@ -12,7 +12,7 @@ import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
 /**
- * Deletes a tutorial identified using it's displayed index from the TAbs.
+ * Deletes a tutorial identified using its displayed tutorial ID from TAbs.
  */
 public class DeleteTutorialCommand extends Command {
 
