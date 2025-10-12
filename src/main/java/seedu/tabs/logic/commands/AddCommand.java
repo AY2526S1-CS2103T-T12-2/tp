@@ -25,13 +25,11 @@ public class AddCommand extends Command {
             + PREFIX_TUTORIAL_ID + "TUTORIAL_ID "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
             + PREFIX_DATE + "DATE "
-            + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_STUDENT + "STUDENT]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TUTORIAL_ID + "C123 "
             + PREFIX_MODULE_CODE + "CS2103T "
             + PREFIX_DATE + "2025-01-15 "
-            + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_STUDENT + "friends "
             + PREFIX_STUDENT + "owesMoney";
 

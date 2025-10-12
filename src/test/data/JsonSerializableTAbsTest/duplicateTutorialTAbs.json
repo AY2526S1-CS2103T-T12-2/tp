@@ -4,7 +4,6 @@
       "tutorialId": "C101",
       "moduleCode": "CS2103T",
       "date": "2025-01-10",
-      "address": "123, Jurong West Ave 6, #08-111",
       "students": [
         "A1231231Y"
       ]
@@ -12,8 +11,7 @@
     {
       "tutorialId": "C101",
       "moduleCode": "CS2103T",
-      "date": "2025-01-15",
-      "address": "4th street"
+      "date": "2025-01-15"
     }
   ]
 }

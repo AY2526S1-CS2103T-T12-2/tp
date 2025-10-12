@@ -74,7 +74,6 @@ public class DeleteStudentCommand extends Command {
                 tutorialToAdd.getTutorialId(),
                 tutorialToAdd.getModuleCode(),
                 tutorialToAdd.getDate(),
-                tutorialToAdd.getAddress(),
                 updatedStudents);
     }
 

@@ -43,8 +43,6 @@ public class Messages {
                 .append(aTutorial.getModuleCode())
                 .append("; Date: ")
                 .append(aTutorial.getDate())
-                .append("; Address: ")
-                .append(aTutorial.getAddress())
                 .append("; Students: ");
         aTutorial.getStudents().forEach(builder::append);
         return builder.toString();

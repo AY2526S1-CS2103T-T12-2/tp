@@ -22,18 +22,16 @@ public class Tutorial {
     private final Date date;
 
     // Data fields
-    private final Address address;
     private final Set<Student> students = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Tutorial(TutorialId tutorialId, ModuleCode moduleCode, Date date, Address address, Set<Student> students) {
+    public Tutorial(TutorialId tutorialId, ModuleCode moduleCode, Date date, Set<Student> students) {
         requireAllNonNull(tutorialId, moduleCode, date);
         this.tutorialId = tutorialId;
         this.moduleCode = moduleCode;
         this.date = date;
-        this.address = address != null ? address : new Address("No address specified");
         this.students.addAll(students != null ? students : new HashSet<>());
     }
 
@@ -47,10 +45,6 @@ public class Tutorial {
 
     public Date getDate() {
         return date;
-    }
-
-    public Address getAddress() {
-        return address;
     }
 
     /**
@@ -95,14 +89,13 @@ public class Tutorial {
         return tutorialId.equals(otherTutorial.tutorialId)
                 && moduleCode.equals(otherTutorial.moduleCode)
                 && date.equals(otherTutorial.date)
-                && address.equals(otherTutorial.address)
                 && students.equals(otherTutorial.students);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(tutorialId, moduleCode, date, address, students);
+        return Objects.hash(tutorialId, moduleCode, date, students);
     }
 
     @Override
@@ -111,7 +104,6 @@ public class Tutorial {
                 .add("tutorialId", tutorialId)
                 .add("moduleCode", moduleCode)
                 .add("date", date)
-                .add("tabs", address)
                 .add("students", students)
                 .toString();
     }

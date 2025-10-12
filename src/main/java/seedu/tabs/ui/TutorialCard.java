@@ -35,8 +35,6 @@ public class TutorialCard extends UiPart<Region> {
     @FXML
     private Label moduleCode;
     @FXML
-    private Label address;
-    @FXML
     private Label date;
     @FXML
     private FlowPane students;
@@ -50,7 +48,6 @@ public class TutorialCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         tutorialId.setText(aTutorial.getTutorialId().fullName);
         moduleCode.setText(aTutorial.getModuleCode().value);
-        address.setText(aTutorial.getAddress().value);
         date.setText(aTutorial.getDate().value);
         aTutorial.getStudents().stream()
                 .sorted(Comparator.comparing(student -> student.studentId))
