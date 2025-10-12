@@ -34,7 +34,7 @@ public class EditTutorialDescriptorBuilder {
         descriptor = new EditTutorialDescriptor();
         descriptor.setName(aTutorial.getTutorialId());
         descriptor.setModuleCode(aTutorial.getModuleCode());
-        descriptor.setEmail(aTutorial.getDate());
+        descriptor.setDate(aTutorial.getDate());
         descriptor.setAddress(aTutorial.getAddress());
         descriptor.setStudents(aTutorial.getStudents());
     }
@@ -56,10 +56,10 @@ public class EditTutorialDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditTutorialDescriptor} that we are building.
+     * Sets the {@code Date} of the {@code EditTutorialDescriptor} that we are building.
      */
     public EditTutorialDescriptorBuilder withDate(String date) {
-        descriptor.setEmail(new Date(date));
+        descriptor.setDate(new Date(date));
         return this;
     }
 

@@ -98,7 +98,7 @@ public class EditCommand extends Command {
 
         TutorialId updatedTutorialId = editTutorialDescriptor.getName().orElse(tutorialToEdit.getTutorialId());
         ModuleCode updatedModuleCode = editTutorialDescriptor.getModuleCode().orElse(tutorialToEdit.getModuleCode());
-        Date updatedDate = editTutorialDescriptor.getEmail().orElse(tutorialToEdit.getDate());
+        Date updatedDate = editTutorialDescriptor.getDate().orElse(tutorialToEdit.getDate());
         Address updatedAddress = editTutorialDescriptor.getAddress().orElse(tutorialToEdit.getAddress());
         Set<Student> updatedStudents = editTutorialDescriptor.getStudents().orElse(tutorialToEdit.getStudents());
 
@@ -149,7 +149,7 @@ public class EditCommand extends Command {
         public EditTutorialDescriptor(EditTutorialDescriptor toCopy) {
             setName(toCopy.tutorialId);
             setModuleCode(toCopy.moduleCode);
-            setEmail(toCopy.date);
+            setDate(toCopy.date);
             setAddress(toCopy.address);
             setStudents(toCopy.students);
         }
@@ -177,11 +177,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(moduleCode);
         }
 
-        public void setEmail(Date date) {
+        public void setDate(Date date) {
             this.date = date;
         }
 
-        public Optional<Date> getEmail() {
+        public Optional<Date> getDate() {
             return Optional.ofNullable(date);
         }
 

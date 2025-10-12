@@ -63,7 +63,7 @@ public class EditTutorialDescriptorTest {
         String expected = EditTutorialDescriptor.class.getCanonicalName() + "{tutorialId="
                 + editTutorialDescriptor.getName().orElse(null) + ", moduleCode="
                 + editTutorialDescriptor.getModuleCode().orElse(null) + ", date="
-                + editTutorialDescriptor.getEmail().orElse(null) + ", tabs="
+                + editTutorialDescriptor.getDate().orElse(null) + ", tabs="
                 + editTutorialDescriptor.getAddress().orElse(null) + ", students="
                 + editTutorialDescriptor.getStudents().orElse(null) + "}";
         assertEquals(expected, editTutorialDescriptor.toString());

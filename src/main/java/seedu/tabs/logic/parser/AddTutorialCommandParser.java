@@ -42,7 +42,7 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID, PREFIX_MODULE_CODE, PREFIX_DATE, PREFIX_ADDRESS);
         TutorialId tutorialId = ParserUtil.parseName(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
-        Date date = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_DATE).get());
+        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
 
         // Address is optional - use null if not provided
         Address address = argMultimap.getValue(PREFIX_ADDRESS).isPresent()
