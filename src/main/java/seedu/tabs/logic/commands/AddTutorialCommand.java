@@ -18,7 +18,7 @@ import seedu.tabs.model.tutorial.Tutorial;
  */
 public class AddTutorialCommand extends Command {
 
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add_tutorial";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to the TAbs. "
             + "Parameters: "
