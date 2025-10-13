@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.tabs.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -48,10 +47,6 @@ public class EditTutorialDescriptorTest {
         editedAmy = new EditTutorialDescriptorBuilder(DESC_AMY).withDate(VALID_DATE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
-        // different tabs -> returns false
-        editedAmy = new EditTutorialDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
         // different students -> returns false
         editedAmy = new EditTutorialDescriptorBuilder(DESC_AMY).withStudents(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
@@ -63,8 +58,7 @@ public class EditTutorialDescriptorTest {
         String expected = EditTutorialDescriptor.class.getCanonicalName() + "{tutorialId="
                 + editTutorialDescriptor.getName().orElse(null) + ", moduleCode="
                 + editTutorialDescriptor.getModuleCode().orElse(null) + ", date="
-                + editTutorialDescriptor.getDate().orElse(null) + ", tabs="
-                + editTutorialDescriptor.getAddress().orElse(null) + ", students="
+                + editTutorialDescriptor.getDate().orElse(null) + ", students="
                 + editTutorialDescriptor.getStudents().orElse(null) + "}";
         assertEquals(expected, editTutorialDescriptor.toString());
     }

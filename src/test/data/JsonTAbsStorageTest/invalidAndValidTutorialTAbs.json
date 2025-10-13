@@ -3,14 +3,12 @@
     {
       "tutorialId": "C123",
       "moduleCode": "CS2103T",
-      "date": "2025-01-10",
-      "address": "4th street"
+      "date": "2025-01-10"
     },
     {
       "tutorialId": "InvalidID",
       "moduleCode": "InvalidModule",
-      "date": "2025-01-10",
-      "address": "4th street"
+      "date": "2025-01-10"
     }
   ]
 }

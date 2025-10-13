@@ -3,7 +3,6 @@ package seedu.tabs.model.tutorial;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -35,7 +34,7 @@ public class TutorialTest {
 
         // same name, all other attributes different -> returns true
         Tutorial editedAlice = new TutorialBuilder(ALICE).withModuleCode(VALID_PHONE_BOB).withDate(VALID_DATE_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withStudents(VALID_TAG_HUSBAND).build();
+                .withStudents(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSameTutorial(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -81,10 +80,6 @@ public class TutorialTest {
         editedAlice = new TutorialBuilder(ALICE).withDate(VALID_DATE_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different tabs -> returns false
-        editedAlice = new TutorialBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
         // different students -> returns false
         editedAlice = new TutorialBuilder(ALICE).withStudents(VALID_TAG_FRIEND).build();
         assertFalse(ALICE.equals(editedAlice));
@@ -94,7 +89,7 @@ public class TutorialTest {
     public void toStringMethod() {
         String expected = Tutorial.class.getCanonicalName() + "{tutorialId=" + ALICE.getTutorialId()
                 + ", moduleCode=" + ALICE.getModuleCode()
-                + ", date=" + ALICE.getDate() + ", tabs=" + ALICE.getAddress()
+                + ", date=" + ALICE.getDate()
                 + ", students=" + ALICE.getStudents() + "}";
         assertEquals(expected, ALICE.toString());
     }
