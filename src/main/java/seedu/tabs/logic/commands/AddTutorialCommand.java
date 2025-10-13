@@ -1,7 +1,6 @@
 package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
@@ -25,13 +24,11 @@ public class AddTutorialCommand extends Command {
             + PREFIX_TUTORIAL_ID + "TUTORIAL_ID "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
             + PREFIX_DATE + "DATE "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_STUDENT + "STUDENT]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TUTORIAL_ID + "T123 "
             + PREFIX_MODULE_CODE + "CS2103T "
             + PREFIX_DATE + "2025-03-15 "
-            + PREFIX_ADDRESS + "COM1-B103 "
             + PREFIX_STUDENT + "A1231231Y "
             + PREFIX_STUDENT + "A3213213Y";
 

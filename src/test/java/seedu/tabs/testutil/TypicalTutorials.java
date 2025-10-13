@@ -1,7 +1,5 @@
 package seedu.tabs.testutil;
 
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_DATE_AMY;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_DATE_BOB;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -24,36 +22,35 @@ import seedu.tabs.model.tutorial.Tutorial;
 public class TypicalTutorials {
 
     public static final Tutorial TUTORIAL_CS2103T_C101 = new TutorialBuilder().withName("C101")
-            .withAddress("123, Jurong West Ave 6, #08-111").withDate("2025-01-10")
+            .withDate("2025-01-10")
             .withModuleCode("CS2103T")
             .withStudents(VALID_TAG_HUSBAND).build();
     public static final Tutorial TUTORIAL_MA1521_T202 = new TutorialBuilder().withName("T202")
-            .withAddress("311, Clementi Ave 2, #02-25")
             .withDate("2025-01-15").withModuleCode("MA1521")
             .withStudents(VALID_TAG_HUSBAND).build();
     public static final Tutorial TUTORIAL_CS1010_C303 = new TutorialBuilder().withName("C303").withModuleCode("CS1010")
-            .withDate("2025-01-20").withAddress("wall street").build();
+            .withDate("2025-01-20").build();
     public static final Tutorial TUTORIAL_ST2334_T404 = new TutorialBuilder().withName("T404").withModuleCode("ST2334")
-            .withDate("2025-01-25").withAddress("10th street").withStudents(VALID_TAG_HUSBAND).build();
+            .withDate("2025-01-25").withStudents(VALID_TAG_HUSBAND).build();
     public static final Tutorial TUTORIAL_CS2040_C505 = new TutorialBuilder().withName("C505").withModuleCode("CS2040")
-            .withDate("2025-02-01").withAddress("michegan ave").build();
+            .withDate("2025-02-01").build();
     public static final Tutorial TUTORIAL_MA2001_T606 = new TutorialBuilder().withName("T606").withModuleCode("MA2001")
-            .withDate("2025-02-05").withAddress("little tokyo").build();
+            .withDate("2025-02-05").build();
     public static final Tutorial TUTORIAL_EE2026_C707 = new TutorialBuilder().withName("C707").withModuleCode("EE2026")
-            .withDate("2025-02-10").withAddress("4th street").build();
+            .withDate("2025-02-10").build();
 
     // Manually added
     public static final Tutorial TUTORIAL_GE1401_T808 = new TutorialBuilder().withName("T808").withModuleCode("GE1401")
-            .withDate("2025-02-15").withAddress("little india").build();
+            .withDate("2025-02-15").build();
     public static final Tutorial TUTORIAL_CS3230_C909 = new TutorialBuilder().withName("C909").withModuleCode("CS3230")
-            .withDate("2025-02-20").withAddress("chicago ave").build();
+            .withDate("2025-02-20").build();
 
     // Manually added - Tutorial's details found in {@code CommandTestUtil}
     public static final Tutorial TUTORIAL_TEST_C123 = new TutorialBuilder().withName(VALID_NAME_AMY)
-            .withModuleCode(VALID_PHONE_AMY).withDate(VALID_DATE_AMY).withAddress(VALID_ADDRESS_AMY)
+            .withModuleCode(VALID_PHONE_AMY).withDate(VALID_DATE_AMY)
             .withStudents(VALID_TAG_FRIEND).build();
     public static final Tutorial TUTORIAL_TEST_T456 = new TutorialBuilder().withName(VALID_NAME_BOB)
-            .withModuleCode(VALID_PHONE_BOB).withDate(VALID_DATE_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withModuleCode(VALID_PHONE_BOB).withDate(VALID_DATE_BOB)
             .withStudents(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     // Aliases for backward compatibility with existing tests
