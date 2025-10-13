@@ -32,6 +32,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_STUDENT + "A0123456Z "
             + PREFIX_TUTORIAL_ID + "T123";
     public static final String MESSAGE_SUCCESS = "New student %1$s added to tutorial %2$s";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "Student %1$s is already in tutorial %2$s!";
 
     private final Student student;
     private final TutorialIdMatchesKeywordPredicate predicate;
@@ -70,10 +71,15 @@ public class AddStudentCommand extends Command {
      * edited with {@code editTutorialDescriptor}.
      */
     private static Tutorial addStudentToTutorial(Tutorial tutorialToAdd,
-                                                 Student student) {
+                                                 Student student) throws CommandException {
         assert tutorialToAdd != null;
+        Set<Student> currStudents = tutorialToAdd.getStudents();
+        if (currStudents.contains(student)) {
+            throw new CommandException(
+                    String.format(MESSAGE_DUPLICATE_STUDENT, student, tutorialToAdd.getTutorialId()));
+        }
 
-        Set<Student> updatedStudents = new HashSet<>(tutorialToAdd.getStudents());
+        Set<Student> updatedStudents = new HashSet<>(currStudents);
         updatedStudents.add(student);
 
         return new Tutorial(
