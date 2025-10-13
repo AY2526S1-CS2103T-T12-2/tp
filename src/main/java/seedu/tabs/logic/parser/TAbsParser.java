@@ -63,7 +63,7 @@ public class TAbsParser {
             return new EditCommandParser().parse(arguments);
 
         case DeleteTutorialCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+            return new DeleteTutorialCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

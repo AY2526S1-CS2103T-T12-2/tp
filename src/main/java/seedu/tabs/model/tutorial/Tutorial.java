@@ -11,7 +11,7 @@ import seedu.tabs.commons.util.ToStringBuilder;
 import seedu.tabs.model.student.Student;
 
 /**
- * Represents a Tutorial in TAbs.
+ * Represents a tutorial in TAbs.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Tutorial {
@@ -48,7 +48,7 @@ public class Tutorial {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable student set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Student> getStudents() {
@@ -56,10 +56,8 @@ public class Tutorial {
     }
 
     /**
-     * Returns true if both classes have the same name.
+     * Returns true if both tutorials have the same name.
      * This defines a weaker notion of equality between two tutorials.
-     *
-     * TO BE CHANGED.
      */
     public boolean isSameTutorial(Tutorial otherTutorial) {
         if (otherTutorial == this) {
@@ -71,8 +69,8 @@ public class Tutorial {
     }
 
     /**
-     * Returns true if both classes have the same identity and data fields.
-     * This defines a stronger notion of equality between two classes.
+     * Returns true if both tutorials have the same class details and list of students.
+     * This defines a stronger notion of equality between two tutorials.
      */
     @Override
     public boolean equals(Object other) {

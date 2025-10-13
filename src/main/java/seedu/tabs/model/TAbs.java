@@ -10,8 +10,8 @@ import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.UniqueTutorialList;
 
 /**
- * Wraps all data at the tabs-book level
- * Duplicates are not allowed (by .isSameTutorial comparison)
+ * Wraps all data at the TAbs level.
+ * Duplicates are not allowed (by {@code .isSameTutorial} comparison)
  */
 public class TAbs implements ReadOnlyTAbs {
 
@@ -31,7 +31,7 @@ public class TAbs implements ReadOnlyTAbs {
     public TAbs() {}
 
     /**
-     * Creates an TAbs using the Tutorials in the {@code toBeCopied}
+     * Creates TAbs using the tutorials in the {@code toBeCopied}
      */
     public TAbs(ReadOnlyTAbs toBeCopied) {
         this();
@@ -60,7 +60,7 @@ public class TAbs implements ReadOnlyTAbs {
     //// tutorial-level operations
 
     /**
-     * Returns true if a tutorial with the same identity as {@code tutorial} exists in the TAbs.
+     * Returns true if a tutorial with the same identity as {@code tutorial} exists in TAbs.
      */
     public boolean hasTutorial(Tutorial aTutorial) {
         requireNonNull(aTutorial);
@@ -68,8 +68,8 @@ public class TAbs implements ReadOnlyTAbs {
     }
 
     /**
-     * Adds a tutorial to the TAbs.
-     * The tutorial must not already exist in the TAbs.
+     * Adds a tutorial to TAbs.
+     * The tutorial must not already exist in TAbs.
      */
     public void addTutorial(Tutorial p) {
         tutorials.add(p);
@@ -77,8 +77,8 @@ public class TAbs implements ReadOnlyTAbs {
 
     /**
      * Replaces the given tutorial {@code target} in the list with {@code editedTutorial}.
-     * {@code target} must exist in the TAbs.
-     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in the TAbs.
+     * {@code target} must exist in TAbs.
+     * The tutorial identity of {@code editedTutorial} must not be the same as another existing tutorial in TAbs.
      */
     public void setTutorial(Tutorial target, Tutorial editedTutorial) {
         requireNonNull(editedTutorial);
@@ -88,7 +88,7 @@ public class TAbs implements ReadOnlyTAbs {
 
     /**
      * Removes {@code key} from this {@code TAbs}.
-     * {@code key} must exist in the TAbs.
+     * {@code key} must exist in TAbs.
      */
     public void removeTutorial(Tutorial key) {
         tutorials.remove(key);
