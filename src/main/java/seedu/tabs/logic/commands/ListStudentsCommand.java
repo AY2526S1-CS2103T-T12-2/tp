@@ -33,6 +33,13 @@ public class ListStudentsCommand extends Command {
         this.tutorialId = tutorialId;
     }
 
+    /**
+     * Executes the command and returns the result message.
+     *
+     * @param model {@code Model} which the command should operate on.
+     * @return feedback message of the operation result for display.
+     * @throws CommandException If a tutorial with the given ID is not found or if the tutorial has no students.
+     */
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -47,12 +54,14 @@ public class ListStudentsCommand extends Command {
         // Convert the set of students to a list to preserve order
         List<Student> studentList = new ArrayList<>(tutorial.getStudents());
 
+        // Throw an exception if the student list is empty
         if (studentList.size() == 0) {
             throw new CommandException(
-                    String.format("A tutorial with the TUTORIAL_ID %s does not exist", tutorialId.fullName)
+                    String.format("Displaying all students enrolled in tutorial %s", tutorialId.fullName)
             );
         }
 
+        // Build the string representation of the list of students
         for (int i = 0; i < studentList.size(); i++) {
             listOfStudents = listOfStudents + (i + 1) + ". " + studentList.get(i).studentId + "\n";
         }
