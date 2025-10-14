@@ -23,6 +23,9 @@ public class ListStudentsCommand extends Command {
             + "Parameters: "
             + PREFIX_TUTORIAL_ID + "TUTORIAL ID";
 
+    private static final String MESSAGE_SUCCESS_TEMPLATE = "Displaying all students enrolled in tutorial %s \n";
+
+
     // dummy values
     private String listOfStudents = "";
 
@@ -57,7 +60,7 @@ public class ListStudentsCommand extends Command {
         // Throw an exception if the student list is empty
         if (studentList.size() == 0) {
             throw new CommandException(
-                    String.format("Displaying all students enrolled in tutorial %s", tutorialId.fullName)
+                    String.format("The tutorial %s has no students enrolled.", tutorialId.fullName)
             );
         }
 
@@ -66,6 +69,32 @@ public class ListStudentsCommand extends Command {
             listOfStudents = listOfStudents + (i + 1) + ". " + studentList.get(i).studentId + "\n";
         }
 
-        return new CommandResult(listOfStudents);
+        return new CommandResult(String.format(MESSAGE_SUCCESS_TEMPLATE, tutorialId) + listOfStudents);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ListStudentsCommand)) {
+            return false;
+        }
+
+        if (other instanceof ListStudentsCommand otherListStudentsCommand) {
+            return tutorialId.equals(otherListStudentsCommand.tutorialId);
+        }
+
+        return false;
+    }
+
+    /**
+     * Returns a string representation of the ListStudentsCommand.
+     * This method is required to pass the ListStudentsCommandTest.toStringMethod() test.
+     */
+    @Override
+    public String toString() {
+        return ListStudentsCommand.class.getCanonicalName() + "{tutorialId=" + tutorialId + "}";
     }
 }
