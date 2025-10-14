@@ -1,11 +1,17 @@
 package seedu.tabs.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.tabs.testutil.TypicalPredicates.PREDICATE_KEYWORD_C101;
 import static seedu.tabs.testutil.TypicalTutorials.getTypicalTAbs;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.tabs.logic.Messages;
 import seedu.tabs.model.Model;
 import seedu.tabs.model.ModelManager;
 import seedu.tabs.model.UserPrefs;
+import seedu.tabs.model.tutorial.Tutorial;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -15,19 +21,18 @@ public class DeleteTutorialCommandTest {
 
     private Model model = new ModelManager(getTypicalTAbs(), new UserPrefs());
 
-    //    @Test
-    //    public void execute_validIndexUnfilteredList_success() {
-    //        Tutorial tutorialToDelete = model.getFilteredTutorialList().get(INDEX_FIRST_PERSON.getZeroBased());
-    //        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(INDEX_FIRST_PERSON);
-    //
-    //        String expectedMessage = String.format(DeleteTutorialCommand.MESSAGE_DELETE_PERSON_SUCCESS,
-    //                Messages.format(tutorialToDelete));
-    //
-    //        ModelManager expectedModel = new ModelManager(model.getTAbs(), new UserPrefs());
-    //        expectedModel.deleteTutorial(tutorialToDelete);
-    //
-    //        assertCommandSuccess(deleteTutorialCommand, model, expectedMessage, expectedModel);
-    //    }
+    @Test
+    public void execute_validKeywordUnfilteredList_success() {
+        Tutorial tutorialToDelete = model.getFilteredTutorialList().get(0);
+        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(PREDICATE_KEYWORD_C101);
+
+        String expectedMessage = String.format(DeleteTutorialCommand.MESSAGE_DELETE_TUTORIAL_SUCCESS,
+                Messages.format(tutorialToDelete));
+
+        ModelManager expectedModel = new ModelManager(model.getTAbs(), new UserPrefs());
+        expectedModel.deleteTutorial(tutorialToDelete);assertCommandSuccess(deleteTutorialCommand, model,
+                expectedMessage, expectedModel);
+    }
     //
     //    @Test
     //    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
