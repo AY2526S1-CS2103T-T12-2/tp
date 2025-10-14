@@ -30,6 +30,7 @@ import seedu.tabs.testutil.TutorialBuilder;
  */
 public class ListStudentsCommandTest {
 
+    private static final String MESSAGE_SUCCESS_TEMPLATE = "Displaying all students enrolled in tutorial %s \n";
     // Data
     private static final TutorialId T01_ID = new TutorialId("T01");
     private static final TutorialId T02_ID_EMPTY = new TutorialId("T02");
@@ -155,8 +156,7 @@ public class ListStudentsCommandTest {
 
         // The expected output format is based on the logic of ListStudentsCommand:
         // "1. [StudentID1]\n2. [StudentID2]\n"
-        String successMessage = String.format("Displaying all students enrolled in tutorial %s \n", T01_ID);
-        String expectedMessage = successMessage + "1. " + ALICE.studentId + "\n"
+        String expectedMessage = String.format(MESSAGE_SUCCESS_TEMPLATE, T01_ID) + "1. " + ALICE.studentId + "\n"
                 + "2. " + BOB.studentId + "\n";
 
         CommandResult commandResult = listStudentsCommand.execute(model);

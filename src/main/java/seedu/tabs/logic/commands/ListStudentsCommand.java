@@ -23,12 +23,13 @@ public class ListStudentsCommand extends Command {
             + "Parameters: "
             + PREFIX_TUTORIAL_ID + "TUTORIAL ID";
 
+    private static final String MESSAGE_SUCCESS_TEMPLATE = "Displaying all students enrolled in tutorial %s \n";
+
+
     // dummy values
     private String listOfStudents = "";
 
     private final TutorialId tutorialId;
-
-    private String successMessage;
 
 
     public ListStudentsCommand(TutorialId tutorialId) {
@@ -68,9 +69,7 @@ public class ListStudentsCommand extends Command {
             listOfStudents = listOfStudents + (i + 1) + ". " + studentList.get(i).studentId + "\n";
         }
 
-        successMessage = String.format("Displaying all students enrolled in tutorial %s \n", tutorialId);
-
-        return new CommandResult(successMessage + listOfStudents);
+        return new CommandResult(String.format(MESSAGE_SUCCESS_TEMPLATE, tutorialId) + listOfStudents);
     }
 
     @Override
