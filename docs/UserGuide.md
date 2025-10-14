@@ -74,29 +74,32 @@ Shows a message explaining how to access the help page.
 Format: `help`
 
 
-### Adding a tutorial: `add`
+### Adding a tutorial: `add_tutorial`
 
-Adds a tutorial to the TAbs.
+Adds a tutorial to TAbs.
 
-Format: `add n/NAME p/PHONE_NUMBER e/DATE a/ADDRESS [t/TAG]…​`
+Format: `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A tutorial can have any number of tags (including 0)
-</div>
+* Adds a tutorial with the specified `TUTORIAL_ID`, `MODULE_CODE`, and `DATE`.
+* The tutorial ID must begin with `T` followed by alphanumeric characters.
+* The module code should follow standard university module code format (e.g., CS2103T).
+* The date should be in YYYY-MM-DD format.
+* Students can be added optionally using their student IDs (format: A followed by 7 digits and a capital letter).
+* Multiple students can be added to the same tutorial.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add_tutorial t/T123 m/CS2103T d/2025-03-15 id/A1231231Y id/A3213213Y`
+* `add_tutorial t/T456 m/CS2101 d/2025-03-20`
 
 ### Listing all tutorials : `list`
 
-Shows a list of all tutorials in the TAbs.
+Shows a list of all tutorials in TAbs.
 
 Format: `list`
 
 ### Editing a tutorial : `edit`
 
-Edits an existing tutorial in the TAbs.
+Edits an existing tutorial in TAbs.
 
 Format: `edit INDEX [n/NAME] [p/PHONE] [e/DATE] [a/ADDRESS] [t/TAG]…​`
 
@@ -131,7 +134,7 @@ Examples:
 
 ### Deleting a tutorial: `delete_tutorial`
 
-Deletes the specified tutorial from the TAbs.
+Deletes the specified tutorial from TAbs.
 
 Format: `delete_tutorial t/TUTORIAL_ID`
 
@@ -144,7 +147,7 @@ Examples:
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the TAbs.
+Clears all entries from TAbs.
 
 Format: `clear`
 
@@ -164,7 +167,7 @@ TAbs data are saved automatically as a JSON file `[JAR file location]/data/TAbs.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
     If your changes to the data file makes its format invalid, TAbs will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-    Furthermore, certain edits can cause the TAbs to behave in unexpected ways (e.g., if a value entered is beyond the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+    Furthermore, certain edits can cause TAbs to behave in unexpected ways (e.g., if a value entered is beyond the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
