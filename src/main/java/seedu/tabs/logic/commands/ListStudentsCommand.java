@@ -68,4 +68,30 @@ public class ListStudentsCommand extends Command {
 
         return new CommandResult(listOfStudents);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ListStudentsCommand)) {
+            return false;
+        }
+
+        if (other instanceof ListStudentsCommand otherListStudentsCommand) {
+            return tutorialId.equals(otherListStudentsCommand.tutorialId);
+        }
+
+        return false;
+    }
+
+    /**
+     * Returns a string representation of the ListStudentsCommand.
+     * This method is required to pass the ListStudentsCommandTest.toStringMethod() test.
+     */
+    @Override
+    public String toString() {
+        return ListStudentsCommand.class.getCanonicalName() + "{tutorialId=" + tutorialId + "}";
+    }
 }
