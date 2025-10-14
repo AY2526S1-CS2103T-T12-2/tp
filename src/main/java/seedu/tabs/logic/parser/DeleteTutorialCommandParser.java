@@ -11,14 +11,14 @@ import seedu.tabs.logic.parser.exceptions.ParseException;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
 /**
- * Parses input argument and creates a new DeleteTutorialCommand object
+ * Parses input argument and creates a new {@code DeleteTutorialCommand} object.
  */
-public class DeleteCommandParser implements Parser<DeleteTutorialCommand> {
+public class DeleteTutorialCommandParser implements Parser<DeleteTutorialCommand> {
 
     /**
-     * Parses the given {@code String} of argument in the context of the DeleteTutorialCommand
-     * and returns a DeleteTutorialCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * Parses the given {@code String} of arguments in the context of the {@code DeleteTutorialCommand}
+     * and returns a {@code DeleteTutorialCommand} object for execution.
+     * @throws ParseException if the user input does not conform the expected format.
      */
     public DeleteTutorialCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =

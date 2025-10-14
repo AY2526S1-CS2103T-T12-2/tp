@@ -5,7 +5,6 @@
       "tutorialId": "C101",
       "moduleCode": "CS2103T",
       "date": "2025-01-10",
-      "address": "123, Jurong West Ave 6, #08-111",
       "students": [
         "A1231231Y"
       ]
@@ -14,7 +13,6 @@
       "tutorialId": "T202",
       "moduleCode": "MA1521",
       "date": "2025-01-15",
-      "address": "311, Clementi Ave 2, #02-25",
       "students": [
         "A1231231Y"
       ]
@@ -23,14 +21,12 @@
       "tutorialId": "C303",
       "moduleCode": "CS1010",
       "date": "2025-01-20",
-      "address": "wall street",
       "students": []
     },
     {
       "tutorialId": "T404",
       "moduleCode": "ST2334",
       "date": "2025-01-25",
-      "address": "10th street",
       "students": [
         "A1231231Y"
       ]
@@ -39,21 +35,18 @@
       "tutorialId": "C505",
       "moduleCode": "CS2040",
       "date": "2025-02-01",
-      "address": "michegan ave",
       "students": []
     },
     {
       "tutorialId": "T606",
       "moduleCode": "MA2001",
       "date": "2025-02-05",
-      "address": "little tokyo",
       "students": []
     },
     {
       "tutorialId": "C707",
       "moduleCode": "EE2026",
       "date": "2025-02-10",
-      "address": "4th street",
       "students": []
     }
   ]

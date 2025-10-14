@@ -6,7 +6,6 @@ import java.util.stream.Stream;
 
 import seedu.tabs.logic.commands.EditCommand.EditTutorialDescriptor;
 import seedu.tabs.model.student.Student;
-import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
 import seedu.tabs.model.tutorial.ModuleCode;
 import seedu.tabs.model.tutorial.Tutorial;
@@ -34,8 +33,7 @@ public class EditTutorialDescriptorBuilder {
         descriptor = new EditTutorialDescriptor();
         descriptor.setName(aTutorial.getTutorialId());
         descriptor.setModuleCode(aTutorial.getModuleCode());
-        descriptor.setEmail(aTutorial.getDate());
-        descriptor.setAddress(aTutorial.getAddress());
+        descriptor.setDate(aTutorial.getDate());
         descriptor.setStudents(aTutorial.getStudents());
     }
 
@@ -56,18 +54,10 @@ public class EditTutorialDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditTutorialDescriptor} that we are building.
+     * Sets the {@code Date} of the {@code EditTutorialDescriptor} that we are building.
      */
     public EditTutorialDescriptorBuilder withDate(String date) {
-        descriptor.setEmail(new Date(date));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Address} of the {@code EditTutorialDescriptor} that we are building.
-     */
-    public EditTutorialDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        descriptor.setDate(new Date(date));
         return this;
     }
 

@@ -12,18 +12,17 @@ import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
 /**
- * Deletes a tutorial identified using it's displayed index from the TAbs.
+ * Deletes a tutorial identified using its displayed tutorial ID from TAbs.
  */
 public class DeleteTutorialCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_tutorial";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the tutorial identified by the index number used in the displayed tutorial list.\n"
-            + "Parameters: INDEX (must be a positive integer)\n"
-            + "Example: " + COMMAND_WORD + " 1";
+            + ": Deletes the tutorial identified by the tutorial ID used in the displayed tutorial list.\n"
+            + "Example: " + COMMAND_WORD + " t/T1";
 
-    public static final String MESSAGE_DELETE_TUTORIAL_SUCCESS = "Deleted Tutorial: %1$s";
+    public static final String MESSAGE_DELETE_TUTORIAL_SUCCESS = "Tutorial deleted: %1$s";
 
     private final TutorialIdMatchesKeywordPredicate predicate;
 
@@ -38,9 +37,8 @@ public class DeleteTutorialCommand extends Command {
 
         Tutorial tutorialToDelete = lastShownList.stream().filter(predicate).findFirst().orElse(null);
 
-        // ERROR TO BE CHANGED
         if (tutorialToDelete == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TUTORIAL_INDEX);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_TUTORIAL_ID, predicate.getKeyword()));
         }
 
         model.deleteTutorial(tutorialToDelete);

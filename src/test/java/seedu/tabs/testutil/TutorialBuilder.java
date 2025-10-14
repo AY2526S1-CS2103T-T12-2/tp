@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.tabs.model.student.Student;
-import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
 import seedu.tabs.model.tutorial.ModuleCode;
 import seedu.tabs.model.tutorial.Tutorial;
@@ -19,12 +18,10 @@ public class TutorialBuilder {
     public static final String DEFAULT_NAME = "C999";
     public static final String DEFAULT_PHONE = "CS9999";
     public static final String DEFAULT_DATE = "2025-12-31";
-    public static final String DEFAULT_ADDRESS = "999, Test Ave 9, #09-999";
 
     private TutorialId tutorialId;
     private ModuleCode moduleCode;
     private Date date;
-    private Address address;
     private Set<Student> students;
 
     /**
@@ -34,7 +31,6 @@ public class TutorialBuilder {
         tutorialId = new TutorialId(DEFAULT_NAME);
         moduleCode = new ModuleCode(DEFAULT_PHONE);
         date = new Date(DEFAULT_DATE);
-        address = new Address(DEFAULT_ADDRESS);
         students = new HashSet<>();
     }
 
@@ -45,7 +41,6 @@ public class TutorialBuilder {
         tutorialId = tutorialToCopy.getTutorialId();
         moduleCode = tutorialToCopy.getModuleCode();
         date = tutorialToCopy.getDate();
-        address = tutorialToCopy.getAddress();
         students = new HashSet<>(tutorialToCopy.getStudents());
     }
 
@@ -66,14 +61,6 @@ public class TutorialBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Tutorial} that we are building.
-     */
-    public TutorialBuilder withAddress(String address) {
-        this.address = new Address(address);
-        return this;
-    }
-
-    /**
      * Sets the {@code ModuleCode} of the {@code Tutorial} that we are building.
      */
     public TutorialBuilder withModuleCode(String moduleCode) {
@@ -90,7 +77,7 @@ public class TutorialBuilder {
     }
 
     public Tutorial build() {
-        return new Tutorial(tutorialId, moduleCode, date, address, students);
+        return new Tutorial(tutorialId, moduleCode, date, students);
     }
 
 }

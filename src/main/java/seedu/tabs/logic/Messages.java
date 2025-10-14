@@ -14,7 +14,8 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_TUTORIAL_INDEX = "The tutorial index provided is invalid";
+    public static final String MESSAGE_INVALID_TUTORIAL_ID = "A tutorial with tutorial ID '%s' does not exist.";
+    public static final String MESSAGE_TUTORIAL_ID_NOT_FOUND = "No tutorial with the provided tutorial ID was found.";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d tutorials listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
@@ -38,13 +39,12 @@ public class Messages {
      */
     public static String format(Tutorial aTutorial) {
         final StringBuilder builder = new StringBuilder();
-        builder.append(aTutorial.getTutorialId())
+        builder.append("TutorialID: ")
+                .append(aTutorial.getTutorialId())
                 .append("; ModuleCode: ")
                 .append(aTutorial.getModuleCode())
                 .append("; Date: ")
                 .append(aTutorial.getDate())
-                .append("; Address: ")
-                .append(aTutorial.getAddress())
                 .append("; Students: ");
         aTutorial.getStudents().forEach(builder::append);
         return builder.toString();

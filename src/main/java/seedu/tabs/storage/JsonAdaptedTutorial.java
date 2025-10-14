@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.tabs.commons.exceptions.IllegalValueException;
 import seedu.tabs.model.student.Student;
-import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
 import seedu.tabs.model.tutorial.ModuleCode;
 import seedu.tabs.model.tutorial.Tutorial;
@@ -27,7 +26,6 @@ class JsonAdaptedTutorial {
     private final String tutorialId;
     private final String moduleCode;
     private final String date;
-    private final String address;
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
 
     /**
@@ -35,12 +33,11 @@ class JsonAdaptedTutorial {
      */
     @JsonCreator
     public JsonAdaptedTutorial(@JsonProperty("name") String name, @JsonProperty("moduleCode") String moduleCode,
-            @JsonProperty("date") String date, @JsonProperty("tabs") String address,
+            @JsonProperty("date") String date,
             @JsonProperty("students") List<JsonAdaptedStudent> students) {
         this.tutorialId = name;
         this.moduleCode = moduleCode;
         this.date = date;
-        this.address = address;
         if (students != null) {
             this.students.addAll(students);
         }
@@ -53,7 +50,6 @@ class JsonAdaptedTutorial {
         tutorialId = source.getTutorialId().fullName;
         moduleCode = source.getModuleCode().value;
         date = source.getDate().value;
-        address = source.getAddress().value;
         students.addAll(source.getStudents().stream()
                 .map(JsonAdaptedStudent::new)
                 .collect(Collectors.toList()));
@@ -96,16 +92,8 @@ class JsonAdaptedTutorial {
         }
         final Date modelDate = new Date(date);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
-        }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
-        }
-        final Address modelAddress = new Address(address);
-
         final Set<Student> modelStudents = new HashSet<>(tutorialStudents);
-        return new Tutorial(modelTutorialId, modelModuleCode, modelDate, modelAddress, modelStudents);
+        return new Tutorial(modelTutorialId, modelModuleCode, modelDate, modelStudents);
     }
 
 }

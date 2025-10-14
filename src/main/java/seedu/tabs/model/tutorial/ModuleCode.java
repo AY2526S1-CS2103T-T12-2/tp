@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tabs.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tutorial's module code in the TAbs.
+ * Represents a tutorial's module code in the TAbs.
  * Guarantees: immutable; is valid as declared in {@link #isValidModuleCode(String)}
  */
 public class ModuleCode {

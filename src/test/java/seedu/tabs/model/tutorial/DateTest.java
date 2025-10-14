@@ -14,9 +14,9 @@ public class DateTest {
     }
 
     @Test
-    public void constructor_invalidEmail_throwsIllegalArgumentException() {
-        String invalidEmail = "";
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidEmail));
+    public void constructor_invalidDate_throwsIllegalArgumentException() {
+        String invalidDate = "";
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDate));
     }
 
     @Test
