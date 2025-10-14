@@ -126,26 +126,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseEmail_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseEmail((String) null));
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate((String) null));
     }
 
     @Test
-    public void parseEmail_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseEmail(INVALID_DATE));
+    public void parseDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
     }
 
     @Test
-    public void parseEmail_validValueWithoutWhitespace_returnsEmail() throws Exception {
+    public void parseDate_validValueWithoutWhitespace_returnsDate() throws Exception {
         Date expectedDate = new Date(VALID_DATE);
-        assertEquals(expectedDate, ParserUtil.parseEmail(VALID_DATE));
+        assertEquals(expectedDate, ParserUtil.parseDate(VALID_DATE));
     }
 
     @Test
-    public void parseEmail_validValueWithWhitespace_returnsTrimmedEmail() throws Exception {
+    public void parseDate_validValueWithWhitespace_returnsTrimmedDate() throws Exception {
         String dateWithWhitespace = WHITESPACE + VALID_DATE + WHITESPACE;
         Date expectedDate = new Date(VALID_DATE);
-        assertEquals(expectedDate, ParserUtil.parseEmail(dateWithWhitespace));
+        assertEquals(expectedDate, ParserUtil.parseDate(dateWithWhitespace));
     }
 
     @Test

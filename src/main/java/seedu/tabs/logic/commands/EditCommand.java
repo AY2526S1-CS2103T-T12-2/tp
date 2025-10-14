@@ -95,7 +95,7 @@ public class EditCommand extends Command {
 
         TutorialId updatedTutorialId = editTutorialDescriptor.getName().orElse(tutorialToEdit.getTutorialId());
         ModuleCode updatedModuleCode = editTutorialDescriptor.getModuleCode().orElse(tutorialToEdit.getModuleCode());
-        Date updatedDate = editTutorialDescriptor.getEmail().orElse(tutorialToEdit.getDate());
+        Date updatedDate = editTutorialDescriptor.getDate().orElse(tutorialToEdit.getDate());
         Set<Student> updatedStudents = editTutorialDescriptor.getStudents().orElse(tutorialToEdit.getStudents());
 
         return new Tutorial(updatedTutorialId, updatedModuleCode, updatedDate, updatedStudents);
@@ -144,7 +144,7 @@ public class EditCommand extends Command {
         public EditTutorialDescriptor(EditTutorialDescriptor toCopy) {
             setName(toCopy.tutorialId);
             setModuleCode(toCopy.moduleCode);
-            setEmail(toCopy.date);
+            setDate(toCopy.date);
             setStudents(toCopy.students);
         }
 
@@ -171,11 +171,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(moduleCode);
         }
 
-        public void setEmail(Date date) {
+        public void setDate(Date date) {
             this.date = date;
         }
 
-        public Optional<Date> getEmail() {
+        public Optional<Date> getDate() {
             return Optional.ofNullable(date);
         }
 

@@ -70,7 +70,7 @@ public class JsonAdaptedTutorialTest {
     }
 
     @Test
-    public void toModelType_invalidEmail_throwsIllegalValueException() {
+    public void toModelType_invalidDate_throwsIllegalValueException() {
         JsonAdaptedTutorial tutorial =
                 new JsonAdaptedTutorial(VALID_TUTORIAL_ID, VALID_MODULE_CODE, INVALID_DATE,
                         VALID_STUDENTS);
@@ -79,7 +79,7 @@ public class JsonAdaptedTutorialTest {
     }
 
     @Test
-    public void toModelType_nullEmail_throwsIllegalValueException() {
+    public void toModelType_nullDate_throwsIllegalValueException() {
         JsonAdaptedTutorial tutorial = new JsonAdaptedTutorial(VALID_TUTORIAL_ID, VALID_MODULE_CODE, null,
                 VALID_STUDENTS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
