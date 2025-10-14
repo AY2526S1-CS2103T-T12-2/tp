@@ -3,7 +3,7 @@ package seedu.tabs.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.tabs.storage.JsonAdaptedTutorial.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.tabs.testutil.Assert.assertThrows;
-import static seedu.tabs.testutil.TypicalTutorials.BENSON;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_MA1521_T202;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,17 +22,17 @@ public class JsonAdaptedTutorialTest {
     private static final String INVALID_DATE = "example.com";
     private static final String INVALID_STUDENT = "#friend";
 
-    private static final String VALID_TUTORIAL_ID = BENSON.getTutorialId().toString();
-    private static final String VALID_MODULE_CODE = BENSON.getModuleCode().toString();
-    private static final String VALID_DATE = BENSON.getDate().toString();
-    private static final List<JsonAdaptedStudent> VALID_STUDENTS = BENSON.getStudents().stream()
+    private static final String VALID_TUTORIAL_ID = TUTORIAL_MA1521_T202.getTutorialId().toString();
+    private static final String VALID_MODULE_CODE = TUTORIAL_MA1521_T202.getModuleCode().toString();
+    private static final String VALID_DATE = TUTORIAL_MA1521_T202.getDate().toString();
+    private static final List<JsonAdaptedStudent> VALID_STUDENTS = TUTORIAL_MA1521_T202.getStudents().stream()
             .map(JsonAdaptedStudent::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validTutorialDetails_returnsTutorial() throws Exception {
-        JsonAdaptedTutorial tutorial = new JsonAdaptedTutorial(BENSON);
-        assertEquals(BENSON, tutorial.toModelType());
+        JsonAdaptedTutorial tutorial = new JsonAdaptedTutorial(TUTORIAL_MA1521_T202);
+        assertEquals(TUTORIAL_MA1521_T202, tutorial.toModelType());
     }
 
     @Test

@@ -1,13 +1,14 @@
+
 package seedu.tabs.testutil;
 
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_DATE_AMY;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_DATE_C123;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_DATE_T456;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS2103T;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_MODULE_CODE_MA1521;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_STUDENT_A;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_STUDENT_B;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_C123;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_T456;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,14 +25,14 @@ public class TypicalTutorials {
     public static final Tutorial TUTORIAL_CS2103T_C101 = new TutorialBuilder().withName("C101")
             .withDate("2025-01-10")
             .withModuleCode("CS2103T")
-            .withStudents(VALID_TAG_HUSBAND).build();
+            .withStudents(VALID_STUDENT_A).build();
     public static final Tutorial TUTORIAL_MA1521_T202 = new TutorialBuilder().withName("T202")
             .withDate("2025-01-15").withModuleCode("MA1521")
-            .withStudents(VALID_TAG_HUSBAND).build();
+            .withStudents(VALID_STUDENT_A).build();
     public static final Tutorial TUTORIAL_CS1010_C303 = new TutorialBuilder().withName("C303").withModuleCode("CS1010")
             .withDate("2025-01-20").build();
     public static final Tutorial TUTORIAL_ST2334_T404 = new TutorialBuilder().withName("T404").withModuleCode("ST2334")
-            .withDate("2025-01-25").withStudents(VALID_TAG_HUSBAND).build();
+            .withDate("2025-01-25").withStudents(VALID_STUDENT_A).build();
     public static final Tutorial TUTORIAL_CS2040_C505 = new TutorialBuilder().withName("C505").withModuleCode("CS2040")
             .withDate("2025-02-01").build();
     public static final Tutorial TUTORIAL_MA2001_T606 = new TutorialBuilder().withName("T606").withModuleCode("MA2001")
@@ -46,25 +47,12 @@ public class TypicalTutorials {
             .withDate("2025-02-20").build();
 
     // Manually added - Tutorial's details found in {@code CommandTestUtil}
-    public static final Tutorial TUTORIAL_TEST_C123 = new TutorialBuilder().withName(VALID_NAME_AMY)
-            .withModuleCode(VALID_PHONE_AMY).withDate(VALID_DATE_AMY)
-            .withStudents(VALID_TAG_FRIEND).build();
-    public static final Tutorial TUTORIAL_TEST_T456 = new TutorialBuilder().withName(VALID_NAME_BOB)
-            .withModuleCode(VALID_PHONE_BOB).withDate(VALID_DATE_BOB)
-            .withStudents(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-
-    // Aliases for backward compatibility with existing tests
-    public static final Tutorial ALICE = TUTORIAL_CS2103T_C101;
-    public static final Tutorial BOB = TUTORIAL_TEST_T456;
-    public static final Tutorial CARL = TUTORIAL_CS1010_C303;
-    public static final Tutorial DANIEL = TUTORIAL_ST2334_T404;
-    public static final Tutorial ELLE = TUTORIAL_CS2040_C505;
-    public static final Tutorial FIONA = TUTORIAL_MA2001_T606;
-    public static final Tutorial GEORGE = TUTORIAL_EE2026_C707;
-    public static final Tutorial HOON = TUTORIAL_GE1401_T808;
-    public static final Tutorial IDA = TUTORIAL_CS3230_C909;
-    public static final Tutorial AMY = TUTORIAL_TEST_C123;
-    public static final Tutorial BENSON = TUTORIAL_MA1521_T202;
+    public static final Tutorial TUTORIAL_TEST_C123 = new TutorialBuilder().withName(VALID_TUTORIAL_C123)
+            .withModuleCode(VALID_MODULE_CODE_CS2103T).withDate(VALID_DATE_C123)
+            .withStudents(VALID_STUDENT_B).build();
+    public static final Tutorial TUTORIAL_TEST_T456 = new TutorialBuilder().withName(VALID_TUTORIAL_T456)
+            .withModuleCode(VALID_MODULE_CODE_MA1521).withDate(VALID_DATE_T456)
+            .withStudents(VALID_STUDENT_A, VALID_STUDENT_B).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "T"; // A keyword that matches tutorials starting with T
 
