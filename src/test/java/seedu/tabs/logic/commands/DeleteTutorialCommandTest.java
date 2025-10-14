@@ -1,8 +1,12 @@
 package seedu.tabs.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.tabs.testutil.TypicalPredicates.PREDICATE_KEYWORD_C101;
+import static seedu.tabs.testutil.TypicalPredicates.PREDICATE_KEYWORD_C102;
 import static seedu.tabs.testutil.TypicalTutorials.getTypicalTAbs;
 
 import org.junit.jupiter.api.Test;
@@ -15,7 +19,7 @@ import seedu.tabs.model.tutorial.Tutorial;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteTutorialCommand}.
  */
 public class DeleteTutorialCommandTest {
 
@@ -30,26 +34,24 @@ public class DeleteTutorialCommandTest {
                 Messages.format(tutorialToDelete));
 
         ModelManager expectedModel = new ModelManager(model.getTAbs(), new UserPrefs());
-        expectedModel.deleteTutorial(tutorialToDelete);assertCommandSuccess(deleteTutorialCommand, model,
-                expectedMessage, expectedModel);
+        expectedModel.deleteTutorial(tutorialToDelete);
+        assertCommandSuccess(deleteTutorialCommand, model, expectedMessage, expectedModel);
     }
-    //
+
+    @Test
+    public void execute_invalidKeywordUnfilteredList_throwsCommandException() {
+        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(PREDICATE_KEYWORD_C102);
+        assertCommandFailure(deleteTutorialCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
     //    @Test
-    //    public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-    //        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTutorialList().size() + 1);
-    //        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(outOfBoundIndex);
-    //
-    //        assertCommandFailure(deleteTutorialCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    //    }
-    //
-    //    @Test
-    //    public void execute_validIndexFilteredList_success() {
-    //        showTutorialAtIndex(model, INDEX_FIRST_PERSON);
+    //    public void execute_validKeywordFilteredList_success() {
+    //        showTutorialAtIndex(model, 0);
     //
     //        Tutorial tutorialToDelete = model.getFilteredTutorialList().get(INDEX_FIRST_PERSON.getZeroBased());
     //        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(INDEX_FIRST_PERSON);
     //
-    //        String expectedMessage = String.format(DeleteTutorialCommand.MESSAGE_DELETE_PERSON_SUCCESS,
+    //        String expectedMessage = String.format(DeleteTutorialCommand.MESSAGE_DELETE_TUTORIAL_SUCCESS,
     //                Messages.format(tutorialToDelete));
     //
     //        Model expectedModel = new ModelManager(model.getTAbs(), new UserPrefs());
@@ -71,36 +73,35 @@ public class DeleteTutorialCommandTest {
     //
     //        assertCommandFailure(deleteTutorialCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     //    }
-    //
-    //    @Test
-    //    public void equals() {
-    //        DeleteTutorialCommand deleteFirstCommand = new DeleteTutorialCommand(INDEX_FIRST_PERSON);
-    //        DeleteTutorialCommand deleteSecondCommand = new DeleteTutorialCommand(INDEX_SECOND_PERSON);
-    //
-    //        // same object -> returns true
-    //        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
-    //
-    //        // same values -> returns true
-    //        DeleteTutorialCommand deleteFirstCommandCopy = new DeleteTutorialCommand(INDEX_FIRST_PERSON);
-    //        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
-    //
-    //        // different types -> returns false
-    //        assertFalse(deleteFirstCommand.equals(1));
-    //
-    //        // null -> returns false
-    //        assertFalse(deleteFirstCommand.equals(null));
-    //
-    //        // different tutorial -> returns false
-    //        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
-    //    }
-    //
-    //    @Test
-    //    public void toStringMethod() {
-    //        Index targetIndex = Index.fromOneBased(1);
-    //        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(targetIndex);
-    //        String expected = DeleteTutorialCommand.class.getCanonicalName() + "{targetIndex=" + targetIndex + "}";
-    //        assertEquals(expected, deleteTutorialCommand.toString());
-    //    }
+
+    @Test
+    public void equals() {
+        DeleteTutorialCommand deleteFirstCommand = new DeleteTutorialCommand(PREDICATE_KEYWORD_C101);
+        DeleteTutorialCommand deleteSecondCommand = new DeleteTutorialCommand(PREDICATE_KEYWORD_C102);
+
+        // same object -> returns true
+        assertEquals(deleteFirstCommand, deleteFirstCommand);
+
+        // same values -> returns true
+        DeleteTutorialCommand deleteFirstCommandCopy = new DeleteTutorialCommand(PREDICATE_KEYWORD_C101);
+        assertEquals(deleteFirstCommand, deleteFirstCommandCopy);
+
+        // different types -> returns false
+        assertNotEquals(1, deleteFirstCommand);
+
+        // null -> returns false
+        assertNotEquals(null, deleteFirstCommand);
+
+        // different tutorial -> returns false
+        assertNotEquals(deleteFirstCommand, deleteSecondCommand);
+    }
+
+    @Test
+    public void toStringMethod() {
+        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(PREDICATE_KEYWORD_C101);
+        String expected = DeleteTutorialCommand.class.getCanonicalName() + "{predicate=" + PREDICATE_KEYWORD_C101 + "}";
+        assertEquals(expected, deleteTutorialCommand.toString());
+    }
 
     /**
      * Updates {@code model}'s filtered list to show no one.

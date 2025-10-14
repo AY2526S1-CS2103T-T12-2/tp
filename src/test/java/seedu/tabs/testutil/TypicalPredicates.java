@@ -8,4 +8,6 @@ import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 public class TypicalPredicates {
     public static final TutorialIdMatchesKeywordPredicate PREDICATE_KEYWORD_C101 =
             new TutorialIdMatchesKeywordPredicate("C101");
+    public static final TutorialIdMatchesKeywordPredicate PREDICATE_KEYWORD_C102 =
+            new TutorialIdMatchesKeywordPredicate("C102");
 }
