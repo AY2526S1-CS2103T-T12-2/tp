@@ -40,7 +40,7 @@ public class DeleteTutorialCommand extends Command {
 
         // ERROR TO BE CHANGED
         if (tutorialToDelete == null) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_TUTORIAL_INDEX);
         }
 
         model.deleteTutorial(tutorialToDelete);

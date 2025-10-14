@@ -41,7 +41,7 @@ public class DeleteTutorialCommandTest {
     @Test
     public void execute_invalidKeywordUnfilteredList_throwsCommandException() {
         DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(PREDICATE_KEYWORD_C102);
-        assertCommandFailure(deleteTutorialCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteTutorialCommand, model, Messages.MESSAGE_INVALID_TUTORIAL_INDEX);
     }
 
     //    @Test
