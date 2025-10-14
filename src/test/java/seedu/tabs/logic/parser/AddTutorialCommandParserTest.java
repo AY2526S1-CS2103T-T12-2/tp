@@ -39,7 +39,7 @@ import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.testutil.TutorialBuilder;
 
-public class AddCommandParserTest {
+public class AddTutorialCommandParserTest {
     private AddTutorialCommandParser parser = new AddTutorialCommandParser();
 
     @Test
@@ -168,5 +168,17 @@ public class AddCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + DATE_DESC_BOB
                         + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_emptyInput_failure() {
+        assertParseFailure(parser, "",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_whitespaceOnlyInput_failure() {
+        assertParseFailure(parser, "   ",
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE));
     }
 }

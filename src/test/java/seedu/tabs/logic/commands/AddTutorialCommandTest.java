@@ -25,7 +25,7 @@ import seedu.tabs.model.TAbs;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.testutil.TutorialBuilder;
 
-public class AddCommandTest {
+public class AddTutorialCommandTest {
 
     @Test
     public void constructor_nullTutorial_throwsNullPointerException() {
@@ -36,6 +36,18 @@ public class AddCommandTest {
     public void execute_tutorialAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTutorialAdded modelStub = new ModelStubAcceptingTutorialAdded();
         Tutorial validTutorial = new TutorialBuilder().build();
+
+        CommandResult commandResult = new AddTutorialCommand(validTutorial).execute(modelStub);
+
+        assertEquals(String.format(AddTutorialCommand.MESSAGE_SUCCESS, Messages.format(validTutorial)),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTutorial), modelStub.tutorialsAdded);
+    }
+
+    @Test
+    public void execute_tutorialWithMultipleStudents_addSuccessful() throws Exception {
+        ModelStubAcceptingTutorialAdded modelStub = new ModelStubAcceptingTutorialAdded();
+        Tutorial validTutorial = new TutorialBuilder().withStudents("A1231231Y", "A7897897A").build();
 
         CommandResult commandResult = new AddTutorialCommand(validTutorial).execute(modelStub);
 
@@ -56,26 +68,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Tutorial alice = new TutorialBuilder().withName("C101").build();
-        Tutorial bob = new TutorialBuilder().withName("T202").build();
-        AddTutorialCommand addAliceCommand = new AddTutorialCommand(alice);
-        AddTutorialCommand addBobCommand = new AddTutorialCommand(bob);
+        Tutorial tutC101 = new TutorialBuilder().withName("C101").build();
+        Tutorial tutT202 = new TutorialBuilder().withName("T202").build();
+        AddTutorialCommand addTutC101Command = new AddTutorialCommand(tutC101);
+        AddTutorialCommand addTutT202Command = new AddTutorialCommand(tutT202);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addTutC101Command.equals(addTutC101Command));
 
         // same values -> returns true
-        AddTutorialCommand addAliceCommandCopy = new AddTutorialCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddTutorialCommand addTutC101CommandCopy = new AddTutorialCommand(tutC101);
+        assertTrue(addTutC101Command.equals(addTutC101CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addTutC101Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addTutC101Command.equals(null));
 
         // different tutorial -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addTutC101Command.equals(addTutT202Command));
     }
 
     @Test
@@ -86,7 +98,7 @@ public class AddCommandTest {
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
