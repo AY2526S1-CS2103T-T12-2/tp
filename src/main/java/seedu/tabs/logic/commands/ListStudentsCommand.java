@@ -28,6 +28,8 @@ public class ListStudentsCommand extends Command {
 
     private final TutorialId tutorialId;
 
+    private String successMessage;
+
 
     public ListStudentsCommand(TutorialId tutorialId) {
         this.tutorialId = tutorialId;
@@ -57,7 +59,7 @@ public class ListStudentsCommand extends Command {
         // Throw an exception if the student list is empty
         if (studentList.size() == 0) {
             throw new CommandException(
-                    String.format("Displaying all students enrolled in tutorial %s", tutorialId.fullName)
+                    String.format("The tutorial %s has no students enrolled.", tutorialId.fullName)
             );
         }
 
@@ -66,7 +68,9 @@ public class ListStudentsCommand extends Command {
             listOfStudents = listOfStudents + (i + 1) + ". " + studentList.get(i).studentId + "\n";
         }
 
-        return new CommandResult(listOfStudents);
+        successMessage = String.format("Displaying all students enrolled in tutorial %s \n", tutorialId);
+
+        return new CommandResult(successMessage + listOfStudents);
     }
 
     @Override

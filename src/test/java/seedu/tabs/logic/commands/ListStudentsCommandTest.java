@@ -8,9 +8,7 @@ import static seedu.tabs.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -23,10 +21,9 @@ import seedu.tabs.model.ReadOnlyTAbs;
 import seedu.tabs.model.ReadOnlyUserPrefs;
 import seedu.tabs.model.TAbs;
 import seedu.tabs.model.student.Student;
-import seedu.tabs.model.tutorial.Date;
-import seedu.tabs.model.tutorial.ModuleCode;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialId;
+import seedu.tabs.testutil.TutorialBuilder;
 
 /**
  * Contains unit tests for {@code ListStudentsCommand}.
@@ -38,24 +35,26 @@ public class ListStudentsCommandTest {
     private static final TutorialId T02_ID_EMPTY = new TutorialId("T02");
     private static final TutorialId T99_ID_NON_EXISTENT = new TutorialId("T99");
 
-    private static final ModuleCode DUMMY_MODULE_CODE = new ModuleCode("CS2103T");
-    private static final Date DUMMY_DATE = new Date("2025-10-14");
 
     private static final Student ALICE = new Student("A0000001Z");
     private static final Student BOB = new Student("A0000002Z");
 
-    private static final Set<Student> T01_STUDENTS = new HashSet<>(Arrays.asList(ALICE, BOB));
-    private static final Set<Student> T02_STUDENTS_EMPTY = new HashSet<>();
+    private static final Tutorial T01 = new TutorialBuilder()
+            .withName("T01")
+            .withModuleCode("CS2103T")
+            .withDate("2025-10-14")
+            .withStudents(ALICE.studentId, BOB.studentId)
+            .build();
 
-    private static final Tutorial T01 = new Tutorial(T01_ID, DUMMY_MODULE_CODE, DUMMY_DATE, T01_STUDENTS);
-    private static final Tutorial T02_EMPTY = new Tutorial(T02_ID_EMPTY,
-            DUMMY_MODULE_CODE,
-            DUMMY_DATE,
-            T02_STUDENTS_EMPTY);
+    private static final Tutorial T02_EMPTY = new TutorialBuilder()
+            .withName("T02")
+            .withModuleCode("CS2103T")
+            .withDate("2025-10-14")
+            .withStudents() // Initializes an empty set
+            .build();
 
     /**
      * A default model stub that has all of the methods failing.
-     * This implementation mirrors the ModelStub in AddCommandTest.java.
      */
     private class ModelStub implements Model {
         @Override
@@ -156,7 +155,8 @@ public class ListStudentsCommandTest {
 
         // The expected output format is based on the logic of ListStudentsCommand:
         // "1. [StudentID1]\n2. [StudentID2]\n"
-        String expectedMessage = "1. " + ALICE.studentId + "\n"
+        String successMessage = String.format("Displaying all students enrolled in tutorial %s \n", T01_ID);
+        String expectedMessage = successMessage + "1. " + ALICE.studentId + "\n"
                 + "2. " + BOB.studentId + "\n";
 
         CommandResult commandResult = listStudentsCommand.execute(model);
@@ -180,7 +180,7 @@ public class ListStudentsCommandTest {
         Model model = new ModelStubWithTutorials();
         ListStudentsCommand listStudentsCommand = new ListStudentsCommand(T02_ID_EMPTY);
 
-        String expectedMessage = String.format("Displaying all students enrolled in tutorial %s",
+        String expectedMessage = String.format("The tutorial %s has no students enrolled.",
                 T02_ID_EMPTY.fullName);
 
         assertThrows(CommandException.class, expectedMessage, () -> listStudentsCommand.execute(model));
