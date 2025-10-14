@@ -39,7 +39,9 @@ public class TutorialIdMatchesKeywordPredicate implements Predicate<Tutorial> {
     /**
      * Returns the keyword (i.e., the tutorial ID) of the predicate.
      */
-    public String getKeyword() { return this.keyword; }
+    public String getKeyword() {
+        return this.keyword;
+    }
 
     @Override
     public String toString() {
