@@ -49,7 +49,7 @@ public class DeleteStudentCommand extends Command {
         List<Tutorial> lastShownList = model.getFilteredTutorialList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TUTORIAL_INDEX);
+            throw new CommandException(String.format(Messages.MESSAGE_INVALID_TUTORIAL_ID, index.getZeroBased()));
         }
 
         Tutorial tutorial = lastShownList.get(index.getZeroBased());
@@ -74,7 +74,6 @@ public class DeleteStudentCommand extends Command {
                 tutorialToAdd.getTutorialId(),
                 tutorialToAdd.getModuleCode(),
                 tutorialToAdd.getDate(),
-                tutorialToAdd.getAddress(),
                 updatedStudents);
     }
 

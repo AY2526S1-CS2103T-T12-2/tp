@@ -2,18 +2,20 @@ package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.tabs.commons.core.index.Index;
 import seedu.tabs.logic.Messages;
 import seedu.tabs.logic.commands.exceptions.CommandException;
 import seedu.tabs.model.Model;
 import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
 /**
  * Adds a student to a tutorial
@@ -22,25 +24,27 @@ public class AddStudentCommand extends Command {
     public static final String COMMAND_WORD = "add_student";
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Add a student identified by the given student ID "
-            + "to the index number of the tutorial in the last tutorial listing. "
-            + "Parameters: INDEX (must be a positive integer) "
-            + "id/ [STUDENT_ID]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + "id/A0123456Z.";
+            + "to the tutorial identified by the given tutorial ID.\n"
+            + "Parameters: "
+            + PREFIX_STUDENT + "[STUDENT_ID] "
+            + PREFIX_TUTORIAL_ID + "[TUTORIAL_ID]\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_STUDENT + "A0123456Z "
+            + PREFIX_TUTORIAL_ID + "T123";
     public static final String MESSAGE_SUCCESS = "New student %1$s added to tutorial %2$s";
 
-    private final Index index;
     private final Student student;
+    private final TutorialIdMatchesKeywordPredicate predicate;
 
     /**
-     * @param index     of the tutorial in the filtered tutorial list to add the student
      * @param student   of the student to add
+     * @param predicate to filter the tutorial list by the provided tutorial_id
      */
-    public AddStudentCommand(Index index, Student student) {
-        requireAllNonNull(index, student);
+    public AddStudentCommand(Student student, TutorialIdMatchesKeywordPredicate predicate) {
+        requireAllNonNull(student, predicate);
 
-        this.index = index;
         this.student = student;
+        this.predicate = predicate;
     }
 
     @Override
@@ -48,11 +52,12 @@ public class AddStudentCommand extends Command {
         requireNonNull(model);
         List<Tutorial> lastShownList = model.getFilteredTutorialList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TUTORIAL_INDEX);
+        Tutorial tutorialToAdd = lastShownList.stream().filter(predicate).findFirst().orElse(null);
+
+        if (tutorialToAdd == null) {
+            throw new CommandException(Messages.MESSAGE_TUTORIAL_ID_NOT_FOUND);
         }
 
-        Tutorial tutorialToAdd = lastShownList.get(index.getZeroBased());
         Tutorial updatedTutorial = addStudentToTutorial(tutorialToAdd, student);
 
         model.setTutorial(tutorialToAdd, updatedTutorial);
@@ -75,7 +80,6 @@ public class AddStudentCommand extends Command {
                 tutorialToAdd.getTutorialId(),
                 tutorialToAdd.getModuleCode(),
                 tutorialToAdd.getDate(),
-                tutorialToAdd.getAddress(),
                 updatedStudents);
     }
 
@@ -91,7 +95,7 @@ public class AddStudentCommand extends Command {
         }
 
         AddStudentCommand e = (AddStudentCommand) other;
-        return index.equals(e.index)
-                && student.equals(e.student);
+        return student.equals(e.student)
+                && predicate.equals(e.predicate);
     }
 }

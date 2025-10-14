@@ -2,7 +2,6 @@ package seedu.tabs.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
@@ -33,7 +32,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL_ID, PREFIX_MODULE_CODE, PREFIX_DATE,
-                        PREFIX_ADDRESS, PREFIX_STUDENT);
+                        PREFIX_STUDENT);
 
         Index index;
 
@@ -43,7 +42,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID, PREFIX_MODULE_CODE, PREFIX_DATE, PREFIX_ADDRESS);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID, PREFIX_MODULE_CODE, PREFIX_DATE);
 
         EditTutorialDescriptor editTutorialDescriptor = new EditTutorialDescriptor();
 
@@ -55,10 +54,7 @@ public class EditCommandParser implements Parser<EditCommand> {
                     argMultimap.getValue(PREFIX_MODULE_CODE).get()));
         }
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
-            editTutorialDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_DATE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editTutorialDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editTutorialDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
         parseStudentsForEdit(argMultimap.getAllValues(PREFIX_STUDENT)).ifPresent(editTutorialDescriptor::setStudents);
 

@@ -3,7 +3,6 @@ package seedu.tabs.model.tutorial;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.tabs.testutil.Assert.assertThrows;
 import static seedu.tabs.testutil.TypicalTutorials.ALICE;
@@ -44,7 +43,7 @@ public class UniqueTutorialListTest {
     public void contains_tutorialWithSameIdentityFieldsInList_returnsTrue() {
         uniqueTutorialList.add(TUTORIAL_CS2103T_C101);
         Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101)
-                .withAddress(VALID_ADDRESS_BOB).withStudents(VALID_TAG_HUSBAND).build();
+                .withStudents(VALID_TAG_HUSBAND).build();
         assertTrue(uniqueTutorialList.contains(editedAlice));
     }
 
@@ -86,7 +85,7 @@ public class UniqueTutorialListTest {
     @Test
     public void setTutorial_editedTutorialHasSameIdentity_success() {
         uniqueTutorialList.add(ALICE);
-        Tutorial editedAlice = new TutorialBuilder(ALICE).withAddress(VALID_ADDRESS_BOB)
+        Tutorial editedAlice = new TutorialBuilder(ALICE)
                 .withStudents(VALID_TAG_HUSBAND).build();
         uniqueTutorialList.setTutorial(ALICE, editedAlice);
         UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();

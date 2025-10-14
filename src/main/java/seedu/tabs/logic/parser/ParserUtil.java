@@ -81,18 +81,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into an {@code Email}.
+     * Parses a {@code String date} into an {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
-    public static Date parseEmail(String date) throws ParseException {
+    public static Date parseDate(String date) throws ParseException {
         requireNonNull(date);
-        String trimmedEmail = date.trim();
-        if (!Date.isValidDate(trimmedEmail)) {
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new Date(trimmedEmail);
+        return new Date(trimmedDate);
     }
 
     /**

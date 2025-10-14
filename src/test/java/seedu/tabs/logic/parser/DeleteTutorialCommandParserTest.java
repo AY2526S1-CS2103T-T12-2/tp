@@ -16,7 +16,7 @@ import seedu.tabs.logic.commands.DeleteTutorialCommand;
  */
 public class DeleteTutorialCommandParserTest {
 
-    private DeleteCommandParser parser = new DeleteCommandParser();
+    private DeleteTutorialCommandParser parser = new DeleteTutorialCommandParser();
 
     //    @Test
     //    public void parse_validArgs_returnsDeleteCommand() {

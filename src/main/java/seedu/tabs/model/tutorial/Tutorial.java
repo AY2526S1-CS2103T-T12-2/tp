@@ -11,7 +11,7 @@ import seedu.tabs.commons.util.ToStringBuilder;
 import seedu.tabs.model.student.Student;
 
 /**
- * Represents a Tutorial in TAbs.
+ * Represents a tutorial in TAbs.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Tutorial {
@@ -22,18 +22,16 @@ public class Tutorial {
     private final Date date;
 
     // Data fields
-    private final Address address;
     private final Set<Student> students = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Tutorial(TutorialId tutorialId, ModuleCode moduleCode, Date date, Address address, Set<Student> students) {
+    public Tutorial(TutorialId tutorialId, ModuleCode moduleCode, Date date, Set<Student> students) {
         requireAllNonNull(tutorialId, moduleCode, date);
         this.tutorialId = tutorialId;
         this.moduleCode = moduleCode;
         this.date = date;
-        this.address = address != null ? address : new Address("No address specified");
         this.students.addAll(students != null ? students : new HashSet<>());
     }
 
@@ -49,12 +47,8 @@ public class Tutorial {
         return date;
     }
 
-    public Address getAddress() {
-        return address;
-    }
-
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable student set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Student> getStudents() {
@@ -62,10 +56,8 @@ public class Tutorial {
     }
 
     /**
-     * Returns true if both classes have the same name.
+     * Returns true if both tutorials have the same name.
      * This defines a weaker notion of equality between two tutorials.
-     *
-     * TO BE CHANGED.
      */
     public boolean isSameTutorial(Tutorial otherTutorial) {
         if (otherTutorial == this) {
@@ -77,8 +69,8 @@ public class Tutorial {
     }
 
     /**
-     * Returns true if both classes have the same identity and data fields.
-     * This defines a stronger notion of equality between two classes.
+     * Returns true if both tutorials have the same class details and list of students.
+     * This defines a stronger notion of equality between two tutorials.
      */
     @Override
     public boolean equals(Object other) {
@@ -95,14 +87,13 @@ public class Tutorial {
         return tutorialId.equals(otherTutorial.tutorialId)
                 && moduleCode.equals(otherTutorial.moduleCode)
                 && date.equals(otherTutorial.date)
-                && address.equals(otherTutorial.address)
                 && students.equals(otherTutorial.students);
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(tutorialId, moduleCode, date, address, students);
+        return Objects.hash(tutorialId, moduleCode, date, students);
     }
 
     @Override
@@ -111,7 +102,6 @@ public class Tutorial {
                 .add("tutorialId", tutorialId)
                 .add("moduleCode", moduleCode)
                 .add("date", date)
-                .add("tabs", address)
                 .add("students", students)
                 .toString();
     }

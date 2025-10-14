@@ -5,7 +5,7 @@ import java.util.function.Predicate;
 import seedu.tabs.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Tutorial}'s {@code ID} matches the given keyword exactly (case sensitive).
+ * Tests that a {@code Tutorial}'s {@code tutorialId} matches the given keyword exactly (case-sensitive).
  */
 public class TutorialIdMatchesKeywordPredicate implements Predicate<Tutorial> {
 
@@ -35,6 +35,11 @@ public class TutorialIdMatchesKeywordPredicate implements Predicate<Tutorial> {
                 (TutorialIdMatchesKeywordPredicate) other;
         return keyword.equals(otherTutorialIdMatchesKeywordPredicate.keyword);
     }
+
+    /**
+     * Returns the keyword (i.e., the tutorial ID) of the predicate.
+     */
+    public String getKeyword() { return this.keyword; }
 
     @Override
     public String toString() {

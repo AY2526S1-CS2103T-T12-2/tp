@@ -2,7 +2,6 @@ package seedu.tabs.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.tabs.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.tabs.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.tabs.logic.commands.CommandTestUtil.DATE_DESC_AMY;
 import static seedu.tabs.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.tabs.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -170,7 +169,7 @@ public class LogicManagerTest {
 
         // Triggers the saveTAbs method by executing an add command
         String addCommand = AddTutorialCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + DATE_DESC_AMY + ADDRESS_DESC_AMY;
+                + DATE_DESC_AMY;
         Tutorial expectedTutorial = new TutorialBuilder(AMY).withStudents().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTutorial(expectedTutorial);

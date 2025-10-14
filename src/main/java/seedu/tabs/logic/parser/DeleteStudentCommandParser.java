@@ -11,7 +11,7 @@ import seedu.tabs.logic.parser.exceptions.ParseException;
 import seedu.tabs.model.student.Student;
 
 /**
- * Parses input arguments and creates a new DeleteStudentCommand object
+ * Parses input arguments and creates a new DeleteStudentCommand object.
  */
 public class DeleteStudentCommandParser {
     /**

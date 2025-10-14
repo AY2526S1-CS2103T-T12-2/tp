@@ -1,6 +1,5 @@
 package seedu.tabs.testutil;
 
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
@@ -33,7 +32,6 @@ public class TutorialUtil {
         sb.append(PREFIX_TUTORIAL_ID + aTutorial.getTutorialId().fullName + " ");
         sb.append(PREFIX_MODULE_CODE + aTutorial.getModuleCode().value + " ");
         sb.append(PREFIX_DATE + aTutorial.getDate().value + " ");
-        sb.append(PREFIX_ADDRESS + aTutorial.getAddress().value + " ");
         aTutorial.getStudents().stream().forEach(
                 s -> sb.append(PREFIX_STUDENT + s.studentId + " ")
         );
@@ -48,8 +46,7 @@ public class TutorialUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_TUTORIAL_ID).append(name.fullName).append(" "));
         descriptor.getModuleCode().ifPresent(moduleCode -> sb.append(PREFIX_MODULE_CODE)
                 .append(moduleCode.value).append(" "));
-        descriptor.getEmail().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));
         if (descriptor.getStudents().isPresent()) {
             Set<Student> students = descriptor.getStudents().get();
             if (students.isEmpty()) {
