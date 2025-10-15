@@ -10,9 +10,9 @@ import static seedu.tabs.commons.util.AppUtil.checkArgument;
 public class Student {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Invalid format: Student ids should follow the format, AXXXXXXX$,\n"
-                    + "where the X's represent any 7 single digit numbers\n"
-                    + "and the $ represents any capital letter.";
+            "Invalid format: Student ids should follow the format, 'AXXXXXXX&',\n"
+                    + "where the 'X's represent any 7 single digit numbers\n"
+                    + "and the '&' represents any capital letter.";
     public static final String VALIDATION_REGEX = "A\\d{7}[A-Z]";
 
     public final String studentId;
