@@ -76,7 +76,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (students.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> studentSet = students.size() == 1 && students.contains("") ? Collections.emptySet() : students;
+        Collection<String> studentSet = students.size() == 1 && students.contains("")
+                ? Collections.emptySet() : students;
         return Optional.of(ParserUtil.parseStudents(studentSet));
     }
 

@@ -152,7 +152,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseStudents_collectionWithInvalidStudents_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseStudents(Arrays.asList(VALID_STUDENT_1, INVALID_STUDENT)));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseStudents(Arrays.asList(VALID_STUDENT_1, INVALID_STUDENT)));
     }
 
     @Test
