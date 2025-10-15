@@ -7,9 +7,6 @@ import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 
 import java.util.stream.Stream;
 
-import seedu.tabs.commons.core.index.Index;
-import seedu.tabs.commons.exceptions.IllegalValueException;
-import seedu.tabs.logic.commands.AddStudentCommand;
 import seedu.tabs.logic.commands.DeleteStudentCommand;
 import seedu.tabs.logic.parser.exceptions.ParseException;
 import seedu.tabs.model.student.Student;
