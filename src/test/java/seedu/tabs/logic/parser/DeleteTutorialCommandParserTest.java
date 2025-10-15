@@ -2,6 +2,8 @@ package seedu.tabs.logic.parser;
 
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.tabs.testutil.TypicalPredicates.PREDICATE_KEYWORD_C101;
 
 import org.junit.jupiter.api.Test;
 
@@ -18,14 +20,14 @@ public class DeleteTutorialCommandParserTest {
 
     private DeleteTutorialCommandParser parser = new DeleteTutorialCommandParser();
 
-    //    @Test
-    //    public void parse_validArgs_returnsDeleteCommand() {
-    //        assertParseSuccess(parser, "1", new DeleteTutorialCommand(INDEX_FIRST_PERSON));
-    //    }
+    @Test
+    public void parse_validArgs_returnsDeleteCommand() { // TO CHANGE ONCE SHANE'S RENAMING PR IS IN
+        assertParseSuccess(parser, " t/C101", new DeleteTutorialCommand(PREDICATE_KEYWORD_C101));
+    }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+    public void parse_invalidTutorialID_throwsParseException() {
+        assertParseFailure(parser, "t/", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteTutorialCommand.MESSAGE_USAGE));
     }
 }
