@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tabs.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
-import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -61,7 +61,7 @@ public class DeleteStudentCommand extends Command {
         Tutorial updatedTutorial = deleteStudentFromTutorial(tutorialToChange, student);
 
         model.setTutorial(tutorialToChange, updatedTutorial);
-        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, student, updatedTutorial.getTutorialId()));
     }
 

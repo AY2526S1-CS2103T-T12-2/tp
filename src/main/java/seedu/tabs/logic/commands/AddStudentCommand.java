@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tabs.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
-import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -69,7 +69,7 @@ public class AddStudentCommand extends Command {
         Tutorial updatedTutorial = addStudentToTutorial(tutorialToAdd, newStudentsList);
 
         model.setTutorial(tutorialToAdd, updatedTutorial);
-        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
 
         newStudentsList.removeAll(duplicateStudentList);
         String resultMessage = String.format(MESSAGE_SUCCESS, newStudentsList, updatedTutorial.getTutorialId());
