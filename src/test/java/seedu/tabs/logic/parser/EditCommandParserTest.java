@@ -40,7 +40,7 @@ import seedu.tabs.testutil.EditTutorialDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_STUDENT;
+    private static final String STUDENT_EMPTY = " " + PREFIX_STUDENT;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -86,13 +86,13 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_MODULE_CODE_DESC + DATE_DESC_C123,
                 ModuleCode.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the students of the {@code Tutorial} being edited,
+        // while parsing {@code PREFIX_STUDENT} alone will reset the students of the {@code Tutorial} being edited,
         // parsing it together with a valid student results in error
-        assertParseFailure(parser, "1" + STUDENT_DESC_B + STUDENT_DESC_A + TAG_EMPTY + PREFIX_STUDENT,
+        assertParseFailure(parser, "1" + STUDENT_DESC_B + STUDENT_DESC_A + STUDENT_EMPTY + PREFIX_STUDENT,
                 Student.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + STUDENT_DESC_B + TAG_EMPTY + PREFIX_STUDENT + STUDENT_DESC_A,
+        assertParseFailure(parser, "1" + STUDENT_DESC_B + STUDENT_EMPTY + PREFIX_STUDENT + STUDENT_DESC_A,
                 Student.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + PREFIX_STUDENT + STUDENT_DESC_B + STUDENT_DESC_A,
+        assertParseFailure(parser, "1" + STUDENT_EMPTY + PREFIX_STUDENT + STUDENT_DESC_B + STUDENT_DESC_A,
                 Student.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
@@ -192,7 +192,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_resetStudents_success() {
         Index targetIndex = INDEX_THIRD_PERSON;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+        String userInput = targetIndex.getOneBased() + STUDENT_EMPTY;
 
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder().withStudents().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);

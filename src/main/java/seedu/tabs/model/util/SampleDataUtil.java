@@ -48,7 +48,7 @@ public class SampleDataUtil {
     }
 
     /**
-     * Returns a tag set containing the list of strings given.
+     * Returns a student set containing the list of strings given.
      */
     public static Set<Student> getStudentSet(String... strings) {
         return Arrays.stream(strings)

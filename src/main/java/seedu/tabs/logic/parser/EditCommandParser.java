@@ -66,18 +66,18 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> students} into a {@code Set<Student>} if {@code students} is non-empty.
+     * If {@code students} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Student>} containing zero students.
      */
-    private Optional<Set<Student>> parseStudentsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<Student>> parseStudentsForEdit(Collection<String> students) throws ParseException {
+        assert students != null;
 
-        if (tags.isEmpty()) {
+        if (students.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseStudents(tagSet));
+        Collection<String> studentSet = students.size() == 1 && students.contains("") ? Collections.emptySet() : students;
+        return Optional.of(ParserUtil.parseStudents(studentSet));
     }
 
 }
