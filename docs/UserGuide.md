@@ -39,6 +39,8 @@ apps.
     * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a
       contact named `John Doe` to the Address Book.
 
+    * `list_students t/T1` : Display a list of all the students enrolled in the tutorial with ID `T1`.
+
     * `delete_tutorial t/T1` : Deletes the tutorial with ID `T1` shown in the current list.
 
     * `clear` : Deletes all contacts.
@@ -151,6 +153,21 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
+### Listing all the students in a tutorial: `list_students`
+
+Display a list of all the students enrolled in a specific tutorial on TAbs.
+
+Format: `list_students t/TUTORIAL_ID`
+
+* Lists all the students in a tutorial with the specified `TUTORIAL_ID`.
+* It shows a numbered list of all the student IDs of the students in that tutorial e.g., (1. A1234567X)
+* The tutorial ID refers to the title of the tutorial as displayed in TAbs (beginning with `T`).
+* The input must match the tutorial's ID exactly (case-sensitive).
+
+Examples:
+
+* `list_students t/T2` lists all the student in the tutorial with ID `T2` in TAbs.
+
 ### Deleting a tutorial: `delete_tutorial`
 
 Deletes the specified tutorial from TAbs.
@@ -237,13 +254,14 @@ file that contains the data of your previous TAbs home folder.
 
 ## Command summary
 
- Action                | Format, Examples                                                                                                                                                     
------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------
- **Add**               | `add n/NAME p/PHONE_NUMBER e/DATE a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` 
- **Clear**             | `clear`                                                                                                                                                              
- **Delete a tutorial** | `delete_tutorial t/TUTORIAL_ID`<br> e.g., `delete_tutorial t/T1`                                                                                                     
- **Edit**              | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/DATE] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           
- **Find**              | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           
- **List**              | `list`                                                                                                                                                               
- **Help**              | `help`                                                                                                                                                               
+| Action                          | Format, Examples                                                                                                                                                     |
+|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**                         | `add n/NAME p/PHONE_NUMBER e/DATE a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Clear**                       | `clear`                                                                                                                                                              |
+| **List students in a tutorial** | `list_students t/TUTORIAL_ID`<br> e.g., `list_students t/T1`                                                                                                         |
+| **Delete a tutorial**           | `delete_tutorial t/TUTORIAL_ID`<br> e.g., `delete_tutorial t/T1`                                                                                                     |
+| **Edit**                        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/DATE] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Find**                        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
+| **List**                        | `list`                                                                                                                                                               |
+| **Help**                        | `help`                                                                                                                                                               |
 
