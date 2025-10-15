@@ -41,7 +41,6 @@ public class DeleteStudentCommandParser {
         String tutorialId = argMultimap.getValue(PREFIX_TUTORIAL_ID).orElse("");
         Student student = ParserUtil.parseStudent(studentId);
         TutorialIdMatchesKeywordPredicate predicate = new TutorialIdMatchesKeywordPredicate(tutorialId);
-        
         return new DeleteStudentCommand(predicate, student);
     }
 
