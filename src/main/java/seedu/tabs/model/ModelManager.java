@@ -101,7 +101,7 @@ public class ModelManager implements Model {
     @Override
     public void addTutorial(Tutorial aTutorial) {
         tabs.addTutorial(aTutorial);
-        updateFilteredTutorialList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
     }
 
     @Override

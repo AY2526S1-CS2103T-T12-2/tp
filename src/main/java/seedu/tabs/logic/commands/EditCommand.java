@@ -5,7 +5,7 @@ import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
-import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -81,7 +81,7 @@ public class EditCommand extends Command {
         }
 
         model.setTutorial(tutorialToEdit, editedTutorial);
-        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedTutorial)));
     }
 

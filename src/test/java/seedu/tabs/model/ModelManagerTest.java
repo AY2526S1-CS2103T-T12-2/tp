@@ -3,7 +3,7 @@ package seedu.tabs.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 import static seedu.tabs.testutil.Assert.assertThrows;
 import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
 import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_MA1521_T202;
@@ -122,7 +122,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(tabs, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredTutorialList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

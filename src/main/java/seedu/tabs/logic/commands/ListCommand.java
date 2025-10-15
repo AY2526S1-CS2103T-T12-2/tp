@@ -1,7 +1,7 @@
 package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import seedu.tabs.model.Model;
 
@@ -18,7 +18,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }
