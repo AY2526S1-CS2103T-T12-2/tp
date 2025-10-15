@@ -3,11 +3,11 @@ package seedu.tabs.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tabs.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.tabs.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.tabs.logic.commands.CommandTestUtil.DESC_C123;
+import static seedu.tabs.logic.commands.CommandTestUtil.DESC_T456;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_MODULE_CODE_MA1521;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_STUDENT_A;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_T456;
 import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.tabs.logic.commands.CommandTestUtil.showTutorialAtIndex;
@@ -56,11 +56,11 @@ public class EditCommandTest {
         Tutorial lastTutorial = model.getFilteredTutorialList().get(indexLastTutorial.getZeroBased());
 
         TutorialBuilder tutorialInList = new TutorialBuilder(lastTutorial);
-        Tutorial editedTutorial = tutorialInList.withName(VALID_NAME_BOB).withModuleCode(VALID_PHONE_BOB)
-                .withStudents(VALID_TAG_HUSBAND).build();
+        Tutorial editedTutorial = tutorialInList.withName(VALID_TUTORIAL_T456).withModuleCode(VALID_MODULE_CODE_MA1521)
+                .withStudents(VALID_STUDENT_A).build();
 
-        EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withModuleCode(VALID_PHONE_BOB).withStudents(VALID_TAG_HUSBAND).build();
+        EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder().withName(VALID_TUTORIAL_T456)
+                .withModuleCode(VALID_MODULE_CODE_MA1521).withStudents(VALID_STUDENT_A).build();
         EditCommand editCommand = new EditCommand(indexLastTutorial, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
@@ -90,9 +90,9 @@ public class EditCommandTest {
         showTutorialAtIndex(model, INDEX_FIRST_PERSON);
 
         Tutorial tutorialInFilteredList = model.getFilteredTutorialList().get(INDEX_FIRST_PERSON.getZeroBased());
-        Tutorial editedTutorial = new TutorialBuilder(tutorialInFilteredList).withName(VALID_NAME_BOB).build();
+        Tutorial editedTutorial = new TutorialBuilder(tutorialInFilteredList).withName(VALID_TUTORIAL_T456).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
-                new EditTutorialDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditTutorialDescriptorBuilder().withName(VALID_TUTORIAL_T456).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS,
                 Messages.format(editedTutorial));
@@ -127,7 +127,7 @@ public class EditCommandTest {
     @Test
     public void execute_invalidTutorialIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredTutorialList().size() + 1);
-        EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder().withName(VALID_TUTORIAL_T456).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TUTORIAL_ID);
@@ -145,17 +145,17 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTAbs().getTutorialList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditTutorialDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditTutorialDescriptorBuilder().withName(VALID_TUTORIAL_T456).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_TUTORIAL_ID);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, DESC_C123);
 
         // same values -> returns true
-        EditTutorialDescriptor copyDescriptor = new EditTutorialDescriptor(DESC_AMY);
+        EditTutorialDescriptor copyDescriptor = new EditTutorialDescriptor(DESC_C123);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -169,10 +169,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, DESC_C123)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DESC_T456)));
     }
 
     @Test

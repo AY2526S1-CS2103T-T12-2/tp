@@ -2,11 +2,11 @@ package seedu.tabs.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.tabs.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.tabs.logic.commands.CommandTestUtil.DATE_DESC_AMY;
-import static seedu.tabs.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static seedu.tabs.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.tabs.logic.commands.CommandTestUtil.DATE_DESC_C123;
+import static seedu.tabs.logic.commands.CommandTestUtil.MODULE_CODE_DESC_CS2103T;
+import static seedu.tabs.logic.commands.CommandTestUtil.TUTORIAL_DESC_C123;
 import static seedu.tabs.testutil.Assert.assertThrows;
-import static seedu.tabs.testutil.TypicalTutorials.AMY;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_TEST_C123;
 
 import java.io.IOException;
 import java.nio.file.AccessDeniedException;
@@ -168,9 +168,9 @@ public class LogicManagerTest {
         logic = new LogicManager(model, storage);
 
         // Triggers the saveTAbs method by executing an add command
-        String addCommand = AddTutorialCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY
-                + DATE_DESC_AMY;
-        Tutorial expectedTutorial = new TutorialBuilder(AMY).withStudents().build();
+        String addCommand = AddTutorialCommand.COMMAND_WORD + TUTORIAL_DESC_C123 + MODULE_CODE_DESC_CS2103T
+                + DATE_DESC_C123;
+        Tutorial expectedTutorial = new TutorialBuilder(TUTORIAL_TEST_C123).withStudents().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addTutorial(expectedTutorial);
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);

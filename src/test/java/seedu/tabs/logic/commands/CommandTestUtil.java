@@ -25,42 +25,42 @@ import seedu.tabs.testutil.EditTutorialDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "C123";
-    public static final String VALID_NAME_BOB = "T456";
-    public static final String VALID_PHONE_AMY = "CS2103T";
-    public static final String VALID_PHONE_BOB = "MA1521";
-    public static final String VALID_DATE_AMY = "2025-01-15";
-    public static final String VALID_DATE_BOB = "2025-02-20";
-    public static final String VALID_TAG_HUSBAND = "A1231231Y";
-    public static final String VALID_TAG_FRIEND = "A3213213Y";
+    public static final String VALID_TUTORIAL_C123 = "C123";
+    public static final String VALID_TUTORIAL_T456 = "T456";
+    public static final String VALID_MODULE_CODE_CS2103T = "CS2103T";
+    public static final String VALID_MODULE_CODE_MA1521 = "MA1521";
+    public static final String VALID_DATE_C123 = "2025-01-15";
+    public static final String VALID_DATE_T456 = "2025-02-20";
+    public static final String VALID_STUDENT_A = "A1231231Y";
+    public static final String VALID_STUDENT_B = "A3213213Y";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_TUTORIAL_ID + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_TUTORIAL_ID + VALID_NAME_BOB;
-    public static final String PHONE_DESC_AMY = " " + PREFIX_MODULE_CODE + VALID_PHONE_AMY;
-    public static final String PHONE_DESC_BOB = " " + PREFIX_MODULE_CODE + VALID_PHONE_BOB;
-    public static final String DATE_DESC_AMY = " " + PREFIX_DATE + VALID_DATE_AMY;
-    public static final String DATE_DESC_BOB = " " + PREFIX_DATE + VALID_DATE_BOB;
-    public static final String TAG_DESC_FRIEND = " " + PREFIX_STUDENT + VALID_TAG_FRIEND;
-    public static final String TAG_DESC_HUSBAND = " " + PREFIX_STUDENT + VALID_TAG_HUSBAND;
+    public static final String TUTORIAL_DESC_C123 = " " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_C123;
+    public static final String TUTORIAL_DESC_T456 = " " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_T456;
+    public static final String MODULE_CODE_DESC_CS2103T = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CS2103T;
+    public static final String MODULE_CODE_DESC_MA1521 = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_MA1521;
+    public static final String DATE_DESC_C123 = " " + PREFIX_DATE + VALID_DATE_C123;
+    public static final String DATE_DESC_T456 = " " + PREFIX_DATE + VALID_DATE_T456;
+    public static final String STUDENT_DESC_A = " " + PREFIX_STUDENT + VALID_STUDENT_A;
+    public static final String STUDENT_DESC_B = " " + PREFIX_STUDENT + VALID_STUDENT_B;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_TUTORIAL_ID + "James&"; // '&' not allowed
-    public static final String INVALID_PHONE_DESC = " " + PREFIX_MODULE_CODE + "911a"; // 'a' not allowed
+    public static final String INVALID_TUTORIAL_DESC = " " + PREFIX_TUTORIAL_ID + "James&"; // '&' not allowed
+    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + "911a"; // 'a' not allowed
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "bob!yahoo"; // invalid date format
-    public static final String INVALID_TAG_DESC = " " + PREFIX_STUDENT + "hubby*"; // '*' not allowed in students
+    public static final String INVALID_STUDENT_DESC = " " + PREFIX_STUDENT + "hubby*"; // '*' not allowed in students
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditTutorialDescriptor DESC_AMY;
-    public static final EditCommand.EditTutorialDescriptor DESC_BOB;
+    public static final EditCommand.EditTutorialDescriptor DESC_C123;
+    public static final EditCommand.EditTutorialDescriptor DESC_T456;
 
     static {
-        DESC_AMY = new EditTutorialDescriptorBuilder().withName(VALID_NAME_AMY)
-                .withModuleCode(VALID_PHONE_AMY).withDate(VALID_DATE_AMY)
-                .withStudents(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditTutorialDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withModuleCode(VALID_PHONE_BOB).withDate(VALID_DATE_BOB)
-                .withStudents(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_C123 = new EditTutorialDescriptorBuilder().withName(VALID_TUTORIAL_C123)
+                .withModuleCode(VALID_MODULE_CODE_CS2103T).withDate(VALID_DATE_C123)
+                .withStudents(VALID_STUDENT_B).build();
+        DESC_T456 = new EditTutorialDescriptorBuilder().withName(VALID_TUTORIAL_T456)
+                .withModuleCode(VALID_MODULE_CODE_MA1521).withDate(VALID_DATE_T456)
+                .withStudents(VALID_STUDENT_A, VALID_STUDENT_B).build();
     }
 
     /**

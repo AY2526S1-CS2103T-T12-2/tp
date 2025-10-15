@@ -1,16 +1,17 @@
+
 package seedu.tabs.model.tutorial;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_DATE_T456;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_MODULE_CODE_MA1521;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_STUDENT_A;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_STUDENT_B;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_T456;
 import static seedu.tabs.testutil.Assert.assertThrows;
-import static seedu.tabs.testutil.TypicalTutorials.ALICE;
-import static seedu.tabs.testutil.TypicalTutorials.BOB;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_TEST_T456;
 
 import org.junit.jupiter.api.Test;
 
@@ -27,70 +28,72 @@ public class TutorialTest {
     @Test
     public void isSameTutorial() {
         // same object -> returns true
-        assertTrue(ALICE.isSameTutorial(ALICE));
+        assertTrue(TUTORIAL_CS2103T_C101.isSameTutorial(TUTORIAL_CS2103T_C101));
 
         // null -> returns false
-        assertFalse(ALICE.isSameTutorial(null));
+        assertFalse(TUTORIAL_CS2103T_C101.isSameTutorial(null));
 
         // same name, all other attributes different -> returns true
-        Tutorial editedAlice = new TutorialBuilder(ALICE).withModuleCode(VALID_PHONE_BOB).withDate(VALID_DATE_BOB)
-                .withStudents(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameTutorial(editedAlice));
+        Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101)
+                .withModuleCode(VALID_MODULE_CODE_MA1521).withDate(VALID_DATE_T456)
+                .withStudents(VALID_STUDENT_A).build();
+        assertTrue(TUTORIAL_CS2103T_C101.isSameTutorial(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new TutorialBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameTutorial(editedAlice));
+        editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withName(VALID_TUTORIAL_T456).build();
+        assertFalse(TUTORIAL_CS2103T_C101.isSameTutorial(editedAlice));
 
         // name differs in case, all other attributes same -> returns true (case insensitive)
-        Tutorial editedBob = new TutorialBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertTrue(BOB.isSameTutorial(editedBob));
+        Tutorial editedBob = new TutorialBuilder(TUTORIAL_TEST_T456)
+                .withName(VALID_TUTORIAL_T456.toLowerCase()).build();
+        assertTrue(TUTORIAL_TEST_T456.isSameTutorial(editedBob));
 
         // completely different name -> returns false
-        editedBob = new TutorialBuilder(BOB).withName("C999").build();
-        assertFalse(BOB.isSameTutorial(editedBob));
+        editedBob = new TutorialBuilder(TUTORIAL_TEST_T456).withName("C999").build();
+        assertFalse(TUTORIAL_TEST_T456.isSameTutorial(editedBob));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Tutorial aliceCopy = new TutorialBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Tutorial aliceCopy = new TutorialBuilder(TUTORIAL_CS2103T_C101).build();
+        assertTrue(TUTORIAL_CS2103T_C101.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(TUTORIAL_CS2103T_C101.equals(TUTORIAL_CS2103T_C101));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(TUTORIAL_CS2103T_C101.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(TUTORIAL_CS2103T_C101.equals(5));
 
         // different tutorial -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(TUTORIAL_CS2103T_C101.equals(TUTORIAL_TEST_T456));
 
         // different name -> returns false
-        Tutorial editedAlice = new TutorialBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withName(VALID_TUTORIAL_T456).build();
+        assertFalse(TUTORIAL_CS2103T_C101.equals(editedAlice));
 
         // different moduleCode -> returns false
-        editedAlice = new TutorialBuilder(ALICE).withModuleCode(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withModuleCode(VALID_MODULE_CODE_MA1521).build();
+        assertFalse(TUTORIAL_CS2103T_C101.equals(editedAlice));
 
         // different date -> returns false
-        editedAlice = new TutorialBuilder(ALICE).withDate(VALID_DATE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withDate(VALID_DATE_T456).build();
+        assertFalse(TUTORIAL_CS2103T_C101.equals(editedAlice));
 
         // different students -> returns false
-        editedAlice = new TutorialBuilder(ALICE).withStudents(VALID_TAG_FRIEND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withStudents(VALID_STUDENT_B).build();
+        assertFalse(TUTORIAL_CS2103T_C101.equals(editedAlice));
     }
 
     @Test
     public void toStringMethod() {
-        String expected = Tutorial.class.getCanonicalName() + "{tutorialId=" + ALICE.getTutorialId()
-                + ", moduleCode=" + ALICE.getModuleCode()
-                + ", date=" + ALICE.getDate()
-                + ", students=" + ALICE.getStudents() + "}";
-        assertEquals(expected, ALICE.toString());
+        String expected = Tutorial.class.getCanonicalName() + "{tutorialId=" + TUTORIAL_CS2103T_C101.getTutorialId()
+                + ", moduleCode=" + TUTORIAL_CS2103T_C101.getModuleCode()
+                + ", date=" + TUTORIAL_CS2103T_C101.getDate()
+                + ", students=" + TUTORIAL_CS2103T_C101.getStudents() + "}";
+        assertEquals(expected, TUTORIAL_CS2103T_C101.toString());
     }
 }

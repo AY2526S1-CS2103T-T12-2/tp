@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.tabs.testutil.TypicalTutorials.CARL;
-import static seedu.tabs.testutil.TypicalTutorials.ELLE;
-import static seedu.tabs.testutil.TypicalTutorials.FIONA;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS1010_C303;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2040_C505;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_MA2001_T606;
 import static seedu.tabs.testutil.TypicalTutorials.getTypicalTAbs;
 
 import java.util.Arrays;
@@ -71,7 +71,8 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTutorialList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredTutorialList());
+        assertEquals(Arrays.asList(TUTORIAL_CS1010_C303, TUTORIAL_CS2040_C505, TUTORIAL_MA2001_T606),
+                model.getFilteredTutorialList());
     }
 
     @Test
