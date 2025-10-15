@@ -26,26 +26,33 @@ public class AddStudentCommand extends Command {
             + ": Add a student identified by the given student ID "
             + "to the tutorial identified by the given tutorial ID.\n"
             + "Parameters: "
-            + PREFIX_STUDENT + "[STUDENT_ID] "
+            + PREFIX_STUDENT + "[STUDENT_ID]... "
             + PREFIX_TUTORIAL_ID + "[TUTORIAL_ID]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_STUDENT + "A0123456Z "
+            + PREFIX_STUDENT + "A1231231Y "
+            + PREFIX_STUDENT + "A3213213Y "
             + PREFIX_TUTORIAL_ID + "T123";
-    public static final String MESSAGE_SUCCESS = "New student %1$s added to tutorial %2$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "Student %1$s is already in tutorial %2$s!";
+    public static final String MESSAGE_SUCCESS = "The following student(s):\n"
+            + "\t%1$s\n"
+            + "were added to tutorial %2$s";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "The following student(s):\n"
+            + "\t%1$s\n"
+            + "are already in tutorial %2$s!";
 
-    private final Student student;
+    private final Set<Student> newStudentsList;
     private final TutorialIdMatchesKeywordPredicate predicate;
+    private final Set<Student> duplicateStudentList;
 
     /**
-     * @param student   of the student to add
-     * @param predicate to filter the tutorial list by the provided tutorial_id
+     * @param newStudentsList   of the student to add
+     * @param predicate         to filter the tutorial list by the provided tutorial_id
      */
-    public AddStudentCommand(Student student, TutorialIdMatchesKeywordPredicate predicate) {
-        requireAllNonNull(student, predicate);
+    public AddStudentCommand(Set<Student> newStudentsList, TutorialIdMatchesKeywordPredicate predicate) {
+        requireAllNonNull(newStudentsList, predicate);
 
-        this.student = student;
+        this.newStudentsList = newStudentsList;
         this.predicate = predicate;
+        this.duplicateStudentList = new HashSet<>();
     }
 
     @Override
@@ -59,28 +66,52 @@ public class AddStudentCommand extends Command {
             throw new CommandException(Messages.MESSAGE_TUTORIAL_ID_NOT_FOUND);
         }
 
-        Tutorial updatedTutorial = addStudentToTutorial(tutorialToAdd, student);
+        Tutorial updatedTutorial = addStudentToTutorial(tutorialToAdd, newStudentsList);
 
         model.setTutorial(tutorialToAdd, updatedTutorial);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, student, updatedTutorial.getTutorialId()));
+
+        newStudentsList.removeAll(duplicateStudentList);
+        String resultMessage = String.format(MESSAGE_SUCCESS, newStudentsList, updatedTutorial.getTutorialId());
+        if (!duplicateStudentList.isEmpty()) {
+            resultMessage = resultMessage
+                    + "\n"
+                    + String.format(
+                    MESSAGE_DUPLICATE_STUDENT,
+                    duplicateStudentList,
+                    tutorialToAdd.getTutorialId());
+        }
+        return new CommandResult(resultMessage);
     }
 
     /**
      * Creates and returns a {@code Tutorial} with the new student of {@code tutorialToEdit}
      * edited with {@code editTutorialDescriptor}.
      */
-    private static Tutorial addStudentToTutorial(Tutorial tutorialToAdd,
-                                                 Student student) throws CommandException {
+    private Tutorial addStudentToTutorial(Tutorial tutorialToAdd,
+                                                 Set<Student> newStudentsList) throws CommandException {
         assert tutorialToAdd != null;
+
+        // Get current student set and add new students to the set
         Set<Student> currStudents = tutorialToAdd.getStudents();
-        if (currStudents.contains(student)) {
-            throw new CommandException(
-                    String.format(MESSAGE_DUPLICATE_STUDENT, student, tutorialToAdd.getTutorialId()));
+        Set<Student> updatedStudents = new HashSet<>(currStudents);
+        for (Student newStudent: newStudentsList) {
+            if (currStudents.contains(newStudent)) {
+                //  Keep track of duplicate students
+                duplicateStudentList.add(newStudent);
+            } else {
+                updatedStudents.add(newStudent);
+            }
         }
 
-        Set<Student> updatedStudents = new HashSet<>(currStudents);
-        updatedStudents.add(student);
+        // If all new students are duplicate students, throw an exception
+        if (duplicateStudentList.size() == newStudentsList.size()) {
+            throw new CommandException(
+                    String.format(
+                            MESSAGE_DUPLICATE_STUDENT,
+                            newStudentsList,
+                            tutorialToAdd.getTutorialId()));
+        }
 
         return new Tutorial(
                 tutorialToAdd.getTutorialId(),
@@ -101,7 +132,7 @@ public class AddStudentCommand extends Command {
         }
 
         AddStudentCommand e = (AddStudentCommand) other;
-        return student.equals(e.student)
+        return newStudentsList.equals(e.newStudentsList)
                 && predicate.equals(e.predicate);
     }
 }

@@ -2,10 +2,13 @@ package seedu.tabs.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 
 import java.util.NoSuchElementException;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.tabs.logic.commands.AddStudentCommand;
@@ -34,8 +37,8 @@ public class AddStudentCommandParser {
                     AddStudentCommand.MESSAGE_USAGE));
         }
 
-        String studentId = argMultimap.getValue(PREFIX_STUDENT).orElse("");
-        Student student = ParserUtil.parseStudent(studentId);
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID, PREFIX_MODULE_CODE, PREFIX_DATE);
+        Set<Student> studentList = ParserUtil.parseStudents(argMultimap.getAllValues(PREFIX_STUDENT));
 
         String tutorialId;
         try {
@@ -45,7 +48,7 @@ public class AddStudentCommandParser {
                     AddStudentCommand.MESSAGE_USAGE));
         }
 
-        return new AddStudentCommand(student, new TutorialIdMatchesKeywordPredicate(tutorialId));
+        return new AddStudentCommand(studentList, new TutorialIdMatchesKeywordPredicate(tutorialId));
     }
 
     /**
