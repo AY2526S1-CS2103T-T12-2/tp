@@ -19,9 +19,11 @@ public class ListStudentsCommand extends Command {
 
     public static final String COMMAND_WORD = "list_students";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": lists all the students in a tutorial"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": lists all the students in a tutorial\n"
             + "Parameters: "
-            + PREFIX_TUTORIAL_ID + "TUTORIAL ID";
+            + PREFIX_TUTORIAL_ID + "[TUTORIAL ID]\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_TUTORIAL_ID + "T123";
 
     private static final String MESSAGE_SUCCESS_TEMPLATE = "Displaying all students enrolled in tutorial %s \n";
 
