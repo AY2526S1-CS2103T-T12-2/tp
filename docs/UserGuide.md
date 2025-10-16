@@ -182,6 +182,71 @@ Examples:
 
 * `delete_tutorial t/T2` deletes the tutorial with ID `T2` in TAbs.
 
+### Adding students to a tutorial: `add_student`
+
+Adds one or more students to a specified tutorial in **TAbs**.
+
+**Format:**
+
+```
+add_student id/STUDENT_ID... t/TUTORIAL_ID
+```
+
+* Adds one or more students, identified by their `STUDENT_ID`, to the tutorial identified by `TUTORIAL_ID`.
+* You can specify multiple student IDs in a single command, separated by spaces.
+* Each student ID must follow the format `AXXXXXXX&`, where:
+
+    * The first letter (`A`) is uppercase,
+    * Followed by 7 digits (`XXXXXXX`),
+    * Ending with an uppercase letter (`&`).
+* The tutorial ID refers to the title of the tutorial as displayed in TAbs (begins with `T`).
+* The input must match the tutorial’s ID exactly (case-sensitive).
+
+---
+
+**Examples:**
+
+```
+add_student id/A1231231Y t/T1
+```
+
+Adds student `A1231231Y` to tutorial `T1`.
+
+```
+add_student id/A1231231Y id/A3213213Y id/A2223334B t/T2
+```
+
+Adds students `A1231231Y`, `A3213213Y`, and `A2223334B` to tutorial `T2`.
+
+---
+
+**Behavior and duplicate handling:**
+
+* If all specified students already exist in the tutorial, **TAbs** will reject the command and show an error message:
+
+  ```
+  The following student(s):
+    [A1231231Y, A3213213Y]
+  are already in tutorial T2!
+  ```
+* If some students already exist but others are new, **TAbs** will:
+
+    * Add the new students successfully.
+    * Notify the user that certain students were already in the tutorial.
+      Example:
+
+  ```
+  The following student(s):
+    [A2223334B]
+  were added to tutorial T2
+
+  The following student(s):
+    [A1231231Y, A3213213Y]
+  are already in tutorial T2!
+  ```
+
+---
+
 ### Deleting a student from a tutorial: `delete_student`
 
 Deletes the specified student from the specified tutorial from TAbs.
@@ -258,10 +323,10 @@ file that contains the data of your previous TAbs home folder.
 |---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**                         | `add n/NAME p/PHONE_NUMBER e/DATE a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
 | **Clear**                       | `clear`                                                                                                                                                              |
+| **Add student(s)**    | `add_student id/STUDENT_ID... t/TUTORIAL_ID` <br> e.g., `add_student id/A1231231Y id/A3213213Y t/T2` <br> Adds one or more students to the specified tutorial.       |
 | **List students in a tutorial** | `list_students t/TUTORIAL_ID`<br> e.g., `list_students t/T1`                                                                                                         |
 | **Delete a tutorial**           | `delete_tutorial t/TUTORIAL_ID`<br> e.g., `delete_tutorial t/T1`                                                                                                     |
 | **Edit**                        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/DATE] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Find**                        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
 | **List**                        | `list`                                                                                                                                                               |
 | **Help**                        | `help`                                                                                                                                                               |
-
