@@ -4,7 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.tabs.logic.commands.CommandTestUtil.NON_EXISTENT_TUTORIAL_ID;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_STUDENT_A;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_STUDENT_B;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_C123;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_T456;
 import static seedu.tabs.testutil.Assert.assertThrows;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS1010_C303;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2040_C505;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -29,35 +37,14 @@ import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
-import seedu.tabs.testutil.TutorialBuilder;
 
 /**
  * Contains unit tests for {@code AddStudentCommand}.
  */
 public class AddStudentCommandTest {
-
-    // Data
-    private static final TutorialId T01_ID = new TutorialId("T01");
-    private static final TutorialId T02_ID = new TutorialId("T02");
-    private static final TutorialId T99_ID_NON_EXISTENT = new TutorialId("T99");
-
-    private static final Student ALICE = new Student("A0000001Z");
-    private static final Student BOB = new Student("A0000002Z");
-    private static final Student CARL = new Student("A0000003Z");
-
-    private static final Tutorial T01_WITH_ALICE = new TutorialBuilder()
-            .withName("T01")
-            .withModuleCode("CS2103T")
-            .withDate("2025-10-14")
-            .withStudents(ALICE.studentId)
-            .build();
-
-    private static final Tutorial T02_EMPTY = new TutorialBuilder()
-            .withName("T02")
-            .withModuleCode("CS2103T")
-            .withDate("2025-10-14")
-            .withStudents()
-            .build();
+    // Use CommandTestUtil constants for students
+    private static final Student STUDENT_A = new Student(VALID_STUDENT_A);
+    private static final Student STUDENT_B = new Student(VALID_STUDENT_B);
 
     /**
      * A default model stub that has all the methods failing.
@@ -216,98 +203,110 @@ public class AddStudentCommandTest {
 
     @Test
     public void execute_addSingleStudent_success() throws Exception {
-        ModelStubWithTutorials model = new ModelStubWithTutorials(T02_EMPTY);
-        Set<Student> toAdd = new HashSet<>(Set.of(ALICE));
+        // Use an empty tutorial from TypicalTutorials (e.g., C505)
+        Tutorial emptyTutorial = TUTORIAL_CS2040_C505;
+        TutorialId emptyTutorialId = emptyTutorial.getTutorialId();
+
+        ModelStubWithTutorials model = new ModelStubWithTutorials(emptyTutorial);
+        Set<Student> toAdd = new HashSet<>(Set.of(STUDENT_A));
         AddStudentCommand cmd = new AddStudentCommand(
                 toAdd,
-                new TutorialIdMatchesKeywordPredicate(T02_ID.fullName));
+                new TutorialIdMatchesKeywordPredicate(emptyTutorialId.fullName));
 
         CommandResult result = cmd.execute(model);
 
         // sanity: model updated
         Tutorial edited = model.getLastSetEdited();
-        assertEquals(T02_ID, edited.getTutorialId());
-        assertTrue(edited.getStudents().contains(ALICE));
+        assertEquals(emptyTutorialId, edited.getTutorialId());
+        assertTrue(edited.getStudents().contains(STUDENT_A));
 
         // message should state success and tutorial id
         String feedback = result.getFeedbackToUser();
-        assertTrue(feedback.contains("were added to tutorial " + T02_ID));
+        assertTrue(feedback.contains("were added to tutorial " + emptyTutorialId));
         // should not include duplicate-warning section
         assertFalse(feedback.contains("are already in tutorial"));
     }
 
     @Test
     public void execute_addMultipleStudentsPartialDuplicate_success() throws Exception {
-        // T01 already has ALICE; we add ALICE (dup) + BOB (new)
-        ModelStubWithTutorials model = new ModelStubWithTutorials(T01_WITH_ALICE);
-        Set<Student> toAdd = new HashSet<>(Set.of(ALICE, BOB));
+        // C101 already has STUDENT_A per TypicalTutorials
+        Tutorial tutorialWithA = TUTORIAL_CS2103T_C101;
+        TutorialId tutorialWithAId = tutorialWithA.getTutorialId();
+
+        ModelStubWithTutorials model = new ModelStubWithTutorials(tutorialWithA);
+        Set<Student> toAdd = new HashSet<>(Set.of(STUDENT_A, STUDENT_B));
         AddStudentCommand cmd = new AddStudentCommand(
                 toAdd,
-                new TutorialIdMatchesKeywordPredicate(T01_ID.fullName));
+                new TutorialIdMatchesKeywordPredicate(tutorialWithAId.fullName));
 
         CommandResult result = cmd.execute(model);
 
         // model updated: ALICE remains, BOB added
         Tutorial edited = model.getLastSetEdited();
-        assertTrue(edited.getStudents().contains(ALICE));
-        assertTrue(edited.getStudents().contains(BOB));
+        assertTrue(edited.getStudents().contains(STUDENT_A));
+        assertTrue(edited.getStudents().contains(STUDENT_B));
 
         String feedback = result.getFeedbackToUser();
         // success section present
-        assertTrue(feedback.contains("were added to tutorial " + T01_ID));
+        assertTrue(feedback.contains("were added to tutorial " + tutorialWithAId));
         // duplicate section present
-        assertTrue(feedback.contains("are already in tutorial " + T01_ID));
+        assertTrue(feedback.contains("are already in tutorial " + tutorialWithAId));
     }
 
     @Test
     public void execute_allDuplicates_throwsCommandException() {
-        // T01 has ALICE; try to add ALICE only → all duplicates
-        ModelStubWithTutorials model = new ModelStubWithTutorials(T01_WITH_ALICE);
-        Set<Student> toAdd = new HashSet<>(Set.of(ALICE));
+        // C101 has STUDENT_A; try to add STUDENT_A only → all duplicates
+        Tutorial tutorialWithA = TUTORIAL_CS2103T_C101;
+        TutorialId tutorialWithAId = tutorialWithA.getTutorialId();
+
+        ModelStubWithTutorials model = new ModelStubWithTutorials(tutorialWithA);
+        Set<Student> toAdd = new HashSet<>(Set.of(STUDENT_A));
         AddStudentCommand cmd = new AddStudentCommand(
                 toAdd,
-                new TutorialIdMatchesKeywordPredicate(T01_ID.fullName));
+                new TutorialIdMatchesKeywordPredicate(tutorialWithAId.fullName));
 
         String expectedMsg = String.format(
                 AddStudentCommand.MESSAGE_DUPLICATE_STUDENT,
                 toAdd,
-                T01_ID);
+                tutorialWithAId);
 
         assertThrows(CommandException.class, expectedMsg, () -> cmd.execute(model));
     }
 
     @Test
     public void execute_tutorialNotFound_throwsCommandException() {
-        ModelStubWithTutorials model = new ModelStubWithTutorials(T01_WITH_ALICE, T02_EMPTY);
-        Set<Student> toAdd = new HashSet<>(Set.of(CARL));
+        // Model has some tutorials, but we query a non-existent id
+        ModelStubWithTutorials model = new ModelStubWithTutorials(
+                TUTORIAL_CS2103T_C101, TUTORIAL_CS1010_C303);
+        Set<Student> toAdd = new HashSet<>(Set.of(STUDENT_B));
         AddStudentCommand cmd = new AddStudentCommand(
                 toAdd,
-                new TutorialIdMatchesKeywordPredicate(T99_ID_NON_EXISTENT.fullName));
+                new TutorialIdMatchesKeywordPredicate(NON_EXISTENT_TUTORIAL_ID));
 
         assertThrows(CommandException.class, Messages.MESSAGE_TUTORIAL_ID_NOT_FOUND, () -> cmd.execute(model));
     }
 
     @Test
     public void equals() {
-        Set<Student> setAlice = new HashSet<>(Set.of(ALICE));
-        Set<Student> setBob = new HashSet<>(Set.of(BOB));
+        Set<Student> setA = new HashSet<>(Set.of(STUDENT_A));
+        Set<Student> setB = new HashSet<>(Set.of(STUDENT_B));
 
-        AddStudentCommand addAliceT01 = new AddStudentCommand(
-                setAlice, new TutorialIdMatchesKeywordPredicate(T01_ID.fullName));
-        AddStudentCommand addAliceT01Copy = new AddStudentCommand(
-                new HashSet<>(Set.of(ALICE)), new TutorialIdMatchesKeywordPredicate(T01_ID.fullName));
-        AddStudentCommand addBobT01 = new AddStudentCommand(
-                setBob, new TutorialIdMatchesKeywordPredicate(T01_ID.fullName));
-        AddStudentCommand addAliceT02 = new AddStudentCommand(
-                setAlice, new TutorialIdMatchesKeywordPredicate(T02_ID.fullName));
+        AddStudentCommand addAtoC123 = new AddStudentCommand(
+                setA, new TutorialIdMatchesKeywordPredicate(VALID_TUTORIAL_C123));
+        AddStudentCommand addAtoC123Copy = new AddStudentCommand(
+                new HashSet<>(Set.of(STUDENT_A)), new TutorialIdMatchesKeywordPredicate(VALID_TUTORIAL_C123));
+        AddStudentCommand addBtoC123 = new AddStudentCommand(
+                setB, new TutorialIdMatchesKeywordPredicate(VALID_TUTORIAL_C123));
+        AddStudentCommand addAtoT456 = new AddStudentCommand(
+                setA, new TutorialIdMatchesKeywordPredicate(VALID_TUTORIAL_T456));
 
         // same values -> true
-        assertEquals(addAliceT01, addAliceT01Copy);
+        assertEquals(addAtoC123, addAtoC123Copy);
         // different student sets -> false
-        assertNotEquals(addAliceT01, addBobT01);
+        assertNotEquals(addAtoC123, addBtoC123);
         // different predicates (different tutorial) -> false
-        assertNotEquals(addAliceT01, addAliceT02);
+        assertNotEquals(addAtoC123, addAtoT456);
         // null -> false
-        assertNotEquals(null, addAliceT01);
+        assertNotEquals(null, addAtoC123);
     }
 }
