@@ -3,6 +3,9 @@ package seedu.tabs.model.tutorial;
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+
 /**
  * Represents a Tutorial's date in the TAbs.
  * Guarantees: immutable; is valid as declared in {@link #isValidDate(String)}
@@ -31,7 +34,16 @@ public class Date {
      * Returns if a given string is a valid date.
      */
     public static boolean isValidDate(String test) {
-        return test.matches(VALIDATION_REGEX);
+        if (test == null || !test.matches(VALIDATION_REGEX)) {
+            return false;
+        }
+
+        try {
+            LocalDate.parse(test);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     @Override
