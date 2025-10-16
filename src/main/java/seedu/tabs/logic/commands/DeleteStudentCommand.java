@@ -62,7 +62,7 @@ public class DeleteStudentCommand extends Command {
 
         model.setTutorial(tutorialToChange, updatedTutorial);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, student, updatedTutorial.getTutorialId()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, student.studentId, updatedTutorial.getTutorialId()));
     }
 
     /**
