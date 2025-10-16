@@ -27,7 +27,7 @@
         </Label>
         <Label fx:id="tutorialId" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <FlowPane fx:id="students" styleClass="tags" />
+      <FlowPane fx:id="students" />
       <Label fx:id="moduleCode" styleClass="cell_small_label" text="\$moduleCode" />
       <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
     </VBox>

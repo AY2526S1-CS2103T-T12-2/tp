@@ -40,7 +40,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TUTORIAL_ID + "NAME] "
             + "[" + PREFIX_MODULE_CODE + "PHONE] "
             + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_STUDENT + "TAG]...\n"
+            + "[" + PREFIX_STUDENT + "STUDENT]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_MODULE_CODE + "91234567 "
             + PREFIX_DATE + "johndoe@example.com";
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code students} is used internally.
          */
         public EditTutorialDescriptor(EditTutorialDescriptor toCopy) {
             setName(toCopy.tutorialId);
@@ -180,17 +180,17 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code students} to this object's {@code students}.
+         * A defensive copy of {@code students} is used internally.
          */
         public void setStudents(Set<Student> students) {
             this.students = (students != null) ? new HashSet<>(students) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable student set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code students} is null.
          */
         public Optional<Set<Student>> getStudents() {
             return (students != null) ? Optional.of(Collections.unmodifiableSet(students)) : Optional.empty();

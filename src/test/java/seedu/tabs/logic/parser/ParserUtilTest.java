@@ -15,24 +15,21 @@ import org.junit.jupiter.api.Test;
 
 import seedu.tabs.logic.parser.exceptions.ParseException;
 import seedu.tabs.model.student.Student;
-import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
 import seedu.tabs.model.tutorial.ModuleCode;
 import seedu.tabs.model.tutorial.TutorialId;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "R@chel";
-    private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
+    private static final String INVALID_TUTORIAL = "R@chel";
+    private static final String INVALID_MODULE_CODE = "651234";
     private static final String INVALID_DATE = "example.com";
-    private static final String INVALID_TAG = "A123";
+    private static final String INVALID_STUDENT = "A123";
 
     private static final String VALID_NAME = "C123";
-    private static final String VALID_PHONE = "CS2103T";
-    private static final String VALID_ADDRESS = "123 Main Street #0505";
+    private static final String VALID_MODULE_CODE = "CS2103T";
     private static final String VALID_DATE = "2025-01-15";
-    private static final String VALID_TAG_1 = "A1231231Y";
-    private static final String VALID_TAG_2 = "A3213213Y";
+    private static final String VALID_STUDENT_1 = "A1231231Y";
+    private static final String VALID_STUDENT_2 = "A3213213Y";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -63,7 +60,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_NAME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_TUTORIAL));
     }
 
     @Test
@@ -86,43 +83,20 @@ public class ParserUtilTest {
 
     @Test
     public void parseModuleCode_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseModuleCode(INVALID_PHONE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseModuleCode(INVALID_MODULE_CODE));
     }
 
     @Test
     public void parseModuleCode_validValueWithoutWhitespace_returnsModuleCode() throws Exception {
-        ModuleCode expectedModuleCode = new ModuleCode(VALID_PHONE);
-        assertEquals(expectedModuleCode, ParserUtil.parseModuleCode(VALID_PHONE));
+        ModuleCode expectedModuleCode = new ModuleCode(VALID_MODULE_CODE);
+        assertEquals(expectedModuleCode, ParserUtil.parseModuleCode(VALID_MODULE_CODE));
     }
 
     @Test
     public void parseModuleCode_validValueWithWhitespace_returnsTrimmedModuleCode() throws Exception {
-        String moduleCodeWithWhitespace = WHITESPACE + VALID_PHONE + WHITESPACE;
-        ModuleCode expectedModuleCode = new ModuleCode(VALID_PHONE);
+        String moduleCodeWithWhitespace = WHITESPACE + VALID_MODULE_CODE + WHITESPACE;
+        ModuleCode expectedModuleCode = new ModuleCode(VALID_MODULE_CODE);
         assertEquals(expectedModuleCode, ParserUtil.parseModuleCode(moduleCodeWithWhitespace));
-    }
-
-    @Test
-    public void parseAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseAddress((String) null));
-    }
-
-    @Test
-    public void parseAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        Address expectedAddress = new Address(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseAddress(addressWithWhitespace));
     }
 
     @Test
@@ -155,19 +129,19 @@ public class ParserUtilTest {
 
     @Test
     public void parseStudent_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseStudent(INVALID_TAG));
+        assertThrows(ParseException.class, () -> ParserUtil.parseStudent(INVALID_STUDENT));
     }
 
     @Test
     public void parseStudent_validValueWithoutWhitespace_returnsStudent() throws Exception {
-        Student expectedStudent = new Student(VALID_TAG_1);
-        assertEquals(expectedStudent, ParserUtil.parseStudent(VALID_TAG_1));
+        Student expectedStudent = new Student(VALID_STUDENT_1);
+        assertEquals(expectedStudent, ParserUtil.parseStudent(VALID_STUDENT_1));
     }
 
     @Test
     public void parseStudent_validValueWithWhitespace_returnsTrimmedStudent() throws Exception {
-        String studentWithWhitespace = WHITESPACE + VALID_TAG_1 + WHITESPACE;
-        Student expectedStudent = new Student(VALID_TAG_1);
+        String studentWithWhitespace = WHITESPACE + VALID_STUDENT_1 + WHITESPACE;
+        Student expectedStudent = new Student(VALID_STUDENT_1);
         assertEquals(expectedStudent, ParserUtil.parseStudent(studentWithWhitespace));
     }
 
@@ -178,7 +152,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseStudents_collectionWithInvalidStudents_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseStudents(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseStudents(Arrays.asList(VALID_STUDENT_1, INVALID_STUDENT)));
     }
 
     @Test
@@ -188,9 +163,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseStudents_collectionWithValidStudents_returnsStudentSet() throws Exception {
-        Set<Student> actualStudentSet = ParserUtil.parseStudents(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Student> expectedStudentSet = new HashSet<Student>(Arrays.asList(new Student(VALID_TAG_1),
-                new Student(VALID_TAG_2)));
+        Set<Student> actualStudentSet = ParserUtil.parseStudents(Arrays.asList(VALID_STUDENT_1, VALID_STUDENT_2));
+        Set<Student> expectedStudentSet = new HashSet<Student>(Arrays.asList(new Student(VALID_STUDENT_1),
+                new Student(VALID_STUDENT_2)));
 
         assertEquals(expectedStudentSet, actualStudentSet);
     }
