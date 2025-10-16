@@ -20,22 +20,22 @@ public class SampleDataUtil {
         return new Tutorial[] {
             new Tutorial(new TutorialId("C101"), new ModuleCode("CS2103T"),
                     new Date("2025-01-15"),
-                getStudentSet("Alice", "Bob")),
+                getStudentSet("A1234567A", "A2345678B")),
             new Tutorial(new TutorialId("T102"), new ModuleCode("CS2101"),
                     new Date("2025-01-16"),
-                getStudentSet("Charlie", "Diana")),
+                getStudentSet("A3456789C", "A4567890D")),
             new Tutorial(new TutorialId("C103"), new ModuleCode("MA1521"),
                     new Date("2025-01-17"),
-                getStudentSet("Eve", "Frank")),
+                getStudentSet("A5678901E", "A6789012F")),
             new Tutorial(new TutorialId("T104"), new ModuleCode("ST2334"),
                     new Date("2025-01-18"),
-                getStudentSet("Grace", "Henry")),
+                getStudentSet("A7890123G", "A8901234H")),
             new Tutorial(new TutorialId("T105"), new ModuleCode("CS1010"),
                     new Date("2025-01-19"),
-                getStudentSet("Irene", "Jack")),
+                getStudentSet("A9012345I", "A0123456J")),
             new Tutorial(new TutorialId("C106"), new ModuleCode("CS2040S"),
                     new Date("2025-01-20"),
-                getStudentSet("Kelly", "Liam"))
+                getStudentSet("A1357924K", "A2468013L"))
         };
     }
 
