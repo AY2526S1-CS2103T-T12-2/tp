@@ -27,6 +27,7 @@ public class CommandTestUtil {
 
     public static final String VALID_TUTORIAL_C123 = "C123";
     public static final String VALID_TUTORIAL_T456 = "T456";
+    public static final String NON_EXISTENT_TUTORIAL_ID = "Z999";
     public static final String VALID_MODULE_CODE_CS2103T = "CS2103T";
     public static final String VALID_MODULE_CODE_MA1521 = "MA1521";
     public static final String VALID_DATE_C123 = "2025-01-15";
