@@ -140,9 +140,8 @@ Finds tutorials whose `MODULE_CODE` or `TUTORIAL_ID` contain any of the given ke
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `T01` will match `T01`
-* Only the name is searched.
-* Only full words will be matched e.g. `CS2101` will not match `CS2101S`
+* The search is case-insensitive. e.g `t01` will match `T01`
+* Only full words will be matched e.g. `CS2103` will not match `CS2103T`
 * Tutorials matching at least one keyword will be returned (i.e. `OR` search).
   e.g. `CS2103T CS2101` will return tutorials with `MODULE_CODE:` `CS2103T`, `CS2101`
        `T01 C200` will return tutorials with `TUTORIAL_ID:` `T01`, `C200`
