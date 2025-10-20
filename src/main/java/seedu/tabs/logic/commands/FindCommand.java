@@ -15,11 +15,12 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tutorials whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tutorials whose module codes or tutorialIDs "
+            + "contain any of the specified keywords (case-insensitive) "
+            + "and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
-
+            + "Example: " + COMMAND_WORD + " CS2103T"
+            + " or " + COMMAND_WORD + " T10";
     private final TutorialIdContainsKeywordsPredicate predicate;
 
     public FindCommand(TutorialIdContainsKeywordsPredicate predicate) {
