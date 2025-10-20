@@ -257,7 +257,9 @@ public class CopyTutorialCommandTest {
 
         @Override
         public ReadOnlyTAbs getTAbs() {
-            return new TAbs();
+            TAbs tabs = new TAbs();
+            tabs.addTutorial(tutorial);
+            return tabs;
         }
     }
 
@@ -284,7 +286,11 @@ public class CopyTutorialCommandTest {
 
         @Override
         public ReadOnlyTAbs getTAbs() {
-            return new TAbs();
+            TAbs tabs = new TAbs();
+            for (Tutorial tutorial : tutorials) {
+                tabs.addTutorial(tutorial);
+            }
+            return tabs;
         }
     }
 }
