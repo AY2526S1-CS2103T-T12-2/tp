@@ -44,6 +44,10 @@ public class Student {
         this.isPresent = !isPresent;
     }
 
+    public boolean getAttendance() {
+        return this.isPresent;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
