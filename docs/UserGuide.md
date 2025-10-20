@@ -113,7 +113,7 @@ Creates a copy of an existing tutorial with a new tutorial ID and date.
 Format: `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE`
 
 * Copies an existing tutorial identified by `EXISTING_TUTORIAL_ID` and creates a new tutorial with `NEW_TUTORIAL_ID` and the specified `DATE`.
-* The new tutorial ID must match the format `(C|T|CT)` followed by digits (e.g., T1, C123, CT456).
+* The new tutorial ID must match the format `(C|T)` followed by digits (e.g., T1, C123).
 * The new tutorial ID must not already exist in TAbs.
 * The existing tutorial ID must exist in TAbs.
 * All students from the existing tutorial will be copied to the new tutorial.
