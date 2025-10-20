@@ -2,10 +2,13 @@ package seedu.tabs.logic.parser;
 
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.tabs.logic.commands.CommandTestUtil;
 import seedu.tabs.logic.commands.DeleteTutorialCommand;
+import seedu.tabs.testutil.TypicalPredicates;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -18,14 +21,21 @@ public class DeleteTutorialCommandParserTest {
 
     private DeleteTutorialCommandParser parser = new DeleteTutorialCommandParser();
 
-    //    @Test
-    //    public void parse_validArgs_returnsDeleteCommand() {
-    //        assertParseSuccess(parser, "1", new DeleteTutorialCommand(INDEX_FIRST_PERSON));
-    //    }
+    @Test
+    public void parse_validArgs_returnsDeleteCommand() {
+        assertParseSuccess(parser, CommandTestUtil.TUTORIAL_DESC_C123,
+                new DeleteTutorialCommand(TypicalPredicates.PREDICATE_KEYWORD_C123));
+    }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
+    public void parse_missingPrefix_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                DeleteTutorialCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidTutorialId_throwsParseException() {
+        assertParseFailure(parser, CommandTestUtil.INVALID_TUTORIAL_DESC, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 DeleteTutorialCommand.MESSAGE_USAGE));
     }
 }
