@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tabs.logic.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.tabs.testutil.Assert.assertThrows;
-import static seedu.tabs.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.List;
@@ -15,8 +14,8 @@ import org.junit.jupiter.api.Test;
 
 import seedu.tabs.logic.commands.AddTutorialCommand;
 import seedu.tabs.logic.commands.ClearCommand;
-import seedu.tabs.logic.commands.EditCommand;
-import seedu.tabs.logic.commands.EditCommand.EditTutorialDescriptor;
+import seedu.tabs.logic.commands.EditTutorialCommand;
+import seedu.tabs.logic.commands.EditTutorialCommand.EditTutorialDescriptor;
 import seedu.tabs.logic.commands.ExitCommand;
 import seedu.tabs.logic.commands.FindCommand;
 import seedu.tabs.logic.commands.HelpCommand;
@@ -24,6 +23,7 @@ import seedu.tabs.logic.commands.ListCommand;
 import seedu.tabs.logic.parser.exceptions.ParseException;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialIdContainsKeywordsPredicate;
+import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 import seedu.tabs.testutil.EditTutorialDescriptorBuilder;
 import seedu.tabs.testutil.TutorialBuilder;
 import seedu.tabs.testutil.TutorialUtil;
@@ -56,10 +56,22 @@ public class TAbsParserTest {
     public void parseCommand_edit() throws Exception {
         Tutorial aTutorial = new TutorialBuilder().build();
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder(aTutorial).build();
-        EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_PERSON.getOneBased() + " " + TutorialUtil.getEditTutorialDescriptorDetails(descriptor));
-        assertEquals(new EditCommand(INDEX_FIRST_PERSON, descriptor), command);
+
+        String commandString = EditTutorialCommand.COMMAND_WORD + " "
+                + CliSyntax.PREFIX_FROM + aTutorial.getTutorialId().fullName + " "
+                + TutorialUtil.getEditTutorialDescriptorDetails(descriptor);
+
+        EditTutorialCommand command =
+                (EditTutorialCommand) parser.parseCommand(commandString);
+
+        assertEquals(
+                new EditTutorialCommand(
+                        new TutorialIdMatchesKeywordPredicate(aTutorial.getTutorialId().fullName),
+                        descriptor),
+                command
+        );
     }
+
 
     @Test
     public void parseCommand_exit() throws Exception {

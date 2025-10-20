@@ -5,11 +5,8 @@ import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 
-import java.util.Set;
-
 import seedu.tabs.logic.commands.AddTutorialCommand;
-import seedu.tabs.logic.commands.EditCommand.EditTutorialDescriptor;
-import seedu.tabs.model.student.Student;
+import seedu.tabs.logic.commands.EditTutorialCommand.EditTutorialDescriptor;
 import seedu.tabs.model.tutorial.Tutorial;
 
 /**
@@ -47,14 +44,6 @@ public class TutorialUtil {
         descriptor.getModuleCode().ifPresent(moduleCode -> sb.append(PREFIX_MODULE_CODE)
                 .append(moduleCode.value).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));
-        if (descriptor.getStudents().isPresent()) {
-            Set<Student> students = descriptor.getStudents().get();
-            if (students.isEmpty()) {
-                sb.append(PREFIX_STUDENT);
-            } else {
-                students.forEach(s -> sb.append(PREFIX_STUDENT).append(s.studentId).append(" "));
-            }
-        }
         return sb.toString();
     }
 }

@@ -2,65 +2,69 @@ package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.Set;
 
-import seedu.tabs.commons.core.index.Index;
 import seedu.tabs.commons.util.CollectionUtil;
 import seedu.tabs.commons.util.ToStringBuilder;
 import seedu.tabs.logic.Messages;
 import seedu.tabs.logic.commands.exceptions.CommandException;
 import seedu.tabs.model.Model;
-import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Date;
 import seedu.tabs.model.tutorial.ModuleCode;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialId;
+import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
 /**
  * Edits the details of an existing tutorial in the TAbs.
  */
-public class EditCommand extends Command {
+public class EditTutorialCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "edit_tutorial";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the tutorial identified "
-            + "by the index number used in the displayed tutorial list. "
+            + "by the given tutorial id. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TUTORIAL_ID + "NAME] "
-            + "[" + PREFIX_MODULE_CODE + "PHONE] "
-            + "[" + PREFIX_DATE + "DATE] "
-            + "[" + PREFIX_STUDENT + "STUDENT]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_MODULE_CODE + "91234567 "
-            + PREFIX_DATE + "johndoe@example.com";
+            + "Parameters: "
+            + "[" + PREFIX_FROM + "ORIGINAL_TUTORIAL ID] "
+            + "[" + PREFIX_TUTORIAL_ID + "NEW_TUTORIAL ID] "
+            + "[" + PREFIX_MODULE_CODE + "NEW_MODULE CODE] "
+            + "[" + PREFIX_DATE + "NEW_DATE]\n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_FROM + "T123 "
+            + PREFIX_TUTORIAL_ID + "T456 "
+            + PREFIX_MODULE_CODE + "CS2103T "
+            + PREFIX_DATE + "2025-10-25";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Tutorial: %1$s";
+    public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial: %1$s";
+    public static final String MESSAGE_FROM_TUTORIAL_ID_MISSING = "Tutorial ID of the tutorial to be edited "
+            + "must be specified.\n%1$s";
+    public static final String MESSAGE_EDIT_STUDENTS_NOT_ALLOWED = "Students cannot be edited via this command.\n"
+            + "Please use the add_student or delete_student commands instead.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This tutorial already exists in the TAbs.";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the TAbs.";
 
-    private final Index index;
+
+    private final TutorialIdMatchesKeywordPredicate predicate;
     private final EditTutorialDescriptor editTutorialDescriptor;
 
     /**
-     * @param index of the tutorial in the filtered tutorial list to edit
+     * @param predicate              to filter the tutorial list by the provided tutorial_id
      * @param editTutorialDescriptor details to edit the tutorial with
      */
-    public EditCommand(Index index, EditTutorialDescriptor editTutorialDescriptor) {
-        requireNonNull(index);
+    public EditTutorialCommand(TutorialIdMatchesKeywordPredicate predicate,
+                               EditTutorialDescriptor editTutorialDescriptor) {
+        requireNonNull(predicate);
         requireNonNull(editTutorialDescriptor);
 
-        this.index = index;
+        this.predicate = predicate;
         this.editTutorialDescriptor = new EditTutorialDescriptor(editTutorialDescriptor);
     }
 
@@ -68,21 +72,21 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Tutorial> lastShownList = model.getFilteredTutorialList();
+        Tutorial tutorialToEdit = lastShownList.stream().filter(predicate).findFirst().orElse(null);
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_TUTORIAL_ID);
+        if (tutorialToEdit == null) {
+            throw new CommandException(Messages.MESSAGE_TUTORIAL_ID_NOT_FOUND);
         }
 
-        Tutorial tutorialToEdit = lastShownList.get(index.getZeroBased());
         Tutorial editedTutorial = createEditedTutorial(tutorialToEdit, editTutorialDescriptor);
 
         if (!tutorialToEdit.isSameTutorial(editedTutorial) && model.hasTutorial(editedTutorial)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_TUTORIAL);
         }
 
         model.setTutorial(tutorialToEdit, editedTutorial);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, Messages.format(editedTutorial)));
+        return new CommandResult(String.format(MESSAGE_EDIT_TUTORIAL_SUCCESS, Messages.format(editedTutorial)));
     }
 
     /**
@@ -96,9 +100,8 @@ public class EditCommand extends Command {
         TutorialId updatedTutorialId = editTutorialDescriptor.getName().orElse(tutorialToEdit.getTutorialId());
         ModuleCode updatedModuleCode = editTutorialDescriptor.getModuleCode().orElse(tutorialToEdit.getModuleCode());
         Date updatedDate = editTutorialDescriptor.getDate().orElse(tutorialToEdit.getDate());
-        Set<Student> updatedStudents = editTutorialDescriptor.getStudents().orElse(tutorialToEdit.getStudents());
 
-        return new Tutorial(updatedTutorialId, updatedModuleCode, updatedDate, updatedStudents);
+        return new Tutorial(updatedTutorialId, updatedModuleCode, updatedDate, tutorialToEdit.getStudents());
     }
 
     @Override
@@ -108,21 +111,13 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditTutorialCommand)) {
             return false;
         }
 
-        EditCommand otherEditCommand = (EditCommand) other;
-        return index.equals(otherEditCommand.index)
-                && editTutorialDescriptor.equals(otherEditCommand.editTutorialDescriptor);
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this)
-                .add("index", index)
-                .add("editTutorialDescriptor", editTutorialDescriptor)
-                .toString();
+        EditTutorialCommand otherEditTutorialCommand = (EditTutorialCommand) other;
+        return predicate.equals(otherEditTutorialCommand.predicate)
+                && editTutorialDescriptor.equals(otherEditTutorialCommand.editTutorialDescriptor);
     }
 
     /**
@@ -133,7 +128,6 @@ public class EditCommand extends Command {
         private TutorialId tutorialId;
         private ModuleCode moduleCode;
         private Date date;
-        private Set<Student> students;
 
         public EditTutorialDescriptor() {}
 
@@ -145,14 +139,13 @@ public class EditCommand extends Command {
             setName(toCopy.tutorialId);
             setModuleCode(toCopy.moduleCode);
             setDate(toCopy.date);
-            setStudents(toCopy.students);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(tutorialId, moduleCode, date, students);
+            return CollectionUtil.isAnyNonNull(tutorialId, moduleCode, date);
         }
 
         public void setName(TutorialId tutorialId) {
@@ -179,23 +172,6 @@ public class EditCommand extends Command {
             return Optional.ofNullable(date);
         }
 
-        /**
-         * Sets {@code students} to this object's {@code students}.
-         * A defensive copy of {@code students} is used internally.
-         */
-        public void setStudents(Set<Student> students) {
-            this.students = (students != null) ? new HashSet<>(students) : null;
-        }
-
-        /**
-         * Returns an unmodifiable student set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code students} is null.
-         */
-        public Optional<Set<Student>> getStudents() {
-            return (students != null) ? Optional.of(Collections.unmodifiableSet(students)) : Optional.empty();
-        }
-
         @Override
         public boolean equals(Object other) {
             if (other == this) {
@@ -210,8 +186,7 @@ public class EditCommand extends Command {
             EditTutorialDescriptor otherEditTutorialDescriptor = (EditTutorialDescriptor) other;
             return Objects.equals(tutorialId, otherEditTutorialDescriptor.tutorialId)
                     && Objects.equals(moduleCode, otherEditTutorialDescriptor.moduleCode)
-                    && Objects.equals(date, otherEditTutorialDescriptor.date)
-                    && Objects.equals(students, otherEditTutorialDescriptor.students);
+                    && Objects.equals(date, otherEditTutorialDescriptor.date);
         }
 
         @Override
@@ -220,7 +195,6 @@ public class EditCommand extends Command {
                     .add("tutorialId", tutorialId)
                     .add("moduleCode", moduleCode)
                     .add("date", date)
-                    .add("students", students)
                     .toString();
         }
     }

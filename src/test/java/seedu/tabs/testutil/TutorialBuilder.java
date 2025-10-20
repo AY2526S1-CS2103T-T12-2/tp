@@ -61,6 +61,14 @@ public class TutorialBuilder {
     }
 
     /**
+     * Takes in a set of {@code students} to and set it to the {@code Tutorial} that we are building.
+     */
+    public TutorialBuilder withStudents(Set<Student> students) {
+        this.students = students;
+        return this;
+    }
+
+    /**
      * Sets the {@code ModuleCode} of the {@code Tutorial} that we are building.
      */
     public TutorialBuilder withModuleCode(String moduleCode) {
