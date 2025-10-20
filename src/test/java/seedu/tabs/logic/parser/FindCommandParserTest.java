@@ -22,13 +22,15 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
-        // no leading and trailing whitespaces
+        // Keywords containing a tutorial ID and a module code (case-insensitive)
         FindCommand expectedFindCommand =
-                new FindCommand(new TutorialIdContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+                new FindCommand(new TutorialIdContainsKeywordsPredicate(Arrays.asList("cs2103t", "T09")));
+
+        // no leading and trailing whitespaces
+        assertParseSuccess(parser, "cs2103t T09", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n cs2103t \n \t T09  \t", expectedFindCommand);
     }
 
 }
