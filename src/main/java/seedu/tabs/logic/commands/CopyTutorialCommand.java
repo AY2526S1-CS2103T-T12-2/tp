@@ -57,8 +57,8 @@ public class CopyTutorialCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        // Find source tutorial from the filtered list
-        Tutorial sourceTutorial = model.getFilteredTutorialList().stream()
+        // Find source tutorial from the list
+        Tutorial sourceTutorial = model.getTAbs().getTutorialList().stream()
                 .filter(tutorial -> tutorial.getTutorialId().equals(sourceTutorialId))
                 .findFirst()
                 .orElse(null);
