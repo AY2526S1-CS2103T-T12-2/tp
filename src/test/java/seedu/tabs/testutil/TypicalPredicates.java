@@ -10,4 +10,6 @@ public class TypicalPredicates {
             new TutorialIdMatchesKeywordPredicate("C101");
     public static final TutorialIdMatchesKeywordPredicate PREDICATE_KEYWORD_C102 =
             new TutorialIdMatchesKeywordPredicate("C102");
+    public static final TutorialIdMatchesKeywordPredicate PREDICATE_KEYWORD_C123 =
+            new TutorialIdMatchesKeywordPredicate("C123");
 }
