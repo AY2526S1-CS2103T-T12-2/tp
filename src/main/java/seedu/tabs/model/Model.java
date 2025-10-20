@@ -5,7 +5,9 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.tabs.commons.core.GuiSettings;
+import seedu.tabs.model.tutorial.Date;
 import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialId;
 
 /**
  * The API of the Model component.
@@ -68,6 +70,15 @@ public interface Model {
      * {@code tutorial} must not already exist in the TAbs.
      */
     void addTutorial(Tutorial aTutorial);
+
+    /**
+     * Copies a tutorial from source to create a new tutorial.
+     * {@code sourceTutorial} must exist in the TAbs.
+     * A new tutorial with {@code newTutorialId} must not already exist in the TAbs.
+     * The new tutorial will have the same module code and students as the source,
+     * but with the specified new ID and date.
+     */
+    void copyTutorial(Tutorial sourceTutorial, TutorialId newTutorialId, Date newDate);
 
     /**
      * Replaces the given tutorial {@code target} with {@code editedTutorial}.

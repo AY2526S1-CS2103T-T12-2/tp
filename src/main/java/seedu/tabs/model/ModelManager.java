@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.tabs.commons.core.GuiSettings;
 import seedu.tabs.commons.core.LogsCenter;
+import seedu.tabs.model.tutorial.Date;
 import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialId;
 
 /**
  * Represents the in-memory model of the TAbs data.
@@ -101,6 +103,20 @@ public class ModelManager implements Model {
     @Override
     public void addTutorial(Tutorial aTutorial) {
         tabs.addTutorial(aTutorial);
+        updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
+    }
+
+    @Override
+    public void copyTutorial(Tutorial sourceTutorial, TutorialId newTutorialId, Date newDate) {
+        requireAllNonNull(sourceTutorial, newTutorialId, newDate);
+        // Create the copied tutorial with source's module code and students, but new ID and date
+        Tutorial copiedTutorial = new Tutorial(
+                newTutorialId,
+                sourceTutorial.getModuleCode(),
+                newDate,
+                sourceTutorial.getStudents()
+        );
+        tabs.addTutorial(copiedTutorial);
         updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
     }
 
