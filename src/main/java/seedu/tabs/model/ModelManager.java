@@ -4,13 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tabs.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.tabs.commons.core.GuiSettings;
 import seedu.tabs.commons.core.LogsCenter;
+import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Date;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialId;
@@ -109,12 +112,17 @@ public class ModelManager implements Model {
     @Override
     public void copyTutorial(Tutorial sourceTutorial, TutorialId newTutorialId, Date newDate) {
         requireAllNonNull(sourceTutorial, newTutorialId, newDate);
-        // Create the copied tutorial with source's module code and students, but new ID and date
+        // Create deep copies of students to avoid sharing mutable state (e.g., attendance)
+        Set<Student> copiedStudents = sourceTutorial.getStudents().stream()
+                .map(student -> new Student(student.studentId))
+                .collect(Collectors.toSet());
+
+        // Create the copied tutorial with source's module code and deep-copied students, but new ID and date
         Tutorial copiedTutorial = new Tutorial(
                 newTutorialId,
                 sourceTutorial.getModuleCode(),
                 newDate,
-                sourceTutorial.getStudents()
+                copiedStudents
         );
         tabs.addTutorial(copiedTutorial);
         updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
