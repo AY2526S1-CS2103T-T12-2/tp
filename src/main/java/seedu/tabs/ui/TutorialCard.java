@@ -51,6 +51,10 @@ public class TutorialCard extends UiPart<Region> {
         date.setText(aTutorial.getDate().value);
         aTutorial.getStudents().stream()
                 .sorted(Comparator.comparing(student -> student.studentId))
-                .forEach(student -> students.getChildren().add(new Label(student.studentId)));
+                .forEach(student -> {
+                    Label studentLabel = new Label(student.studentId);
+                    studentLabel.setStyle(student.getAttendance() ? "-fx-background-color: green" : null);
+                    students.getChildren().add(studentLabel);
+                });
     }
 }

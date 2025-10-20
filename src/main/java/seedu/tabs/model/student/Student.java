@@ -16,23 +16,36 @@ public class Student {
     public static final String VALIDATION_REGEX = "A\\d{7}[A-Z]";
 
     public final String studentId;
+    private boolean isPresent;
 
     /**
      * Constructs a {@code Student}.
      *
-     * @param studentId A valid student id.
+     * @param studentId A valid student ID.
      */
     public Student(String studentId) {
         requireNonNull(studentId);
         checkArgument(isValidStudentId(studentId), MESSAGE_CONSTRAINTS);
         this.studentId = studentId;
+        this.isPresent = false;
     }
 
     /**
-     * Returns true if a given string is a valid student id.
+     * Returns true if a given string is a valid student ID.
      */
     public static boolean isValidStudentId(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Toggles the attendance state for the {@code Student}.
+     */
+    public void toggleAttendance() {
+        this.isPresent = !isPresent;
+    }
+
+    public boolean getAttendance() {
+        return this.isPresent;
     }
 
     @Override
