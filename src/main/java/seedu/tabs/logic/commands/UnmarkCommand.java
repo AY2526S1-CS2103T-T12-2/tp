@@ -6,6 +6,7 @@ import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -34,8 +35,13 @@ public class UnmarkCommand extends Command {
     public static final String MESSAGE_SUCCESS = "The following student(s):\n"
             + "\t%1$s\n"
             + "were unmarked in tutorial %2$s.";
+    public static final String MESSAGE_NOT_EXISTS = "The following student(s):\n"
+            + "\t%1$s\n"
+            + "are not in tutorial %2$s.";
 
     private final Set<Student> newStudentsList;
+    private final Set<Student> affectedStudentsList;
+    private final Set<Student> nonExistentStudents;
     private final TutorialIdMatchesKeywordPredicate predicate;
 
     /**
@@ -46,6 +52,8 @@ public class UnmarkCommand extends Command {
         requireAllNonNull(newStudentsList, predicate);
 
         this.newStudentsList = newStudentsList;
+        this.affectedStudentsList = new HashSet<>();
+        this.nonExistentStudents = newStudentsList;
         this.predicate = predicate;
     }
 
@@ -60,25 +68,37 @@ public class UnmarkCommand extends Command {
             throw new CommandException(Messages.MESSAGE_TUTORIAL_ID_NOT_FOUND);
         }
 
-        Tutorial updatedTutorial = markStudents(tutorial, newStudentsList);
+        Tutorial updatedTutorial = unmarkStudents(tutorial, newStudentsList);
         model.setTutorial(tutorial, updatedTutorial);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
 
-        String resultMessage = String.format(MESSAGE_SUCCESS, newStudentsList, updatedTutorial.getTutorialId());
+        String resultMessage = affectedStudentsList.isEmpty()
+                ? "No students were unmarked."
+                : String.format(MESSAGE_SUCCESS, affectedStudentsList, updatedTutorial.getTutorialId());
+
+        if (!nonExistentStudents.isEmpty()) {
+            resultMessage += "\n" + String.format(MESSAGE_NOT_EXISTS, nonExistentStudents,
+                    updatedTutorial.getTutorialId());
+        }
+
         return new CommandResult(resultMessage);
     }
 
     /**
      * Creates and returns a {@code Tutorial} with the newly unmarked students of {@code tutorialToEdit}
      */
-    private Tutorial markStudents(Tutorial tutorial,
-                                  Set<Student> studentsToUnmark) throws CommandException {
+    private Tutorial unmarkStudents(Tutorial tutorial,
+                                    Set<Student> studentsToUnmark) {
         assert tutorial != null;
 
         Set<Student> currStudents = tutorial.getStudents();
         for (Student student : currStudents) {
-            if (studentsToUnmark.contains(student) && student.getAttendance()) {
-                student.toggleAttendance();
+            if (studentsToUnmark.contains(student)) {
+                if (student.getAttendance()) {
+                    student.toggleAttendance();
+                }
+                affectedStudentsList.add(student);
+                nonExistentStudents.remove(student);
             }
         }
 
