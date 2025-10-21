@@ -6,13 +6,8 @@ import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.sun.source.tree.UsesTree;
 
 import seedu.tabs.logic.Messages;
 import seedu.tabs.logic.commands.exceptions.CommandException;
@@ -44,8 +39,8 @@ public class MarkCommand extends Command {
     private final TutorialIdMatchesKeywordPredicate predicate;
 
     /**
-     * @param newStudentsList   of the student to mark as present
-     * @param predicate         to filter the tutorial list by the provided tutorial_id
+     * @param newStudentsList of the student to mark as present
+     * @param predicate       to filter the tutorial list by the provided tutorial_id
      */
     public MarkCommand(Set<Student> newStudentsList, TutorialIdMatchesKeywordPredicate predicate) {
         requireAllNonNull(newStudentsList, predicate);
@@ -77,7 +72,7 @@ public class MarkCommand extends Command {
      * Creates and returns a {@code Tutorial} with the newly marked students of {@code tutorialToEdit}
      */
     private Tutorial markStudents(Tutorial tutorial,
-                                          Set<Student> studentsToMark) throws CommandException {
+                                  Set<Student> studentsToMark) throws CommandException {
         assert tutorial != null;
 
         Set<Student> currStudents = tutorial.getStudents();
@@ -87,11 +82,11 @@ public class MarkCommand extends Command {
             }
         }
 
-            return new Tutorial(
-                    tutorial.getTutorialId(),
-                    tutorial.getModuleCode(),
-                    tutorial.getDate(),
-                    currStudents);
+        return new Tutorial(
+                tutorial.getTutorialId(),
+                tutorial.getModuleCode(),
+                tutorial.getDate(),
+                currStudents);
     }
 
 

@@ -31,6 +31,17 @@ public class Student {
     }
 
     /**
+     * Constructs a {@code Student}.
+     *
+     * @param studentId A valid student ID
+     * @param isPresent indicates if the student is present
+     */
+    public Student(String studentId, boolean isPresent) {
+        this(studentId);
+        this.isPresent = isPresent;
+    }
+
+    /**
      * Returns true if a given string is a valid student ID.
      */
     public static boolean isValidStudentId(String test) {
