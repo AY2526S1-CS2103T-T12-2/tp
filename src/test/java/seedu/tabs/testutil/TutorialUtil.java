@@ -43,7 +43,7 @@ public class TutorialUtil {
      */
     public static String getEditTutorialDescriptorDetails(EditTutorialDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_TUTORIAL_ID).append(name.id).append(" "));
+        descriptor.getName().ifPresent(tutorialId -> sb.append(PREFIX_TUTORIAL_ID).append(tutorialId.id).append(" "));
         descriptor.getModuleCode().ifPresent(moduleCode -> sb.append(PREFIX_MODULE_CODE)
                 .append(moduleCode.value).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));

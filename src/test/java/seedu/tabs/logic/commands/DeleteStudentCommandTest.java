@@ -40,14 +40,14 @@ public class DeleteStudentCommandTest {
     private static final Student BOB = new Student("A0000002Z");
 
     private static final Tutorial T01 = new TutorialBuilder()
-            .withName("T01")
+            .withId("T01")
             .withModuleCode("CS2103T")
             .withDate("2025-10-14")
             .withStudents(ALICE.studentId, BOB.studentId)
             .build();
 
     private static final Tutorial T02_EMPTY = new TutorialBuilder()
-            .withName("T02")
+            .withId("T02")
             .withModuleCode("CS2103T")
             .withDate("2025-10-14")
             .withStudents() // Initializes an empty set

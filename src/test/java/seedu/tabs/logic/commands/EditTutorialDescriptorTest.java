@@ -37,7 +37,7 @@ public class EditTutorialDescriptorTest {
 
         // different name -> returns false
         EditTutorialDescriptor editedAmy = new EditTutorialDescriptorBuilder(DESC_C123)
-                .withName(VALID_TUTORIAL_T456).build();
+                .withId(VALID_TUTORIAL_T456).build();
         assertFalse(DESC_C123.equals(editedAmy));
 
         // different moduleCode -> returns false

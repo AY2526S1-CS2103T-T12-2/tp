@@ -47,19 +47,19 @@ public class TutorialIdContainsKeywordsPredicateTest {
         // One keyword
         TutorialIdContainsKeywordsPredicate predicate =
                 new TutorialIdContainsKeywordsPredicate(Collections.singletonList("C123"));
-        assertTrue(predicate.test(new TutorialBuilder().withName("C123").build()));
+        assertTrue(predicate.test(new TutorialBuilder().withId("C123").build()));
 
         // Multiple keywords
         predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("C123", "T456"));
-        assertTrue(predicate.test(new TutorialBuilder().withName("C123").build()));
+        assertTrue(predicate.test(new TutorialBuilder().withId("C123").build()));
 
         // Only one matching keyword
         predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("T456", "CT789"));
-        assertTrue(predicate.test(new TutorialBuilder().withName("CT789").build()));
+        assertTrue(predicate.test(new TutorialBuilder().withId("CT789").build()));
 
         // Mixed-case keywords
         predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("c123", "t456"));
-        assertTrue(predicate.test(new TutorialBuilder().withName("C123").build()));
+        assertTrue(predicate.test(new TutorialBuilder().withId("C123").build()));
     }
 
     @Test
@@ -67,15 +67,15 @@ public class TutorialIdContainsKeywordsPredicateTest {
         // Zero keywords
         TutorialIdContainsKeywordsPredicate predicate =
                 new TutorialIdContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new TutorialBuilder().withName("C123").build()));
+        assertFalse(predicate.test(new TutorialBuilder().withId("C123").build()));
 
         // Non-matching keyword
         predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("T999"));
-        assertFalse(predicate.test(new TutorialBuilder().withName("C123").build()));
+        assertFalse(predicate.test(new TutorialBuilder().withId("C123").build()));
 
         // Keywords match moduleCode and date but does not match name
         predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("CS2103T", "2025-01-15", "Main", "Street"));
-        assertFalse(predicate.test(new TutorialBuilder().withName("C123").withModuleCode("CS2103T")
+        assertFalse(predicate.test(new TutorialBuilder().withId("C123").withModuleCode("CS2103T")
                 .withDate("2025-01-15").build()));
     }
 

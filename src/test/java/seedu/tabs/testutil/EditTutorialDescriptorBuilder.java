@@ -40,8 +40,8 @@ public class EditTutorialDescriptorBuilder {
     /**
      * Sets the {@code Name} of the {@code EditTutorialDescriptor} that we are building.
      */
-    public EditTutorialDescriptorBuilder withName(String name) {
-        descriptor.setName(new TutorialId(name));
+    public EditTutorialDescriptorBuilder withId(String id) {
+        descriptor.setName(new TutorialId(id));
         return this;
     }
 

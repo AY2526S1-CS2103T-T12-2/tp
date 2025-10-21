@@ -47,8 +47,8 @@ public class TutorialBuilder {
     /**
      * Sets the {@code Name} of the {@code Tutorial} that we are building.
      */
-    public TutorialBuilder withName(String name) {
-        this.tutorialId = new TutorialId(name);
+    public TutorialBuilder withId(String id) {
+        this.tutorialId = new TutorialId(id);
         return this;
     }
 

@@ -40,16 +40,16 @@ public class TutorialTest {
         assertTrue(TUTORIAL_CS2103T_C101.isSameTutorial(editedAlice));
 
         // different name, all other attributes same -> returns false
-        editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withName(VALID_TUTORIAL_T456).build();
+        editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withId(VALID_TUTORIAL_T456).build();
         assertFalse(TUTORIAL_CS2103T_C101.isSameTutorial(editedAlice));
 
         // name differs in case, all other attributes same -> returns true (case insensitive)
         Tutorial editedBob = new TutorialBuilder(TUTORIAL_TEST_T456)
-                .withName(VALID_TUTORIAL_T456.toLowerCase()).build();
+                .withId(VALID_TUTORIAL_T456.toLowerCase()).build();
         assertTrue(TUTORIAL_TEST_T456.isSameTutorial(editedBob));
 
         // completely different name -> returns false
-        editedBob = new TutorialBuilder(TUTORIAL_TEST_T456).withName("C999").build();
+        editedBob = new TutorialBuilder(TUTORIAL_TEST_T456).withId("C999").build();
         assertFalse(TUTORIAL_TEST_T456.isSameTutorial(editedBob));
     }
 
@@ -72,7 +72,7 @@ public class TutorialTest {
         assertFalse(TUTORIAL_CS2103T_C101.equals(TUTORIAL_TEST_T456));
 
         // different name -> returns false
-        Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withName(VALID_TUTORIAL_T456).build();
+        Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withId(VALID_TUTORIAL_T456).build();
         assertFalse(TUTORIAL_CS2103T_C101.equals(editedAlice));
 
         // different moduleCode -> returns false

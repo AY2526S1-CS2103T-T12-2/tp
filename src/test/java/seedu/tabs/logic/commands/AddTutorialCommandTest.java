@@ -68,8 +68,8 @@ public class AddTutorialCommandTest {
 
     @Test
     public void equals() {
-        Tutorial tutC101 = new TutorialBuilder().withName("C101").build();
-        Tutorial tutT202 = new TutorialBuilder().withName("T202").build();
+        Tutorial tutC101 = new TutorialBuilder().withId("C101").build();
+        Tutorial tutT202 = new TutorialBuilder().withId("T202").build();
         AddTutorialCommand addTutC101Command = new AddTutorialCommand(tutC101);
         AddTutorialCommand addTutT202Command = new AddTutorialCommand(tutT202);
 

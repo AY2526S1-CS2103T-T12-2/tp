@@ -106,7 +106,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + MODULE_CODE_DESC_MA1521 + STUDENT_DESC_A
                 + DATE_DESC_C123 + TUTORIAL_DESC_C123 + STUDENT_DESC_B;
 
-        EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder().withName(VALID_TUTORIAL_C123)
+        EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder().withId(VALID_TUTORIAL_C123)
                 .withModuleCode(VALID_MODULE_CODE_MA1521).withDate(VALID_DATE_C123)
                 .withStudents(VALID_STUDENT_A, VALID_STUDENT_B).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -132,7 +132,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TUTORIAL_DESC_C123;
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder()
-                .withName(VALID_TUTORIAL_C123).build();
+                .withId(VALID_TUTORIAL_C123).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
