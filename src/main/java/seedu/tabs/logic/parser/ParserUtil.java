@@ -41,9 +41,9 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static TutorialId parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
+    public static TutorialId parseTutorialId(String tutorialId) throws ParseException {
+        requireNonNull(tutorialId);
+        String trimmedName = tutorialId.trim();
         if (!TutorialId.isValidTutorialId(trimmedName)) {
             throw new ParseException(TutorialId.MESSAGE_CONSTRAINTS);
         }

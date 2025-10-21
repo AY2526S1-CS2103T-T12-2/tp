@@ -51,7 +51,7 @@ public class ListStudentsCommandParserTest {
         // Assuming TutorialId has validation constraints
         String expectedMessage = TutorialId.MESSAGE_CONSTRAINTS;
 
-        // Invalid tutorial ID (e.g., empty string which should be caught by parseName)
+        // Invalid tutorial ID (e.g., empty string which should be caught by parseTutorialId)
         assertParseFailure(parser, " " + PREFIX_TUTORIAL_ID + " ", expectedMessage);
     }
 

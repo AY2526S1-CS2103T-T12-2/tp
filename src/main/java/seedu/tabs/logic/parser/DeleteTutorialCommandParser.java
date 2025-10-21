@@ -32,7 +32,7 @@ public class DeleteTutorialCommandParser implements Parser<DeleteTutorialCommand
 
         TutorialId tutorialId;
         try {
-            tutorialId = ParserUtil.parseName(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
+            tutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
         } catch (NoSuchElementException | ParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteTutorialCommand.MESSAGE_USAGE));
