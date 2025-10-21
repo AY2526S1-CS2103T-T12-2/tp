@@ -83,7 +83,7 @@ public class Student {
      * Format state as text for viewing.
      */
     public String toString() {
-        return '[' + studentId + ']';
+        return studentId;
     }
 
 }
