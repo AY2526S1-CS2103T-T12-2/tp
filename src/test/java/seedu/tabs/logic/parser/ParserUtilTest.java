@@ -25,7 +25,7 @@ public class ParserUtilTest {
     private static final String INVALID_DATE = "example.com";
     private static final String INVALID_STUDENT = "A123";
 
-    private static final String VALID_NAME = "C123";
+    private static final String VALID_TUTORIAL = "C123";
     private static final String VALID_MODULE_CODE = "CS2103T";
     private static final String VALID_DATE = "2025-01-15";
     private static final String VALID_STUDENT_1 = "A1231231Y";
@@ -65,14 +65,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseTutorialId_validValueWithoutWhitespace_returnsTutorialId() throws Exception {
-        TutorialId expectedTutorialId = new TutorialId(VALID_NAME);
-        assertEquals(expectedTutorialId, ParserUtil.parseTutorialId(VALID_NAME));
+        TutorialId expectedTutorialId = new TutorialId(VALID_TUTORIAL);
+        assertEquals(expectedTutorialId, ParserUtil.parseTutorialId(VALID_TUTORIAL));
     }
 
     @Test
     public void parseTutorialId_validValueWithWhitespace_returnsTrimmedTutorialId() throws Exception {
-        String idWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        TutorialId expectedTutorialId = new TutorialId(VALID_NAME);
+        String idWithWhitespace = WHITESPACE + VALID_TUTORIAL + WHITESPACE;
+        TutorialId expectedTutorialId = new TutorialId(VALID_TUTORIAL);
         assertEquals(expectedTutorialId, ParserUtil.parseTutorialId(idWithWhitespace));
     }
 

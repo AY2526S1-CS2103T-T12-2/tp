@@ -36,7 +36,7 @@ public class JsonAdaptedTutorialTest {
     }
 
     @Test
-    public void toModelType_invalidName_throwsIllegalValueException() {
+    public void toModelType_invalidTutorialId_throwsIllegalValueException() {
         JsonAdaptedTutorial tutorial =
                 new JsonAdaptedTutorial(INVALID_TUTORIAL_ID, VALID_MODULE_CODE, VALID_DATE,
                         VALID_STUDENTS);
@@ -45,7 +45,7 @@ public class JsonAdaptedTutorialTest {
     }
 
     @Test
-    public void toModelType_nullName_throwsIllegalValueException() {
+    public void toModelType_nullTutorialId_throwsIllegalValueException() {
         JsonAdaptedTutorial tutorial = new JsonAdaptedTutorial(null, VALID_MODULE_CODE, VALID_DATE,
                 VALID_STUDENTS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, TutorialId.class.getSimpleName());

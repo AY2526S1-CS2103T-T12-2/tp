@@ -15,8 +15,8 @@ import seedu.tabs.model.util.SampleDataUtil;
  */
 public class TutorialBuilder {
 
-    public static final String DEFAULT_NAME = "C999";
-    public static final String DEFAULT_PHONE = "CS9999";
+    public static final String DEFAULT_TUTORIAL_ID = "C999";
+    public static final String DEFAULT_MODULE_CODE = "CS9999";
     public static final String DEFAULT_DATE = "2025-12-31";
 
     private TutorialId tutorialId;
@@ -28,8 +28,8 @@ public class TutorialBuilder {
      * Creates a {@code TutorialBuilder} with the default details.
      */
     public TutorialBuilder() {
-        tutorialId = new TutorialId(DEFAULT_NAME);
-        moduleCode = new ModuleCode(DEFAULT_PHONE);
+        tutorialId = new TutorialId(DEFAULT_TUTORIAL_ID);
+        moduleCode = new ModuleCode(DEFAULT_MODULE_CODE);
         date = new Date(DEFAULT_DATE);
         students = new HashSet<>();
     }

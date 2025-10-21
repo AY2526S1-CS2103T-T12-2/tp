@@ -14,9 +14,9 @@ public class TutorialIdTest {
     }
 
     @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
-        String invalidName = "InvalidFormat";
-        assertThrows(IllegalArgumentException.class, () -> new TutorialId(invalidName));
+    public void constructor_invalidId_throwsIllegalArgumentException() {
+        String invalidId = "InvalidFormat";
+        assertThrows(IllegalArgumentException.class, () -> new TutorialId(invalidId));
     }
 
     @Test
@@ -35,7 +35,7 @@ public class TutorialIdTest {
         assertFalse(TutorialId.isValidTutorialId("C")); // no numbers
         assertFalse(TutorialId.isValidTutorialId("T")); // no numbers
 
-        // valid name - follows [CT]\d+ pattern
+        // valid id - follows [CT]\d+ pattern
         assertTrue(TutorialId.isValidTutorialId("C123")); // C prefix with numbers
         assertTrue(TutorialId.isValidTutorialId("T456")); // T prefix with numbers
         assertTrue(TutorialId.isValidTutorialId("CT789")); // CT prefix with numbers

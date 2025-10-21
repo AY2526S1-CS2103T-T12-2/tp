@@ -14,7 +14,7 @@ import seedu.tabs.testutil.TutorialBuilder;
 
 public class ListStudentsCommandParserTest {
 
-    private static final String VALID_TUTORIAL_ID_STRING = TutorialBuilder.DEFAULT_NAME;
+    private static final String VALID_TUTORIAL_ID_STRING = TutorialBuilder.DEFAULT_TUTORIAL_ID;
     private static final TutorialId VALID_TUTORIAL_ID = new TutorialBuilder().build().getTutorialId();
 
     private ListStudentsCommandParser parser = new ListStudentsCommandParser();

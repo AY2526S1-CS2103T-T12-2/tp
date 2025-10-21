@@ -39,15 +39,15 @@ public class ParserUtil {
      * Parses a {@code String tutorialId} into a {@code TutorialId}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code TutorialId} is invalid.
      */
     public static TutorialId parseTutorialId(String tutorialId) throws ParseException {
         requireNonNull(tutorialId);
-        String trimmedName = tutorialId.trim();
-        if (!TutorialId.isValidTutorialId(trimmedName)) {
+        String trimmedId = tutorialId.trim();
+        if (!TutorialId.isValidTutorialId(trimmedId)) {
             throw new ParseException(TutorialId.MESSAGE_CONSTRAINTS);
         }
-        return new TutorialId(trimmedName);
+        return new TutorialId(trimmedId);
     }
 
     /**

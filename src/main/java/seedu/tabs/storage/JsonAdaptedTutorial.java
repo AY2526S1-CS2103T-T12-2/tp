@@ -32,10 +32,10 @@ class JsonAdaptedTutorial {
      * Constructs a {@code JsonAdaptedTutorial} with the given tutorial details.
      */
     @JsonCreator
-    public JsonAdaptedTutorial(@JsonProperty("name") String name, @JsonProperty("moduleCode") String moduleCode,
+    public JsonAdaptedTutorial(@JsonProperty("id") String id, @JsonProperty("moduleCode") String moduleCode,
             @JsonProperty("date") String date,
             @JsonProperty("students") List<JsonAdaptedStudent> students) {
-        this.tutorialId = name;
+        this.tutorialId = id;
         this.moduleCode = moduleCode;
         this.date = date;
         if (students != null) {

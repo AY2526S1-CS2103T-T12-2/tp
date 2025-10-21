@@ -128,7 +128,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_oneFieldSpecified_success() {
-        // name
+        // id
         Index targetIndex = INDEX_THIRD_PERSON;
         String userInput = targetIndex.getOneBased() + TUTORIAL_DESC_C123;
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder()
