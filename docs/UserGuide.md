@@ -105,6 +105,25 @@ Examples:
 * `add_tutorial t/C456 m/CS2101 d/2025-01-01`
 * `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y id/A3213213Y`
 
+### Copying a tutorial: `copy_tutorial`
+
+Creates a copy of an existing tutorial with a new tutorial ID and date.
+
+Format: `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE`
+
+* Copies an existing tutorial identified by `EXISTING_TUTORIAL_ID` and creates a new tutorial with `NEW_TUTORIAL_ID` and the specified `DATE`.
+* The new tutorial ID must match the format `(C|T)` followed by digits (e.g., T1, C123).
+* The new tutorial ID must not already exist in TAbs.
+* The existing tutorial ID must exist in TAbs.
+* All students from the existing tutorial will be copied to the new tutorial.
+* The module code will be copied from the existing tutorial.
+* The date should be in YYYY-MM-DD format.
+
+Examples:
+
+* `copy_tutorial t/C2 from/C1 d/2025-04-10` - Copies tutorial C1 to create a new tutorial C2 with date 2025-04-10.
+* `copy_tutorial t/T202 from/T201 d/2025-05-15` - Copies tutorial T201 to create a new tutorial T202 with date 2025-05-15.
+
 ### Listing all tutorials : `list`
 
 Shows a list of all tutorials in TAbs.
@@ -319,7 +338,8 @@ file that contains the data of your previous TAbs home folder.
 
 | Action                          | Format, Examples                                                                                                                                                     |
 |---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Tutorial**                | `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…​` <br> e.g., `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y`                                      |
+| **Add Tutorial**                | `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…​` <br> e.g., `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y`                                |
+| **Copy tutorial**               | `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE` <br> e.g., `copy_tutorial t/C2 from/C1 d/2025-04-10`                                             |
 | **Clear**                       | `clear`                                                                                                                                                              |
 | **Add student(s)**    | `add_student id/STUDENT_ID... t/TUTORIAL_ID` <br> e.g., `add_student id/A1231231Y id/A3213213Y t/T2` <br> Adds one or more students to the specified tutorial.       |
 | **List students in a tutorial** | `list_students t/TUTORIAL_ID`<br> e.g., `list_students t/T1`                                                                                                         |
