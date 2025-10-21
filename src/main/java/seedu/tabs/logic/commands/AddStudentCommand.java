@@ -18,7 +18,7 @@ import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
 /**
- * Adds a student to a tutorial
+ * Adds students to a tutorial
  */
 public class AddStudentCommand extends Command {
     public static final String COMMAND_WORD = "add_student";
