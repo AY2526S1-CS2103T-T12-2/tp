@@ -135,22 +135,21 @@ Examples:
 
 ### Locating tutorials by name: `find`
 
-Finds tutorials whose names contain any of the given keywords.
+Finds tutorials whose `MODULE_CODE` or `TUTORIAL_ID` contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* The search is case-insensitive. e.g `t01` will match `T01`
+* Only full words will be matched e.g. `CS2103` will not match `CS2103T`
 * Tutorials matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `CS2103T CS2101` will return tutorials with `MODULE_CODE:` `CS2103T`, `CS2101`
+       `T01 C200` will return tutorials with `TUTORIAL_ID:` `T01`, `C200`
 
 Examples:
 
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find T01 C200` will return tutorials with `TUTORIAL_ID:` `T01`, `C200`
+* `find CS2103T` returns all tutorials with `MODULE_CODE:` `CS2103T`
+  ![result for 'find CS2103T'](images/findCS2103T.png)
 
 ### Listing all the students in a tutorial: `list_students`
 
@@ -159,13 +158,13 @@ Display a list of all the students enrolled in a specific tutorial on TAbs.
 Format: `list_students t/TUTORIAL_ID`
 
 * Lists all the students in a tutorial with the specified `TUTORIAL_ID`.
-* It shows a numbered list of all the student IDs of the students in that tutorial e.g., (1. A1234567X)
-* The tutorial ID refers to the title of the tutorial as displayed in TAbs (beginning with `T`).
-* The input must match the tutorial's ID exactly (case-sensitive).
+* It shows a numbered list of all the `STUDENT_ID` of the students in that tutorial e.g., (1. A1234567X)
+* The `TUTORIAL_ID` refers to the title of the tutorial as displayed in TAbs (beginning with `T`).
+* The input must match the `TUTORIAL_ID` exactly.
 
 Examples:
 
-* `list_students t/T2` lists all the student in the tutorial with ID `T2` in TAbs.
+* `list_students t/T2` lists all the student in the tutorial with `TUTORIAL_ID:` `T2` in TAbs.
 
 ### Deleting a tutorial: `delete_tutorial`
 
@@ -326,6 +325,6 @@ file that contains the data of your previous TAbs home folder.
 | **List students in a tutorial** | `list_students t/TUTORIAL_ID`<br> e.g., `list_students t/T1`                                                                                                         |
 | **Delete a tutorial**           | `delete_tutorial t/TUTORIAL_ID`<br> e.g., `delete_tutorial t/T1`                                                                                                     |
 | **Edit**                        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/DATE] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**                        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
+| **Find**                        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS2103T T01`                                                                                                          |
 | **List**                        | `list`                                                                                                                                                               |
 | **Help**                        | `help`                                                                                                                                                               |
