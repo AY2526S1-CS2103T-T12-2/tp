@@ -279,12 +279,15 @@ Adds students `A1231231Y`, `A3213213Y`, and `A2223334B` to tutorial `T2`.
 
 Deletes the specified student from the specified tutorial from TAbs.
 
-Format: `delete_student id/STUDENT_ID t/TUTORIAL_ID`
+Format: `delete_student t/TUTORIAL_ID id/STUDENT…`
 
-* Deletes the student with the specified `STUDENT_ID`
+* Delete one or more students, identified by their `STUDENT_ID`, from the tutorial identified by
+  `TUTORIAL_ID`.
   from the tutorial with the specified `TUTORIAL_ID`.
-* The student ID must follow the format 'AXXXXXXX&', where the starting letter has to be 'A',
-  the 'X's represent any 7 single digit numbers and the '&' represents any capital letter.
+* Each student ID must follow the format `AXXXXXXX&`, where:
+    * The first letter (`A`) is uppercase,
+    * Followed by 7 digits (`XXXXXXX`),
+    * Ending with an uppercase letter (`&`).
 * The tutorial ID refers to the title of the tutorial as displayed in TAbs (beginning with `T`).
 * The input must match the tutorial's ID exactly (case-sensitive).
 
@@ -292,6 +295,28 @@ Examples:
 
 * `delete_student id/A1231231Y t/T2` deletes the student with ID A1231231Y from the tutorial with ID
   `T2`.
+
+### Marking students in a tutorial as present: `mark`
+
+Marks specified students, in a tutorial in TAbs as present.
+
+Format: `mark t/TUTORIAL_ID id/STUDENT…`
+
+* Marks one or more students, identified by their `STUDENT_ID`, in the tutorial identified by
+  `TUTORIAL_ID` as present.
+* You can specify multiple student IDs in a single command, separated by spaces.
+* Each student ID must follow the format `AXXXXXXX&`, where:
+    * The first letter (`A`) is uppercase,
+    * Followed by 7 digits (`XXXXXXX`),
+    * Ending with an uppercase letter (`&`).
+* The tutorial ID refers to the title of the tutorial as displayed in TAbs (begins with `T`).
+* The input must match the tutorial’s ID exactly (case-sensitive).
+
+Examples:
+
+* `mark t/C456 id/A1231231Y` marks student A1231231Y in tutorial C456 as present.
+* `mark t/T123 id/A1231231Y id/A3213213Y`marks student A1231231Y and student A3213213Y
+  in tutorial T123 as present.
 
 ### Unmarking students in a tutorial: `unmark`
 
