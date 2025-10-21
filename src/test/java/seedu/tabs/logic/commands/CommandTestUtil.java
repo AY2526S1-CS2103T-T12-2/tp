@@ -10,7 +10,6 @@ import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 import static seedu.tabs.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,7 +19,6 @@ import seedu.tabs.model.TAbs;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.tutorial.TutorialIdContainsKeywordsPredicate;
-import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 import seedu.tabs.testutil.EditTutorialDescriptorBuilder;
 
 /**
