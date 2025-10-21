@@ -8,6 +8,7 @@ import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.tabs.logic.commands.CommandTestUtil.showTutorialWithTutorialId;
 import static seedu.tabs.testutil.TypicalPredicates.PREDICATE_KEYWORD_C101;
 import static seedu.tabs.testutil.TypicalPredicates.PREDICATE_KEYWORD_C102;
+import static seedu.tabs.testutil.TypicalPredicates.PREDICATE_KEYWORD_C303;
 import static seedu.tabs.testutil.TypicalTutorials.getTypicalTAbs;
 
 import org.junit.jupiter.api.Test;
@@ -29,8 +30,8 @@ public class DeleteTutorialCommandTest {
 
     @Test
     public void execute_validKeywordUnfilteredList_success() {
-        Tutorial tutorialToDelete = model.getFilteredTutorialList().get(0);
-        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(PREDICATE_KEYWORD_C101);
+        Tutorial tutorialToDelete = TypicalTutorials.TUTORIAL_CS1010_C303;
+        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(PREDICATE_KEYWORD_C303);
 
         String expectedMessage = String.format(DeleteTutorialCommand.MESSAGE_DELETE_TUTORIAL_SUCCESS,
                 Messages.format(tutorialToDelete));
@@ -49,10 +50,10 @@ public class DeleteTutorialCommandTest {
 
     @Test
     public void execute_validKeywordFilteredList_success() {
-        showTutorialWithTutorialId(model, TypicalTutorials.TUTORIAL_CS2103T_C101.getTutorialId());
+        Tutorial tutorialToDelete = TypicalTutorials.TUTORIAL_CS1010_C303;
+        showTutorialWithTutorialId(model, tutorialToDelete.getTutorialId());
 
-        Tutorial tutorialToDelete = model.getFilteredTutorialList().get(0);
-        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(PREDICATE_KEYWORD_C101);
+        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(PREDICATE_KEYWORD_C303);
 
         String expectedMessage = String.format(DeleteTutorialCommand.MESSAGE_DELETE_TUTORIAL_SUCCESS,
                 Messages.format(tutorialToDelete));
