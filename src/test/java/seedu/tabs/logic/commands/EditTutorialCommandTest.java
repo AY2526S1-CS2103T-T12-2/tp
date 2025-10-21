@@ -7,7 +7,6 @@ import static seedu.tabs.logic.commands.CommandTestUtil.VALID_MODULE_CODE_MA1521
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_T456;
 import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.tabs.logic.commands.CommandTestUtil.showTutorialAtIndex;
 import static seedu.tabs.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.tabs.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.tabs.testutil.TypicalTutorials.getTypicalTAbs;
@@ -102,7 +101,6 @@ public class EditTutorialCommandTest {
     @Test
     public void execute_filteredList_success() {
         // filter, then edit the visible tutorial using its ID
-        showTutorialAtIndex(model, INDEX_FIRST_PERSON);
         Tutorial tutorialInFilteredList = model.getFilteredTutorialList().get(0);
 
         Tutorial editedTutorial = new TutorialBuilder(tutorialInFilteredList)

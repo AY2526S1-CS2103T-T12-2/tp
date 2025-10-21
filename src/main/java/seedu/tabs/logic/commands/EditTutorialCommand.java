@@ -56,7 +56,7 @@ public class EditTutorialCommand extends Command {
     private final EditTutorialDescriptor editTutorialDescriptor;
 
     /**
-     * @param predicate              to filter the tutorial list by the provided tutorial_id
+     * @param predicate to filter the tutorial list by the provided tutorial_id
      * @param editTutorialDescriptor details to edit the tutorial with
      */
     public EditTutorialCommand(TutorialIdMatchesKeywordPredicate predicate,

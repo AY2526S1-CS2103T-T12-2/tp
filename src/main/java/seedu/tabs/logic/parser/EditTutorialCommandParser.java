@@ -15,13 +15,13 @@ import seedu.tabs.logic.parser.exceptions.ParseException;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditTutorialCommand object
  */
 public class EditTutorialCommandParser implements Parser<EditTutorialCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditTutorialCommand
+     * and returns an EditTutorialCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public EditTutorialCommand parse(String args) throws ParseException {
