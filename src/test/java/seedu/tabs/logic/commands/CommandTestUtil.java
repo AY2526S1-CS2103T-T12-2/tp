@@ -19,6 +19,7 @@ import seedu.tabs.model.TAbs;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.tutorial.TutorialIdContainsKeywordsPredicate;
+import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 import seedu.tabs.testutil.EditTutorialDescriptorBuilder;
 
 /**
@@ -121,11 +122,17 @@ public class CommandTestUtil {
      * {@code model}'s TAbs.
      */
     public static void showTutorialWithTutorialId(Model model, TutorialId tutorialId) {
-//        assertTrue(targetIndex.getZeroBased() < model.getFilteredTutorialList().size());
+        assertTrue(model.hasTutorialId(tutorialId));
 
-        Tutorial aTutorial = model.getFilteredTutorialList().get(0);
-        final String[] splitName = aTutorial.getTutorialId().fullName.split("\\s+");
-        model.updateFilteredTutorialList(new TutorialIdContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        TutorialIdMatchesKeywordPredicate predicate = new TutorialIdMatchesKeywordPredicate(tutorialId.toString());
+        Tutorial aTutorial = model.getFilteredTutorialList().stream().filter(predicate).findFirst().orElse(null);
+
+        try {
+            final String[] splitName = aTutorial.getTutorialId().fullName.split("\\s+");
+            model.updateFilteredTutorialList(new TutorialIdContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        } catch (NullPointerException e) {
+            throw
+        }
 
         assertEquals(1, model.getFilteredTutorialList().size());
     }

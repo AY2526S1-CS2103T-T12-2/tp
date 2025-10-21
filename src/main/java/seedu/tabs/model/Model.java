@@ -60,6 +60,11 @@ public interface Model {
     boolean hasTutorial(Tutorial aTutorial);
 
     /**
+     * Returns true if a tutorial with an ID of {@code aTutorialId} exists in TAbs.
+     */
+    boolean hasTutorialId(TutorialId aTutorialId);
+
+    /**
      * Deletes the given tutorial.
      * The tutorial must exist in the TAbs.
      */
