@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import seedu.tabs.commons.core.index.Index;
 import seedu.tabs.logic.commands.exceptions.CommandException;
 import seedu.tabs.model.Model;
 import seedu.tabs.model.TAbs;
@@ -121,7 +120,7 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the tutorial at the given {@code targetIndex} in the
      * {@code model}'s TAbs.
      */
-    public static void showTutorialAtIndex(Model model, TutorialId tutorialId) {
+    public static void showTutorialWithTutorialId(Model model, TutorialId tutorialId) {
 //        assertTrue(targetIndex.getZeroBased() < model.getFilteredTutorialList().size());
 
         Tutorial aTutorial = model.getFilteredTutorialList().get(0);
