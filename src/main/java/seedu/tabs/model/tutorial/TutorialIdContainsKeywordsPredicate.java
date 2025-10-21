@@ -7,7 +7,7 @@ import seedu.tabs.commons.util.StringUtil;
 import seedu.tabs.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Tutorial}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Tutorial}'s {@code id} matches any of the keywords given.
  */
 public class TutorialIdContainsKeywordsPredicate implements Predicate<Tutorial> {
     private final List<String> keywords;
@@ -25,7 +25,7 @@ public class TutorialIdContainsKeywordsPredicate implements Predicate<Tutorial> 
         boolean matchesTutorialId = keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         aTutorial.getTutorialId().id, keyword));
-                return matchesTutorialId || matchesModuleCode;
+        return matchesTutorialId || matchesModuleCode;
     }
 
     @Override

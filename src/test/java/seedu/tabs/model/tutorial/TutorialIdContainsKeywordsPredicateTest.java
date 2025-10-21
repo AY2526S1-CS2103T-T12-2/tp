@@ -43,39 +43,39 @@ public class TutorialIdContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameContainsKeywords_returnsTrue() {
-        // One keyword matches Tutorial ID/Name
+    public void test_idContainsKeywords_returnsTrue() {
+        // One keyword matches Tutorial ID
         TutorialIdContainsKeywordsPredicate predicate =
                 new TutorialIdContainsKeywordsPredicate(Collections.singletonList("T09"));
-        assertTrue(predicate.test(new TutorialBuilder().withName("T09").withModuleCode("CS2103T").build()));
+        assertTrue(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T").build()));
 
         // One keyword matches Module Code
         predicate = new TutorialIdContainsKeywordsPredicate(Collections.singletonList("CS2103T"));
-        assertTrue(predicate.test(new TutorialBuilder().withName("T09").withModuleCode("CS2103T").build()));
+        assertTrue(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T").build()));
 
         // Multiple keywords, only one matching (in Module Code)
         predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("T456", "CS2103T"));
-        assertTrue(predicate.test(new TutorialBuilder().withName("T09").withModuleCode("CS2103T").build()));
+        assertTrue(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T").build()));
 
         // Mixed-case keywords match (Module Code)
         predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("cs2103t", "t456"));
-        assertTrue(predicate.test(new TutorialBuilder().withName("T09").withModuleCode("CS2103T").build()));
+        assertTrue(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T").build()));
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_idDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         TutorialIdContainsKeywordsPredicate predicate =
                 new TutorialIdContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new TutorialBuilder().withName("T09").withModuleCode("CS2103T").build()));
+        assertFalse(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T").build()));
 
         // Non-matching keyword
         predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("ZZZ", "X999"));
-        assertFalse(predicate.test(new TutorialBuilder().withName("T09").withModuleCode("CS2103T").build()));
+        assertFalse(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T").build()));
 
         // Keywords match other non-searched fields (e.g., date) but not ID or Module Code
         predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("2025-01-15", "Main", "Street"));
-        assertFalse(predicate.test(new TutorialBuilder().withName("T09").withModuleCode("CS2103T")
+        assertFalse(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T")
                 .withDate("2025-01-15").build()));
     }
 

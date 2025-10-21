@@ -64,14 +64,14 @@ public class CopyTutorialCommand extends Command {
                 .orElse(null);
 
         if (sourceTutorial == null) {
-            throw new CommandException(String.format(MESSAGE_TUTORIAL_NOT_FOUND, sourceTutorialId.fullName));
+            throw new CommandException(String.format(MESSAGE_TUTORIAL_NOT_FOUND, sourceTutorialId.id));
         }
 
         // Create a temporary tutorial to check if new ID already exists
         Tutorial tempTutorial = new Tutorial(newTutorialId, sourceTutorial.getModuleCode(),
                 newDate, sourceTutorial.getStudents());
         if (model.hasTutorial(tempTutorial)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_TUTORIAL, newTutorialId.fullName));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_TUTORIAL, newTutorialId.id));
         }
 
         // Let model handle the copying
@@ -79,9 +79,9 @@ public class CopyTutorialCommand extends Command {
 
         // Return success message with tutorial ID, module code, and source ID
         return new CommandResult(String.format(MESSAGE_SUCCESS,
-                newTutorialId.fullName,
+                newTutorialId.id,
                 sourceTutorial.getModuleCode().value,
-                sourceTutorialId.fullName));
+                sourceTutorialId.id));
     }
 
 
