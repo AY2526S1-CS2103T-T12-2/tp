@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.tabs.logic.commands.CommandTestUtil.showTutorialAtIndex;
 import static seedu.tabs.testutil.TypicalPredicates.PREDICATE_KEYWORD_C101;
 import static seedu.tabs.testutil.TypicalPredicates.PREDICATE_KEYWORD_C102;
 import static seedu.tabs.testutil.TypicalTutorials.getTypicalTAbs;
@@ -16,6 +17,8 @@ import seedu.tabs.model.Model;
 import seedu.tabs.model.ModelManager;
 import seedu.tabs.model.UserPrefs;
 import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialId;
+import seedu.tabs.testutil.TypicalTutorials;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -45,35 +48,35 @@ public class DeleteTutorialCommandTest {
                 String.format(Messages.MESSAGE_INVALID_TUTORIAL_ID, PREDICATE_KEYWORD_C102.getKeyword()));
     }
 
-    //    @Test
-    //    public void execute_validKeywordFilteredList_success() {
-    //        showTutorialAtIndex(model, 0);
-    //
-    //        Tutorial tutorialToDelete = model.getFilteredTutorialList().get(INDEX_FIRST_PERSON.getZeroBased());
-    //        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(INDEX_FIRST_PERSON);
-    //
-    //        String expectedMessage = String.format(DeleteTutorialCommand.MESSAGE_DELETE_TUTORIAL_SUCCESS,
-    //                Messages.format(tutorialToDelete));
-    //
-    //        Model expectedModel = new ModelManager(model.getTAbs(), new UserPrefs());
-    //        expectedModel.deleteTutorial(tutorialToDelete);
-    //        showNoTutorial(expectedModel);
-    //
-    //        assertCommandSuccess(deleteTutorialCommand, model, expectedMessage, expectedModel);
-    //    }
-    //
-    //    @Test
-    //    public void execute_invalidIndexFilteredList_throwsCommandException() {
-    //        showTutorialAtIndex(model, INDEX_FIRST_PERSON);
-    //
-    //        Index outOfBoundIndex = INDEX_SECOND_PERSON;
-    //        // ensures that outOfBoundIndex is still in bounds of TAbs list
-    //        assertTrue(outOfBoundIndex.getZeroBased() < model.getTAbs().getTutorialList().size());
-    //
-    //        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(outOfBoundIndex);
-    //
-    //        assertCommandFailure(deleteTutorialCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-    //    }
+    @Test
+    public void execute_validKeywordFilteredList_success() {
+        showTutorialAtIndex(model, TypicalTutorials.TUTORIAL_CS2103T_C101.getTutorialId());
+
+        Tutorial tutorialToDelete = model.getFilteredTutorialList().get(0);
+        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(PREDICATE_KEYWORD_C101);
+
+        String expectedMessage = String.format(DeleteTutorialCommand.MESSAGE_DELETE_TUTORIAL_SUCCESS,
+                Messages.format(tutorialToDelete));
+
+        Model expectedModel = new ModelManager(model.getTAbs(), new UserPrefs());
+        expectedModel.deleteTutorial(tutorialToDelete);
+        showNoTutorial(expectedModel);
+
+        assertCommandSuccess(deleteTutorialCommand, model, expectedMessage, expectedModel);
+    }
+
+//    @Test
+//    public void execute_invalidIndexFilteredList_throwsCommandException() {
+//        showTutorialAtIndex(model, INDEX_FIRST_PERSON);
+//
+//        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+//        // ensures that outOfBoundIndex is still in bounds of TAbs list
+//        assertTrue(outOfBoundIndex.getZeroBased() < model.getTAbs().getTutorialList().size());
+//
+//        DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(outOfBoundIndex);
+//
+//        assertCommandFailure(deleteTutorialCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+//    }
 
     @Test
     public void equals() {

@@ -11,6 +11,8 @@ import org.junit.jupiter.api.Test;
 import seedu.tabs.model.Model;
 import seedu.tabs.model.ModelManager;
 import seedu.tabs.model.UserPrefs;
+import seedu.tabs.model.tutorial.TutorialId;
+import seedu.tabs.testutil.TypicalTutorials;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -33,7 +35,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showTutorialAtIndex(model, INDEX_FIRST_PERSON);
+        showTutorialAtIndex(model, TypicalTutorials.TUTORIAL_CS2103T_C101.getTutorialId());
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

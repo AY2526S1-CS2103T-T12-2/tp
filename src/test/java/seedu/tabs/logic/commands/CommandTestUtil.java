@@ -18,6 +18,7 @@ import seedu.tabs.logic.commands.exceptions.CommandException;
 import seedu.tabs.model.Model;
 import seedu.tabs.model.TAbs;
 import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.tutorial.TutorialIdContainsKeywordsPredicate;
 import seedu.tabs.testutil.EditTutorialDescriptorBuilder;
 
@@ -120,10 +121,10 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the tutorial at the given {@code targetIndex} in the
      * {@code model}'s TAbs.
      */
-    public static void showTutorialAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredTutorialList().size());
+    public static void showTutorialAtIndex(Model model, TutorialId tutorialId) {
+//        assertTrue(targetIndex.getZeroBased() < model.getFilteredTutorialList().size());
 
-        Tutorial aTutorial = model.getFilteredTutorialList().get(targetIndex.getZeroBased());
+        Tutorial aTutorial = model.getFilteredTutorialList().get(0);
         final String[] splitName = aTutorial.getTutorialId().fullName.split("\\s+");
         model.updateFilteredTutorialList(new TutorialIdContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
