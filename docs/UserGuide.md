@@ -138,27 +138,34 @@ Shows a list of all tutorials in TAbs.
 
 Format: `list`
 
-### Editing a tutorial : `edit`
+### Editing a tutorial: `edit_tutorial`
+Edits the details of an existing tutorial in **TAbs**. 
 
-Edits an existing tutorial in TAbs.
+Format: `edit_tutorial from/EXISTING_TUTORIAL_ID [t/NEW_TUTORIAL_ID] [m/NEW_MODULE_CODE] [d/NEW_DATE]`
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/DATE] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the tutorial at the specified `INDEX`. The index refers to the index number shown in the
-  displayed tutorial list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the tutorial will be removed i.e adding of tags is not
-  cumulative.
-* You can remove all the tutorial’s tags by typing `t/` without
-  specifying any tags after it.
-
-Examples:
-
-* `edit 1 p/91234567 e/johndoe@example.com` Edits the moduleCode number and date address of the 1st
-  tutorial to be `91234567` and `johndoe@example.com` respectively.
-* `edit 2 n/Betsy Crower t/` Edits the name of the 2nd tutorial to be `Betsy Crower` and clears all
-  existing tags.
+* Updates the details of the tutorial identified by the tutorial ID specified after `from/`.
+* You may change **one or more** of the following:
+  * Tutorial ID (`t/`)
+  * Module code (`m/`)
+  * Date (`d/`)
+* The tutorial ID provided with `from/` must exactly match an existing tutorial (case-sensitive).
+* At least one editable field (`t/`, `m/`, or `d/`) must be specified.
+* Editing student lists (e.g. using `id/`) is **not allowed** here — use `add_student` or `delete_student` instead.
+  
+**Examples:**
+* `edit_tutorial from/T123 t/T456` - Renames tutorial `T123` to `T456`.
+* `edit_tutorial from/T456 m/CS2103T d/2025-10-25` - Updates tutorial `T456` to have module code `CS2103T` and date `2025-10-25`.
+* `edit_tutorial from/T123 t/T789 m/CS2040S d/2025-08-20` - Updates the tutorial with ID `T123` to:
+  * Have new ID `T789`
+  * Change its module code to `CS2040S`
+  * Set its new date to `2025-08-20`
+  
+**Common Errors:**
+* The `from/` prefix is **mandatory**, as it tells TAbs which tutorial to edit.
+* Attempting to edit a non-existent tutorial will result in an error:`Tutorial ID not found.`
+* If no editable fields are provided: `At least one field to edit must be provided.`
+* If a student field (e.g. `id/`) is accidentally included: 
+`Students cannot be edited via this command. Please use the add_student or delete_student commands instead.`
 
 ### Locating tutorials by name: `find`
 
@@ -377,7 +384,7 @@ file that contains the data of your previous TAbs home folder.
 | **Add student(s)**              | `add_student id/STUDENT_ID... t/TUTORIAL_ID` <br> e.g., `add_student id/A1231231Y id/A3213213Y t/T2` <br> Adds one or more students to the specified tutorial. |
 | **List students in a tutorial** | `list_students t/TUTORIAL_ID`<br> e.g., `list_students t/T1`                                                                                                   |
 | **Delete a tutorial**           | `delete_tutorial t/TUTORIAL_ID`<br> e.g., `delete_tutorial t/T1`                                                                                               |
-| **Edit**                        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/DATE] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                     |
+| **Edit tutorial**               | `edit_tutorial from/EXISTING_TUTORIAL_ID [t/NEW_TUTORIAL_ID] [m/NEW_MODULE_CODE] [d/NEW_DATE]`<br> e.g., `edit_tutorial from/T1 m/CS2103T d/2025-10-25`        |
 | **Find**                        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS2103T T01`                                                                                                    |
 | **List**                        | `list`                                                                                                                                                         |
 | **Help**                        | `help`                                                                                                                                                         |
