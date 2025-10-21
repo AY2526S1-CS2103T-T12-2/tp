@@ -71,9 +71,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseTutorialId_validValueWithWhitespace_returnsTrimmedTutorialId() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
+        String idWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         TutorialId expectedTutorialId = new TutorialId(VALID_NAME);
-        assertEquals(expectedTutorialId, ParserUtil.parseTutorialId(nameWithWhitespace));
+        assertEquals(expectedTutorialId, ParserUtil.parseTutorialId(idWithWhitespace));
     }
 
     @Test

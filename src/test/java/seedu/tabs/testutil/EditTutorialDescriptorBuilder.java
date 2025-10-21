@@ -31,7 +31,7 @@ public class EditTutorialDescriptorBuilder {
      */
     public EditTutorialDescriptorBuilder(Tutorial aTutorial) {
         descriptor = new EditTutorialDescriptor();
-        descriptor.setName(aTutorial.getTutorialId());
+        descriptor.setId(aTutorial.getTutorialId());
         descriptor.setModuleCode(aTutorial.getModuleCode());
         descriptor.setDate(aTutorial.getDate());
         descriptor.setStudents(aTutorial.getStudents());
@@ -41,7 +41,7 @@ public class EditTutorialDescriptorBuilder {
      * Sets the {@code Name} of the {@code EditTutorialDescriptor} that we are building.
      */
     public EditTutorialDescriptorBuilder withId(String id) {
-        descriptor.setName(new TutorialId(id));
+        descriptor.setId(new TutorialId(id));
         return this;
     }
 

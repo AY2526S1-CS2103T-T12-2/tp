@@ -21,10 +21,10 @@ public class TutorialIdTest {
 
     @Test
     public void isValidName() {
-        // null name
+        // null id
         assertThrows(NullPointerException.class, () -> TutorialId.isValidTutorialId(null));
 
-        // invalid name
+        // invalid id
         assertFalse(TutorialId.isValidTutorialId("")); // empty string
         assertFalse(TutorialId.isValidTutorialId(" ")); // spaces only
         assertFalse(TutorialId.isValidTutorialId("^")); // only non-alphanumeric characters

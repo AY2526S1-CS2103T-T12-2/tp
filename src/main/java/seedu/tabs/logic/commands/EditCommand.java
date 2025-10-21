@@ -93,7 +93,7 @@ public class EditCommand extends Command {
                                                  EditTutorialDescriptor editTutorialDescriptor) {
         assert tutorialToEdit != null;
 
-        TutorialId updatedTutorialId = editTutorialDescriptor.getName().orElse(tutorialToEdit.getTutorialId());
+        TutorialId updatedTutorialId = editTutorialDescriptor.getId().orElse(tutorialToEdit.getTutorialId());
         ModuleCode updatedModuleCode = editTutorialDescriptor.getModuleCode().orElse(tutorialToEdit.getModuleCode());
         Date updatedDate = editTutorialDescriptor.getDate().orElse(tutorialToEdit.getDate());
         Set<Student> updatedStudents = editTutorialDescriptor.getStudents().orElse(tutorialToEdit.getStudents());
@@ -142,7 +142,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code students} is used internally.
          */
         public EditTutorialDescriptor(EditTutorialDescriptor toCopy) {
-            setName(toCopy.tutorialId);
+            setId(toCopy.tutorialId);
             setModuleCode(toCopy.moduleCode);
             setDate(toCopy.date);
             setStudents(toCopy.students);
@@ -155,11 +155,11 @@ public class EditCommand extends Command {
             return CollectionUtil.isAnyNonNull(tutorialId, moduleCode, date, students);
         }
 
-        public void setName(TutorialId tutorialId) {
+        public void setId(TutorialId tutorialId) {
             this.tutorialId = tutorialId;
         }
 
-        public Optional<TutorialId> getName() {
+        public Optional<TutorialId> getId() {
             return Optional.ofNullable(tutorialId);
         }
 
