@@ -18,9 +18,14 @@ public class TutorialIdContainsKeywordsPredicate implements Predicate<Tutorial> 
 
     @Override
     public boolean test(Tutorial aTutorial) {
-        return keywords.stream()
+        boolean matchesModuleCode = keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
+                        aTutorial.getModuleCode().value, keyword)
+                );
+        boolean matchesTutorialId = keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
                         aTutorial.getTutorialId().id, keyword));
+                return matchesTutorialId || matchesModuleCode;
     }
 
     @Override

@@ -1,8 +1,7 @@
 package seedu.tabs.logic.commands;
 
 import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.tabs.logic.commands.CommandTestUtil.showTutorialAtIndex;
-import static seedu.tabs.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.tabs.logic.commands.CommandTestUtil.showTutorialWithTutorialId;
 import static seedu.tabs.testutil.TypicalTutorials.getTypicalTAbs;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.tabs.model.Model;
 import seedu.tabs.model.ModelManager;
 import seedu.tabs.model.UserPrefs;
+import seedu.tabs.testutil.TypicalTutorials;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showTutorialAtIndex(model, INDEX_FIRST_PERSON);
+        showTutorialWithTutorialId(model, TypicalTutorials.TUTORIAL_CS2103T_C101.getTutorialId());
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

@@ -22,7 +22,9 @@ import seedu.tabs.model.ReadOnlyTAbs;
 import seedu.tabs.model.ReadOnlyUserPrefs;
 import seedu.tabs.model.TAbs;
 import seedu.tabs.model.student.Student;
+import seedu.tabs.model.tutorial.Date;
 import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 import seedu.tabs.testutil.TutorialBuilder;
 
@@ -93,6 +95,11 @@ public class DeleteStudentCommandTest {
         }
 
         @Override
+        public void copyTutorial(Tutorial sourceTutorial, TutorialId newTutorialId, Date newDate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ReadOnlyTAbs getTAbs() {
             throw new AssertionError("This method should not be called.");
         }
@@ -104,6 +111,11 @@ public class DeleteStudentCommandTest {
 
         @Override
         public boolean hasTutorial(Tutorial aTutorial) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasTutorialId(TutorialId aTutorialId) {
             throw new AssertionError("This method should not be called.");
         }
 

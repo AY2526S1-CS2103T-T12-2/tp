@@ -32,18 +32,17 @@ apps.
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
    pressing Enter will open the help window.<br>
-   Some example commands you can try (to be edited):
+   Some example commands you can try:
 
-    * `list` : Lists all contacts.
+    * `list` : Lists all tutorials.
 
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a
-      contact named `John Doe` to the Address Book.
+    * `add_tutorial t/T123 m/CS2103T d/2025-01-01` : Adds a tutorial with ID `T123` for module CS2103T.
 
     * `list_students t/T1` : Display a list of all the students enrolled in the tutorial with ID `T1`.
 
     * `delete_tutorial t/T1` : Deletes the tutorial with ID `T1` shown in the current list.
 
-    * `clear` : Deletes all contacts.
+    * `clear` : Deletes all tutorials.
 
     * `exit` : Exits the app.
 
@@ -58,16 +57,16 @@ apps.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add_tutorial t/TUTORIAL_ID`, `TUTORIAL_ID` is a parameter which can be used as `add_tutorial t/T123`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `t/TUTORIAL_ID [id/STUDENT]…​` can be used as `t/T123 id/A1234567X` or as `t/T123`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[id/STUDENT]…​` can be used as ` ` (i.e. 0 times), `id/A1234567X`, `id/A1234567X id/A2234567Y` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `t/TUTORIAL_ID m/MODULE_CODE`, `m/MODULE_CODE t/TUTORIAL_ID` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`
   and `clear`) will be ignored.<br>
@@ -94,7 +93,7 @@ Adds a tutorial to TAbs.
 Format: `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…​`
 
 * Adds a tutorial with the specified `TUTORIAL_ID`, `MODULE_CODE`, and `DATE`.
-* The tutorial ID must begin with `T` followed by alphanumeric characters.
+* The tutorial ID must match the format `(C|T)` followed by digits (e.g., T1, C123).
 * The module code should follow standard university module code format (e.g., CS2103T).
 * The date should be in YYYY-MM-DD format.
 * Students can be added optionally using their student IDs (format: A followed by 7 digits and a
@@ -103,8 +102,27 @@ Format: `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…​`
 
 Examples:
 
-* `add_tutorial t/T123 m/CS2103T d/2025-03-15 id/A1231231Y id/A3213213Y`
-* `add_tutorial t/T456 m/CS2101 d/2025-03-20`
+* `add_tutorial t/C456 m/CS2101 d/2025-01-01`
+* `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y id/A3213213Y`
+
+### Copying a tutorial: `copy_tutorial`
+
+Creates a copy of an existing tutorial with a new tutorial ID and date.
+
+Format: `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE`
+
+* Copies an existing tutorial identified by `EXISTING_TUTORIAL_ID` and creates a new tutorial with `NEW_TUTORIAL_ID` and the specified `DATE`.
+* The new tutorial ID must match the format `(C|T)` followed by digits (e.g., T1, C123).
+* The new tutorial ID must not already exist in TAbs.
+* The existing tutorial ID must exist in TAbs.
+* All students from the existing tutorial will be copied to the new tutorial.
+* The module code will be copied from the existing tutorial.
+* The date should be in YYYY-MM-DD format.
+
+Examples:
+
+* `copy_tutorial t/C2 from/C1 d/2025-04-10` - Copies tutorial C1 to create a new tutorial C2 with date 2025-04-10.
+* `copy_tutorial t/T202 from/T201 d/2025-05-15` - Copies tutorial T201 to create a new tutorial T202 with date 2025-05-15.
 
 ### Listing all tutorials : `list`
 
@@ -136,22 +154,21 @@ Examples:
 
 ### Locating tutorials by name: `find`
 
-Finds tutorials whose names contain any of the given keywords.
+Finds tutorials whose `MODULE_CODE` or `TUTORIAL_ID` contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
+* The search is case-insensitive. e.g `t01` will match `T01`
+* Only full words will be matched e.g. `CS2103` will not match `CS2103T`
 * Tutorials matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+  e.g. `CS2103T CS2101` will return tutorials with `MODULE_CODE:` `CS2103T`, `CS2101`
+       `T01 C200` will return tutorials with `TUTORIAL_ID:` `T01`, `C200`
 
 Examples:
 
-* `find John` returns `john` and `John Doe`
-* `find alex david` returns `Alex Yeoh`, `David Li`<br>
-  ![result for 'find alex david'](images/findAlexDavidResult.png)
+* `find T01 C200` will return tutorials with `TUTORIAL_ID:` `T01`, `C200`
+* `find CS2103T` returns all tutorials with `MODULE_CODE:` `CS2103T`
+  ![result for 'find CS2103T'](images/findCS2103T.png)
 
 ### Listing all the students in a tutorial: `list_students`
 
@@ -160,13 +177,13 @@ Display a list of all the students enrolled in a specific tutorial on TAbs.
 Format: `list_students t/TUTORIAL_ID`
 
 * Lists all the students in a tutorial with the specified `TUTORIAL_ID`.
-* It shows a numbered list of all the student IDs of the students in that tutorial e.g., (1. A1234567X)
-* The tutorial ID refers to the title of the tutorial as displayed in TAbs (beginning with `T`).
-* The input must match the tutorial's ID exactly (case-sensitive).
+* It shows a numbered list of all the `STUDENT_ID` of the students in that tutorial e.g., (1. A1234567X)
+* The `TUTORIAL_ID` refers to the title of the tutorial as displayed in TAbs (beginning with `T`).
+* The input must match the `TUTORIAL_ID` exactly.
 
 Examples:
 
-* `list_students t/T2` lists all the student in the tutorial with ID `T2` in TAbs.
+* `list_students t/T2` lists all the student in the tutorial with `TUTORIAL_ID:` `T2` in TAbs.
 
 ### Deleting a tutorial: `delete_tutorial`
 
@@ -321,12 +338,13 @@ file that contains the data of your previous TAbs home folder.
 
 | Action                          | Format, Examples                                                                                                                                                     |
 |---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                         | `add n/NAME p/PHONE_NUMBER e/DATE a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Tutorial**                | `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…​` <br> e.g., `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y`                                |
+| **Copy tutorial**               | `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE` <br> e.g., `copy_tutorial t/C2 from/C1 d/2025-04-10`                                             |
 | **Clear**                       | `clear`                                                                                                                                                              |
 | **Add student(s)**    | `add_student id/STUDENT_ID... t/TUTORIAL_ID` <br> e.g., `add_student id/A1231231Y id/A3213213Y t/T2` <br> Adds one or more students to the specified tutorial.       |
 | **List students in a tutorial** | `list_students t/TUTORIAL_ID`<br> e.g., `list_students t/T1`                                                                                                         |
 | **Delete a tutorial**           | `delete_tutorial t/TUTORIAL_ID`<br> e.g., `delete_tutorial t/T1`                                                                                                     |
 | **Edit**                        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/DATE] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**                        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
+| **Find**                        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS2103T T01`                                                                                                          |
 | **List**                        | `list`                                                                                                                                                               |
 | **Help**                        | `help`                                                                                                                                                               |

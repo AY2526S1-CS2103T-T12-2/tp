@@ -10,7 +10,7 @@ import static seedu.tabs.logic.commands.CommandTestUtil.VALID_STUDENT_A;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_T456;
 import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.tabs.logic.commands.CommandTestUtil.showTutorialAtIndex;
+import static seedu.tabs.logic.commands.CommandTestUtil.showTutorialWithTutorialId;
 import static seedu.tabs.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.tabs.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.tabs.testutil.TypicalTutorials.getTypicalTAbs;
@@ -25,8 +25,10 @@ import seedu.tabs.model.ModelManager;
 import seedu.tabs.model.TAbs;
 import seedu.tabs.model.UserPrefs;
 import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.testutil.EditTutorialDescriptorBuilder;
 import seedu.tabs.testutil.TutorialBuilder;
+import seedu.tabs.testutil.TypicalTutorials;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -87,7 +89,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showTutorialAtIndex(model, INDEX_FIRST_PERSON);
+        showTutorialWithTutorialId(model, new TutorialId("C101"));
 
         Tutorial tutorialInFilteredList = model.getFilteredTutorialList().get(INDEX_FIRST_PERSON.getZeroBased());
         Tutorial editedTutorial = new TutorialBuilder(tutorialInFilteredList).withId(VALID_TUTORIAL_T456).build();
@@ -114,7 +116,7 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicateTutorialFilteredList_failure() {
-        showTutorialAtIndex(model, INDEX_FIRST_PERSON);
+        showTutorialWithTutorialId(model, new TutorialId("C101"));
 
         // edit tutorial in filtered list into a duplicate in TAbs
         Tutorial tutorialInList = model.getTAbs().getTutorialList().get(INDEX_SECOND_PERSON.getZeroBased());
@@ -139,7 +141,7 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidTutorialIndexFilteredList_failure() {
-        showTutorialAtIndex(model, INDEX_FIRST_PERSON);
+        showTutorialWithTutorialId(model, TypicalTutorials.TUTORIAL_CS2103T_C101.getTutorialId());
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of TAbs list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getTAbs().getTutorialList().size());
