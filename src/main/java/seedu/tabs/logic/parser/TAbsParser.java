@@ -21,6 +21,7 @@ import seedu.tabs.logic.commands.FindCommand;
 import seedu.tabs.logic.commands.HelpCommand;
 import seedu.tabs.logic.commands.ListCommand;
 import seedu.tabs.logic.commands.ListStudentsCommand;
+import seedu.tabs.logic.commands.MarkCommand;
 import seedu.tabs.logic.parser.exceptions.ParseException;
 
 /**
@@ -92,6 +93,9 @@ public class TAbsParser {
 
         case DeleteStudentCommand.COMMAND_WORD:
             return new DeleteStudentCommandParser().parse(arguments);
+
+        case MarkCommand.COMMAND_WORD:
+            return new MarkCommandParser().parse(arguments);
 
         default:
             logger.finer("This user input caused a ParseException: " + userInput);
