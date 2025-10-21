@@ -115,6 +115,11 @@ public class DeleteStudentCommandTest {
         }
 
         @Override
+        public boolean hasTutorialId(TutorialId aTutorialId) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteTutorial(Tutorial target) {
             throw new AssertionError("This method should not be called.");
         }

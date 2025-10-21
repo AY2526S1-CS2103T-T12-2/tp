@@ -99,6 +99,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasTutorialId(TutorialId aTutorialId) {
+        requireNonNull(aTutorialId);
+        return tabs.getTutorialList().stream().anyMatch(t -> t.getTutorialId().equals(aTutorialId));
+    }
+
+    @Override
     public void deleteTutorial(Tutorial target) {
         tabs.removeTutorial(target);
     }

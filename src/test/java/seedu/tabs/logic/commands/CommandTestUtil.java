@@ -10,14 +10,14 @@ import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 import static seedu.tabs.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
-import seedu.tabs.commons.core.index.Index;
 import seedu.tabs.logic.commands.exceptions.CommandException;
 import seedu.tabs.model.Model;
 import seedu.tabs.model.TAbs;
 import seedu.tabs.model.tutorial.Tutorial;
+import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.tutorial.TutorialIdContainsKeywordsPredicate;
 import seedu.tabs.testutil.EditTutorialDescriptorBuilder;
 
@@ -120,12 +120,11 @@ public class CommandTestUtil {
      * Updates {@code model}'s filtered list to show only the tutorial at the given {@code targetIndex} in the
      * {@code model}'s TAbs.
      */
-    public static void showTutorialAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredTutorialList().size());
+    public static void showTutorialWithTutorialId(Model model, TutorialId tutorialId) {
+        assertTrue(model.hasTutorialId(tutorialId));
 
-        Tutorial aTutorial = model.getFilteredTutorialList().get(targetIndex.getZeroBased());
-        final String[] splitName = aTutorial.getTutorialId().fullName.split("\\s+");
-        model.updateFilteredTutorialList(new TutorialIdContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredTutorialList(
+                new TutorialIdContainsKeywordsPredicate(Collections.singletonList(tutorialId.fullName)));
 
         assertEquals(1, model.getFilteredTutorialList().size());
     }
