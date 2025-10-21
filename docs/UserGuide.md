@@ -32,18 +32,17 @@ apps.
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
    pressing Enter will open the help window.<br>
-   Some example commands you can try (to be edited):
+   Some example commands you can try:
 
-    * `list` : Lists all contacts.
+    * `list` : Lists all tutorials.
 
-    * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a
-      contact named `John Doe` to the Address Book.
+    * `add_tutorial t/T123 m/CS2103T d/2025-01-01` : Adds a tutorial with ID `T123` for module CS2103T.
 
     * `list_students t/T1` : Display a list of all the students enrolled in the tutorial with ID `T1`.
 
     * `delete_tutorial t/T1` : Deletes the tutorial with ID `T1` shown in the current list.
 
-    * `clear` : Deletes all contacts.
+    * `clear` : Deletes all tutorials.
 
     * `exit` : Exits the app.
 
@@ -58,16 +57,16 @@ apps.
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
+  e.g. in `add_tutorial t/TUTORIAL_ID`, `TUTORIAL_ID` is a parameter which can be used as `add_tutorial t/T123`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `t/TUTORIAL_ID [id/STUDENT]…​` can be used as `t/T123 id/A1234567X` or as `t/T123`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[id/STUDENT]…​` can be used as ` ` (i.e. 0 times), `id/A1234567X`, `id/A1234567X id/A2234567Y` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `t/TUTORIAL_ID m/MODULE_CODE`, `m/MODULE_CODE t/TUTORIAL_ID` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`
   and `clear`) will be ignored.<br>
@@ -94,7 +93,7 @@ Adds a tutorial to TAbs.
 Format: `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…​`
 
 * Adds a tutorial with the specified `TUTORIAL_ID`, `MODULE_CODE`, and `DATE`.
-* The tutorial ID must begin with `T` followed by alphanumeric characters.
+* The tutorial ID must match the format `(C|T)` followed by digits (e.g., T1, C123).
 * The module code should follow standard university module code format (e.g., CS2103T).
 * The date should be in YYYY-MM-DD format.
 * Students can be added optionally using their student IDs (format: A followed by 7 digits and a
@@ -103,8 +102,8 @@ Format: `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…​`
 
 Examples:
 
-* `add_tutorial t/T123 m/CS2103T d/2025-03-15 id/A1231231Y id/A3213213Y`
-* `add_tutorial t/T456 m/CS2101 d/2025-03-20`
+* `add_tutorial t/C456 m/CS2101 d/2025-01-01`
+* `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y id/A3213213Y`
 
 ### Copying a tutorial: `copy_tutorial`
 
@@ -340,7 +339,7 @@ file that contains the data of your previous TAbs home folder.
 
 | Action                          | Format, Examples                                                                                                                                                     |
 |---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**                         | `add n/NAME p/PHONE_NUMBER e/DATE a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add Tutorial**                | `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…​` <br> e.g., `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y`                                |
 | **Copy tutorial**               | `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE` <br> e.g., `copy_tutorial t/C2 from/C1 d/2025-04-10`                                             |
 | **Clear**                       | `clear`                                                                                                                                                              |
 | **Add student(s)**    | `add_student id/STUDENT_ID... t/TUTORIAL_ID` <br> e.g., `add_student id/A1231231Y id/A3213213Y t/T2` <br> Adds one or more students to the specified tutorial.       |

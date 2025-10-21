@@ -94,6 +94,55 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void copyTutorial_validTutorial_copySuccessful() {
+        modelManager.addTutorial(TUTORIAL_CS2103T_C101);
+
+        // Copy the tutorial with new ID and date
+        seedu.tabs.model.tutorial.TutorialId newTutorialId = new seedu.tabs.model.tutorial.TutorialId("C102");
+        seedu.tabs.model.tutorial.Date newDate = new seedu.tabs.model.tutorial.Date("2025-12-15");
+        modelManager.copyTutorial(TUTORIAL_CS2103T_C101, newTutorialId, newDate);
+
+        // Verify the new tutorial exists
+        seedu.tabs.model.tutorial.Tutorial copiedTutorial = modelManager.getFilteredTutorialList().stream()
+                .filter(t -> t.getTutorialId().equals(newTutorialId))
+                .findFirst()
+                .orElse(null);
+
+        assertTrue(copiedTutorial != null);
+        assertEquals(newTutorialId, copiedTutorial.getTutorialId());
+        assertEquals(newDate, copiedTutorial.getDate());
+        assertEquals(TUTORIAL_CS2103T_C101.getModuleCode(), copiedTutorial.getModuleCode());
+    }
+
+    @Test
+    public void copyTutorial_studentsDeepCopied_studentsAreIndependent() {
+        modelManager.addTutorial(TUTORIAL_CS2103T_C101);
+
+        // Copy the tutorial
+        seedu.tabs.model.tutorial.TutorialId newTutorialId = new seedu.tabs.model.tutorial.TutorialId("C102");
+        seedu.tabs.model.tutorial.Date newDate = new seedu.tabs.model.tutorial.Date("2025-12-15");
+        modelManager.copyTutorial(TUTORIAL_CS2103T_C101, newTutorialId, newDate);
+
+        // Get both tutorials
+        seedu.tabs.model.tutorial.Tutorial originalTutorial = modelManager.getFilteredTutorialList().stream()
+                .filter(t -> t.getTutorialId().equals(TUTORIAL_CS2103T_C101.getTutorialId()))
+                .findFirst()
+                .orElse(null);
+
+        seedu.tabs.model.tutorial.Tutorial copiedTutorial = modelManager.getFilteredTutorialList().stream()
+                .filter(t -> t.getTutorialId().equals(newTutorialId))
+                .findFirst()
+                .orElse(null);
+
+        // Verify students are different instances but have same IDs
+        assertTrue(originalTutorial != null && copiedTutorial != null);
+        assertEquals(originalTutorial.getStudents().size(), copiedTutorial.getStudents().size());
+
+        // Verify students are not the same object references
+        assertFalse(originalTutorial.getStudents() == copiedTutorial.getStudents());
+    }
+
+    @Test
     public void equals() {
         TAbs tabs = new TAbsBuilder().withTutorial(TUTORIAL_CS2103T_C101).withTutorial(TUTORIAL_MA1521_T202).build();
         TAbs differentTAbs = new TAbs();

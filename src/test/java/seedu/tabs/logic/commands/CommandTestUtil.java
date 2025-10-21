@@ -3,6 +3,7 @@ package seedu.tabs.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_FROM;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
@@ -27,24 +28,32 @@ public class CommandTestUtil {
 
     public static final String VALID_TUTORIAL_C123 = "C123";
     public static final String VALID_TUTORIAL_T456 = "T456";
+    public static final String VALID_TUTORIAL_C2 = "C2";
     public static final String NON_EXISTENT_TUTORIAL_ID = "Z999";
     public static final String VALID_MODULE_CODE_CS2103T = "CS2103T";
     public static final String VALID_MODULE_CODE_MA1521 = "MA1521";
     public static final String VALID_DATE_C123 = "2025-01-15";
     public static final String VALID_DATE_T456 = "2025-02-20";
+    public static final String VALID_DATE_C2 = "2025-03-10";
     public static final String VALID_STUDENT_A = "A1231231Y";
     public static final String VALID_STUDENT_B = "A3213213Y";
 
     public static final String TUTORIAL_DESC_C123 = " " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_C123;
     public static final String TUTORIAL_DESC_T456 = " " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_T456;
+    public static final String TUTORIAL_DESC_C2 = " " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_C2;
+    public static final String FROM_DESC_C123 = " " + PREFIX_FROM + VALID_TUTORIAL_C123;
+    public static final String FROM_DESC_T456 = " " + PREFIX_FROM + VALID_TUTORIAL_T456;
+    public static final String FROM_DESC_NONEXISTENT = " " + PREFIX_FROM + NON_EXISTENT_TUTORIAL_ID;
     public static final String MODULE_CODE_DESC_CS2103T = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CS2103T;
     public static final String MODULE_CODE_DESC_MA1521 = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_MA1521;
     public static final String DATE_DESC_C123 = " " + PREFIX_DATE + VALID_DATE_C123;
     public static final String DATE_DESC_T456 = " " + PREFIX_DATE + VALID_DATE_T456;
+    public static final String DATE_DESC_C2 = " " + PREFIX_DATE + VALID_DATE_C2;
     public static final String STUDENT_DESC_A = " " + PREFIX_STUDENT + VALID_STUDENT_A;
     public static final String STUDENT_DESC_B = " " + PREFIX_STUDENT + VALID_STUDENT_B;
 
     public static final String INVALID_TUTORIAL_DESC = " " + PREFIX_TUTORIAL_ID + "James&"; // '&' not allowed
+    public static final String INVALID_FROM_DESC = " " + PREFIX_FROM + "Invalid&"; // '&' not allowed
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + "911a"; // 'a' not allowed
     public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "bob!yahoo"; // invalid date format
     public static final String INVALID_STUDENT_DESC = " " + PREFIX_STUDENT + "hubby*"; // '*' not allowed in students

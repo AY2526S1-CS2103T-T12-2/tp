@@ -34,6 +34,7 @@ import seedu.tabs.model.ReadOnlyTAbs;
 import seedu.tabs.model.ReadOnlyUserPrefs;
 import seedu.tabs.model.TAbs;
 import seedu.tabs.model.student.Student;
+import seedu.tabs.model.tutorial.Date;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
@@ -81,6 +82,11 @@ public class AddStudentCommandTest {
 
         @Override
         public void addTutorial(Tutorial aTutorial) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void copyTutorial(Tutorial sourceTutorial, TutorialId newTutorialId, Date newDate) {
             throw new AssertionError("This method should not be called.");
         }
 
