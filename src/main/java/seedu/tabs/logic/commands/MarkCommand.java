@@ -33,7 +33,7 @@ public class MarkCommand extends Command {
             + PREFIX_STUDENT + "A3213213Y";
     public static final String MESSAGE_SUCCESS = "The following student(s):\n"
             + "\t%1$s\n"
-            + "were marked as present in tutorial %2$s";
+            + "were marked as present in tutorial %2$s.";
 
     private final Set<Student> newStudentsList;
     private final TutorialIdMatchesKeywordPredicate predicate;
