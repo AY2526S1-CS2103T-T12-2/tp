@@ -17,13 +17,13 @@ import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
 /**
- * Marks as present, students in a given tutorial
+ * Unmarks as present, students in a given tutorial
  */
-public class MarkCommand extends Command {
-    public static final String COMMAND_WORD = "mark";
+public class UnmarkCommand extends Command {
+    public static final String COMMAND_WORD = "unmark";
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks a student identified by the given student ID "
-            + "in the tutorial identified by the given tutorial ID as present.\n"
+            + ": Unmarks a student identified by the given student ID "
+            + "in the tutorial identified by the given tutorial ID.\n"
             + "Parameters: "
             + PREFIX_STUDENT + "[STUDENT_ID]... "
             + PREFIX_TUTORIAL_ID + "[TUTORIAL_ID]\n"
@@ -33,16 +33,16 @@ public class MarkCommand extends Command {
             + PREFIX_STUDENT + "A3213213Y";
     public static final String MESSAGE_SUCCESS = "The following student(s):\n"
             + "\t%1$s\n"
-            + "were marked as present in tutorial %2$s.";
+            + "were unmarked in tutorial %2$s.";
 
     private final Set<Student> newStudentsList;
     private final TutorialIdMatchesKeywordPredicate predicate;
 
     /**
-     * @param newStudentsList of the student to mark as present
+     * @param newStudentsList of the student to unmark
      * @param predicate       to filter the tutorial list by the provided tutorial_id
      */
-    public MarkCommand(Set<Student> newStudentsList, TutorialIdMatchesKeywordPredicate predicate) {
+    public UnmarkCommand(Set<Student> newStudentsList, TutorialIdMatchesKeywordPredicate predicate) {
         requireAllNonNull(newStudentsList, predicate);
 
         this.newStudentsList = newStudentsList;
@@ -69,15 +69,15 @@ public class MarkCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Tutorial} with the newly marked students of {@code tutorialToEdit}
+     * Creates and returns a {@code Tutorial} with the newly unmarked students of {@code tutorialToEdit}
      */
     private Tutorial markStudents(Tutorial tutorial,
-                                  Set<Student> studentsToMark) throws CommandException {
+                                  Set<Student> studentsToUnmark) throws CommandException {
         assert tutorial != null;
 
         Set<Student> currStudents = tutorial.getStudents();
         for (Student student : currStudents) {
-            if (studentsToMark.contains(student) && !student.getAttendance()) {
+            if (studentsToUnmark.contains(student) && student.getAttendance()) {
                 student.toggleAttendance();
             }
         }
@@ -97,11 +97,10 @@ public class MarkCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof MarkCommand)) {
+        if (!(other instanceof UnmarkCommand e)) {
             return false;
         }
 
-        MarkCommand e = (MarkCommand) other;
         return newStudentsList.equals(e.newStudentsList)
                 && predicate.equals(e.predicate);
     }
