@@ -11,6 +11,7 @@ import static seedu.tabs.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.tabs.logic.commands.exceptions.CommandException;
@@ -124,15 +125,8 @@ public class CommandTestUtil {
     public static void showTutorialWithTutorialId(Model model, TutorialId tutorialId) {
         assertTrue(model.hasTutorialId(tutorialId));
 
-        TutorialIdMatchesKeywordPredicate predicate = new TutorialIdMatchesKeywordPredicate(tutorialId.toString());
-        Tutorial aTutorial = model.getFilteredTutorialList().stream().filter(predicate).findFirst().orElse(null);
-
-        try {
-            final String[] splitName = aTutorial.getTutorialId().fullName.split("\\s+");
-            model.updateFilteredTutorialList(new TutorialIdContainsKeywordsPredicate(Arrays.asList(splitName[0])));
-        } catch (NullPointerException e) {
-            throw
-        }
+        model.updateFilteredTutorialList(
+                new TutorialIdContainsKeywordsPredicate(Collections.singletonList(tutorialId.fullName)));
 
         assertEquals(1, model.getFilteredTutorialList().size());
     }
