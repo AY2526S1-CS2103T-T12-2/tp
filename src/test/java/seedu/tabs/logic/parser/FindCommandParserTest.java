@@ -1,6 +1,8 @@
 package seedu.tabs.logic.parser;
 
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS2103T;
+import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_C123;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -23,14 +25,24 @@ public class FindCommandParserTest {
     @Test
     public void parse_validArgs_returnsFindCommand() {
         // Keywords containing a tutorial ID and a module code (case-insensitive)
-        FindCommand expectedFindCommand =
-                new FindCommand(new TutorialIdContainsKeywordsPredicate(Arrays.asList("cs2103t", "T09")));
+        String moduleCodeKeyword = VALID_MODULE_CODE_CS2103T;
+        String tutorialIdKeyword = VALID_TUTORIAL_C123;
+
+        FindCommand expectedFindCommand = new FindCommand(
+                new TutorialIdContainsKeywordsPredicate(Arrays.asList(moduleCodeKeyword, tutorialIdKeyword)));
 
         // no leading and trailing whitespaces
-        assertParseSuccess(parser, "cs2103t T09", expectedFindCommand);
+        assertParseSuccess(parser, moduleCodeKeyword + " " + tutorialIdKeyword, expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n cs2103t \n \t T09  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n " + moduleCodeKeyword + " \n \t " + tutorialIdKeyword + "  \t",
+                expectedFindCommand);
+
+        // single keyword (just the tutorial ID)
+        FindCommand expectedFindCommandSingle = new FindCommand(
+                new TutorialIdContainsKeywordsPredicate(Arrays.asList(tutorialIdKeyword)));
+        assertParseSuccess(parser, tutorialIdKeyword, expectedFindCommandSingle);
     }
+
 
 }
