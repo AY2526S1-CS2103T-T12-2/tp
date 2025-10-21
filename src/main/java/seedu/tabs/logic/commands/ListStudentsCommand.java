@@ -53,7 +53,7 @@ public class ListStudentsCommand extends Command {
         Tutorial tutorial = model.getTAbs().getTutorialList().stream()
                 .filter(tut -> tut.getTutorialId().equals(tutorialId)).findFirst()
                 .orElseThrow(() -> new CommandException(
-                        String.format("A tutorial with the TUTORIAL_ID %s does not exist", tutorialId.fullName)
+                        String.format("A tutorial with the TUTORIAL_ID %s does not exist", tutorialId.id)
                 ));
 
         // Convert the set of students to a list to preserve order
@@ -62,7 +62,7 @@ public class ListStudentsCommand extends Command {
         // Throw an exception if the student list is empty
         if (studentList.size() == 0) {
             throw new CommandException(
-                    String.format("The tutorial %s has no students enrolled.", tutorialId.fullName)
+                    String.format("The tutorial %s has no students enrolled.", tutorialId.id)
             );
         }
 

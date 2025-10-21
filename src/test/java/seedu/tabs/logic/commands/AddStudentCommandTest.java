@@ -211,7 +211,7 @@ public class AddStudentCommandTest {
         Set<Student> toAdd = new HashSet<>(Set.of(STUDENT_A));
         AddStudentCommand cmd = new AddStudentCommand(
                 toAdd,
-                new TutorialIdMatchesKeywordPredicate(emptyTutorialId.fullName));
+                new TutorialIdMatchesKeywordPredicate(emptyTutorialId.id));
 
         CommandResult result = cmd.execute(model);
 
@@ -237,7 +237,7 @@ public class AddStudentCommandTest {
         Set<Student> toAdd = new HashSet<>(Set.of(STUDENT_A, STUDENT_B));
         AddStudentCommand cmd = new AddStudentCommand(
                 toAdd,
-                new TutorialIdMatchesKeywordPredicate(tutorialWithAId.fullName));
+                new TutorialIdMatchesKeywordPredicate(tutorialWithAId.id));
 
         CommandResult result = cmd.execute(model);
 
@@ -263,7 +263,7 @@ public class AddStudentCommandTest {
         Set<Student> toAdd = new HashSet<>(Set.of(STUDENT_A));
         AddStudentCommand cmd = new AddStudentCommand(
                 toAdd,
-                new TutorialIdMatchesKeywordPredicate(tutorialWithAId.fullName));
+                new TutorialIdMatchesKeywordPredicate(tutorialWithAId.id));
 
         String expectedMsg = String.format(
                 AddStudentCommand.MESSAGE_DUPLICATE_STUDENT,

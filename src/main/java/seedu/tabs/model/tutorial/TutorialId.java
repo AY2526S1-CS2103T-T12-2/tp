@@ -14,7 +14,7 @@ public class TutorialId {
 
     public static final String VALIDATION_REGEX = "(C|T|CT)\\d+";
 
-    public final String fullName;
+    public final String id;
 
     /**
      * Constructs a {@code TutorialId}.
@@ -24,7 +24,7 @@ public class TutorialId {
     public TutorialId(String tutorialId) {
         requireNonNull(tutorialId);
         checkArgument(isValidTutorialId(tutorialId), MESSAGE_CONSTRAINTS);
-        fullName = tutorialId.toUpperCase();
+        id = tutorialId.toUpperCase();
     }
 
     /**
@@ -37,7 +37,7 @@ public class TutorialId {
 
     @Override
     public String toString() {
-        return fullName;
+        return id;
     }
 
     @Override
@@ -52,12 +52,12 @@ public class TutorialId {
         }
 
         TutorialId otherTutorialId = (TutorialId) other;
-        return fullName.equals(otherTutorialId.fullName);
+        return id.equals(otherTutorialId.id);
     }
 
     @Override
     public int hashCode() {
-        return fullName.hashCode();
+        return id.hashCode();
     }
 
 }

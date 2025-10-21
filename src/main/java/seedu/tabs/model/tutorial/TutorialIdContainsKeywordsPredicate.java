@@ -20,7 +20,7 @@ public class TutorialIdContainsKeywordsPredicate implements Predicate<Tutorial> 
     public boolean test(Tutorial aTutorial) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        aTutorial.getTutorialId().fullName, keyword));
+                        aTutorial.getTutorialId().id, keyword));
     }
 
     @Override

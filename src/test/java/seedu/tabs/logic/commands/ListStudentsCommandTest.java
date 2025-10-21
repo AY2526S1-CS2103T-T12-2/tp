@@ -170,7 +170,7 @@ public class ListStudentsCommandTest {
         ListStudentsCommand listStudentsCommand = new ListStudentsCommand(T99_ID_NON_EXISTENT);
 
         String expectedMessage = String.format("A tutorial with the TUTORIAL_ID %s does not exist",
-                T99_ID_NON_EXISTENT.fullName);
+                T99_ID_NON_EXISTENT.id);
 
         assertThrows(CommandException.class, expectedMessage, () -> listStudentsCommand.execute(model));
     }
@@ -181,7 +181,7 @@ public class ListStudentsCommandTest {
         ListStudentsCommand listStudentsCommand = new ListStudentsCommand(T02_ID_EMPTY);
 
         String expectedMessage = String.format("The tutorial %s has no students enrolled.",
-                T02_ID_EMPTY.fullName);
+                T02_ID_EMPTY.id);
 
         assertThrows(CommandException.class, expectedMessage, () -> listStudentsCommand.execute(model));
     }

@@ -47,7 +47,7 @@ class JsonAdaptedTutorial {
      * Converts a given {@code Tutorial} into this class for Jackson use.
      */
     public JsonAdaptedTutorial(Tutorial source) {
-        tutorialId = source.getTutorialId().fullName;
+        tutorialId = source.getTutorialId().id;
         moduleCode = source.getModuleCode().value;
         date = source.getDate().value;
         students.addAll(source.getStudents().stream()

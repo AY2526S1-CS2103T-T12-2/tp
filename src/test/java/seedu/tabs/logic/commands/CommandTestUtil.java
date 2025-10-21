@@ -115,7 +115,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredTutorialList().size());
 
         Tutorial aTutorial = model.getFilteredTutorialList().get(targetIndex.getZeroBased());
-        final String[] splitName = aTutorial.getTutorialId().fullName.split("\\s+");
+        final String[] splitName = aTutorial.getTutorialId().id.split("\\s+");
         model.updateFilteredTutorialList(new TutorialIdContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredTutorialList().size());
