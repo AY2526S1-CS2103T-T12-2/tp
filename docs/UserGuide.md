@@ -326,6 +326,6 @@ file that contains the data of your previous TAbs home folder.
 | **List students in a tutorial** | `list_students t/TUTORIAL_ID`<br> e.g., `list_students t/T1`                                                                                                         |
 | **Delete a tutorial**           | `delete_tutorial t/TUTORIAL_ID`<br> e.g., `delete_tutorial t/T1`                                                                                                     |
 | **Edit**                        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/DATE] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**                        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                           |
+| **Find**                        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS2103T T01`                                                                                                          |
 | **List**                        | `list`                                                                                                                                                               |
 | **Help**                        | `help`                                                                                                                                                               |
