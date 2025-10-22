@@ -24,7 +24,7 @@ public class TutorialIdContainsKeywordsPredicate implements Predicate<Tutorial> 
                 );
         boolean matchesTutorialId = keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        aTutorial.getTutorialId().fullName, keyword));
+                        aTutorial.getTutorialId().tutorialId, keyword));
         return matchesTutorialId || matchesModuleCode;
     }
 

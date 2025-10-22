@@ -38,7 +38,7 @@ public class DeleteTutorialCommandParser implements Parser<DeleteTutorialCommand
                     DeleteTutorialCommand.MESSAGE_USAGE));
         }
 
-        return new DeleteTutorialCommand(new TutorialIdMatchesKeywordPredicate(tutorialId.fullName));
+        return new DeleteTutorialCommand(new TutorialIdMatchesKeywordPredicate(tutorialId.tutorialId));
     }
 
     /**

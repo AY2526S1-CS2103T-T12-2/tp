@@ -124,7 +124,7 @@ public class CommandTestUtil {
         assertTrue(model.hasTutorialId(tutorialId));
 
         model.updateFilteredTutorialList(
-                new TutorialIdContainsKeywordsPredicate(Collections.singletonList(tutorialId.fullName)));
+                new TutorialIdContainsKeywordsPredicate(Collections.singletonList(tutorialId.tutorialId)));
 
         assertEquals(1, model.getFilteredTutorialList().size());
     }

@@ -166,7 +166,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentTAbs, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = TUTORIAL_CS2103T_C101.getTutorialId().fullName.split("\\s+");
+        String[] keywords = TUTORIAL_CS2103T_C101.getTutorialId().tutorialId.split("\\s+");
         modelManager.updateFilteredTutorialList(new TutorialIdContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(tabs, userPrefs)));
 
