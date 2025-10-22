@@ -43,10 +43,10 @@ public class TutorialTest {
         editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withId(VALID_TUTORIAL_T456).build();
         assertFalse(TUTORIAL_CS2103T_C101.isSameTutorial(editedAlice));
 
-        // id differs in case, all other attributes same -> returns true (case insensitive)
+        // id differs in case, all other attributes same -> returns false (case sensitive)
         Tutorial editedBob = new TutorialBuilder(TUTORIAL_TEST_T456)
                 .withId(VALID_TUTORIAL_T456.toLowerCase()).build();
-        assertTrue(TUTORIAL_TEST_T456.isSameTutorial(editedBob));
+        assertFalse(TUTORIAL_TEST_T456.isSameTutorial(editedBob));
 
         // completely different id -> returns false
         editedBob = new TutorialBuilder(TUTORIAL_TEST_T456).withId("C999").build();

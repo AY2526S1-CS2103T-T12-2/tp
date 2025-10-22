@@ -61,5 +61,8 @@ public class TutorialIdTest {
 
         // different values -> returns false
         assertFalse(tutorialId.equals(new TutorialId("T456")));
+
+        // different case -> returns false (case sensitive)
+        assertFalse(tutorialId.equals(new TutorialId("c123")));
     }
 }
