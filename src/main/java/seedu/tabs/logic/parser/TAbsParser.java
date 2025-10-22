@@ -15,7 +15,7 @@ import seedu.tabs.logic.commands.Command;
 import seedu.tabs.logic.commands.CopyTutorialCommand;
 import seedu.tabs.logic.commands.DeleteStudentCommand;
 import seedu.tabs.logic.commands.DeleteTutorialCommand;
-import seedu.tabs.logic.commands.EditCommand;
+import seedu.tabs.logic.commands.EditTutorialCommand;
 import seedu.tabs.logic.commands.ExitCommand;
 import seedu.tabs.logic.commands.FindCommand;
 import seedu.tabs.logic.commands.HelpCommand;
@@ -65,8 +65,8 @@ public class TAbsParser {
         case CopyTutorialCommand.COMMAND_WORD:
             return new CopyTutorialCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
+        case EditTutorialCommand.COMMAND_WORD:
+            return new EditTutorialCommandParser().parse(arguments);
 
         case DeleteTutorialCommand.COMMAND_WORD:
             return new DeleteTutorialCommandParser().parse(arguments);

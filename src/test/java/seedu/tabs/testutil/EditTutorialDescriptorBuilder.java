@@ -1,11 +1,6 @@
 package seedu.tabs.testutil;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
-import seedu.tabs.logic.commands.EditCommand.EditTutorialDescriptor;
-import seedu.tabs.model.student.Student;
+import seedu.tabs.logic.commands.EditTutorialCommand.EditTutorialDescriptor;
 import seedu.tabs.model.tutorial.Date;
 import seedu.tabs.model.tutorial.ModuleCode;
 import seedu.tabs.model.tutorial.Tutorial;
@@ -34,7 +29,6 @@ public class EditTutorialDescriptorBuilder {
         descriptor.setName(aTutorial.getTutorialId());
         descriptor.setModuleCode(aTutorial.getModuleCode());
         descriptor.setDate(aTutorial.getDate());
-        descriptor.setStudents(aTutorial.getStudents());
     }
 
     /**
@@ -58,16 +52,6 @@ public class EditTutorialDescriptorBuilder {
      */
     public EditTutorialDescriptorBuilder withDate(String date) {
         descriptor.setDate(new Date(date));
-        return this;
-    }
-
-    /**
-     * Parses the {@code students} into a {@code Set<Student>} and set it to the {@code EditTutorialDescriptor}
-     * that we are building.
-     */
-    public EditTutorialDescriptorBuilder withStudents(String... students) {
-        Set<Student> studentSet = Stream.of(students).map(Student::new).collect(Collectors.toSet());
-        descriptor.setStudents(studentSet);
         return this;
     }
 
