@@ -283,7 +283,7 @@ Behaviour and duplicate handling:
 
 Deletes the specified student from the specified tutorial from TAbs.
 
-Format: `delete_student t/TUTORIAL_ID id/STUDENT …`
+Format: `delete_student id/STUDENT t/TUTORIAL_ID`
 
 * Delete one or more students, identified by their `STUDENT_ID`, from the tutorial identified by
   `TUTORIAL_ID`.
@@ -409,7 +409,7 @@ file that contains the data of your previous TAbs home folder.
 | **Find tutorials**              | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS2103T T01`                                                                                             |
 | **List students in a tutorial** | `list_students t/TUTORIAL_ID`<br> e.g., `list_students t/T1`                                                                                            |
 | **Add student(s)**              | `add_student id/STUDENT_ID … t/TUTORIAL_ID` <br> e.g., `add_student id/A1231231Y id/A3213213Y t/T2`                                                     |
-| **Delete student(s)**           | `delete_student id/STUDENT_ID t/TUTORIAL_ID` <br> e.g., `delete_student id/A3213213Y t/T123`                                                            |
+| **Delete a student**            | `delete_student id/STUDENT_ID t/TUTORIAL_ID` <br> e.g., `delete_student id/A3213213Y t/T123`                                                            |
 | **Mark a student**              | `mark id/STUDENT_ID … t/TUTORIAL_ID` <br> e.g., `mark id/A1231231Y id/A3213213Y t/T123`                                                                 |
 | **Unmark a student**            | `unmark id/STUDENT_ID … t/TUTORIAL_ID` <br> e.g., `unmark id/A1231231Y id/A3213213Y t/T123`                                                             |
 | **Clear all tutorials**         | `clear`                                                                                                                                                 |
