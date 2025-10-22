@@ -9,7 +9,7 @@ If you can type fast, TAbs can get your class management tasks done faster than 
 apps.
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
