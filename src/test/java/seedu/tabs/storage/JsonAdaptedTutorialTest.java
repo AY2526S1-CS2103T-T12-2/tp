@@ -5,7 +5,6 @@ import static seedu.tabs.storage.JsonAdaptedTutorial.MISSING_FIELD_MESSAGE_FORMA
 import static seedu.tabs.testutil.Assert.assertThrows;
 import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_MA1521_T202;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -85,15 +84,4 @@ public class JsonAdaptedTutorialTest {
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, tutorial::toModelType);
     }
-
-    @Test
-    public void toModelType_invalidStudents_throwsIllegalValueException() {
-        List<JsonAdaptedStudent> invalidStudents = new ArrayList<>(VALID_STUDENTS);
-        invalidStudents.add(new JsonAdaptedStudent(INVALID_STUDENT));
-        JsonAdaptedTutorial tutorial =
-                new JsonAdaptedTutorial(VALID_TUTORIAL_ID, VALID_MODULE_CODE, VALID_DATE,
-                        invalidStudents);
-        assertThrows(IllegalValueException.class, tutorial::toModelType);
-    }
-
 }

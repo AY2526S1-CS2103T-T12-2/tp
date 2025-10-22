@@ -65,7 +65,19 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_multipleKeywords_multipleTutorialsFound() {
+    public void execute_moduleCodeKeywords_singleTutorialFound() {
+        // Keyword searches specifically for a module code part
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
+        // Using "CS1010" to match TUTORIAL_CS1010_C303's module code
+        TutorialIdContainsKeywordsPredicate predicate = preparePredicate("CS1010");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredTutorialList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(TUTORIAL_CS1010_C303), model.getFilteredTutorialList());
+    }
+
+    @Test
+    public void execute_tutorialIdKeywords_multipleTutorialsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         TutorialIdContainsKeywordsPredicate predicate = preparePredicate("C303 C505 T606");
         FindCommand command = new FindCommand(predicate);

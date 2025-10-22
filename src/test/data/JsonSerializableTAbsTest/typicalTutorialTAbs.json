@@ -6,7 +6,10 @@
       "moduleCode": "CS2103T",
       "date": "2025-01-10",
       "students": [
-        "A1231231Y"
+        {
+          "studentId": "A1231231Y",
+          "isPresent": false
+        }
       ]
     },
     {
@@ -14,7 +17,10 @@
       "moduleCode": "MA1521",
       "date": "2025-01-15",
       "students": [
-        "A1231231Y"
+        {
+          "studentId": "A1231231Y",
+          "isPresent": false
+        }
       ]
     },
     {
@@ -28,7 +34,10 @@
       "moduleCode": "ST2334",
       "date": "2025-01-25",
       "students": [
-        "A1231231Y"
+        {
+          "studentId": "A1231231Y",
+          "isPresent": false
+        }
       ]
     },
     {
