@@ -70,8 +70,7 @@ apps.
   `id/A1234567X id/A2234567Y` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `t/TUTORIAL_ID m/MODULE_CODE`, `m/MODULE_CODE t/TUTORIAL_ID` is also
-  acceptable.
+  e.g. if the command specifies `t/TUTORIAL_ID m/MODULE_CODE`, `m/MODULE_CODE t/TUTORIAL_ID` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`
   and `clear`) will be ignored.<br>
@@ -279,12 +278,15 @@ Adds students `A1231231Y`, `A3213213Y`, and `A2223334B` to tutorial `T2`.
 
 Deletes the specified student from the specified tutorial from TAbs.
 
-Format: `delete_student id/STUDENT_ID t/TUTORIAL_ID`
+Format: `delete_student t/TUTORIAL_ID id/STUDENT…`
 
-* Deletes the student with the specified `STUDENT_ID`
+* Delete one or more students, identified by their `STUDENT_ID`, from the tutorial identified by
+  `TUTORIAL_ID`.
   from the tutorial with the specified `TUTORIAL_ID`.
-* The student ID must follow the format 'AXXXXXXX&', where the starting letter has to be 'A',
-  the 'X's represent any 7 single digit numbers and the '&' represents any capital letter.
+* Each student ID must follow the format `AXXXXXXX&`, where:
+    * The first letter (`A`) is uppercase,
+    * Followed by 7 digits (`XXXXXXX`),
+    * Ending with an uppercase letter (`&`).
 * The tutorial ID refers to the title of the tutorial as displayed in TAbs (beginning with `T`).
 * The input must match the tutorial's ID exactly (case-sensitive).
 
@@ -292,6 +294,28 @@ Examples:
 
 * `delete_student id/A1231231Y t/T2` deletes the student with ID A1231231Y from the tutorial with ID
   `T2`.
+
+### Marking students in a tutorial as present: `mark`
+
+Marks specified students, in a tutorial in TAbs as present.
+
+Format: `mark t/TUTORIAL_ID id/STUDENT…`
+
+* Marks one or more students, identified by their `STUDENT_ID`, in the tutorial identified by
+  `TUTORIAL_ID` as present.
+* You can specify multiple student IDs in a single command, separated by spaces.
+* Each student ID must follow the format `AXXXXXXX&`, where:
+    * The first letter (`A`) is uppercase,
+    * Followed by 7 digits (`XXXXXXX`),
+    * Ending with an uppercase letter (`&`).
+* The tutorial ID refers to the title of the tutorial as displayed in TAbs (begins with `T`).
+* The input must match the tutorial’s ID exactly (case-sensitive).
+
+Examples:
+
+* `mark t/C456 id/A1231231Y` marks student A1231231Y in tutorial C456 as present.
+* `mark t/T123 id/A1231231Y id/A3213213Y`marks student A1231231Y and student A3213213Y
+  in tutorial T123 as present.
 
 ### Unmarking students in a tutorial: `unmark`
 
@@ -314,6 +338,28 @@ Examples:
 * `unmark t/C456 id/A1231231Y` unmarks student A1231231Y in tutorial C456.
 * `unmark t/T123 id/A1231231Y id/A3213213Y` unmarks student A1231231Y and student A3213213Y
   in tutorial T123.
+
+### Marking students in a tutorial as present: `mark`
+
+Marks specified students, in a tutorial in TAbs as present.
+
+Format: `mark t/TUTORIAL_ID id/STUDENT…`
+
+* Marks one or more students, identified by their `STUDENT_ID`, in the tutorial identified by
+  `TUTORIAL_ID` as present.
+* You can specify multiple student IDs in a single command, separated by spaces.
+* Each student ID must follow the format `AXXXXXXX&`, where:
+    * The first letter (`A`) is uppercase,
+    * Followed by 7 digits (`XXXXXXX`),
+    * Ending with an uppercase letter (`&`).
+* The tutorial ID refers to the title of the tutorial as displayed in TAbs (begins with `T`).
+* The input must match the tutorial’s ID exactly (case-sensitive).
+
+Examples:
+
+* `mark t/C456 id/A1231231Y` marks student A1231231Y in tutorial C456 as present.
+* `mark t/T123 id/A1231231Y id/A3213213Y`marks student A1231231Y and student A3213213Y
+  in tutorial T123 as present.
 
 ### Clearing all entries : `clear`
 
@@ -369,15 +415,18 @@ file that contains the data of your previous TAbs home folder.
 
 ## Command summary
 
-| Action                          | Format, Examples                                                                                                                                               |
-|---------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add Tutorial**                | `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…​` <br> e.g., `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y`                          |
-| **Copy tutorial**               | `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE` <br> e.g., `copy_tutorial t/C2 from/C1 d/2025-04-10`                                        |
-| **Clear**                       | `clear`                                                                                                                                                        |
-| **Add student(s)**              | `add_student id/STUDENT_ID... t/TUTORIAL_ID` <br> e.g., `add_student id/A1231231Y id/A3213213Y t/T2` <br> Adds one or more students to the specified tutorial. |
-| **List students in a tutorial** | `list_students t/TUTORIAL_ID`<br> e.g., `list_students t/T1`                                                                                                   |
-| **Delete a tutorial**           | `delete_tutorial t/TUTORIAL_ID`<br> e.g., `delete_tutorial t/T1`                                                                                               |
-| **Edit**                        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/DATE] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                     |
-| **Find**                        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS2103T T01`                                                                                                    |
-| **List**                        | `list`                                                                                                                                                         |
-| **Help**                        | `help`                                                                                                                                                         |
+| Action                          | Format, Examples                                                                                                                      |
+|---------------------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| **Add Tutorial**                | `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…​` <br> e.g., `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y` |
+| **Copy tutorial**               | `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE` <br> e.g., `copy_tutorial t/C2 from/C1 d/2025-04-10`               |
+| **Clear**                       | `clear`                                                                                                                               |
+| **Add student(s)**              | `add_student id/STUDENT_ID... t/TUTORIAL_ID` <br> e.g., `add_student id/A1231231Y id/A3213213Y t/T2`                                  |
+| **Delete student**              | `delete_student id/STUDENT_ID t/TUTORIAL_ID` <br> e.g., `delete_student id/A3213213Y t/T123`                                          |
+| **List students in a tutorial** | `list_students t/TUTORIAL_ID`<br> e.g., `list_students t/T1`                                                                          |
+| **Delete a tutorial**           | `delete_tutorial t/TUTORIAL_ID`<br> e.g., `delete_tutorial t/T1`                                                                      |
+| **Edit**                        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/DATE] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`            |
+| **Find**                        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS2103T T01`                                                                           |
+| **Mark**                        | `mark id/STUDENT_ID... t/TUTORIAL_ID` <br> e.g., `mark id/A1231231Y id/A3213213Y t/T123`                                              |
+| **Unmark**                      | `unmark id/STUDENT_ID... t/TUTORIAL_ID` <br> e.g., `unmark id/A1231231Y id/A3213213Y t/T123`                                          |
+| **Help**                        | `help`                                                                                                                                |
+| **List**                        | `list`                                                                                                                                |
