@@ -70,8 +70,7 @@ apps.
   `id/A1234567X id/A2234567Y` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `t/TUTORIAL_ID m/MODULE_CODE`, `m/MODULE_CODE t/TUTORIAL_ID` is also
-  acceptable.
+  e.g. if the command specifies `t/TUTORIAL_ID m/MODULE_CODE`, `m/MODULE_CODE t/TUTORIAL_ID` is also acceptable.
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`
   and `clear`) will be ignored.<br>
@@ -339,6 +338,28 @@ Examples:
 * `unmark t/C456 id/A1231231Y` unmarks student A1231231Y in tutorial C456.
 * `unmark t/T123 id/A1231231Y id/A3213213Y` unmarks student A1231231Y and student A3213213Y
   in tutorial T123.
+
+### Marking students in a tutorial as present: `mark`
+
+Marks specified students, in a tutorial in TAbs as present.
+
+Format: `mark t/TUTORIAL_ID id/STUDENT…`
+
+* Marks one or more students, identified by their `STUDENT_ID`, in the tutorial identified by
+  `TUTORIAL_ID` as present.
+* You can specify multiple student IDs in a single command, separated by spaces.
+* Each student ID must follow the format `AXXXXXXX&`, where:
+    * The first letter (`A`) is uppercase,
+    * Followed by 7 digits (`XXXXXXX`),
+    * Ending with an uppercase letter (`&`).
+* The tutorial ID refers to the title of the tutorial as displayed in TAbs (begins with `T`).
+* The input must match the tutorial’s ID exactly (case-sensitive).
+
+Examples:
+
+* `mark t/C456 id/A1231231Y` marks student A1231231Y in tutorial C456 as present.
+* `mark t/T123 id/A1231231Y id/A3213213Y`marks student A1231231Y and student A3213213Y
+  in tutorial T123 as present.
 
 ### Clearing all entries : `clear`
 
