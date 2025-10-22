@@ -29,7 +29,7 @@ public class TutorialUtil {
      */
     public static String getTutorialDetails(Tutorial aTutorial) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_TUTORIAL_ID + aTutorial.getTutorialId().fullName + " ");
+        sb.append(PREFIX_TUTORIAL_ID + aTutorial.getTutorialId().tutorialId + " ");
         sb.append(PREFIX_MODULE_CODE + aTutorial.getModuleCode().value + " ");
         sb.append(PREFIX_DATE + aTutorial.getDate().value + " ");
         aTutorial.getStudents().stream().forEach(
@@ -43,7 +43,7 @@ public class TutorialUtil {
      */
     public static String getEditTutorialDescriptorDetails(EditTutorialDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getName().ifPresent(name -> sb.append(PREFIX_TUTORIAL_ID).append(name.fullName).append(" "));
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_TUTORIAL_ID).append(name.tutorialId).append(" "));
         descriptor.getModuleCode().ifPresent(moduleCode -> sb.append(PREFIX_MODULE_CODE)
                 .append(moduleCode.value).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));

@@ -46,7 +46,7 @@ public class TutorialCard extends UiPart<Region> {
         super(FXML);
         this.aTutorial = aTutorial;
         id.setText(displayedIndex + ". ");
-        tutorialId.setText(aTutorial.getTutorialId().fullName);
+        tutorialId.setText(aTutorial.getTutorialId().tutorialId);
         moduleCode.setText(aTutorial.getModuleCode().value);
         date.setText(aTutorial.getDate().value);
         aTutorial.getStudents().stream()
