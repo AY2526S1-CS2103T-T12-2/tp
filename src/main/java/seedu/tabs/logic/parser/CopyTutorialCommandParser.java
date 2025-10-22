@@ -33,8 +33,8 @@ public class CopyTutorialCommandParser implements Parser<CopyTutorialCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID, PREFIX_FROM, PREFIX_DATE);
-        TutorialId newTutorialId = ParserUtil.parseName(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
-        TutorialId sourceTutorialId = ParserUtil.parseName(argMultimap.getValue(PREFIX_FROM).get());
+        TutorialId newTutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
+        TutorialId sourceTutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(PREFIX_FROM).get());
         Date newDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
 
         return new CopyTutorialCommand(newTutorialId, sourceTutorialId, newDate);

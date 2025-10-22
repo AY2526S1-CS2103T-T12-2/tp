@@ -65,10 +65,10 @@ public class CommandTestUtil {
     public static final EditTutorialCommand.EditTutorialDescriptor DESC_T456;
 
     static {
-        DESC_C123 = new EditTutorialDescriptorBuilder().withName(VALID_TUTORIAL_C123)
+        DESC_C123 = new EditTutorialDescriptorBuilder().withId(VALID_TUTORIAL_C123)
                 .withModuleCode(VALID_MODULE_CODE_CS2103T).withDate(VALID_DATE_C123)
                 .build();
-        DESC_T456 = new EditTutorialDescriptorBuilder().withName(VALID_TUTORIAL_T456)
+        DESC_T456 = new EditTutorialDescriptorBuilder().withId(VALID_TUTORIAL_T456)
                 .withModuleCode(VALID_MODULE_CODE_MA1521).withDate(VALID_DATE_T456)
                 .build();
     }
@@ -124,7 +124,7 @@ public class CommandTestUtil {
         assertTrue(model.hasTutorialId(tutorialId));
 
         model.updateFilteredTutorialList(
-                new TutorialIdContainsKeywordsPredicate(Collections.singletonList(tutorialId.tutorialId)));
+                new TutorialIdContainsKeywordsPredicate(Collections.singletonList(tutorialId.id)));
 
         assertEquals(1, model.getFilteredTutorialList().size());
     }

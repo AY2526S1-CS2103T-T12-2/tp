@@ -26,16 +26,16 @@ public class EditTutorialDescriptorBuilder {
      */
     public EditTutorialDescriptorBuilder(Tutorial aTutorial) {
         descriptor = new EditTutorialDescriptor();
-        descriptor.setName(aTutorial.getTutorialId());
+        descriptor.setId(aTutorial.getTutorialId());
         descriptor.setModuleCode(aTutorial.getModuleCode());
         descriptor.setDate(aTutorial.getDate());
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditTutorialDescriptor} that we are building.
+     * Sets the {@code TutorialId} of the {@code EditTutorialDescriptor} that we are building.
      */
-    public EditTutorialDescriptorBuilder withName(String name) {
-        descriptor.setName(new TutorialId(name));
+    public EditTutorialDescriptorBuilder withId(String id) {
+        descriptor.setId(new TutorialId(id));
         return this;
     }
 

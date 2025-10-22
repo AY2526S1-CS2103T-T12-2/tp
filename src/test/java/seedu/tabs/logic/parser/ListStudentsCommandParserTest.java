@@ -14,7 +14,7 @@ import seedu.tabs.testutil.TutorialBuilder;
 
 public class ListStudentsCommandParserTest {
 
-    private static final String VALID_TUTORIAL_ID_STRING = TutorialBuilder.DEFAULT_NAME;
+    private static final String VALID_TUTORIAL_ID_STRING = TutorialBuilder.DEFAULT_TUTORIAL_ID;
     private static final TutorialId VALID_TUTORIAL_ID = new TutorialBuilder().build().getTutorialId();
 
     private ListStudentsCommandParser parser = new ListStudentsCommandParser();
@@ -51,7 +51,7 @@ public class ListStudentsCommandParserTest {
         // Assuming TutorialId has validation constraints
         String expectedMessage = TutorialId.MESSAGE_CONSTRAINTS;
 
-        // Invalid tutorial ID (e.g., empty string which should be caught by parseName)
+        // Invalid tutorial ID (e.g., empty string which should be caught by parseTutorialId)
         assertParseFailure(parser, " " + PREFIX_TUTORIAL_ID + " ", expectedMessage);
     }
 

@@ -30,7 +30,7 @@ public class ListStudentsCommandParser implements Parser<ListStudentsCommand> {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID);
 
-        TutorialId tutorialId = ParserUtil.parseName(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
+        TutorialId tutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
 
         return new ListStudentsCommand(tutorialId);
     }

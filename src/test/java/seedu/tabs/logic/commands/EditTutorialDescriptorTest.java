@@ -34,9 +34,9 @@ public class EditTutorialDescriptorTest {
         // different values -> returns false
         assertFalse(DESC_C123.equals(DESC_T456));
 
-        // different name -> returns false
+        // different id -> returns false
         EditTutorialDescriptor edited = new EditTutorialDescriptorBuilder(DESC_C123)
-                .withName(VALID_TUTORIAL_T456).build();
+                .withId(VALID_TUTORIAL_T456).build();
         assertFalse(DESC_C123.equals(edited));
 
         // different moduleCode -> returns false
@@ -54,7 +54,7 @@ public class EditTutorialDescriptorTest {
     public void toStringMethod() {
         EditTutorialDescriptor editTutorialDescriptor = new EditTutorialDescriptor();
         String expected = EditTutorialDescriptor.class.getCanonicalName()
-                + "{tutorialId=" + editTutorialDescriptor.getName().orElse(null)
+                + "{tutorialId=" + editTutorialDescriptor.getId().orElse(null)
                 + ", moduleCode=" + editTutorialDescriptor.getModuleCode().orElse(null)
                 + ", date=" + editTutorialDescriptor.getDate().orElse(null)
                 + "}";

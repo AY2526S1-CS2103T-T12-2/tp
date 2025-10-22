@@ -42,14 +42,14 @@ public class ListStudentsCommandTest {
     private static final Student BOB = new Student("A0000002Z");
 
     private static final Tutorial T01 = new TutorialBuilder()
-            .withName("T01")
+            .withId("T01")
             .withModuleCode("CS2103T")
             .withDate("2025-10-14")
             .withStudents(ALICE.studentId, BOB.studentId)
             .build();
 
     private static final Tutorial T02_EMPTY = new TutorialBuilder()
-            .withName("T02")
+            .withId("T02")
             .withModuleCode("CS2103T")
             .withDate("2025-10-14")
             .withStudents() // Initializes an empty set
@@ -181,7 +181,7 @@ public class ListStudentsCommandTest {
         ListStudentsCommand listStudentsCommand = new ListStudentsCommand(T99_ID_NON_EXISTENT);
 
         String expectedMessage = String.format("A tutorial with the TUTORIAL_ID %s does not exist",
-                T99_ID_NON_EXISTENT.tutorialId);
+                T99_ID_NON_EXISTENT.id);
 
         assertThrows(CommandException.class, expectedMessage, () -> listStudentsCommand.execute(model));
     }
@@ -192,7 +192,7 @@ public class ListStudentsCommandTest {
         ListStudentsCommand listStudentsCommand = new ListStudentsCommand(T02_ID_EMPTY);
 
         String expectedMessage = String.format("The tutorial %s has no students enrolled.",
-                T02_ID_EMPTY.tutorialId);
+                T02_ID_EMPTY.id);
 
         assertThrows(CommandException.class, expectedMessage, () -> listStudentsCommand.execute(model));
     }

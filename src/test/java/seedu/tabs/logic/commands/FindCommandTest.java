@@ -97,7 +97,7 @@ public class FindCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code TutorialIdContainsKeywordsPredicate}.
      */
     private TutorialIdContainsKeywordsPredicate preparePredicate(String userInput) {
         return new TutorialIdContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
