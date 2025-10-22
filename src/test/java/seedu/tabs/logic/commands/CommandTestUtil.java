@@ -61,16 +61,16 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditTutorialDescriptor DESC_C123;
-    public static final EditCommand.EditTutorialDescriptor DESC_T456;
+    public static final EditTutorialCommand.EditTutorialDescriptor DESC_C123;
+    public static final EditTutorialCommand.EditTutorialDescriptor DESC_T456;
 
     static {
         DESC_C123 = new EditTutorialDescriptorBuilder().withId(VALID_TUTORIAL_C123)
                 .withModuleCode(VALID_MODULE_CODE_CS2103T).withDate(VALID_DATE_C123)
-                .withStudents(VALID_STUDENT_B).build();
+                .build();
         DESC_T456 = new EditTutorialDescriptorBuilder().withId(VALID_TUTORIAL_T456)
                 .withModuleCode(VALID_MODULE_CODE_MA1521).withDate(VALID_DATE_T456)
-                .withStudents(VALID_STUDENT_A, VALID_STUDENT_B).build();
+                .build();
     }
 
     /**
