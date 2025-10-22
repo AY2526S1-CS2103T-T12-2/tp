@@ -33,23 +33,23 @@ public class TutorialTest {
         // null -> returns false
         assertFalse(TUTORIAL_CS2103T_C101.isSameTutorial(null));
 
-        // same name, all other attributes different -> returns true
+        // same id, all other attributes different -> returns true
         Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101)
                 .withModuleCode(VALID_MODULE_CODE_MA1521).withDate(VALID_DATE_T456)
                 .withStudents(VALID_STUDENT_A).build();
         assertTrue(TUTORIAL_CS2103T_C101.isSameTutorial(editedAlice));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withName(VALID_TUTORIAL_T456).build();
+        // different id, all other attributes same -> returns false
+        editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withId(VALID_TUTORIAL_T456).build();
         assertFalse(TUTORIAL_CS2103T_C101.isSameTutorial(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false (case-sensitive)
+        // id differs in case, all other attributes same -> returns false (case sensitive)
         Tutorial editedBob = new TutorialBuilder(TUTORIAL_TEST_T456)
-                .withName(VALID_TUTORIAL_T456.toLowerCase()).build();
+                .withId(VALID_TUTORIAL_T456.toLowerCase()).build();
         assertFalse(TUTORIAL_TEST_T456.isSameTutorial(editedBob));
 
-        // completely different name -> returns false
-        editedBob = new TutorialBuilder(TUTORIAL_TEST_T456).withName("C999").build();
+        // completely different id -> returns false
+        editedBob = new TutorialBuilder(TUTORIAL_TEST_T456).withId("C999").build();
         assertFalse(TUTORIAL_TEST_T456.isSameTutorial(editedBob));
     }
 
@@ -71,8 +71,8 @@ public class TutorialTest {
         // different tutorial -> returns false
         assertFalse(TUTORIAL_CS2103T_C101.equals(TUTORIAL_TEST_T456));
 
-        // different name -> returns false
-        Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withName(VALID_TUTORIAL_T456).build();
+        // different id -> returns false
+        Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withId(VALID_TUTORIAL_T456).build();
         assertFalse(TUTORIAL_CS2103T_C101.equals(editedAlice));
 
         // different moduleCode -> returns false

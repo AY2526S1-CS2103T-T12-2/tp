@@ -25,7 +25,7 @@ public class ParserUtilTest {
     private static final String INVALID_DATE = "example.com";
     private static final String INVALID_STUDENT = "A123";
 
-    private static final String VALID_NAME = "C123";
+    private static final String VALID_TUTORIAL = "C123";
     private static final String VALID_MODULE_CODE = "CS2103T";
     private static final String VALID_DATE = "2025-01-15";
     private static final String VALID_STUDENT_1 = "A1231231Y";
@@ -54,26 +54,26 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseName((String) null));
+    public void parseTutorialId_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseTutorialId((String) null));
     }
 
     @Test
-    public void parseName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseName(INVALID_TUTORIAL));
+    public void parseTutorialId_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseTutorialId(INVALID_TUTORIAL));
     }
 
     @Test
-    public void parseName_validValueWithoutWhitespace_returnsName() throws Exception {
-        TutorialId expectedTutorialId = new TutorialId(VALID_NAME);
-        assertEquals(expectedTutorialId, ParserUtil.parseName(VALID_NAME));
+    public void parseTutorialId_validValueWithoutWhitespace_returnsTutorialId() throws Exception {
+        TutorialId expectedTutorialId = new TutorialId(VALID_TUTORIAL);
+        assertEquals(expectedTutorialId, ParserUtil.parseTutorialId(VALID_TUTORIAL));
     }
 
     @Test
-    public void parseName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        TutorialId expectedTutorialId = new TutorialId(VALID_NAME);
-        assertEquals(expectedTutorialId, ParserUtil.parseName(nameWithWhitespace));
+    public void parseTutorialId_validValueWithWhitespace_returnsTrimmedTutorialId() throws Exception {
+        String idWithWhitespace = WHITESPACE + VALID_TUTORIAL + WHITESPACE;
+        TutorialId expectedTutorialId = new TutorialId(VALID_TUTORIAL);
+        assertEquals(expectedTutorialId, ParserUtil.parseTutorialId(idWithWhitespace));
     }
 
     @Test

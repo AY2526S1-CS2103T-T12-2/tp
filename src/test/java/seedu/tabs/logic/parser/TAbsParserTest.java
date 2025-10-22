@@ -58,7 +58,7 @@ public class TAbsParserTest {
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder(aTutorial).build();
 
         String commandString = EditTutorialCommand.COMMAND_WORD + " "
-                + CliSyntax.PREFIX_FROM + aTutorial.getTutorialId().fullName + " "
+                + CliSyntax.PREFIX_FROM + aTutorial.getTutorialId().id + " "
                 + TutorialUtil.getEditTutorialDescriptorDetails(descriptor);
 
         EditTutorialCommand command =
@@ -66,7 +66,7 @@ public class TAbsParserTest {
 
         assertEquals(
                 new EditTutorialCommand(
-                        new TutorialIdMatchesKeywordPredicate(aTutorial.getTutorialId().fullName),
+                        new TutorialIdMatchesKeywordPredicate(aTutorial.getTutorialId().id),
                         descriptor),
                 command
         );

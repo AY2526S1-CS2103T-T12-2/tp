@@ -87,7 +87,7 @@ public class EditTutorialCommandParserTest {
                 + DATE_DESC_C123;
 
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder()
-                .withName(VALID_TUTORIAL_T456)
+                .withId(VALID_TUTORIAL_T456)
                 .withModuleCode(VALID_MODULE_CODE_MA1521)
                 .withDate(VALID_DATE_C123)
                 .build();
@@ -119,7 +119,7 @@ public class EditTutorialCommandParserTest {
         // change tutorial id only
         String userInput = FROM_DESC_C123 + TUTORIAL_DESC_T456;
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder()
-                .withName(VALID_TUTORIAL_T456).build();
+                .withId(VALID_TUTORIAL_T456).build();
         EditTutorialCommand expected = new EditTutorialCommand(
                 new TutorialIdMatchesKeywordPredicate(VALID_TUTORIAL_C123), descriptor);
         assertParseSuccess(parser, userInput, expected);

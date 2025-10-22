@@ -14,17 +14,17 @@ public class TutorialIdTest {
     }
 
     @Test
-    public void constructor_invalidName_throwsIllegalArgumentException() {
-        String invalidName = "InvalidFormat";
-        assertThrows(IllegalArgumentException.class, () -> new TutorialId(invalidName));
+    public void constructor_invalidId_throwsIllegalArgumentException() {
+        String invalidId = "InvalidFormat";
+        assertThrows(IllegalArgumentException.class, () -> new TutorialId(invalidId));
     }
 
     @Test
     public void isValidName() {
-        // null name
+        // null id
         assertThrows(NullPointerException.class, () -> TutorialId.isValidTutorialId(null));
 
-        // invalid name
+        // invalid id
         assertFalse(TutorialId.isValidTutorialId("")); // empty string
         assertFalse(TutorialId.isValidTutorialId(" ")); // spaces only
         assertFalse(TutorialId.isValidTutorialId("^")); // only non-alphanumeric characters
@@ -35,7 +35,7 @@ public class TutorialIdTest {
         assertFalse(TutorialId.isValidTutorialId("C")); // no numbers
         assertFalse(TutorialId.isValidTutorialId("T")); // no numbers
 
-        // valid name - follows [CT]\d+ pattern
+        // valid id - follows [CT]\d+ pattern
         assertTrue(TutorialId.isValidTutorialId("C123")); // C prefix with numbers
         assertTrue(TutorialId.isValidTutorialId("T456")); // T prefix with numbers
         assertTrue(TutorialId.isValidTutorialId("CT789")); // CT prefix with numbers
@@ -61,5 +61,8 @@ public class TutorialIdTest {
 
         // different values -> returns false
         assertFalse(tutorialId.equals(new TutorialId("T456")));
+
+        // different case -> returns false (case sensitive)
+        assertFalse(tutorialId.equals(new TutorialId("c123")));
     }
 }

@@ -65,7 +65,7 @@ public class AddTutorialCommandParserTest {
         String validExpectedTutorialString = TUTORIAL_DESC_T456 + MODULE_CODE_DESC_MA1521 + DATE_DESC_T456
                 + STUDENT_DESC_B;
 
-        // multiple names
+        // multiple ids
         assertParseFailure(parser, TUTORIAL_DESC_C123 + validExpectedTutorialString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
 
@@ -86,7 +86,7 @@ public class AddTutorialCommandParserTest {
 
         // invalid value followed by valid value
 
-        // invalid name
+        // invalid id
         assertParseFailure(parser, INVALID_TUTORIAL_DESC + validExpectedTutorialString,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
 
@@ -100,7 +100,7 @@ public class AddTutorialCommandParserTest {
 
         // valid value followed by invalid value
 
-        // invalid name
+        // invalid id
         assertParseFailure(parser, validExpectedTutorialString + INVALID_TUTORIAL_DESC,
                 Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
 
@@ -125,7 +125,7 @@ public class AddTutorialCommandParserTest {
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE);
 
-        // missing name prefix
+        // missing id prefix
         assertParseFailure(parser, VALID_TUTORIAL_T456 + MODULE_CODE_DESC_MA1521 + DATE_DESC_T456,
                 expectedMessage);
 
@@ -144,7 +144,7 @@ public class AddTutorialCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
+        // invalid id
         assertParseFailure(parser, INVALID_TUTORIAL_DESC + MODULE_CODE_DESC_MA1521 + DATE_DESC_T456
                 + STUDENT_DESC_A + STUDENT_DESC_B, TutorialId.MESSAGE_CONSTRAINTS);
 

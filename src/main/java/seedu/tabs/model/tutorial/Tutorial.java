@@ -56,7 +56,7 @@ public class Tutorial {
     }
 
     /**
-     * Returns true if both tutorials have the same name.
+     * Returns true if both tutorials have the same id.
      * This defines a weaker notion of equality between two tutorials.
      */
     public boolean isSameTutorial(Tutorial otherTutorial) {

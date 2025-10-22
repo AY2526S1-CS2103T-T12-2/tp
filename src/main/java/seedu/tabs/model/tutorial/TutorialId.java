@@ -14,7 +14,7 @@ public class TutorialId {
 
     public static final String VALIDATION_REGEX = "(C|T|CT)\\d+";
 
-    public final String tutorialId;
+    public final String id;
 
     /**
      * Constructs a {@code TutorialId}.
@@ -24,7 +24,7 @@ public class TutorialId {
     public TutorialId(String tutorialId) {
         requireNonNull(tutorialId);
         checkArgument(isValidTutorialId(tutorialId), MESSAGE_CONSTRAINTS);
-        this.tutorialId = tutorialId;
+        this.id = tutorialId;
     }
 
     /**
@@ -37,7 +37,7 @@ public class TutorialId {
 
     @Override
     public String toString() {
-        return tutorialId;
+        return id;
     }
 
     @Override
@@ -52,12 +52,12 @@ public class TutorialId {
         }
 
         TutorialId otherTutorialId = (TutorialId) other;
-        return tutorialId.equals(otherTutorialId.tutorialId);
+        return id.equals(otherTutorialId.id);
     }
 
     @Override
     public int hashCode() {
-        return tutorialId.hashCode();
+        return id.hashCode();
     }
 
 }

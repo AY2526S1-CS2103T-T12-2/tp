@@ -41,7 +41,7 @@ public class EditTutorialCommandTest {
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder(editedTutorial).build();
 
         EditTutorialCommand editTutorialCommand = new EditTutorialCommand(
-                new TutorialIdMatchesKeywordPredicate(original.getTutorialId().fullName),
+                new TutorialIdMatchesKeywordPredicate(original.getTutorialId().id),
                 descriptor);
 
         String expectedMessage = String.format(EditTutorialCommand.MESSAGE_EDIT_TUTORIAL_SUCCESS,
@@ -60,17 +60,17 @@ public class EditTutorialCommandTest {
                 .get(model.getFilteredTutorialList().size() - 1);
 
         Tutorial editedTutorial = new TutorialBuilder(lastTutorial)
-                .withName(VALID_TUTORIAL_T456)
+                .withId(VALID_TUTORIAL_T456)
                 .withModuleCode(VALID_MODULE_CODE_MA1521)
                 .build();
 
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder()
-                .withName(VALID_TUTORIAL_T456)
+                .withId(VALID_TUTORIAL_T456)
                 .withModuleCode(VALID_MODULE_CODE_MA1521)
                 .build();
 
         EditTutorialCommand editCommand = new EditTutorialCommand(
-                new TutorialIdMatchesKeywordPredicate(lastTutorial.getTutorialId().fullName),
+                new TutorialIdMatchesKeywordPredicate(lastTutorial.getTutorialId().id),
                 descriptor);
 
         String expectedMessage = String.format(EditTutorialCommand.MESSAGE_EDIT_TUTORIAL_SUCCESS,
@@ -87,7 +87,7 @@ public class EditTutorialCommandTest {
         // empty descriptor (parser usually guards this, but command can still no-op successfully)
         Tutorial target = model.getFilteredTutorialList().get(INDEX_FIRST_PERSON.getZeroBased());
         EditTutorialCommand editCommand = new EditTutorialCommand(
-                new TutorialIdMatchesKeywordPredicate(target.getTutorialId().fullName),
+                new TutorialIdMatchesKeywordPredicate(target.getTutorialId().id),
                 new EditTutorialDescriptor());
 
         String expectedMessage = String.format(EditTutorialCommand.MESSAGE_EDIT_TUTORIAL_SUCCESS,
@@ -104,12 +104,12 @@ public class EditTutorialCommandTest {
         Tutorial tutorialInFilteredList = model.getFilteredTutorialList().get(0);
 
         Tutorial editedTutorial = new TutorialBuilder(tutorialInFilteredList)
-                .withName(VALID_TUTORIAL_T456)
+                .withId(VALID_TUTORIAL_T456)
                 .build();
 
         EditTutorialCommand editCommand = new EditTutorialCommand(
-                new TutorialIdMatchesKeywordPredicate(tutorialInFilteredList.getTutorialId().fullName),
-                new EditTutorialDescriptorBuilder().withName(VALID_TUTORIAL_T456).build());
+                new TutorialIdMatchesKeywordPredicate(tutorialInFilteredList.getTutorialId().id),
+                new EditTutorialDescriptorBuilder().withId(VALID_TUTORIAL_T456).build());
 
         String expectedMessage = String.format(EditTutorialCommand.MESSAGE_EDIT_TUTORIAL_SUCCESS,
                 Messages.format(editedTutorial));
@@ -129,7 +129,7 @@ public class EditTutorialCommandTest {
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder(first).build();
 
         EditTutorialCommand editCommand = new EditTutorialCommand(
-                new TutorialIdMatchesKeywordPredicate(second.getTutorialId().fullName),
+                new TutorialIdMatchesKeywordPredicate(second.getTutorialId().id),
                 descriptor);
 
         assertCommandFailure(editCommand, model, EditTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL);
@@ -139,7 +139,7 @@ public class EditTutorialCommandTest {
     public void execute_tutorialIdNotFound_failure() {
         // Predicate targets a non-existent tutorial ID
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder()
-                .withName(VALID_TUTORIAL_T456)
+                .withId(VALID_TUTORIAL_T456)
                 .build();
 
         EditTutorialCommand editCommand = new EditTutorialCommand(
@@ -155,25 +155,25 @@ public class EditTutorialCommandTest {
         Tutorial second = model.getFilteredTutorialList().get(INDEX_SECOND_PERSON.getZeroBased());
 
         EditTutorialDescriptor descForFirst = new EditTutorialDescriptorBuilder()
-                .withName(first.getTutorialId().fullName)
+                .withId(first.getTutorialId().id)
                 .withModuleCode(first.getModuleCode().value)
                 .withDate(first.getDate().value)
                 .build();
 
         EditTutorialDescriptor descForSecond = new EditTutorialDescriptorBuilder()
-                .withName(second.getTutorialId().fullName)
+                .withId(second.getTutorialId().id)
                 .withModuleCode(second.getModuleCode().value)
                 .withDate(second.getDate().value)
                 .build();
 
         EditTutorialCommand standardCommand = new EditTutorialCommand(
-                new TutorialIdMatchesKeywordPredicate(first.getTutorialId().fullName),
+                new TutorialIdMatchesKeywordPredicate(first.getTutorialId().id),
                 descForFirst);
 
         // same values -> returns true
         EditTutorialDescriptor copyDescriptor = new EditTutorialDescriptor(descForFirst);
         EditTutorialCommand commandWithSameValues = new EditTutorialCommand(
-                new TutorialIdMatchesKeywordPredicate(first.getTutorialId().fullName),
+                new TutorialIdMatchesKeywordPredicate(first.getTutorialId().id),
                 copyDescriptor);
         assertEquals(standardCommand, commandWithSameValues);
 
@@ -188,12 +188,12 @@ public class EditTutorialCommandTest {
 
         // different predicate (targets different tutorial) -> returns false
         assertNotEquals(standardCommand, new EditTutorialCommand(
-                new TutorialIdMatchesKeywordPredicate(second.getTutorialId().fullName),
+                new TutorialIdMatchesKeywordPredicate(second.getTutorialId().id),
                 descForFirst));
 
         // different descriptor -> returns false
         assertNotEquals(standardCommand, new EditTutorialCommand(
-                new TutorialIdMatchesKeywordPredicate(first.getTutorialId().fullName),
+                new TutorialIdMatchesKeywordPredicate(first.getTutorialId().id),
                 descForSecond));
     }
 }
