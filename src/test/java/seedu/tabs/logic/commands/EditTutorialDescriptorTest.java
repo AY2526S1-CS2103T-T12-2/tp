@@ -7,12 +7,11 @@ import static seedu.tabs.logic.commands.CommandTestUtil.DESC_C123;
 import static seedu.tabs.logic.commands.CommandTestUtil.DESC_T456;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_DATE_T456;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_MODULE_CODE_MA1521;
-import static seedu.tabs.logic.commands.CommandTestUtil.VALID_STUDENT_A;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_T456;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.tabs.logic.commands.EditCommand.EditTutorialDescriptor;
+import seedu.tabs.logic.commands.EditTutorialCommand.EditTutorialDescriptor;
 import seedu.tabs.testutil.EditTutorialDescriptorBuilder;
 
 public class EditTutorialDescriptorTest {
@@ -36,32 +35,29 @@ public class EditTutorialDescriptorTest {
         assertFalse(DESC_C123.equals(DESC_T456));
 
         // different name -> returns false
-        EditTutorialDescriptor editedAmy = new EditTutorialDescriptorBuilder(DESC_C123)
+        EditTutorialDescriptor edited = new EditTutorialDescriptorBuilder(DESC_C123)
                 .withName(VALID_TUTORIAL_T456).build();
-        assertFalse(DESC_C123.equals(editedAmy));
+        assertFalse(DESC_C123.equals(edited));
 
         // different moduleCode -> returns false
-        editedAmy = new EditTutorialDescriptorBuilder(DESC_C123)
+        edited = new EditTutorialDescriptorBuilder(DESC_C123)
                 .withModuleCode(VALID_MODULE_CODE_MA1521).build();
-        assertFalse(DESC_C123.equals(editedAmy));
+        assertFalse(DESC_C123.equals(edited));
 
         // different date -> returns false
-        editedAmy = new EditTutorialDescriptorBuilder(DESC_C123).withDate(VALID_DATE_T456).build();
-        assertFalse(DESC_C123.equals(editedAmy));
-
-        // different students -> returns false
-        editedAmy = new EditTutorialDescriptorBuilder(DESC_C123).withStudents(VALID_STUDENT_A).build();
-        assertFalse(DESC_C123.equals(editedAmy));
+        edited = new EditTutorialDescriptorBuilder(DESC_C123)
+                .withDate(VALID_DATE_T456).build();
+        assertFalse(DESC_C123.equals(edited));
     }
 
     @Test
     public void toStringMethod() {
         EditTutorialDescriptor editTutorialDescriptor = new EditTutorialDescriptor();
-        String expected = EditTutorialDescriptor.class.getCanonicalName() + "{tutorialId="
-                + editTutorialDescriptor.getName().orElse(null) + ", moduleCode="
-                + editTutorialDescriptor.getModuleCode().orElse(null) + ", date="
-                + editTutorialDescriptor.getDate().orElse(null) + ", students="
-                + editTutorialDescriptor.getStudents().orElse(null) + "}";
+        String expected = EditTutorialDescriptor.class.getCanonicalName()
+                + "{tutorialId=" + editTutorialDescriptor.getName().orElse(null)
+                + ", moduleCode=" + editTutorialDescriptor.getModuleCode().orElse(null)
+                + ", date=" + editTutorialDescriptor.getDate().orElse(null)
+                + "}";
         assertEquals(expected, editTutorialDescriptor.toString());
     }
 }
