@@ -24,7 +24,7 @@ public class TutorialId {
     public TutorialId(String tutorialId) {
         requireNonNull(tutorialId);
         checkArgument(isValidTutorialId(tutorialId), MESSAGE_CONSTRAINTS);
-        id = tutorialId.toUpperCase();
+        this.id = tutorialId;
     }
 
     /**

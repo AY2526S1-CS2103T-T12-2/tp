@@ -5,7 +5,10 @@
       "moduleCode": "CS2103T",
       "date": "2025-01-10",
       "students": [
-        "A1231231Y"
+        {
+          "studentId": "A1231231Y",
+          "isPresent": false
+        }
       ]
     },
     {

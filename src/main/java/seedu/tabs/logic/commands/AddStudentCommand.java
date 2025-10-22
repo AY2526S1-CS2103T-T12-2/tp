@@ -18,7 +18,7 @@ import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
 /**
- * Adds a student to a tutorial
+ * Adds students to a tutorial
  */
 public class AddStudentCommand extends Command {
     public static final String COMMAND_WORD = "add_student";
@@ -34,7 +34,7 @@ public class AddStudentCommand extends Command {
             + PREFIX_TUTORIAL_ID + "T123";
     public static final String MESSAGE_SUCCESS = "The following student(s):\n"
             + "\t%1$s\n"
-            + "were added to tutorial %2$s";
+            + "were added to tutorial %2$s.";
     public static final String MESSAGE_DUPLICATE_STUDENT = "The following student(s):\n"
             + "\t%1$s\n"
             + "are already in tutorial %2$s!";
@@ -44,8 +44,8 @@ public class AddStudentCommand extends Command {
     private final Set<Student> duplicateStudentList;
 
     /**
-     * @param newStudentsList   of the student to add
-     * @param predicate         to filter the tutorial list by the provided tutorial_id
+     * @param newStudentsList of the student to add
+     * @param predicate       to filter the tutorial list by the provided tutorial_id
      */
     public AddStudentCommand(Set<Student> newStudentsList, TutorialIdMatchesKeywordPredicate predicate) {
         requireAllNonNull(newStudentsList, predicate);
@@ -89,13 +89,13 @@ public class AddStudentCommand extends Command {
      * edited with {@code editTutorialDescriptor}.
      */
     private Tutorial addStudentToTutorial(Tutorial tutorialToAdd,
-                                                 Set<Student> newStudentsList) throws CommandException {
+                                          Set<Student> newStudentsList) throws CommandException {
         assert tutorialToAdd != null;
 
         // Get current student set and add new students to the set
         Set<Student> currStudents = tutorialToAdd.getStudents();
         Set<Student> updatedStudents = new HashSet<>(currStudents);
-        for (Student newStudent: newStudentsList) {
+        for (Student newStudent : newStudentsList) {
             if (currStudents.contains(newStudent)) {
                 //  Keep track of duplicate students
                 duplicateStudentList.add(newStudent);
