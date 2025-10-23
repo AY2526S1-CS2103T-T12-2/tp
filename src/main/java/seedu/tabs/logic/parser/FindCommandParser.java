@@ -30,20 +30,20 @@ public class FindCommandParser implements Parser<FindCommand> {
         boolean hasModuleCode = argMultimap.getValue(PREFIX_MODULE_CODE).isPresent();
         boolean hasTutorialId = argMultimap.getValue(PREFIX_TUTORIAL_ID).isPresent();
 
-        // 1. Check for missing prefixes
+        // Check for missing prefixes
         if (!hasModuleCode && !hasTutorialId) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        // 2. Check for duplicate prefixes
+        // Check for duplicate prefixes
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID, PREFIX_MODULE_CODE);
 
-        // 3. Ensure only one type of search is performed
+        // Ensure only one type of search is performed
         if (hasModuleCode && hasTutorialId) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        // 4. Extract and process keywords based on the present prefix
+        // Extract and process keywords based on the present prefix
         if (hasTutorialId) {
             String tutorialIdArgs = argMultimap.getValue(PREFIX_TUTORIAL_ID).get().trim();
             if (tutorialIdArgs.isEmpty()) {

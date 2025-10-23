@@ -12,24 +12,24 @@ import org.junit.jupiter.api.Test;
 
 import seedu.tabs.testutil.TutorialBuilder;
 
-public class TutorialIdContainsKeywordsPredicateTest {
+public class ModuleCodeContainsKeywordsPredicateTest {
 
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        TutorialIdContainsKeywordsPredicate firstPredicate =
-                new TutorialIdContainsKeywordsPredicate(firstPredicateKeywordList);
-        TutorialIdContainsKeywordsPredicate secondPredicate =
-                new TutorialIdContainsKeywordsPredicate(secondPredicateKeywordList);
+        ModuleCodeContainsKeywordsPredicate firstPredicate =
+                new ModuleCodeContainsKeywordsPredicate(firstPredicateKeywordList);
+        ModuleCodeContainsKeywordsPredicate secondPredicate =
+                new ModuleCodeContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        TutorialIdContainsKeywordsPredicate firstPredicateCopy =
-                new TutorialIdContainsKeywordsPredicate(firstPredicateKeywordList);
+        ModuleCodeContainsKeywordsPredicate firstPredicateCopy =
+                new ModuleCodeContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -43,42 +43,42 @@ public class TutorialIdContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_idContainsKeywords_returnsTrue() {
-        // One keyword matches Tutorial ID
-        TutorialIdContainsKeywordsPredicate predicate =
-                new TutorialIdContainsKeywordsPredicate(Collections.singletonList("T09"));
+    public void test_moduleCodeContainsKeywords_returnsTrue() {
+        // One keyword matches Module Code
+        ModuleCodeContainsKeywordsPredicate predicate =
+                new ModuleCodeContainsKeywordsPredicate(Collections.singletonList("CS2103T"));
         assertTrue(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T").build()));
 
-        // Multiple keywords, one matching Tutorial ID
-        predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("T456", "T09"));
+        // Multiple keywords, one matching Module Code
+        predicate = new ModuleCodeContainsKeywordsPredicate(Arrays.asList("ZZZ", "CS2103T"));
         assertTrue(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T").build()));
 
-        // Mixed-case keywords match (Tutorial ID is T09)
-        predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("t09", "t456"));
+        // Mixed-case keywords match (Module Code is CS2103T)
+        predicate = new ModuleCodeContainsKeywordsPredicate(Arrays.asList("cs2103t", "zzz"));
         assertTrue(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T").build()));
 
-        // Match part of the ID
-        predicate = new TutorialIdContainsKeywordsPredicate(Collections.singletonList("0"));
+        // Match part of the Module Code
+        predicate = new ModuleCodeContainsKeywordsPredicate(Collections.singletonList("2103"));
         assertTrue(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T").build()));
     }
 
     @Test
-    public void test_idDoesNotContainKeywords_returnsFalse() {
+    public void test_moduleCodeDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        TutorialIdContainsKeywordsPredicate predicate =
-                new TutorialIdContainsKeywordsPredicate(Collections.emptyList());
+        ModuleCodeContainsKeywordsPredicate predicate =
+                new ModuleCodeContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T").build()));
 
         // Non-matching keyword
-        predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("ZZZ", "X999"));
+        predicate = new ModuleCodeContainsKeywordsPredicate(Arrays.asList("ZZZ", "X999"));
         assertFalse(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T").build()));
 
-        // Keyword matches Module Code but NOT Tutorial ID (ID is T09)
-        predicate = new TutorialIdContainsKeywordsPredicate(Collections.singletonList("CS2103T"));
+        // Keyword matches Tutorial ID but NOT Module Code (Module Code is CS2103T)
+        predicate = new ModuleCodeContainsKeywordsPredicate(Collections.singletonList("T09"));
         assertFalse(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T").build()));
 
         // Keywords match other non-searched fields (e.g., date)
-        predicate = new TutorialIdContainsKeywordsPredicate(Arrays.asList("2025-01-15", "Main", "Street"));
+        predicate = new ModuleCodeContainsKeywordsPredicate(Arrays.asList("2025-01-15", "Main", "Street"));
         assertFalse(predicate.test(new TutorialBuilder().withId("T09").withModuleCode("CS2103T")
                 .withDate("2025-01-15").build()));
     }
@@ -86,9 +86,9 @@ public class TutorialIdContainsKeywordsPredicateTest {
     @Test
     public void toStringMethod() {
         List<String> keywords = List.of("keyword1", "keyword2");
-        TutorialIdContainsKeywordsPredicate predicate = new TutorialIdContainsKeywordsPredicate(keywords);
+        ModuleCodeContainsKeywordsPredicate predicate = new ModuleCodeContainsKeywordsPredicate(keywords);
 
-        String expected = TutorialIdContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
+        String expected = ModuleCodeContainsKeywordsPredicate.class.getCanonicalName() + "{keywords=" + keywords + "}";
         assertEquals(expected, predicate.toString());
     }
 }

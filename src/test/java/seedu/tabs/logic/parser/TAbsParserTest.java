@@ -81,9 +81,10 @@ public class TAbsParserTest {
 
     @Test
     public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<String> keywords = Arrays.asList("C0", "T01", "C2");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_TUTORIAL_ID
+                        + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new TutorialIdContainsKeywordsPredicate(keywords)), command);
     }
 
