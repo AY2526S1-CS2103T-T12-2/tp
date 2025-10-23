@@ -3,7 +3,6 @@ package seedu.tabs.model.tutorial;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.tabs.commons.util.StringUtil;
 import seedu.tabs.commons.util.ToStringBuilder;
 
 /**
