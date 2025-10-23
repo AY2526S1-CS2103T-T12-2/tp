@@ -6,18 +6,18 @@ import java.util.function.Predicate;
 import seedu.tabs.commons.util.ToStringBuilder;
 
 /**
- * Tests that a {@code Tutorial}'s {@code id} matches any of the keywords given.
+ * Tests that a {@code Tutorial}'s {@code ModuleCode} matches any of the keywords given.
  */
-public class TutorialIdContainsKeywordsPredicate implements Predicate<Tutorial> {
+public class ModuleCodeContainsKeywordsPredicate implements Predicate<Tutorial> {
     private final List<String> keywords;
 
-    public TutorialIdContainsKeywordsPredicate(List<String> keywords) {
+    public ModuleCodeContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
     @Override
     public boolean test(Tutorial aTutorial) {
-        return keywords.stream().anyMatch(keyword -> aTutorial.getTutorialId().id
+        return keywords.stream().anyMatch(keyword -> aTutorial.getModuleCode().value
                         .toLowerCase()
                         .contains(keyword.toLowerCase()));
     }
@@ -29,13 +29,13 @@ public class TutorialIdContainsKeywordsPredicate implements Predicate<Tutorial> 
         }
 
         // instanceof handles nulls
-        if (!(other instanceof TutorialIdContainsKeywordsPredicate)) {
+        if (!(other instanceof ModuleCodeContainsKeywordsPredicate)) {
             return false;
         }
 
-        TutorialIdContainsKeywordsPredicate otherTutorialIdContainsKeywordsPredicate =
-                (TutorialIdContainsKeywordsPredicate) other;
-        return keywords.equals(otherTutorialIdContainsKeywordsPredicate.keywords);
+        ModuleCodeContainsKeywordsPredicate otherModuleCodecontainsKeywordsPredicate =
+                (ModuleCodeContainsKeywordsPredicate) other;
+        return keywords.equals(otherModuleCodecontainsKeywordsPredicate.keywords);
     }
 
     @Override
