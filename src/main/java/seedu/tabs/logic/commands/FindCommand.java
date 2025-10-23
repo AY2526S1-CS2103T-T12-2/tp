@@ -2,11 +2,12 @@ package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.tabs.commons.util.ToStringBuilder;
 import seedu.tabs.logic.Messages;
 import seedu.tabs.model.Model;
-import seedu.tabs.model.tutorial.TutorialIdContainsKeywordsPredicate;
-
+import seedu.tabs.model.tutorial.Tutorial;
 /**
  * Finds and lists all tutorials in TAbs whose id contains any of the argument keywords.
  * Keyword matching is case-insensitive.
@@ -21,9 +22,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " CS2103T"
             + " or " + COMMAND_WORD + " T10";
-    private final TutorialIdContainsKeywordsPredicate predicate;
+    private final Predicate<Tutorial> predicate;
 
-    public FindCommand(TutorialIdContainsKeywordsPredicate predicate) {
+    public FindCommand(Predicate<Tutorial> predicate) {
         this.predicate = predicate;
     }
 
