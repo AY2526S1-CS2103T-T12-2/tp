@@ -3,7 +3,6 @@ package seedu.tabs.model.tutorial;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.tabs.commons.util.StringUtil;
 import seedu.tabs.commons.util.ToStringBuilder;
 
 /**
@@ -19,12 +18,13 @@ public class TutorialIdContainsKeywordsPredicate implements Predicate<Tutorial> 
     @Override
     public boolean test(Tutorial aTutorial) {
         boolean matchesModuleCode = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        aTutorial.getModuleCode().value, keyword)
-                );
+                .anyMatch(keyword -> aTutorial.getModuleCode().value
+                        .toLowerCase()
+                        .contains(keyword.toLowerCase()));
         boolean matchesTutorialId = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        aTutorial.getTutorialId().id, keyword));
+                .anyMatch(keyword -> aTutorial.getTutorialId().id
+                        .toLowerCase()
+                        .contains(keyword.toLowerCase()));
         return matchesTutorialId || matchesModuleCode;
     }
 
