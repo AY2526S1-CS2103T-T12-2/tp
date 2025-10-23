@@ -19,12 +19,13 @@ public class TutorialIdContainsKeywordsPredicate implements Predicate<Tutorial> 
     @Override
     public boolean test(Tutorial aTutorial) {
         boolean matchesModuleCode = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        aTutorial.getModuleCode().value, keyword)
-                );
+                .anyMatch(keyword -> aTutorial.getModuleCode().value
+                        .toLowerCase()
+                        .contains(keyword.toLowerCase()));
         boolean matchesTutorialId = keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(
-                        aTutorial.getTutorialId().fullName, keyword));
+                .anyMatch(keyword -> aTutorial.getTutorialId().fullName
+                        .toLowerCase()
+                        .contains(keyword.toLowerCase()));
         return matchesTutorialId || matchesModuleCode;
     }
 
