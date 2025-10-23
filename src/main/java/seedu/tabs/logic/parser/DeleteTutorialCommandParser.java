@@ -1,6 +1,8 @@
 package seedu.tabs.logic.parser;
 
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 
 import java.util.NoSuchElementException;
