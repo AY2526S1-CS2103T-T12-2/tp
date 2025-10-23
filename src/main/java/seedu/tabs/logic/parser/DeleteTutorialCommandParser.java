@@ -30,6 +30,8 @@ public class DeleteTutorialCommandParser implements Parser<DeleteTutorialCommand
                     DeleteTutorialCommand.MESSAGE_USAGE));
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID);
+
         TutorialId tutorialId;
         try {
             tutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
