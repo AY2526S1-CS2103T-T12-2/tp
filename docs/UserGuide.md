@@ -180,22 +180,23 @@ Common Errors:
 * If a student field (e.g. `id/`) is accidentally included:
   `Students cannot be edited via this command. Please use the add_student or delete_student commands instead.`
 
-### Finding tutorials by name: `find`
+### Finding tutorials by keyword: `find`
 
 Finds tutorials whose `MODULE_CODE` or `TUTORIAL_ID` contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: `find [PREFIX] KEYWORD [MORE_KEYWORDS]...`
 
-* The search is case-sensitive, e.g. `t01` will not match `T01`.
-* Tutorial IDs which contain the keyword will be matched, e.g. `CS2103` will match `CS2103T`.
+* You must use one prefix: Use `t/` to search by `TUTORIAL_ID` or `m/` to search by `MODULE_CODE`. Using both is not allowed.
+* The search is case-insensitive, e.g. `t01` will match `T01`.
+* Tutorial IDs or Module Codes which contain the keyword will be matched, e.g. `CS2103` will match `CS2103T`.
 * Tutorials matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `CS2103T CS2101` will return tutorials with `MODULE_CODE:` `CS2103T`, `CS2101`
-  `T0 C20` will return tutorials with `TUTORIAL_ID:` `T01`, `T02`, `C200`, `C201`
+  e.g. `m/CS2103T CS2101` will return tutorials with `MODULE_CODE:` `CS2103T`, `CS2101`
+  `t/T0 C20` will return tutorials with `TUTORIAL_ID:` `T01`, `T02`, `C200`, `C201`
 
 Examples:
 
-* `find T0 C200` will return tutorials with `TUTORIAL_ID:` `T01`, `C200`
-* `find CS2103T` returns all tutorials with `MODULE_CODE:` `CS2103T`
+* `find t/T0 C200` will return tutorials with `TUTORIAL_ID:` `T01`, `C200`
+* `find m/CS2101` returns all tutorials with `MODULE_CODE:` `CS2103T`, `CS2101`
 
 
   ![result for 'find CS2103T'](images/findCS2103T.png)
@@ -405,7 +406,7 @@ file that contains the data of your previous TAbs home folder.
 | **Delete a tutorial**           | `delete_tutorial t/TUTORIAL_ID`<br> e.g., `delete_tutorial t/T1`                                                                                        |
 | **Copy a tutorial**             | `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE` <br> e.g., `copy_tutorial t/C2 from/C1 d/2025-04-10`                                 |
 | **Edit a tutorial**             | `edit_tutorial from/EXISTING_TUTORIAL_ID [t/NEW_TUTORIAL_ID] [m/NEW_MODULE_CODE] [d/NEW_DATE]`<br> e.g., `edit_tutorial from/T1 m/CS2103T d/2025-10-25` |
-| **Find tutorials**              | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find CS2103T T01`                                                                                             |
+| **Find tutorials**              | `find m/KEYWORD [MORE_KEYWORDS] OR find t/KEYWORD [MORE_KEYWORDS]`<br> e.g., `find t/T01 T02`                                                           |
 | **List students in a tutorial** | `list_students t/TUTORIAL_ID`<br> e.g., `list_students t/T1`                                                                                            |
 | **Add student(s)**              | `add_student id/STUDENT_ID … t/TUTORIAL_ID` <br> e.g., `add_student id/A1231231Y id/A3213213Y t/T2`                                                     |
 | **Delete a student**            | `delete_student id/STUDENT_ID t/TUTORIAL_ID` <br> e.g., `delete_student id/A3213213Y t/T123`                                                            |
