@@ -222,7 +222,7 @@ Step 6. The user executes `clear`, which calls `Model#commitaddressbook()`. Sinc
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+<img src="images/UpdatedCommitActivityDiagram.png" width="250" />
 
 #### Design considerations:
 
