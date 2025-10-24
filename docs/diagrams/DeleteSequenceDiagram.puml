@@ -5,8 +5,8 @@ skinparam ArrowFontStyle plain
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":TAbsParser" as TAbsParser LOGIC_COLOR
-participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant "d:DeleteCommand" as DeleteCommand LOGIC_COLOR
+participant ":DeleteTutorialCommandParser" as DeleteTutorialCommandParser LOGIC_COLOR
+participant "d:DeleteTutorialCommand" as DeleteTutorialCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -14,56 +14,56 @@ box Model MODEL_COLOR_T1
 participant "m:Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("delete 1")
+[-> LogicManager : execute("delete t/T1")
 activate LogicManager
 
-LogicManager -> TAbsParser : parseCommand("delete 1")
+LogicManager -> TAbsParser : parseCommand("delete t/T1")
 activate TAbsParser
 
-create DeleteCommandParser
-TAbsParser -> DeleteCommandParser
-activate DeleteCommandParser
+create DeleteTutorialCommandParser
+TAbsParser -> DeleteTutorialCommandParser
+activate DeleteTutorialCommandParser
 
-DeleteCommandParser --> TAbsParser
-deactivate DeleteCommandParser
+DeleteTutorialCommandParser --> TAbsParser
+deactivate DeleteTutorialCommandParser
 
-TAbsParser -> DeleteCommandParser : parse("1")
-activate DeleteCommandParser
+TAbsParser -> DeleteTutorialCommandParser : parse("T1")
+activate DeleteTutorialCommandParser
 
-create DeleteCommand
-DeleteCommandParser -> DeleteCommand
-activate DeleteCommand
+create DeleteTutorialCommand
+DeleteTutorialCommandParser -> DeleteTutorialCommand
+activate DeleteTutorialCommand
 
-DeleteCommand --> DeleteCommandParser :
-deactivate DeleteCommand
+DeleteTutorialCommand --> DeleteTutorialCommandParser :
+deactivate DeleteTutorialCommand
 
-DeleteCommandParser --> TAbsParser : d
-deactivate DeleteCommandParser
+DeleteTutorialCommandParser --> TAbsParser : d
+deactivate DeleteTutorialCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
-DeleteCommandParser -[hidden]-> TAbsParser
-destroy DeleteCommandParser
+DeleteTutorialCommandParser -[hidden]-> TAbsParser
+destroy DeleteTutorialCommandParser
 
 TAbsParser --> LogicManager : d
 deactivate TAbsParser
 
-LogicManager -> DeleteCommand : execute(m)
-activate DeleteCommand
+LogicManager -> DeleteTutorialCommand : execute(m)
+activate DeleteTutorialCommand
 
-DeleteCommand -> Model : deleteTutorial(1)
+DeleteTutorialCommand -> Model : deleteTutorial(T1)
 activate Model
 
-Model --> DeleteCommand
+Model --> DeleteTutorialCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteTutorialCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteTutorialCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : r
-deactivate DeleteCommand
+DeleteTutorialCommand --> LogicManager : r
+deactivate DeleteTutorialCommand
 
 [<--LogicManager
 deactivate LogicManager
