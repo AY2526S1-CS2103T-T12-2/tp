@@ -43,4 +43,5 @@ note bottom of XYZCommand: XYZCommand AddTutorialCommand, FindCommand, ListComma
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
 Command .up.> CommandResult
+
 @enduml

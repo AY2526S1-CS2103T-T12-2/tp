@@ -316,13 +316,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Invalid or missing details are provided.
-    * 1a1. TAbs informs the TA of the invalid input. 
-      
+    * 1a1. TAbs informs the TA of the invalid input.
+
         Use case resumes from step 1.
 
 * 2a. The tutorial already exists in the system.
     * 2a1. TAbs informs the TA that the tutorial already exists.
-      
+
         Use case ends.
 
 
@@ -385,13 +385,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. Invalid or missing details are provided.
-    * 1a1. TAbs informs the TA of the invalid input. 
-      
+    * 1a1. TAbs informs the TA of the invalid input.
+
         Use case resumes from step 1.
 
 * 2a. The student already exists in the tutorial.
-    * 2a1. TAbs informs the TA that the student is already in the tutorial.  
-      
+    * 2a1. TAbs informs the TA that the student is already in the tutorial.
+
         Use case ends.
 
 
