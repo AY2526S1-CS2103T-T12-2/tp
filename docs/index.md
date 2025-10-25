@@ -4,7 +4,7 @@ title: TAbs
 ---
 
 [![CI Status](https://github.com/AY2526S1-CS2103T-T12-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2526S1-CS2103T-T12-2/tp/actions)
-[![codecov](https://app.codecov.io/github/AY2526S1-CS2103T-T12-2/tp/config/badge.svg)](https://app.codecov.io/gh/AY2526S1-CS2103T-T12-2/tp)
+[![codecov](https://codecov.io/github/AY2526S1-CS2103T-T12-2/tp/branch/master/graph/badge.svg?token=3LPUB3IDR2)](https://app.codecov.io/gh/AY2526S1-CS2103T-T12-2/tp)
 
 ![Ui](images/Ui.png)
 
