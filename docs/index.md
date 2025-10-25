@@ -3,8 +3,8 @@ layout: page
 title: TAbs
 ---
 
-[![CI Status](https://github.com/se-edu/addressbook-level3/workflows/Java%20CI/badge.svg)](https://github.com/se-edu/addressbook-level3/actions)
-[![codecov](https://codecov.io/gh/se-edu/addressbook-level3/branch/master/graph/badge.svg)](https://codecov.io/gh/se-edu/addressbook-level3)
+[![CI Status](https://github.com/AY2526S1-CS2103T-T12-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2526S1-CS2103T-T12-2/tp/actions)
+[![codecov](https://app.codecov.io/github/AY2526S1-CS2103T-T12-2/tp/config/badge.svg)](https://app.codecov.io/gh/AY2526S1-CS2103T-T12-2/tp)
 
 ![Ui](images/Ui.png)
 
