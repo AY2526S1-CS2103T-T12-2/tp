@@ -14,11 +14,10 @@ Class UserPrefs
 
 Class UniqueTutorialList
 Class Tutorial
-Class Address
-Class Email
-Class Name
+Class TutorialId
 Class ModuleCode
-Class Tag
+Class Date
+Class Student
 
 Class I #FFFFFF
 }
@@ -37,18 +36,12 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 TAbs *--> "1" UniqueTutorialList
 UniqueTutorialList --> "~* all" Tutorial
-Tutorial *--> Name
-Tutorial *--> ModuleCode
-Tutorial *--> Email
-Tutorial *--> Address
-Tutorial *--> "*" Tag
+Tutorial *--> "1" TutorialId
+Tutorial *--> "1" ModuleCode
+Tutorial *--> "1" Date
+Tutorial *--> "*" Student
 
-Tutorial -[hidden]up--> I
-UniqueTutorialList -[hidden]right-> I
 
-Name -[hidden]right-> ModuleCode
-ModuleCode -[hidden]right-> Address
-Address -[hidden]right-> Email
 
 ModelManager --> "~* filtered" Tutorial
 @enduml
