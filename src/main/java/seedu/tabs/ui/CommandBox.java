@@ -14,6 +14,7 @@ import seedu.tabs.logic.parser.exceptions.ParseException;
 public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
+    public static final String SUCCESS_STYLE_CLASS = "success";
     private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
@@ -44,6 +45,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandExecutor.execute(commandText);
             commandTextField.setText("");
+            setStyleToIndicateCommandSuccess();
         } catch (CommandException | ParseException e) {
             setStyleToIndicateCommandFailure();
         }
@@ -53,7 +55,16 @@ public class CommandBox extends UiPart<Region> {
      * Sets the command box style to use the default style.
      */
     private void setStyleToDefault() {
-        commandTextField.getStyleClass().remove(ERROR_STYLE_CLASS);
+        commandTextField.getStyleClass().removeAll(ERROR_STYLE_CLASS, SUCCESS_STYLE_CLASS);
+    }
+
+    /**
+     * Sets the command box style to indicate a successful command.
+     */
+    private void setStyleToIndicateCommandSuccess() {
+        ObservableList<String> styleClass = commandTextField.getStyleClass();
+        styleClass.removeAll(ERROR_STYLE_CLASS, SUCCESS_STYLE_CLASS);
+        styleClass.add(SUCCESS_STYLE_CLASS);
     }
 
     /**
@@ -61,11 +72,7 @@ public class CommandBox extends UiPart<Region> {
      */
     private void setStyleToIndicateCommandFailure() {
         ObservableList<String> styleClass = commandTextField.getStyleClass();
-
-        if (styleClass.contains(ERROR_STYLE_CLASS)) {
-            return;
-        }
-
+        styleClass.removeAll(ERROR_STYLE_CLASS, SUCCESS_STYLE_CLASS);
         styleClass.add(ERROR_STYLE_CLASS);
     }
 

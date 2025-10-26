@@ -158,6 +158,22 @@
     -fx-text-fill: #E6EDF3 !important;
 }
 
+/* Success state for result display */
+.result-display.success,
+.result-display.success .content,
+.text-area.success,
+.text-area.success .content {
+    -fx-text-fill: #27ae60 !important;
+}
+
+/* Error state for result display */
+.result-display.error,
+.result-display.error .content,
+.text-area.error,
+.text-area.error .content {
+    -fx-text-fill: #da3633 !important;
+}
+
 .status-bar .label {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #8B949E;
@@ -327,14 +343,52 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #0D1117 transparent #0D1117;
+    -fx-background-color: #161B22;
     -fx-background-insets: 0;
-    -fx-border-color: #0D1117 #0D1117 #3498db #0D1117;
+    -fx-border-color: #30363D;
     -fx-border-insets: 0;
-    -fx-border-width: 1;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: #E6EDF3;
+    -fx-padding: 10 12 10 12;
+    -fx-pref-height: 40;
+    -fx-prompt-text-fill: #8B949E;
+}
+
+#commandTextField:focused {
+    -fx-border-color: #3498db;
+    -fx-border-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(52, 152, 219, 0.4), 8, 0, 0, 0);
+}
+
+/* Error state for command box */
+#commandTextField.error {
+    -fx-border-color: #da3633 !important;
+    -fx-border-width: 2 !important;
+    -fx-effect: dropshadow(gaussian, rgba(218, 54, 51, 0.3), 8, 0, 0, 0) !important;
+}
+
+/* Success state for command box */
+#commandTextField.success {
+    -fx-border-color: #27ae60 !important;
+    -fx-border-width: 2 !important;
+    -fx-effect: dropshadow(gaussian, rgba(39, 174, 96, 0.3), 8, 0, 0, 0) !important;
+}
+
+/* Generic text field styles */
+.text-field.error {
+    -fx-border-color: #da3633 !important;
+    -fx-border-width: 2 !important;
+    -fx-effect: dropshadow(gaussian, rgba(218, 54, 51, 0.3), 8, 0, 0, 0) !important;
+}
+
+.text-field.success {
+    -fx-border-color: #27ae60 !important;
+    -fx-border-width: 2 !important;
+    -fx-effect: dropshadow(gaussian, rgba(39, 174, 96, 0.3), 8, 0, 0, 0) !important;
 }
 
 #filterField, #tutorialListPanel, #tutorialWebpage {
