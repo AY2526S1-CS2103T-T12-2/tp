@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.tabs.logic.commands.CommandTestUtil;
 import seedu.tabs.logic.commands.DeleteTutorialCommand;
+import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.testutil.TypicalPredicates;
 
 /**
@@ -35,7 +36,6 @@ public class DeleteTutorialCommandParserTest {
 
     @Test
     public void parse_invalidTutorialId_throwsParseException() {
-        assertParseFailure(parser, CommandTestUtil.INVALID_TUTORIAL_DESC, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                DeleteTutorialCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, CommandTestUtil.INVALID_TUTORIAL_DESC, TutorialId.MESSAGE_CONSTRAINTS);
     }
 }
