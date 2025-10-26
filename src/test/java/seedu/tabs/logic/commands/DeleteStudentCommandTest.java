@@ -29,7 +29,7 @@ import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 import seedu.tabs.testutil.TutorialBuilder;
 
 public class DeleteStudentCommandTest {
-    private static final String MESSAGE_SUCCESS_TEMPLATE = "Student %1$s deleted from tutorial %2$s";
+    private static final String MESSAGE_SUCCESS_TEMPLATE = "Student %1$s deleted from tutorial %2$s.";
 
     private static final TutorialIdMatchesKeywordPredicate T01_PREDICATE =
             new TutorialIdMatchesKeywordPredicate("T01");

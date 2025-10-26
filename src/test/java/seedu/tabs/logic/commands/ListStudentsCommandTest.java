@@ -31,7 +31,7 @@ import seedu.tabs.testutil.TutorialBuilder;
  */
 public class ListStudentsCommandTest {
 
-    private static final String MESSAGE_SUCCESS_TEMPLATE = "Displaying all students enrolled in tutorial %s \n";
+    private static final String MESSAGE_SUCCESS_TEMPLATE = "Displaying all students enrolled in tutorial %s:\n";
     // Data
     private static final TutorialId T01_ID = new TutorialId("T01");
     private static final TutorialId T02_ID_EMPTY = new TutorialId("T02");
