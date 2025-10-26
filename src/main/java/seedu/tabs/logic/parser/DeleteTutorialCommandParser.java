@@ -3,7 +3,6 @@ package seedu.tabs.logic.parser;
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 
-import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 import seedu.tabs.logic.commands.DeleteTutorialCommand;
@@ -31,15 +30,7 @@ public class DeleteTutorialCommandParser implements Parser<DeleteTutorialCommand
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID);
-
-        TutorialId tutorialId;
-        try {
-            tutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(PREFIX_TUTORIAL_ID).orElseThrow());
-        } catch (NoSuchElementException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteTutorialCommand.MESSAGE_USAGE));
-        }
-
+        TutorialId tutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
         return new DeleteTutorialCommand(new TutorialIdMatchesKeywordPredicate(tutorialId.id));
     }
 
