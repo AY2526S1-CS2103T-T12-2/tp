@@ -82,6 +82,10 @@ public class DeleteTutorialCommandTest {
         // same object -> returns true
         assertEquals(deleteFirstCommand, deleteFirstCommand);
 
+        // not a DeleteTutorialCommand -> returns false
+        ClearCommand clearCommand = new ClearCommand();
+        assertNotEquals(deleteFirstCommand, clearCommand);
+
         // same values -> returns true
         DeleteTutorialCommand deleteFirstCommandCopy = new DeleteTutorialCommand(PREDICATE_KEYWORD_C101);
         assertEquals(deleteFirstCommand, deleteFirstCommandCopy);

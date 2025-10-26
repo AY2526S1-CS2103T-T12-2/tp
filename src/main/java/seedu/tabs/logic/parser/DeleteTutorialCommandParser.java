@@ -3,7 +3,6 @@ package seedu.tabs.logic.parser;
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 
-import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 import seedu.tabs.logic.commands.DeleteTutorialCommand;
