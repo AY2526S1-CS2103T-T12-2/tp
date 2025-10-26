@@ -9,9 +9,11 @@ import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Stream;
 
+import seedu.tabs.logic.commands.DeleteTutorialCommand;
 import seedu.tabs.logic.commands.UnmarkCommand;
 import seedu.tabs.logic.parser.exceptions.ParseException;
 import seedu.tabs.model.student.Student;
+import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
 /**
@@ -39,15 +41,15 @@ public class UnmarkCommandParser {
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID);
         Set<Student> studentSet = ParserUtil.parseStudents(argMultimap.getAllValues(PREFIX_STUDENT));
 
-        String tutorialId;
+        TutorialId tutorialId;
         try {
-            tutorialId = argMultimap.getValue(PREFIX_TUTORIAL_ID).orElseThrow();
-        } catch (NoSuchElementException e) {
+            tutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
+        } catch (NoSuchElementException | ParseException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    UnmarkCommand.MESSAGE_USAGE));
+                    DeleteTutorialCommand.MESSAGE_USAGE));
         }
 
-        return new UnmarkCommand(studentSet, new TutorialIdMatchesKeywordPredicate(tutorialId));
+        return new UnmarkCommand(studentSet, new TutorialIdMatchesKeywordPredicate(tutorialId.id));
     }
 
     /**

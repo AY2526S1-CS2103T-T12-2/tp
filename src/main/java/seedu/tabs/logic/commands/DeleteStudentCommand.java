@@ -32,9 +32,11 @@ public class DeleteStudentCommand extends Command {
             + PREFIX_STUDENT + "A0123456Z "
             + PREFIX_TUTORIAL_ID + "T123";
     public static final String MESSAGE_SUCCESS = "Student %1$s deleted from tutorial %2$s";
+    public static final String MESSAGE_NOT_EXISTS = "Student %1$s is not in tutorial %2$s";
 
     private final TutorialIdMatchesKeywordPredicate predicate;
     private final Student student;
+    private boolean anyDeleted;
 
     /**
      * @param index   of the tutorial in the filtered tutorial list to add the student
@@ -45,6 +47,7 @@ public class DeleteStudentCommand extends Command {
 
         this.predicate = predicate;
         this.student = student;
+        this.anyDeleted = false;
     }
 
     @Override
@@ -62,18 +65,27 @@ public class DeleteStudentCommand extends Command {
 
         model.setTutorial(tutorialToChange, updatedTutorial);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, student.studentId, updatedTutorial.getTutorialId()));
+
+        String resultMessage = anyDeleted
+                ? String.format(MESSAGE_SUCCESS, student.studentId, updatedTutorial.getTutorialId())
+                : String.format(MESSAGE_NOT_EXISTS, student.studentId, updatedTutorial.getTutorialId());
+
+        return new CommandResult(resultMessage);
     }
 
     /**
      * Creates and returns a copy of {@code tutorialToEdit} with the given student removed.
      */
-    private static Tutorial deleteStudentFromTutorial(Tutorial tutorialToEdit,
-                                                      Student student) {
+    private Tutorial deleteStudentFromTutorial(Tutorial tutorialToEdit,
+                                               Student student) {
         assert tutorialToEdit != null;
 
         Set<Student> updatedStudents = new HashSet<>(tutorialToEdit.getStudents());
-        updatedStudents.remove(student);
+        if (updatedStudents.remove(student)) {
+            this.anyDeleted = true;
+        }
+        ;
+
 
         return new Tutorial(
                 tutorialToEdit.getTutorialId(),
