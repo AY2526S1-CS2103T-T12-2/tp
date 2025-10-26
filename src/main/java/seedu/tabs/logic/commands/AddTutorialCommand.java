@@ -19,7 +19,7 @@ public class AddTutorialCommand extends Command {
 
     public static final String COMMAND_WORD = "add_tutorial";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to TAbs. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to TAbs.\n"
             + "Parameters: "
             + PREFIX_TUTORIAL_ID + "TUTORIAL_ID "
             + PREFIX_MODULE_CODE + "MODULE_CODE "
@@ -56,7 +56,6 @@ public class AddTutorialCommand extends Command {
         model.addTutorial(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
-
 
 
     @Override

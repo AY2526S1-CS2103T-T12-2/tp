@@ -5,11 +5,9 @@ import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 
-import java.util.NoSuchElementException;
 import java.util.Set;
 import java.util.stream.Stream;
 
-import seedu.tabs.logic.commands.DeleteTutorialCommand;
 import seedu.tabs.logic.commands.MarkCommand;
 import seedu.tabs.logic.parser.exceptions.ParseException;
 import seedu.tabs.model.student.Student;
@@ -40,16 +38,10 @@ public class MarkCommandParser {
 
         argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID);
         Set<Student> studentSet = ParserUtil.parseStudents(argMultimap.getAllValues(PREFIX_STUDENT));
+        String tutorialId = argMultimap.getValue(PREFIX_TUTORIAL_ID).orElse("");
+        TutorialId parsedTutorialId = ParserUtil.parseTutorialId(tutorialId);
 
-        TutorialId tutorialId;
-        try {
-            tutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
-        } catch (NoSuchElementException | ParseException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    DeleteTutorialCommand.MESSAGE_USAGE));
-        }
-
-        return new MarkCommand(studentSet, new TutorialIdMatchesKeywordPredicate(tutorialId.id));
+        return new MarkCommand(studentSet, new TutorialIdMatchesKeywordPredicate(parsedTutorialId.id));
     }
 
     /**

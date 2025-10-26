@@ -19,7 +19,7 @@ import seedu.tabs.model.tutorial.TutorialId;
 public class CopyTutorialCommand extends Command {
     public static final String COMMAND_WORD = "copy_tutorial";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Copies a tutorial and adds it to TAbs. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Copies a tutorial and adds it to TAbs.\n"
             + "Parameters: "
             + PREFIX_TUTORIAL_ID + "NEW_TUTORIAL_ID "
             + PREFIX_FROM + "EXISTING_TUTORIAL_ID "
@@ -29,7 +29,7 @@ public class CopyTutorialCommand extends Command {
             + PREFIX_FROM + "C1 "
             + PREFIX_DATE + "2025-01-01";
 
-    public static final String MESSAGE_SUCCESS = "Tutorial %1$s [%2$s] has been copied from %3$s";
+    public static final String MESSAGE_SUCCESS = "Tutorial %1$s [%2$s] has been copied from %3$s.";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "A tutorial with the TUTORIAL_ID '%1$s' already exists.";
     public static final String MESSAGE_TUTORIAL_NOT_FOUND = "A tutorial with the TUTORIAL_ID '%1$s' does not exist.";
 
@@ -40,9 +40,9 @@ public class CopyTutorialCommand extends Command {
     /**
      * Creates a CopyTutorialCommand to copy an existing tutorial.
      *
-     * @param newTutorialId The tutorial ID for the new tutorial.
+     * @param newTutorialId    The tutorial ID for the new tutorial.
      * @param sourceTutorialId The tutorial ID of the existing tutorial to copy from.
-     * @param newDate The date for the new tutorial.
+     * @param newDate          The date for the new tutorial.
      */
     public CopyTutorialCommand(TutorialId newTutorialId, TutorialId sourceTutorialId, Date newDate) {
         requireNonNull(newTutorialId);

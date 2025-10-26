@@ -43,9 +43,9 @@ public class EditTutorialCommand extends Command {
             + PREFIX_MODULE_CODE + "CS2103T "
             + PREFIX_DATE + "2025-10-25";
 
-    public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial: %1$s";
+    public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial: %1$s.";
     public static final String MESSAGE_FROM_TUTORIAL_ID_MISSING = "Tutorial ID of the tutorial to be edited "
-            + "must be specified.\n%1$s";
+            + "must be specified.\n%1$s.";
     public static final String MESSAGE_EDIT_STUDENTS_NOT_ALLOWED = "Students cannot be edited via this command.\n"
             + "Please use the add_student or delete_student commands instead.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -56,7 +56,7 @@ public class EditTutorialCommand extends Command {
     private final EditTutorialDescriptor editTutorialDescriptor;
 
     /**
-     * @param predicate to filter the tutorial list by the provided tutorial_id
+     * @param predicate              to filter the tutorial list by the provided tutorial_id
      * @param editTutorialDescriptor details to edit the tutorial with
      */
     public EditTutorialCommand(TutorialIdMatchesKeywordPredicate predicate,
@@ -129,7 +129,8 @@ public class EditTutorialCommand extends Command {
         private ModuleCode moduleCode;
         private Date date;
 
-        public EditTutorialDescriptor() {}
+        public EditTutorialDescriptor() {
+        }
 
         /**
          * Copy constructor.
