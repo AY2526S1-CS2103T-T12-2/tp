@@ -21,10 +21,10 @@ Class Prefix
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> TAbsParser
 
-TAbsParser .down.> XYZCommandParser: <<create>>
+TAbsParser .down.> XYZCommandParser
 
-XYZCommandParser ..> XYZCommand : <<create>>
-TAbsParser ..> Command : <<use>>
+XYZCommandParser ..> XYZCommand
+TAbsParser ..> Command
 XYZCommandParser .up.|> Parser
 XYZCommandParser ..> ArgumentMultimap
 XYZCommandParser ..> ArgumentTokenizer
