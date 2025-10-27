@@ -1,6 +1,7 @@
 package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 
 import java.util.List;
 
@@ -16,10 +17,13 @@ public class UnmarkAllCommand extends Command {
     public static final String COMMAND_WORD = "unmark_all";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the tutorial identified by the tutorial ID used in the displayed tutorial list.\n"
+            + ": Unmarks all the students in the tutorial identified by the tutorial ID.\n"
+            + "Parameters: " + PREFIX_TUTORIAL_ID + "[TUTORIAL_ID]\n"
             + "Example: " + COMMAND_WORD + " t/T1";
 
-    public static final String MESSAGE_DELETE_TUTORIAL_SUCCESS = "Tutorial deleted: %1$s";
+    public static final String MESSAGE_UNMARK_ALL_SUCCESS = "The following student(s):\n"
+            + "\t%1$s\n"
+            + "were unmarked in tutorial %2$s.";
 
     private final TutorialIdMatchesKeywordPredicate predicate;
 
@@ -39,7 +43,8 @@ public class UnmarkAllCommand extends Command {
         }
 
         // model.deleteTutorial(tutorialToMarkAll);
-        return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_SUCCESS, Messages.format(tutorialToMarkAll)));
+        return new CommandResult(String.format(MESSAGE_UNMARK_ALL_SUCCESS,
+                Messages.format(tutorialToMarkAll), predicate.getKeyword()));
     }
 
     @Override
