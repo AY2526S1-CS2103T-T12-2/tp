@@ -48,11 +48,12 @@ public class Student {
         return test.matches(VALIDATION_REGEX);
     }
 
-    /**
-     * Toggles the attendance state for the {@code Student}.
-     */
-    public void toggleAttendance() {
-        this.isPresent = !isPresent;
+    public void mark() {
+        this.isPresent = true;
+    }
+
+    public void unmark() {
+        this.isPresent = false;
     }
 
     public boolean getAttendance() {

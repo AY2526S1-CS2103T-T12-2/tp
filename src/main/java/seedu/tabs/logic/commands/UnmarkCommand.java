@@ -94,9 +94,7 @@ public class UnmarkCommand extends Command {
         Set<Student> currStudents = tutorial.getStudents();
         for (Student student : currStudents) {
             if (studentsToUnmark.contains(student)) {
-                if (student.getAttendance()) {
-                    student.toggleAttendance();
-                }
+                student.unmark();
                 affectedStudentsList.add(student);
                 nonExistentStudents.remove(student);
             }
