@@ -88,7 +88,7 @@ public class UnmarkCommand extends Command {
      * Creates and returns a {@code Tutorial} with the newly unmarked students of {@code tutorialToEdit}
      */
     private Tutorial unmarkStudents(Tutorial tutorial,
-                                    Set<Student> studentsToUnmark) {
+                                    Set<Student> studentsToUnmark) throws CommandException {
         assert tutorial != null;
 
         Set<Student> currStudents = tutorial.getStudents();
@@ -98,6 +98,11 @@ public class UnmarkCommand extends Command {
                 affectedStudentsList.add(student);
                 nonExistentStudents.remove(student);
             }
+        }
+
+        if (affectedStudentsList.isEmpty()) {
+            throw new CommandException(
+                    String.format(MESSAGE_NOT_EXISTS, newStudentsList, tutorial.getTutorialId()));
         }
 
         return new Tutorial(
