@@ -94,9 +94,7 @@ public class MarkCommand extends Command {
         Set<Student> currStudents = tutorial.getStudents();
         for (Student student : currStudents) {
             if (studentsToMark.contains(student)) {
-                if (!student.getAttendance()) {
-                    student.toggleAttendance();
-                }
+                student.mark();
                 affectedStudentsList.add(student);
                 nonExistentStudents.remove(student);
             }
