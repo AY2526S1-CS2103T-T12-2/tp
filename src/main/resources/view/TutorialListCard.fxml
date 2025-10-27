@@ -18,7 +18,7 @@
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
-      <HBox spacing="0.5" alignment="CENTER_LEFT">
+      <HBox spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
@@ -26,10 +26,21 @@
           </minWidth>
         </Label>
         <Label fx:id="tutorialId" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="moduleCode" styleClass="module-badge" text="\$moduleCode" />
       </HBox>
-      <FlowPane fx:id="students" />
-      <Label fx:id="moduleCode" styleClass="cell_small_label" text="\$moduleCode" />
-      <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
+      <HBox spacing="3" alignment="CENTER_LEFT">
+        <padding>
+          <Insets top="3" />
+        </padding>
+        <Label fx:id="date" styleClass="cell_small_label" text="\$date" />
+        <Label text="•" styleClass="cell_small_label" />
+        <Label fx:id="attendanceCount" styleClass="cell_small_label" text="\$attendance" />
+      </HBox>
+      <FlowPane fx:id="students">
+        <padding>
+          <Insets top="5" />
+        </padding>
+      </FlowPane>
     </VBox>
   </GridPane>
 </HBox>

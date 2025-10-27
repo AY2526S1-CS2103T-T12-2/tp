@@ -37,6 +37,8 @@ public class TutorialCard extends UiPart<Region> {
     @FXML
     private Label date;
     @FXML
+    private Label attendanceCount;
+    @FXML
     private FlowPane students;
 
     /**
@@ -48,12 +50,25 @@ public class TutorialCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         tutorialId.setText(aTutorial.getTutorialId().id);
         moduleCode.setText(aTutorial.getModuleCode().value);
-        date.setText(aTutorial.getDate().value);
+        date.setText("📅 " + aTutorial.getDate().value);
+
+        // Calculate attendance
+        long presentCount = aTutorial.getStudents().stream()
+                .filter(student -> student.getAttendance())
+                .count();
+        int totalCount = aTutorial.getStudents().size();
+        attendanceCount.setText(presentCount + "/" + totalCount + " present");
+
+        // Add student labels
         aTutorial.getStudents().stream()
                 .sorted(Comparator.comparing(student -> student.studentId))
                 .forEach(student -> {
                     Label studentLabel = new Label(student.studentId);
-                    studentLabel.setStyle(student.getAttendance() ? "-fx-background-color: green" : null);
+                    if (student.getAttendance()) {
+                        studentLabel.getStyleClass().add("student-present");
+                    } else {
+                        studentLabel.getStyleClass().add("student-absent");
+                    }
                     students.getChildren().add(studentLabel);
                 });
     }

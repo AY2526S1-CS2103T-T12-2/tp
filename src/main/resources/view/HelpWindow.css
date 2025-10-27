@@ -1,19 +1,37 @@
-#copyButton, #helpMessage {
-    -fx-text-fill: white;
+#helpMessageContainer {
+    -fx-background-color: #0D1117;
+    -fx-padding: 24;
+    -fx-spacing: 16;
+}
+
+#helpMessage {
+    -fx-text-fill: #E6EDF3;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 13pt;
+    -fx-wrap-text: true;
 }
 
 #copyButton {
-    -fx-background-color: dimgray;
+    -fx-background-color: #3498db;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 11pt;
+    -fx-padding: 8 16 8 16;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.2), 4, 0, 0, 2);
 }
 
 #copyButton:hover {
-    -fx-background-color: gray;
+    -fx-background-color: #2980b9;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 6, 0, 0, 3);
+    -fx-scale-y: 1.02;
+    -fx-scale-x: 1.02;
 }
 
-#copyButton:armed {
-    -fx-background-color: darkgray;
-}
-
-#helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+#copyButton:pressed {
+    -fx-background-color: #2471a3;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 2, 0, 0, 1);
+    -fx-translate-y: 1;
 }
