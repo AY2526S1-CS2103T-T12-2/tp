@@ -10,6 +10,7 @@ import java.util.stream.Stream;
 import seedu.tabs.logic.commands.DeleteStudentCommand;
 import seedu.tabs.logic.parser.exceptions.ParseException;
 import seedu.tabs.model.student.Student;
+import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
 /**
@@ -34,10 +35,14 @@ public class DeleteStudentCommandParser {
                     DeleteStudentCommand.MESSAGE_USAGE));
         }
 
+        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT, PREFIX_TUTORIAL_ID);
+
         String studentId = argMultimap.getValue(PREFIX_STUDENT).orElse("");
-        String tutorialId = argMultimap.getValue(PREFIX_TUTORIAL_ID).orElse("");
         Student student = ParserUtil.parseStudent(studentId);
-        TutorialIdMatchesKeywordPredicate predicate = new TutorialIdMatchesKeywordPredicate(tutorialId);
+        String tutorialId = argMultimap.getValue(PREFIX_TUTORIAL_ID).orElse("");
+        TutorialId parsedTutorialId = ParserUtil.parseTutorialId(tutorialId);
+        TutorialIdMatchesKeywordPredicate predicate = new TutorialIdMatchesKeywordPredicate(parsedTutorialId.id);
+
         return new DeleteStudentCommand(predicate, student);
     }
 
