@@ -71,7 +71,7 @@ public class EditTutorialCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Tutorial> lastShownList = model.getFilteredTutorialList();
+        List<Tutorial> lastShownList = model.getTAbs().getTutorialList();
         Tutorial tutorialToEdit = lastShownList.stream().filter(predicate).findFirst().orElse(null);
 
         if (tutorialToEdit == null) {

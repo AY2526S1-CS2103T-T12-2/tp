@@ -58,7 +58,7 @@ public class AddStudentCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Tutorial> lastShownList = model.getFilteredTutorialList();
+        List<Tutorial> lastShownList = model.getTAbs().getTutorialList();
 
         Tutorial tutorialToAdd = lastShownList.stream().filter(predicate).findFirst().orElse(null);
 
