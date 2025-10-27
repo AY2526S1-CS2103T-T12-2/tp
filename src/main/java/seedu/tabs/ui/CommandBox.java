@@ -63,7 +63,7 @@ public class CommandBox extends UiPart<Region> {
      */
     private void setStyleToIndicateCommandSuccess() {
         ObservableList<String> styleClass = commandTextField.getStyleClass();
-        styleClass.removeAll(ERROR_STYLE_CLASS, SUCCESS_STYLE_CLASS);
+        styleClass.removeAll(ERROR_STYLE_CLASS);
         styleClass.add(SUCCESS_STYLE_CLASS);
     }
 
@@ -72,7 +72,7 @@ public class CommandBox extends UiPart<Region> {
      */
     private void setStyleToIndicateCommandFailure() {
         ObservableList<String> styleClass = commandTextField.getStyleClass();
-        styleClass.removeAll(ERROR_STYLE_CLASS, SUCCESS_STYLE_CLASS);
+        styleClass.removeAll(SUCCESS_STYLE_CLASS);
         styleClass.add(ERROR_STYLE_CLASS);
     }
 
