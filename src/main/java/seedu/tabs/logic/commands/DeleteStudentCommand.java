@@ -39,7 +39,7 @@ public class DeleteStudentCommand extends Command {
     private boolean anyDeleted;
 
     /**
-     * @param index   of the tutorial in the filtered tutorial list to add the student
+     * @param index of the tutorial in the filtered tutorial list to add the student
      * @param student of the student to add
      */
     public DeleteStudentCommand(TutorialIdMatchesKeywordPredicate predicate, Student student) {
@@ -84,8 +84,6 @@ public class DeleteStudentCommand extends Command {
         if (updatedStudents.remove(student)) {
             this.anyDeleted = true;
         }
-        ;
-
 
         return new Tutorial(
                 tutorialToEdit.getTutorialId(),

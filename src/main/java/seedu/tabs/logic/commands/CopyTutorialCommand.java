@@ -40,9 +40,9 @@ public class CopyTutorialCommand extends Command {
     /**
      * Creates a CopyTutorialCommand to copy an existing tutorial.
      *
-     * @param newTutorialId    The tutorial ID for the new tutorial.
+     * @param newTutorialId The tutorial ID for the new tutorial.
      * @param sourceTutorialId The tutorial ID of the existing tutorial to copy from.
-     * @param newDate          The date for the new tutorial.
+     * @param newDate The date for the new tutorial.
      */
     public CopyTutorialCommand(TutorialId newTutorialId, TutorialId sourceTutorialId, Date newDate) {
         requireNonNull(newTutorialId);
