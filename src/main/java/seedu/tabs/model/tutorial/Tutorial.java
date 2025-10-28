@@ -56,6 +56,20 @@ public class Tutorial {
     }
 
     /**
+     * Marks all the students in the {@code Tutorial} as present.
+     */
+    public void markAllStudents() {
+        students.forEach(Student::mark);
+    }
+
+    /**
+     * Unmarks all the students in the {@code Tutorial}.
+     */
+    public void unmarkAllStudents() {
+        students.forEach(Student::unmark);
+    }
+
+    /**
      * Returns true if both tutorials have the same id.
      * This defines a weaker notion of equality between two tutorials.
      */

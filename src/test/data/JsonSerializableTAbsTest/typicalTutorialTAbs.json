@@ -27,7 +27,16 @@
       "tutorialId": "C303",
       "moduleCode": "CS1010",
       "date": "2025-01-20",
-      "students": []
+      "students": [
+        {
+          "studentId": "A1231231Y",
+          "isPresent": false
+        },
+        {
+          "studentId": "A3213213Y",
+          "isPresent": false
+        }
+      ]
     },
     {
       "tutorialId": "T404",
