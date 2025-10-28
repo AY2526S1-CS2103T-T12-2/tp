@@ -43,7 +43,6 @@ public class ParserUtil {
      */
     public static TutorialId parseTutorialId(String tutorialId) throws ParseException {
         requireNonNull(tutorialId);
-        String trimmedId = tutorialId.trim().toUpperCase();
         if (!TutorialId.isValidTutorialId(trimmedId)) {
             throw new ParseException(TutorialId.MESSAGE_CONSTRAINTS);
         }
