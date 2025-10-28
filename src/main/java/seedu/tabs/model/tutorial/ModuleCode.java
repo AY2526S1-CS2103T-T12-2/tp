@@ -11,7 +11,7 @@ public class ModuleCode {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Module codes should follow university format (e.g., CS2103T, MA1521, ST2334, GEQ1000)";
-    public static final String VALIDATION_REGEX = "[A-Z]{2,3}\\d{4}[A-Z]?";
+    public static final String VALIDATION_REGEX = "[A-Z]{2,4}\\d{4}[A-Z]?";
     public final String value;
 
     /**
