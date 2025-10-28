@@ -32,7 +32,7 @@ public class AddTutorialCommand extends Command {
             + PREFIX_STUDENT + "A1231231Y "
             + PREFIX_STUDENT + "A3213213Y";
 
-    public static final String MESSAGE_SUCCESS = "New tutorial added: %1$s";
+    public static final String MESSAGE_SUCCESS = "A new tutorial has been added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in TAbs";
 
     private final Tutorial toAdd;

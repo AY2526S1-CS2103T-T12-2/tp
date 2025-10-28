@@ -22,7 +22,8 @@ public class DeleteTutorialCommand extends Command {
             + ": Deletes the tutorial identified by the tutorial ID used in the displayed tutorial list.\n"
             + "Example: " + COMMAND_WORD + " t/T1";
 
-    public static final String MESSAGE_DELETE_TUTORIAL_SUCCESS = "Tutorial deleted: %1$s.";
+    public static final String MESSAGE_DELETE_TUTORIAL_SUCCESS =
+            "The following tutorial has been successfully deleted: \n%1$s";
 
     private final TutorialIdMatchesKeywordPredicate predicate;
 
