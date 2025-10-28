@@ -21,7 +21,7 @@ public class ListStudentsCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all the students in a tutorial\n"
             + "Parameters: "
-            + PREFIX_TUTORIAL_ID + "[TUTORIAL ID]\n"
+            + PREFIX_TUTORIAL_ID + "TUTORIAL_ID\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TUTORIAL_ID + "T123";
 
