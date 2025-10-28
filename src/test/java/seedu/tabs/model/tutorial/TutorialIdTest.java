@@ -37,8 +37,10 @@ public class TutorialIdTest {
         assertFalse(TutorialId.isValidTutorialId("CT789")); // multiple letters not allowed
         assertFalse(TutorialId.isValidTutorialId("ABC123")); // multiple letters not allowed
         assertFalse(TutorialId.isValidTutorialId("XYZ999")); // multiple letters not allowed
+        assertFalse(TutorialId.isValidTutorialId("C123456789")); // more than 8 digits
+        assertFalse(TutorialId.isValidTutorialId("T000000000")); // 9 digits, exceeds maximum
 
-        // valid id - follows [A-Z]\d+ pattern (single letter followed by one or more digits)
+        // valid id - follows [A-Z]\d{1,8} pattern (single letter followed by 1-8 digits)
         assertTrue(TutorialId.isValidTutorialId("C123")); // single letter C with numbers
         assertTrue(TutorialId.isValidTutorialId("T456")); // single letter T with numbers
         assertTrue(TutorialId.isValidTutorialId("C1")); // single digit
@@ -47,6 +49,8 @@ public class TutorialIdTest {
         assertTrue(TutorialId.isValidTutorialId("Z999")); // any single letter works
         assertTrue(TutorialId.isValidTutorialId("a1")); // lowercase input
         assertTrue(TutorialId.isValidTutorialId("z999")); // lowercase input
+        assertTrue(TutorialId.isValidTutorialId("C12345678")); // exactly 8 digits (maximum)
+        assertTrue(TutorialId.isValidTutorialId("T99999999")); // 8 digits at boundary
     }
 
     @Test

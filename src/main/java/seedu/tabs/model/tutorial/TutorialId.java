@@ -10,9 +10,9 @@ import static seedu.tabs.commons.util.AppUtil.checkArgument;
 public class TutorialId {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Tutorial IDs should start with a single letter followed by numbers (e.g., C123, T456, A789)";
+            "Tutorial IDs should start with a single letter followed by 1-8 numbers (e.g., C123, T456, A789)";
 
-    public static final String VALIDATION_REGEX = "[A-Z]\\d+";
+    public static final String VALIDATION_REGEX = "[A-Z]\\d{1,8}";
 
     public final String id;
 
