@@ -35,6 +35,13 @@ public class MarkAllCommand extends Command {
         this.predicate = predicate;
     }
 
+    /**
+     * Returns the tutorial ID of the predicate of the {@code MarkAllCommand}.
+     */
+    public String getTutorialId() {
+        return predicate.getKeyword();
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
