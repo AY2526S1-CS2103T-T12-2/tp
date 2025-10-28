@@ -17,7 +17,7 @@ import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 /**
  * Parses input arguments and creates a new UnmarkCommand object
  */
-public class UnmarkCommandParser {
+public class UnmarkCommandParser implements Parser<UnmarkCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the UnmarkCommand
      * and returns an UnmarkCommand object for execution.

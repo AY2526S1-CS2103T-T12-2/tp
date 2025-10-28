@@ -17,7 +17,7 @@ import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 /**
  * Parses input arguments and creates a new MarkCommand object
  */
-public class MarkCommandParser {
+public class MarkCommandParser implements Parser<MarkCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the MarkCommand
      * and returns an MarkCommand object for execution.

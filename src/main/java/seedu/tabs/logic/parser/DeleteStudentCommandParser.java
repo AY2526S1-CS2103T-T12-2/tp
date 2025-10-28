@@ -16,7 +16,7 @@ import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 /**
  * Parses input arguments and creates a new DeleteStudentCommand object.
  */
-public class DeleteStudentCommandParser {
+public class DeleteStudentCommandParser implements Parser<DeleteStudentCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteStudentCommand
      * and returns an DeleteStudentCommand object for execution.
