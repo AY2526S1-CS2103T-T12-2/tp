@@ -30,7 +30,8 @@ public class TypicalTutorials {
             .withDate("2025-01-15").withModuleCode("MA1521")
             .withStudents(VALID_STUDENT_A).build();
     public static final Tutorial TUTORIAL_CS1010_C303 = new TutorialBuilder().withId("C303").withModuleCode("CS1010")
-            .withDate("2025-01-20").build();
+            .withDate("2025-01-20")
+            .withStudents(VALID_STUDENT_A, VALID_STUDENT_B).build();;
     public static final Tutorial TUTORIAL_ST2334_D404 = new TutorialBuilder().withId("D404").withModuleCode("ST2334")
             .withDate("2025-01-25").withStudents(VALID_STUDENT_A).build();
     public static final Tutorial TUTORIAL_CS2040_E505 = new TutorialBuilder().withId("E505").withModuleCode("CS2040")
