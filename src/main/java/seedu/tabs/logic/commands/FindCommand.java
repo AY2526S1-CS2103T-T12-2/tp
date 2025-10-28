@@ -19,14 +19,20 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all tutorials whose module codes or tutorial IDs "
+            + ": Finds all tutorials whose module codes and/or tutorial IDs "
             + "contain any of the specified keywords (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: "
-            + PREFIX_TUTORIAL_ID + "KEYWORD [MORE_KEYWORDS]... OR "
+            + "If both " + PREFIX_MODULE_CODE + " and " + PREFIX_TUTORIAL_ID + " are provided, "
+            + "only tutorials matching BOTH criteria are listed (AND condition).\n"
+            + "Parameters: \n"
+            + "1. Search by one field: " + PREFIX_TUTORIAL_ID + "KEYWORD [MORE_KEYWORDS]... OR "
             + PREFIX_MODULE_CODE + "KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + " CS2103T CS2101"
-            + " or " + COMMAND_WORD + " " + PREFIX_TUTORIAL_ID + " T10 W12";
+            + "2. Search by both fields (AND): " + PREFIX_MODULE_CODE + "KEYWORD [...] "
+            + PREFIX_TUTORIAL_ID + "KEYWORD [...]\n"
+            + "Example 1 (Module only): " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + " CS2103T CS2101\n"
+            + "Example 2 (Tutorial ID only): " + COMMAND_WORD + " " + PREFIX_TUTORIAL_ID + " T10 W12\n"
+            + "Example 3 (AND condition): " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + " CS2103T "
+            + PREFIX_TUTORIAL_ID + " T10";
     private final Predicate<Tutorial> predicate;
 
     public FindCommand(Predicate<Tutorial> predicate) {
