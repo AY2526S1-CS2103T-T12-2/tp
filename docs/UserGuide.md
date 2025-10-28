@@ -3,10 +3,11 @@ layout: page
 title: User Guide
 ---
 
-TAbs is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (
+Are you an NUS Teaching Assistant (TA) struggling to keep track of your classes?
+If you're looking for a centralised and easy-to-use system to ease up your TA duties, look no further: TAbs is here!<br><br>
+TAbs is a **desktop app for TAs in NUS to manage their classes and students, optimised for use via a Command Line Interface** (
 CLI) while still having the benefits of a Graphical User Interface (GUI).
-If you can type fast, TAbs can get your class management tasks done faster than traditional GUI
-apps.
+If you can type fast, TAbs can get your class management tasks done faster than traditional GUI apps.
 
 * Table of Contents
 {:toc}
@@ -24,29 +25,28 @@ apps.
 
 3. Copy the file to the folder you want to use as the _home folder_ for your TAbs.
 
-4. Open a command terminal, `cd` into the folder you put the jar file in, and use the
+4. Open a command terminal, `cd` into the folder you put the `.jar` file in, and use the
    `java -jar TAbs.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note how the app contains some sample
-   data.<br>
+   A GUI similar to the below should appear in a few seconds. Note that the app may contain sample data.<br>
    ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
    pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-    * `list` : Lists all tutorials.
+    * `list`: Lists all tutorials.
 
-    * `add_tutorial t/T123 m/CS2103T d/2025-01-01` : Adds a tutorial with ID `T123` for module
+    * `add_tutorial t/T123 m/CS2103T d/2025-01-01`: Adds a tutorial with ID `T123` for module
       CS2103T.
 
-    * `list_students t/T1` : Display a list of all the students enrolled in the tutorial with ID
+    * `list_students t/T1`: Display a list of all the students enrolled in the tutorial with ID
       `T1`.
 
-    * `delete_tutorial t/T1` : Deletes the tutorial with ID `T1`.
+    * `delete_tutorial t/T1`: Deletes the tutorial with ID `T1`.
 
-    * `clear` : Deletes all tutorials.
+    * `clear`: Deletes all tutorials.
 
-    * `exit` : Exits the app.
+    * `exit`: Exits the app.
 
 6. Refer to the [Features](#features) below for details of each command.
 
