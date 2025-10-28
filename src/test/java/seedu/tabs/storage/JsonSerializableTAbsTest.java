@@ -16,13 +16,13 @@ import seedu.tabs.testutil.TypicalTutorials;
 public class JsonSerializableTAbsTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableTAbsTest");
-    private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalTutorialTAbs.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidTutorialTAbs.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicateTutorialTAbs.json");
+    private static final Path TYPICAL_TUTORIALS_FILE = TEST_DATA_FOLDER.resolve("typicalTutorialTAbs.json");
+    private static final Path INVALID_TUTORIAL_FILE = TEST_DATA_FOLDER.resolve("invalidTutorialTAbs.json");
+    private static final Path DUPLICATE_TUTORIALS_FILE = TEST_DATA_FOLDER.resolve("duplicateTutorialTAbs.json");
 
     @Test
     public void toModelType_typicalTutorialsFile_success() throws Exception {
-        JsonSerializableTAbs dataFromFile = JsonUtil.readJsonFile(TYPICAL_PERSONS_FILE,
+        JsonSerializableTAbs dataFromFile = JsonUtil.readJsonFile(TYPICAL_TUTORIALS_FILE,
                 JsonSerializableTAbs.class).get();
         TAbs tabsFromFile = dataFromFile.toModelType();
         TAbs typicalTutorialsTAbs = TypicalTutorials.getTypicalTAbs();
@@ -31,14 +31,14 @@ public class JsonSerializableTAbsTest {
 
     @Test
     public void toModelType_invalidTutorialFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableTAbs dataFromFile = JsonUtil.readJsonFile(INVALID_PERSON_FILE,
+        JsonSerializableTAbs dataFromFile = JsonUtil.readJsonFile(INVALID_TUTORIAL_FILE,
                 JsonSerializableTAbs.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateTutorials_throwsIllegalValueException() throws Exception {
-        JsonSerializableTAbs dataFromFile = JsonUtil.readJsonFile(DUPLICATE_PERSON_FILE,
+        JsonSerializableTAbs dataFromFile = JsonUtil.readJsonFile(DUPLICATE_TUTORIALS_FILE,
                 JsonSerializableTAbs.class).get();
         assertThrows(IllegalValueException.class, JsonSerializableTAbs.MESSAGE_DUPLICATE_PERSON,
                 dataFromFile::toModelType);
