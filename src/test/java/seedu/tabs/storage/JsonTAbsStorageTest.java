@@ -3,9 +3,9 @@ package seedu.tabs.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.tabs.testutil.Assert.assertThrows;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS3230_C909;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_GE1401_T808;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_A101;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS3230_G909;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_GE1401_H808;
 import static seedu.tabs.testutil.TypicalTutorials.getTypicalTAbs;
 
 import java.io.IOException;
@@ -72,14 +72,14 @@ public class JsonTAbsStorageTest {
         assertEquals(original, new TAbs(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addTutorial(TUTORIAL_GE1401_T808);
-        original.removeTutorial(TUTORIAL_CS2103T_C101);
+        original.addTutorial(TUTORIAL_GE1401_H808);
+        original.removeTutorial(TUTORIAL_CS2103T_A101);
         jsonTAbsStorage.saveTAbs(original, filePath);
         readBack = jsonTAbsStorage.readTAbs(filePath).get();
         assertEquals(original, new TAbs(readBack));
 
         // Save and read without specifying file path
-        original.addTutorial(TUTORIAL_CS3230_C909);
+        original.addTutorial(TUTORIAL_CS3230_G909);
         jsonTAbsStorage.saveTAbs(original); // file path not specified
         readBack = jsonTAbsStorage.readTAbs().get(); // file path not specified
         assertEquals(original, new TAbs(readBack));

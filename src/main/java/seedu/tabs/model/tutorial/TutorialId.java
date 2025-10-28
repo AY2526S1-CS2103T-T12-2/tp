@@ -10,9 +10,9 @@ import static seedu.tabs.commons.util.AppUtil.checkArgument;
 public class TutorialId {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Tutorial IDs should start with a letter followed by numbers (e.g., C123, T456, A789)";
+            "Tutorial IDs should start with a single letter followed by numbers (e.g., C123, T456, A789)";
 
-    public static final String VALIDATION_REGEX = "[A-Z]+\\d+";
+    public static final String VALIDATION_REGEX = "[A-Z]\\d+";
 
     public final String id;
 
@@ -26,6 +26,7 @@ public class TutorialId {
         String upperCasedId = tutorialId.toUpperCase();
         checkArgument(isValidTutorialId(upperCasedId), MESSAGE_CONSTRAINTS);
         this.id = upperCasedId;
+        assert this.id.equals(this.id.toUpperCase()) : "TutorialId must be stored in uppercase";
     }
 
     /**
@@ -53,7 +54,7 @@ public class TutorialId {
         }
 
         TutorialId otherTutorialId = (TutorialId) other;
-        return id.equalsIgnoreCase(otherTutorialId.id);
+        return id.equals(otherTutorialId.id);
     }
 
     @Override

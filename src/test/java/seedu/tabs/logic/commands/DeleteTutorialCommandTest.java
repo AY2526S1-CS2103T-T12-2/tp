@@ -67,7 +67,7 @@ public class DeleteTutorialCommandTest {
 
     @Test
     public void execute_invalidKeywordFilteredList_throwsCommandException() {
-        showTutorialWithTutorialId(model, TypicalTutorials.TUTORIAL_CS2103T_C101.getTutorialId());
+        showTutorialWithTutorialId(model, TypicalTutorials.TUTORIAL_CS2103T_A101.getTutorialId());
 
         DeleteTutorialCommand deleteTutorialCommand = new DeleteTutorialCommand(PREDICATE_KEYWORD_C102);
         assertCommandFailure(deleteTutorialCommand, model,

@@ -2,7 +2,7 @@
   "_comment": "TAbs save file which contains the same Tutorial values as in TypicalTutorials#getTypicalTAbs()",
   "tutorials": [
     {
-      "tutorialId": "C101",
+      "tutorialId": "A101",
       "moduleCode": "CS2103T",
       "date": "2025-01-10",
       "students": [
@@ -13,7 +13,7 @@
       ]
     },
     {
-      "tutorialId": "T202",
+      "tutorialId": "B202",
       "moduleCode": "MA1521",
       "date": "2025-01-15",
       "students": [
@@ -30,7 +30,7 @@
       "students": []
     },
     {
-      "tutorialId": "T404",
+      "tutorialId": "D404",
       "moduleCode": "ST2334",
       "date": "2025-01-25",
       "students": [
@@ -41,19 +41,19 @@
       ]
     },
     {
-      "tutorialId": "C505",
+      "tutorialId": "E505",
       "moduleCode": "CS2040",
       "date": "2025-02-01",
       "students": []
     },
     {
-      "tutorialId": "T606",
+      "tutorialId": "F606",
       "moduleCode": "MA2001",
       "date": "2025-02-05",
       "students": []
     },
     {
-      "tutorialId": "C707",
+      "tutorialId": "G707",
       "moduleCode": "EE2026",
       "date": "2025-02-10",
       "students": []
