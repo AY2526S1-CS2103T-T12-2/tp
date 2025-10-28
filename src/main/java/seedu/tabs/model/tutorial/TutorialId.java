@@ -33,7 +33,7 @@ public class TutorialId {
      * Returns true if a given string is a valid tutorial ID.
      */
     public static boolean isValidTutorialId(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.toUpperCase().matches(VALIDATION_REGEX);
     }
 
 

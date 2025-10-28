@@ -45,6 +45,8 @@ public class TutorialIdTest {
         assertTrue(TutorialId.isValidTutorialId("T12345")); // multiple digits
         assertTrue(TutorialId.isValidTutorialId("A1")); // minimum valid format
         assertTrue(TutorialId.isValidTutorialId("Z999")); // any single letter works
+        assertTrue(TutorialId.isValidTutorialId("a1")); // lowercase input
+        assertTrue(TutorialId.isValidTutorialId("z999")); // lowercase input
     }
 
     @Test
