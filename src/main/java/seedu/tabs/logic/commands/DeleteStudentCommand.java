@@ -77,6 +77,8 @@ public class DeleteStudentCommand extends Command {
         assert tutorialToEdit != null;
 
         Set<Student> updatedStudents = new HashSet<>(tutorialToEdit.getStudents());
+
+        //If the size of set did not change after .remove(), the student does not exist.
         if (!updatedStudents.remove(student)) {
             throw new CommandException(
                     String.format(MESSAGE_NOT_EXISTS, student.studentId, tutorialToEdit.getTutorialId()));
