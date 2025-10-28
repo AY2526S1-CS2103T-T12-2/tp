@@ -7,7 +7,6 @@ import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import org.junit.jupiter.api.Test;
 
 import seedu.tabs.logic.commands.CommandTestUtil;
-import seedu.tabs.logic.commands.MarkAllCommand;
 import seedu.tabs.logic.commands.UnmarkAllCommand;
 import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.testutil.TypicalPredicates;
@@ -25,7 +24,7 @@ public class UnmarkAllCommandParserTest {
     @Test
     public void parse_missingPrefix_throwsParseException() {
         assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                MarkAllCommand.MESSAGE_USAGE));
+                UnmarkAllCommand.MESSAGE_USAGE));
     }
 
     @Test
