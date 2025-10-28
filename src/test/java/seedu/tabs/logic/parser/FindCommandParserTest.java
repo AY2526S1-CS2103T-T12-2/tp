@@ -14,12 +14,15 @@ import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.tabs.logic.Messages;
 import seedu.tabs.logic.commands.FindCommand;
+import seedu.tabs.model.tutorial.ModuleCodeAndTutorialIdContainsKeywordsPredicate;
 import seedu.tabs.model.tutorial.ModuleCodeContainsKeywordsPredicate;
+import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialIdContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
@@ -81,12 +84,25 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_bothPrefixesPresent_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE);
+    public void parse_bothPrefixesPresent_success() {
+        // Both m/ and t/ prefixes present (now allowed for AND search)
+        String userInput = " " + PREFIX_MODULE_CODE + " " + VALID_MODULE_CODE_CS2103T + " "
+                + PREFIX_TUTORIAL_ID + " " + VALID_TUTORIAL_T456;
 
-        // Both m/ and t/ prefixes present (mutually exclusive), using constants
-        assertParseFailure(parser, " " + PREFIX_MODULE_CODE + " " + VALID_MODULE_CODE_CS2103T + " "
-                + PREFIX_TUTORIAL_ID + " " + VALID_TUTORIAL_T456, expectedMessage);
+        // Construct individual predicates
+        Predicate<Tutorial> modulePredicate = new ModuleCodeContainsKeywordsPredicate(
+                Collections.singletonList(VALID_MODULE_CODE_CS2103T));
+        Predicate<Tutorial> tutorialPredicate = new TutorialIdContainsKeywordsPredicate(
+                Collections.singletonList(VALID_TUTORIAL_T456));
+
+        // Combine them into the expected AND predicate
+        List<Predicate<Tutorial>> predicates = Arrays.asList(tutorialPredicate, modulePredicate);
+        ModuleCodeAndTutorialIdContainsKeywordsPredicate expectedCombinedPredicate =
+                new ModuleCodeAndTutorialIdContainsKeywordsPredicate(predicates);
+
+        FindCommand expectedCommand = new FindCommand(expectedCombinedPredicate);
+
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
