@@ -1,18 +1,21 @@
 package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.util.List;
 
 import seedu.tabs.commons.util.ToStringBuilder;
 import seedu.tabs.logic.Messages;
 import seedu.tabs.logic.commands.exceptions.CommandException;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 import seedu.tabs.model.Model;
-import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
+/**
+ * Marks all the students in a {@code Tutorial} as present.
+ */
 public class MarkAllCommand extends Command {
 
     public static final String COMMAND_WORD = "mark_all";

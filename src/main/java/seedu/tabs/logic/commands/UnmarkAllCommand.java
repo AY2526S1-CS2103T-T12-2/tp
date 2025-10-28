@@ -13,6 +13,9 @@ import seedu.tabs.model.Model;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
+/**
+ * Unmarks all the students in a {@code Tutorial}.
+ */
 public class UnmarkAllCommand extends Command {
 
     public static final String COMMAND_WORD = "unmark_all";
