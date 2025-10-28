@@ -23,15 +23,15 @@ public class FindCommand extends Command {
             + "contain any of the specified keywords (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
             + "If both " + PREFIX_MODULE_CODE + " and " + PREFIX_TUTORIAL_ID + " are provided, "
-            + "only tutorials matching BOTH criteria are listed (AND condition).\n"
+            + "only tutorials matching BOTH criteria are listed.\n"
             + "Parameters: \n"
             + "1. Search by one field: " + PREFIX_TUTORIAL_ID + "KEYWORD [MORE_KEYWORDS]... OR "
             + PREFIX_MODULE_CODE + "KEYWORD [MORE_KEYWORDS]...\n"
-            + "2. Search by both fields (AND): " + PREFIX_MODULE_CODE + "KEYWORD [...] "
+            + "2. Search by two fields: " + PREFIX_MODULE_CODE + "KEYWORD [...] "
             + PREFIX_TUTORIAL_ID + "KEYWORD [...]\n"
             + "Example 1 (Module only): " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + " CS2103T CS2101\n"
             + "Example 2 (Tutorial ID only): " + COMMAND_WORD + " " + PREFIX_TUTORIAL_ID + " T10 W12\n"
-            + "Example 3 (AND condition): " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + " CS2103T "
+            + "Example 3 (Module and Tutorial ID): " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + " CS2103T "
             + PREFIX_TUTORIAL_ID + " T10";
     private final Predicate<Tutorial> predicate;
 
