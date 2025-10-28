@@ -36,7 +36,6 @@ public class DeleteStudentCommand extends Command {
 
     private final TutorialIdMatchesKeywordPredicate predicate;
     private final Student student;
-    private boolean anyDeleted;
 
     /**
      * @param index of the tutorial in the filtered tutorial list to add the student
@@ -47,7 +46,6 @@ public class DeleteStudentCommand extends Command {
 
         this.predicate = predicate;
         this.student = student;
-        this.anyDeleted = false;
     }
 
     @Override
@@ -66,9 +64,7 @@ public class DeleteStudentCommand extends Command {
         model.setTutorial(tutorialToChange, updatedTutorial);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
 
-        String resultMessage = anyDeleted
-                ? String.format(MESSAGE_SUCCESS, student.studentId, updatedTutorial.getTutorialId())
-                : String.format(MESSAGE_NOT_EXISTS, student.studentId, updatedTutorial.getTutorialId());
+        String resultMessage = String.format(MESSAGE_SUCCESS, student.studentId, updatedTutorial.getTutorialId());
 
         return new CommandResult(resultMessage);
     }
@@ -77,12 +73,15 @@ public class DeleteStudentCommand extends Command {
      * Creates and returns a copy of {@code tutorialToEdit} with the given student removed.
      */
     private Tutorial deleteStudentFromTutorial(Tutorial tutorialToEdit,
-                                               Student student) {
+                                               Student student) throws CommandException {
         assert tutorialToEdit != null;
 
         Set<Student> updatedStudents = new HashSet<>(tutorialToEdit.getStudents());
-        if (updatedStudents.remove(student)) {
-            this.anyDeleted = true;
+
+        //If the size of set did not change after .remove(), the student does not exist.
+        if (!updatedStudents.remove(student)) {
+            throw new CommandException(
+                    String.format(MESSAGE_NOT_EXISTS, student.studentId, tutorialToEdit.getTutorialId()));
         }
 
         return new Tutorial(

@@ -88,7 +88,7 @@ public class MarkCommand extends Command {
      * Creates and returns a {@code Tutorial} with the newly marked students of {@code tutorialToEdit}
      */
     private Tutorial markStudents(Tutorial tutorial,
-                                  Set<Student> studentsToMark) {
+                                  Set<Student> studentsToMark) throws CommandException {
         assert tutorial != null;
 
         Set<Student> currStudents = tutorial.getStudents();
@@ -98,6 +98,11 @@ public class MarkCommand extends Command {
                 affectedStudentsList.add(student);
                 nonExistentStudents.remove(student);
             }
+        }
+
+        if (affectedStudentsList.isEmpty()) {
+            throw new CommandException(
+                    String.format(MESSAGE_NOT_EXISTS, newStudentsList, tutorial.getTutorialId()));
         }
 
         return new Tutorial(
