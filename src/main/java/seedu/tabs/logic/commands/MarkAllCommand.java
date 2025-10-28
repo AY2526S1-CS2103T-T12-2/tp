@@ -9,6 +9,7 @@ import seedu.tabs.logic.Messages;
 import seedu.tabs.logic.commands.exceptions.CommandException;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
 import seedu.tabs.model.Model;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 
@@ -42,9 +43,12 @@ public class MarkAllCommand extends Command {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_TUTORIAL_ID, predicate.getKeyword()));
         }
 
-        // model.deleteTutorial(tutorialToMarkAll);
+        tutorialToMarkAll.markAllStudents();
+        model.setTutorial(tutorialToMarkAll, tutorialToMarkAll);
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
+
         return new CommandResult(String.format(MESSAGE_MARK_ALL_SUCCESS,
-                Messages.format(tutorialToMarkAll), predicate.getKeyword()));
+                tutorialToMarkAll.getStudents(), predicate.getKeyword()));
     }
 
     @Override

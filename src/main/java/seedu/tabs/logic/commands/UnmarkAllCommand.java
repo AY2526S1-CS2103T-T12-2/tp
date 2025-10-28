@@ -2,6 +2,7 @@ package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.util.List;
 
@@ -36,15 +37,18 @@ public class UnmarkAllCommand extends Command {
         requireNonNull(model);
         List<Tutorial> lastShownList = model.getTAbs().getTutorialList();
 
-        Tutorial tutorialToMarkAll = lastShownList.stream().filter(predicate).findFirst().orElse(null);
+        Tutorial tutorialToUnmarkAll = lastShownList.stream().filter(predicate).findFirst().orElse(null);
 
-        if (tutorialToMarkAll == null) {
+        if (tutorialToUnmarkAll == null) {
             throw new CommandException(String.format(Messages.MESSAGE_INVALID_TUTORIAL_ID, predicate.getKeyword()));
         }
 
-        // model.deleteTutorial(tutorialToMarkAll);
+        tutorialToUnmarkAll.unmarkAllStudents();
+        model.setTutorial(tutorialToUnmarkAll, tutorialToUnmarkAll);
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
+
         return new CommandResult(String.format(MESSAGE_UNMARK_ALL_SUCCESS,
-                Messages.format(tutorialToMarkAll), predicate.getKeyword()));
+                tutorialToUnmarkAll.getStudents(), predicate.getKeyword()));
     }
 
     @Override
