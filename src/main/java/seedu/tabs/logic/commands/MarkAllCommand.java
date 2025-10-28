@@ -29,7 +29,7 @@ public class MarkAllCommand extends Command {
             + "\t%1$s\n"
             + "were marked as present in tutorial %2$s.";
 
-    private final TutorialIdMatchesKeywordPredicate predicate;
+    public final TutorialIdMatchesKeywordPredicate predicate;
 
     public MarkAllCommand(TutorialIdMatchesKeywordPredicate predicate) {
         this.predicate = predicate;
