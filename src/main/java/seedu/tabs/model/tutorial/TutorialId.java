@@ -10,9 +10,9 @@ import static seedu.tabs.commons.util.AppUtil.checkArgument;
 public class TutorialId {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Tutorial IDs should start with 'C' or 'T' followed by numbers (e.g., C123, T456, CT789)";
+            "Tutorial IDs should start with a letter followed by numbers (e.g., C123, T456, A789)";
 
-    public static final String VALIDATION_REGEX = "(C|T|CT)\\d+";
+    public static final String VALIDATION_REGEX = "[A-Z]+\\d+";
 
     public final String id;
 
@@ -23,15 +23,16 @@ public class TutorialId {
      */
     public TutorialId(String tutorialId) {
         requireNonNull(tutorialId);
-        checkArgument(isValidTutorialId(tutorialId), MESSAGE_CONSTRAINTS);
-        this.id = tutorialId;
+        String upperCasedId = tutorialId.toUpperCase();
+        checkArgument(isValidTutorialId(upperCasedId), MESSAGE_CONSTRAINTS);
+        this.id = upperCasedId;
     }
 
     /**
      * Returns true if a given string is a valid tutorial ID.
      */
     public static boolean isValidTutorialId(String test) {
-        return test.toUpperCase().matches(VALIDATION_REGEX);
+        return test.matches(VALIDATION_REGEX);
     }
 
 
@@ -52,7 +53,7 @@ public class TutorialId {
         }
 
         TutorialId otherTutorialId = (TutorialId) other;
-        return id.equals(otherTutorialId.id);
+        return id.equalsIgnoreCase(otherTutorialId.id);
     }
 
     @Override
