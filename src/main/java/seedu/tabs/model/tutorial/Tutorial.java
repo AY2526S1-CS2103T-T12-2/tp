@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.StringJoiner;
 
 import seedu.tabs.commons.util.ToStringBuilder;
 import seedu.tabs.model.student.Student;
@@ -53,6 +54,20 @@ public class Tutorial {
      */
     public Set<Student> getStudents() {
         return Collections.unmodifiableSet(students);
+    }
+
+    /**
+     * Returns a string representation of the set of students within the {@code Tutorial}.
+     * If there are no students, display "None".
+     */
+    public String getStudentsAsString() {
+        final StringJoiner joiner = new StringJoiner(", ");
+        if (students.isEmpty()) {
+            return "None";
+        } else {
+            students.forEach(student -> joiner.add(student.toString()));
+            return joiner.toString();
+        }
     }
 
     /**

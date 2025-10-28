@@ -39,14 +39,15 @@ public class Messages {
      */
     public static String format(Tutorial aTutorial) {
         final StringBuilder builder = new StringBuilder();
-        builder.append("TutorialID: ")
+        builder.append("Tutorial ID: ")
                 .append(aTutorial.getTutorialId())
-                .append("; ModuleCode: ")
+                .append("\nModule Code: ")
                 .append(aTutorial.getModuleCode())
-                .append("; Date: ")
+                .append("\nDate: ")
                 .append(aTutorial.getDate())
-                .append("; Students: ");
-        aTutorial.getStudents().forEach(builder::append);
+                .append("\nStudents: ")
+                .append(aTutorial.getStudentsAsString());
+
         return builder.toString();
     }
 
