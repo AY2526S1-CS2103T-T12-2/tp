@@ -104,14 +104,14 @@ Format: `list`
 
 Adds a tutorial to TAbs.
 
-Format: `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…`
+Format: `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT_ID]…`
 
-* Adds a tutorial with the specified `TUTORIAL_ID`, `MODULE_CODE`, and `DATE`.
-* The tutorial ID must **start with a single alphabet followed by 1 to 8 digits** (e.g., `A1`, `B123`, `C12345678`).
-* The tutorial ID is case-insensitive (e.g., `t123` will be stored as `T123`).
-* The module code must **start with 2-4 uppercase letters followed by 4 digits and an optional uppercase letter** (e.g., `CS2103T`).
-* The date should be in **YYYY-MM-DD** format.
-* Each student ID must follow the format `AXXXXXXX&`, where:
+* Adds a tutorial with the specified tutorial ID, module code and date.
+* `TUTORIAL_ID` must **start with a single alphabet followed by 1 to 8 digits** (e.g., `A1`, `B123`, `C12345678`).
+* `TUTORIAL_ID` is case-insensitive (i.e., `t123` will be stored as `T123`).
+* `MODULE_CODE` must **start with 2-4 uppercase letters followed by 4 digits and an optional uppercase letter** (e.g., `CS2103T`).
+* `DATE` should be in **YYYY-MM-DD** format.
+* Each `STUDENT_ID` must follow the format `AXXXXXXX&`, where:
     * The first letter (`A`) is uppercase,
     * Followed by 7 digits (`XXXXXXX`),
     * Ending with an uppercase letter (`&`).
@@ -129,8 +129,7 @@ Deletes the specified tutorial from TAbs.
 Format: `delete_tutorial t/TUTORIAL_ID`
 
 * Deletes the tutorial with the specified `TUTORIAL_ID`.
-* The tutorial ID refers to the title of the tutorial as displayed in TAbs.
-* The input is case-insensitive (e.g., both `t/t123` and `t/T123` will delete the same tutorial).
+* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will delete the same tutorial).
 
 Examples:
 
@@ -142,14 +141,14 @@ Creates a copy of an existing tutorial with a new tutorial ID and date.
 
 Format: `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE`
 
-* Copies an existing tutorial identified by the existing tutorial's ID and creates a new tutorial with a new ID and the specified `DATE`.
-* The `NEW_TUTORIAL_ID` must **start with a single alphabet followed by 1 to 8 digits** (e.g., `A1`, `B123`, `C12345678`).
-* The `NEW_TUTORIAL_ID` must not already exist in TAbs.
-* The inputs for `TUTORIAL_ID` are case-insensitive (e.g., both `t/t123` and `t/T123` will be stored as/refer to the same tutorial).
+* Copies an existing tutorial identified by the existing tutorial's ID and creates a new tutorial with a new ID and the specified date.
+* `NEW_TUTORIAL_ID` must **start with a single alphabet followed by 1 to 8 digits** (e.g., `A1`, `B123`, `C12345678`).
+* `NEW_TUTORIAL_ID` must not already exist in TAbs.
+* `NEW_TUTORIAL_ID` and `EXISTING_TUTORIAL_ID` are case-insensitive (e.g., both `t/t123` and `t/T123` will be stored as/refer to the same tutorial).
 * The existing tutorial ID must exist in TAbs.
 * All students from the existing tutorial will be copied to the new tutorial.
 * The module code will be copied from the existing tutorial.
-* The date should be in **YYYY-MM-DD** format.
+* `DATE` should be in **YYYY-MM-DD** format.
 
 Examples:
 
@@ -169,7 +168,7 @@ Format: `edit_tutorial from/EXISTING_TUTORIAL_ID [t/NEW_TUTORIAL_ID] [m/NEW_MODU
     * Tutorial ID (`t/`)
     * Module code (`m/`)
     * Date (`d/`)
-* The tutorial ID provided with `from/` is case-insensitive (e.g., both `t/t123` and `t/T123` refer to the same tutorial).
+* `EXISTING_TUTORIAL_ID` and `NEW_TUTORIAL_ID` are case-insensitive (e.g., both `t/t123` and `t/T123` refer to the same tutorial).
 * At least one editable field (`t/`, `m/`, or `d/`) must be specified.
 * Editing student lists (i.e., using `id/`) is **not allowed** here — use `add_student` or `delete_student` instead.
 
@@ -183,14 +182,14 @@ Examples:
 
 Common Errors:
 * The `from/` prefix is **mandatory**, as it tells TAbs which tutorial to edit.
-* Attempting to edit a non-existent tutorial will result in an error:`Tutorial ID not found.`
+* Attempting to edit a non-existent tutorial will result in an error: `Tutorial ID not found.`
 * If no editable fields are provided: `At least one field to edit must be provided.`
 * If a student field (e.g., `id/`) is accidentally included:
   `Students cannot be edited via this command. Please use the add_student or delete_student commands instead.`
 
 ### Finding tutorials by keyword: `find`
 
-Finds tutorials whose `MODULE_CODE` or `TUTORIAL_ID` contain any of the given keywords.
+Finds tutorials whose tutorial ID and/or module code contain any of the given keywords.
 
 Format: 
 1. **Search by one field:** `find t/KEYWORD [MORE_KEYWORDS]…` or `find m/KEYWORD [MORE_KEYWORDS]…`
@@ -217,9 +216,8 @@ Display a list of all the students enrolled in a specific tutorial on TAbs.
 Format: `list_students t/TUTORIAL_ID`
 
 * Lists all the students in a tutorial with the specified tutorial ID.
-* It shows a numbered list of all the student IDs of the students in that tutorial (e.g., `1.
-  A1234567X`).
-* The input is case-insensitive (e.g., both `t/t123` and `t/T123` will list students from the same tutorial).
+* It shows a numbered list of all the student IDs of the students in that tutorial (e.g., `1. A1234567X`).
+* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will list students from the same tutorial).
 
 Examples:
 
@@ -395,7 +393,7 @@ file that contains the data of your previous TAbs home folder.
 |---------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Help**                        | `help`                                                                                                                                                    |
 | **List tutorials**              | `list`                                                                                                                                                    |
-| **Add a tutorial**              | `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…` <br> (e.g., `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y`)                    |
+| **Add a tutorial**              | `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT_ID]…` <br> (e.g., `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y`)                 |
 | **Delete a tutorial**           | `delete_tutorial t/TUTORIAL_ID`<br> (e.g., `delete_tutorial t/T1`)                                                                                        |
 | **Copy a tutorial**             | `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE` <br> (e.g., `copy_tutorial t/C2 from/C1 d/2025-04-10`)                                 |
 | **Edit a tutorial**             | `edit_tutorial from/EXISTING_TUTORIAL_ID [t/NEW_TUTORIAL_ID] [m/NEW_MODULE_CODE] [d/NEW_DATE]`<br> (e.g., `edit_tutorial from/T1 m/CS2103T d/2025-10-25`) |
