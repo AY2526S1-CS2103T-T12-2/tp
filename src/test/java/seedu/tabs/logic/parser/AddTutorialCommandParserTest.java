@@ -20,9 +20,9 @@ import static seedu.tabs.logic.commands.CommandTestUtil.VALID_MODULE_CODE_MA1521
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_STUDENT_A;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_STUDENT_B;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_T456;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.DATE;
+import static seedu.tabs.logic.parser.CliSyntax.MODULE_CODE;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_TEST_C123;
@@ -67,50 +67,50 @@ public class AddTutorialCommandParserTest {
 
         // multiple ids
         assertParseFailure(parser, TUTORIAL_DESC_C123 + validExpectedTutorialString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
+                Messages.getErrorMessageForDuplicatePrefixes(TUTORIAL_ID.prefix));
 
         // multiple moduleCodes
         assertParseFailure(parser, MODULE_CODE_DESC_CS2103T + validExpectedTutorialString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_MODULE_CODE));
+                Messages.getErrorMessageForDuplicatePrefixes(MODULE_CODE.prefix));
 
         // multiple dates
         assertParseFailure(parser, DATE_DESC_C123 + validExpectedTutorialString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE));
+                Messages.getErrorMessageForDuplicatePrefixes(DATE.prefix));
 
         // multiple fields repeated
         assertParseFailure(parser,
                 validExpectedTutorialString + MODULE_CODE_DESC_CS2103T + DATE_DESC_C123 + TUTORIAL_DESC_C123
                         + validExpectedTutorialString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID,
-                        PREFIX_DATE, PREFIX_MODULE_CODE));
+                Messages.getErrorMessageForDuplicatePrefixes(TUTORIAL_ID.prefix,
+                        DATE.prefix, MODULE_CODE.prefix));
 
         // invalid value followed by valid value
 
         // invalid id
         assertParseFailure(parser, INVALID_TUTORIAL_DESC + validExpectedTutorialString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
+                Messages.getErrorMessageForDuplicatePrefixes(TUTORIAL_ID.prefix));
 
         // invalid date
         assertParseFailure(parser, INVALID_DATE_DESC + validExpectedTutorialString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE));
+                Messages.getErrorMessageForDuplicatePrefixes(DATE.prefix));
 
         // invalid moduleCode
         assertParseFailure(parser, INVALID_MODULE_CODE_DESC + validExpectedTutorialString,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_MODULE_CODE));
+                Messages.getErrorMessageForDuplicatePrefixes(MODULE_CODE.prefix));
 
         // valid value followed by invalid value
 
         // invalid id
         assertParseFailure(parser, validExpectedTutorialString + INVALID_TUTORIAL_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
+                Messages.getErrorMessageForDuplicatePrefixes(TUTORIAL_ID.prefix));
 
         // invalid date
         assertParseFailure(parser, validExpectedTutorialString + INVALID_DATE_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE));
+                Messages.getErrorMessageForDuplicatePrefixes(DATE.prefix));
 
         // invalid moduleCode
         assertParseFailure(parser, validExpectedTutorialString + INVALID_MODULE_CODE_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_MODULE_CODE));
+                Messages.getErrorMessageForDuplicatePrefixes(MODULE_CODE.prefix));
     }
 
     @Test

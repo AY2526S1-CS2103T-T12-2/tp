@@ -29,6 +29,18 @@ public class ArgumentTokenizer {
     }
 
     /**
+     * Tokenizes an arguments string with all known prefixes and returns an {@code ArgumentMultimap} object
+     * that maps prefixes to their respective argument values. All prefixes defined in {@code CliSyntax} will
+     * be recognized in the arguments string.
+     *
+     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @return           ArgumentMultimap object that maps prefixes to their arguments
+     */
+    public static ArgumentMultimap tokenizeAllPrefix(String argsString) {
+        return tokenize(argsString, CliSyntax.getAllPrefixes());
+    }
+
+    /**
      * Finds all zero-based prefix positions in the given arguments string.
      *
      * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}

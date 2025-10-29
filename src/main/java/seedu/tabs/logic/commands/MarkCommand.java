@@ -2,8 +2,8 @@ package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.STUDENT;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.util.HashSet;
@@ -26,12 +26,12 @@ public class MarkCommand extends Command {
             + ": Marks a student identified by the given student ID "
             + "in the tutorial identified by the given tutorial ID as present.\n"
             + "Parameters: "
-            + PREFIX_STUDENT + "[STUDENT_ID]... "
-            + PREFIX_TUTORIAL_ID + "[TUTORIAL_ID]\n"
+            + STUDENT.prefix + "[STUDENT_ID]... "
+            + TUTORIAL_ID.prefix + "[TUTORIAL_ID]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TUTORIAL_ID + "T123 "
-            + PREFIX_STUDENT + "A1231231Y "
-            + PREFIX_STUDENT + "A3213213Y";
+            + TUTORIAL_ID.prefix + "T123 "
+            + STUDENT.prefix + "A1231231Y "
+            + STUDENT.prefix + "A3213213Y";
     public static final String MESSAGE_SUCCESS = "The following student(s):\n"
             + "\t%1$s\n"
             + "were marked as present in tutorial %2$s.";

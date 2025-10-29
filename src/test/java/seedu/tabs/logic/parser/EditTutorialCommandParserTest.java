@@ -14,10 +14,10 @@ import static seedu.tabs.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS2103
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_MODULE_CODE_MA1521;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_C123;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_T456;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_FROM;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.DATE;
+import static seedu.tabs.logic.parser.CliSyntax.FROM;
+import static seedu.tabs.logic.parser.CliSyntax.MODULE_CODE;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -34,7 +34,7 @@ import seedu.tabs.testutil.EditTutorialDescriptorBuilder;
 
 public class EditTutorialCommandParserTest {
 
-    private static final String FROM_DESC_C123 = " " + PREFIX_FROM + VALID_TUTORIAL_C123;
+    private static final String FROM_DESC_C123 = " " + FROM.prefix + VALID_TUTORIAL_C123;
 
     private static final String MESSAGE_MISSING_FROM =
             String.format(EditTutorialCommand.MESSAGE_FROM_TUTORIAL_ID_MISSING,
@@ -149,24 +149,24 @@ public class EditTutorialCommandParserTest {
         // duplicate tutorial id
         userInput = FROM_DESC_C123 + TUTORIAL_DESC_C123 + TUTORIAL_DESC_T456;
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
+                Messages.getErrorMessageForDuplicatePrefixes(TUTORIAL_ID.prefix));
 
         // duplicate module code
         userInput = FROM_DESC_C123 + MODULE_CODE_DESC_CS2103T + MODULE_CODE_DESC_MA1521;
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_MODULE_CODE));
+                Messages.getErrorMessageForDuplicatePrefixes(MODULE_CODE.prefix));
 
         // duplicate date
         userInput = FROM_DESC_C123 + DATE_DESC_C123 + DATE_DESC_C123;
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE));
+                Messages.getErrorMessageForDuplicatePrefixes(DATE.prefix));
 
         // mix of duplicates
         userInput = FROM_DESC_C123
                 + MODULE_CODE_DESC_CS2103T + DATE_DESC_C123 + TUTORIAL_DESC_T456
                 + MODULE_CODE_DESC_MA1521 + DATE_DESC_C123 + TUTORIAL_DESC_C123;
         assertParseFailure(parser, userInput,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID, PREFIX_MODULE_CODE, PREFIX_DATE));
+                Messages.getErrorMessageForDuplicatePrefixes(TUTORIAL_ID.prefix, MODULE_CODE.prefix, DATE.prefix));
     }
 
     @Test

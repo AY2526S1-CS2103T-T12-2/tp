@@ -19,6 +19,8 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d tutorials listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_EXTRA_PREFIXES =
+                "Unexpected prefix(es) found: ";
     public static final String MESSAGES_STUDENTS_LISTED_OVERVIEW = "Displaying all students enrolled in tutorial!";
 
 
@@ -32,6 +34,18 @@ public class Messages {
                 Stream.of(duplicatePrefixes).map(Prefix::toString).collect(Collectors.toSet());
 
         return MESSAGE_DUPLICATE_FIELDS + String.join(" ", duplicateFields);
+    }
+
+    /**
+     * Returns an error message indicating the extra prefixes.
+     */
+    public static String getErrorMessageForExtraPrefixes(Prefix... extraPrefixes) {
+        assert extraPrefixes.length > 0;
+
+        Set<String> extraFields =
+                Stream.of(extraPrefixes).map(Prefix::toString).collect(Collectors.toSet());
+
+        return MESSAGE_EXTRA_PREFIXES + String.join(" ", extraFields);
     }
 
     /**
