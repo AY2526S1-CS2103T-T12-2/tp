@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
@@ -50,6 +51,9 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
 
+    @FXML
+    private SplitPane resultDisplayTutorialListSplitPane;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -62,7 +66,6 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
 
         helpWindow = new HelpWindow();
@@ -110,6 +113,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        resultDisplayTutorialListSplitPane.setDividerPositions(0.2);
+
         tutorialListPanel = new TutorialListPanel(logic.getFilteredTutorialList());
         tutorialListPanelPlaceholder.getChildren().add(tutorialListPanel.getRoot());
 
