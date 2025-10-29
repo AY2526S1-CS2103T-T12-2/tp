@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.logic.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
 import static seedu.tabs.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS1010_C303;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2040_C505;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_MA2001_T606;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2040_E505;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_A101;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_MA2001_F606;
 import static seedu.tabs.testutil.TypicalTutorials.getTypicalTAbs;
 
 import java.util.Arrays;
@@ -107,11 +107,11 @@ public class FindCommandTest {
     public void execute_tutorialIdKeywords_multipleTutorialsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         // Use TutorialIdContainsKeywordsPredicate and search for IDs (Crucial fix)
-        TutorialIdContainsKeywordsPredicate predicate = prepareTutorialIdPredicate("C303 C505 T606");
+        TutorialIdContainsKeywordsPredicate predicate = prepareTutorialIdPredicate("C303 E505 F606");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTutorialList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TUTORIAL_CS1010_C303, TUTORIAL_CS2040_C505, TUTORIAL_MA2001_T606),
+        assertEquals(Arrays.asList(TUTORIAL_CS1010_C303, TUTORIAL_CS2040_E505, TUTORIAL_MA2001_F606),
                 model.getFilteredTutorialList());
     }
 
@@ -123,7 +123,7 @@ public class FindCommandTest {
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTutorialList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(TUTORIAL_CS2103T_C101, TUTORIAL_CS1010_C303, TUTORIAL_CS2040_C505),
+        assertEquals(Arrays.asList(TUTORIAL_CS2103T_A101, TUTORIAL_CS1010_C303, TUTORIAL_CS2040_E505),
                 model.getFilteredTutorialList());
     }
 
