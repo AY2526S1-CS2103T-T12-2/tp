@@ -235,7 +235,7 @@ Format: `add_student id/STUDENT_ID… t/TUTORIAL_ID`
     * The first letter (`A`) is uppercase,
     * Followed by 7 digits (`XXXXXXX`),
     * Ending with an uppercase letter (`&`).
-* The input for `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will add students to the same tutorial).
+* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will add students to the same tutorial).
 
 
 Examples:
@@ -283,7 +283,7 @@ Format: `delete_student id/STUDENT_ID t/TUTORIAL_ID`
     * The first letter (`A`) is uppercase,
     * Followed by 7 digits (`XXXXXXX`),
     * Ending with an uppercase letter (`&`).
-* The input for `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will delete students from the same tutorial).
+* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will delete students from the same tutorial).
 
 Examples:
 
@@ -295,15 +295,14 @@ Marks specified students, in a tutorial in TAbs as present.
 
 Format: `mark t/TUTORIAL_ID id/STUDENT…`
 
-* Marks one or more students, identified by their `STUDENT_ID`, in the tutorial identified by
-  `TUTORIAL_ID` as present.
+* Marks one or more students, identified by their student ID, in the tutorial identified by
+  tutorial ID as present.
 * You can specify multiple student IDs in a single command, separated by spaces.
-* Each student ID must follow the format `AXXXXXXX&`, where:
+* Each `STUDENT_ID` must follow the format `AXXXXXXX&`, where:
     * The first letter (`A`) is uppercase,
     * Followed by 7 digits (`XXXXXXX`),
     * Ending with an uppercase letter (`&`).
-* The tutorial ID refers to the title of the tutorial as displayed in TAbs.
-* The input for `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will mark students from the same tutorial).
+* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will mark students from the same tutorial).
 
 Examples:
 
@@ -315,17 +314,16 @@ Examples:
 
 Unmarks specified students, in a tutorial in TAbs.
 
-Format: `unmark t/TUTORIAL_ID id/STUDENT…`
+Format: `unmark t/TUTORIAL_ID id/STUDENT_ID…`
 
-* Unmarks one or more students, identified by their `STUDENT_ID`, in the tutorial identified by
-  `TUTORIAL_ID`.
+* Unmarks one or more students, identified by their student ID, in the tutorial identified by
+  tutorial ID.
 * You can specify multiple student IDs in a single command, separated by spaces.
-* Each student ID must follow the format `AXXXXXXX&`, where:
+* Each `STUDENT_ID` must follow the format `AXXXXXXX&`, where:
     * The first letter (`A`) is uppercase,
     * Followed by 7 digits (`XXXXXXX`),
     * Ending with an uppercase letter (`&`).
-* The tutorial ID refers to the title of the tutorial as displayed in TAbs.
-* The input for `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will unmark students from the same tutorial).
+* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will unmark students from the same tutorial).
 
 
 Examples:
