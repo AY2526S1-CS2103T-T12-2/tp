@@ -10,7 +10,6 @@ import seedu.tabs.commons.core.index.Index;
 import seedu.tabs.commons.util.StringUtil;
 import seedu.tabs.logic.parser.exceptions.ParseException;
 import seedu.tabs.model.student.Student;
-import seedu.tabs.model.tutorial.Address;
 import seedu.tabs.model.tutorial.Date;
 import seedu.tabs.model.tutorial.ModuleCode;
 import seedu.tabs.model.tutorial.TutorialId;
@@ -63,21 +62,6 @@ public class ParserUtil {
             throw new ParseException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
         return new ModuleCode(trimmedModuleCode);
-    }
-
-    /**
-     * Parses a {@code String tabs} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tabs} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
     }
 
     /**

@@ -10,7 +10,8 @@ import static seedu.tabs.commons.util.AppUtil.checkArgument;
 public class ModuleCode {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Module codes should follow university format (e.g., CS2103T, MA1521, ST2334, GEQ1000)";
+            "Module codes should be 2-4 uppercase letters followed by 4 digits and an optional uppercase letter "
+            + "(e.g., CS2103T, MA1521, ST2334, GEQ1000)";
     public static final String VALIDATION_REGEX = "[A-Z]{2,4}\\d{4}[A-Z]?";
     public final String value;
 
