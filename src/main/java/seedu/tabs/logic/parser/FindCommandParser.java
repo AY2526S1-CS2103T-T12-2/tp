@@ -29,8 +29,7 @@ public class FindCommandParser implements Parser<FindCommand> {
     public FindCommand parse(String args) throws ParseException {
 
         // Tokenize the input string based on the allowed prefixes
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, MODULE_CODE.prefix, TUTORIAL_ID.prefix);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefix(args);
 
         boolean hasModuleCode = argMultimap.getValue(MODULE_CODE.prefix).isPresent();
         boolean hasTutorialId = argMultimap.getValue(TUTORIAL_ID.prefix).isPresent();
@@ -42,6 +41,9 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         // Check for duplicate prefixes
         argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix, MODULE_CODE.prefix);
+
+        // Check for extra prefixes
+        argMultimap.verifyNoExtraPrefixesExcept(TUTORIAL_ID.prefix, MODULE_CODE.prefix);
 
         List<Predicate<Tutorial>> predicates = new ArrayList<>();
 

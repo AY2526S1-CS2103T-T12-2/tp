@@ -26,8 +26,7 @@ public class UnmarkCommandParser {
      */
     public UnmarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                STUDENT.prefix, TUTORIAL_ID.prefix);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
 
         boolean hasMissingPrefixes = !arePrefixesPresent(argMultimap, STUDENT.prefix, TUTORIAL_ID.prefix);
         boolean hasNonEmptyPreamble = !argMultimap.getPreamble().isEmpty();
@@ -37,6 +36,7 @@ public class UnmarkCommandParser {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix);
+        argMultimap.verifyNoExtraPrefixesExcept(TUTORIAL_ID.prefix);
         Set<Student> studentSet = ParserUtil.parseStudents(argMultimap.getAllValues(STUDENT.prefix));
         String tutorialId = argMultimap.getValue(TUTORIAL_ID.prefix).orElse("");
         TutorialId parsedTutorialId = ParserUtil.parseTutorialId(tutorialId);

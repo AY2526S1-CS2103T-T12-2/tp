@@ -23,8 +23,7 @@ public class CopyTutorialCommandParser implements Parser<CopyTutorialCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public CopyTutorialCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, TUTORIAL_ID.prefix, FROM.prefix, DATE.prefix);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefix(args);
 
         if (!arePrefixesPresent(argMultimap, TUTORIAL_ID.prefix, FROM.prefix, DATE.prefix)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -33,6 +32,7 @@ public class CopyTutorialCommandParser implements Parser<CopyTutorialCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix, FROM.prefix, DATE.prefix);
+        argMultimap.verifyNoExtraPrefixesExcept(TUTORIAL_ID.prefix, FROM.prefix, DATE.prefix);
         TutorialId newTutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(TUTORIAL_ID.prefix).get());
         TutorialId sourceTutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(FROM.prefix).get());
         Date newDate = ParserUtil.parseDate(argMultimap.getValue(DATE.prefix).get());

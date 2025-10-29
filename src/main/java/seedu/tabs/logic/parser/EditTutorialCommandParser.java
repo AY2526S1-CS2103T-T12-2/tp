@@ -26,9 +26,7 @@ public class EditTutorialCommandParser implements Parser<EditTutorialCommand> {
      */
     public EditTutorialCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, FROM.prefix, TUTORIAL_ID.prefix, MODULE_CODE.prefix,
-                        DATE.prefix, STUDENT.prefix);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefix(args);
 
         String tutorialId;
         try {
@@ -38,8 +36,9 @@ public class EditTutorialCommandParser implements Parser<EditTutorialCommand> {
                     EditTutorialCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix, MODULE_CODE.prefix, DATE.prefix);
-
+        argMultimap.verifyNoDuplicatePrefixesFor(FROM.prefix, TUTORIAL_ID.prefix, MODULE_CODE.prefix, DATE.prefix);
+        argMultimap.verifyNoExtraPrefixesExcept(FROM.prefix, TUTORIAL_ID.prefix, MODULE_CODE.prefix, DATE.prefix,
+                STUDENT.prefix);
         EditTutorialDescriptor editTutorialDescriptor = new EditTutorialDescriptor();
 
         if (argMultimap.getValue(TUTORIAL_ID.prefix).isPresent()) {

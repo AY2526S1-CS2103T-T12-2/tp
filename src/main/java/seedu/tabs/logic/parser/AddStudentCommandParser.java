@@ -2,8 +2,6 @@ package seedu.tabs.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tabs.logic.parser.CliSyntax.DATE;
-import static seedu.tabs.logic.parser.CliSyntax.MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.STUDENT;
 import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 
@@ -27,8 +25,7 @@ public class AddStudentCommandParser {
      */
     public AddStudentCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                STUDENT.prefix, TUTORIAL_ID.prefix);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefix(args);
 
         boolean hasMissingPrefixes = !arePrefixesPresent(argMultimap, STUDENT.prefix, TUTORIAL_ID.prefix);
         boolean hasNonEmptyPreamble = !argMultimap.getPreamble().isEmpty();
@@ -37,7 +34,8 @@ public class AddStudentCommandParser {
                     AddStudentCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix, MODULE_CODE.prefix, DATE.prefix);
+        argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix);
+        argMultimap.verifyNoExtraPrefixesExcept(STUDENT.prefix, TUTORIAL_ID.prefix);
         Set<Student> studentSet = ParserUtil.parseStudents(argMultimap.getAllValues(STUDENT.prefix));
 
         String tutorialId;

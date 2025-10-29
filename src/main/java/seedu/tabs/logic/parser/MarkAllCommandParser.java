@@ -21,8 +21,7 @@ public class MarkAllCommandParser implements Parser<MarkAllCommand> {
      * @throws ParseException if the user input does not conform the expected format.
      */
     public MarkAllCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, TUTORIAL_ID.prefix);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefix(args);
 
         if (!arePrefixesPresent(argMultimap, TUTORIAL_ID.prefix) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -30,6 +29,7 @@ public class MarkAllCommandParser implements Parser<MarkAllCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix);
+        argMultimap.verifyNoExtraPrefixesExcept(TUTORIAL_ID.prefix);
         TutorialId tutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(TUTORIAL_ID.prefix).get());
         return new MarkAllCommand(new TutorialIdMatchesKeywordPredicate(tutorialId.id));
     }

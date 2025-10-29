@@ -21,8 +21,7 @@ public class DeleteTutorialCommandParser implements Parser<DeleteTutorialCommand
      * @throws ParseException if the user input does not conform the expected format.
      */
     public DeleteTutorialCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenizeAllPrefix(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefix(args);
 
         if (!arePrefixesPresent(argMultimap, TUTORIAL_ID.prefix) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -30,7 +29,7 @@ public class DeleteTutorialCommandParser implements Parser<DeleteTutorialCommand
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix);
-        argMultimap.verifyNoExtraPrefixesFor(TUTORIAL_ID.prefix);
+        argMultimap.verifyNoExtraPrefixesExcept(TUTORIAL_ID.prefix);
         TutorialId tutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(TUTORIAL_ID.prefix).get());
         return new DeleteTutorialCommand(new TutorialIdMatchesKeywordPredicate(tutorialId.id));
     }
