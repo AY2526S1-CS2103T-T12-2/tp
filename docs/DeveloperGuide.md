@@ -349,7 +349,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * `   | TA      | mark a student’s participation                             | track engagement for tutorials and discussions                                         |
 | `* * `   | TA      | unmark a student’s participation                           | undo marking a student’s participation in case of a mistake                            |
 | `* * `   | TA      | edit a student’s details.                                  | fix data entry mistakes without re-creating a new student                              |
-| `* * `   | TA      | search for a student by name or ID                         | quickly locate their details without scrolling through the list                        |
+| `* * `   | TA      | edit a student’s details.                                  | fix data entry mistakes without re-creating a new student                              |
+| `* * `   | TA      | find a tutorial based on Tutorial ID or Module Code        | quickly filter the list of tutorials to locate the specific tutorial I am looking for  |
 | `* *`    | TA      | flag students who are underperforming                      | remember which students to follow up with                                              |
 | `* *`    | TA      | tag students via groups                                    | organize students in a neat manner in the UI                                           |
 | `* *`    | TA      | filter students by group tags                              | view only students from a specific group                                               |
@@ -474,6 +475,25 @@ specified otherwise)
       Use case ends.
 
 * 1b. Invalid or missing details are provided.
+    * 1b1. TAbs informs the TA of the invalid input.
+
+      Use case resumes from step 1.
+
+**Use case: UC6 - Find specific tutorials in TAbs**
+
+**MSS**
+
+1. TA requests to search for tutorials.
+2. TAbs finds tutorials which match the given specifications.
+3. TAbs displays the updated list of tutorials.
+4. TAbs informs the TA of how many tutorials match the given specification
+5. TAbs displays the updated filtered list of tutorials.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Invalid or missing details are provided.
     * 1b1. TAbs informs the TA of the invalid input.
 
       Use case resumes from step 1.
