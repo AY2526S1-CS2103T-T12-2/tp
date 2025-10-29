@@ -363,9 +363,10 @@ users are welcome to update data directly by editing that data file.
     Furthermore, certain edits can cause TAbs to behave in unexpected ways (e.g., if a value entered is beyond the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Future plans `[coming in v2.0]`
 
-_Details coming soon ..._
+We intend to release an even more user-friendly version to the wider NUS community, 
+featuring a proper user interface without the need of a CLI.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -390,19 +391,19 @@ file that contains the data of your previous TAbs home folder.
 
 ## Command summary
 
-| Action                          | Format, Examples                                                                                                                                        |
-|---------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Help**                        | `help`                                                                                                                                                  |
-| **List tutorials**              | `list`                                                                                                                                                  |
-| **Add a tutorial**              | `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…​` <br> e.g.`add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y`                  |
-| **Delete a tutorial**           | `delete_tutorial t/TUTORIAL_ID`<br> e.g. `delete_tutorial t/T1`                                                                                        |
-| **Copy a tutorial**             | `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE` <br> e.g. `copy_tutorial t/C2 from/C1 d/2025-04-10`                                 |
-| **Edit a tutorial**             | `edit_tutorial from/EXISTING_TUTORIAL_ID [t/NEW_TUTORIAL_ID] [m/NEW_MODULE_CODE] [d/NEW_DATE]`<br> e.g. `edit_tutorial from/T1 m/CS2103T d/2025-10-25` |
-| **Find tutorials**              | `find m/KEYWORD… t/KEYWORD…` (either or both fields)<br> e.g. `find m/CS2103T`, `find t/A101`, `find m/CS2103T t/A101`                             |
-| **List students in a tutorial** | `list_students t/TUTORIAL_ID`<br> e.g. `list_students t/T1`                                                                                            |
-| **Add student(s)**              | `add_student id/STUDENT_ID… t/TUTORIAL_ID` <br> e.g. `add_student id/A1231231Y id/A3213213Y t/T2`                                                     |
-| **Delete a student**            | `delete_student id/STUDENT_ID t/TUTORIAL_ID` <br> e.g. `delete_student id/A3213213Y t/T123`                                                            |
-| **Mark a student**              | `mark id/STUDENT_ID… t/TUTORIAL_ID` <br> e.g. `mark id/A1231231Y id/A3213213Y t/T123`                                                                 |
-| **Unmark a student**            | `unmark id/STUDENT_ID… t/TUTORIAL_ID` <br> e.g. `unmark id/A1231231Y id/A3213213Y t/T123`                                                             |
-| **Clear all tutorials**         | `clear`                                                                                                                                                 |
-| **Exit TAbs**                   | `exit`                                                                                                                                                  |
+| Action                          | Format, Examples                                                                                                                                          |
+|---------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                        | `help`                                                                                                                                                    |
+| **List tutorials**              | `list`                                                                                                                                                    |
+| **Add a tutorial**              | `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…` <br> (e.g., `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y`)                    |
+| **Delete a tutorial**           | `delete_tutorial t/TUTORIAL_ID`<br> (e.g., `delete_tutorial t/T1`)                                                                                        |
+| **Copy a tutorial**             | `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE` <br> (e.g., `copy_tutorial t/C2 from/C1 d/2025-04-10`)                                 |
+| **Edit a tutorial**             | `edit_tutorial from/EXISTING_TUTORIAL_ID [t/NEW_TUTORIAL_ID] [m/NEW_MODULE_CODE] [d/NEW_DATE]`<br> (e.g., `edit_tutorial from/T1 m/CS2103T d/2025-10-25`) |
+| **Find tutorials**              | `find m/KEYWORD… t/KEYWORD…` (either or both fields)<br> (e.g., `find m/CS2103T`, `find t/A101`, `find m/CS2103T t/A101`)                                 |
+| **List students in a tutorial** | `list_students t/TUTORIAL_ID`<br> (e.g., `list_students t/T1`)                                                                                            |
+| **Add student(s)**              | `add_student id/STUDENT_ID… t/TUTORIAL_ID` <br> (e.g., `add_student id/A1231231Y id/A3213213Y t/T2`)                                                      |
+| **Delete a student**            | `delete_student id/STUDENT_ID t/TUTORIAL_ID` <br> (e.g., `delete_student id/A3213213Y t/T123`)                                                            |
+| **Mark a student**              | `mark id/STUDENT_ID… t/TUTORIAL_ID` <br> (e.g., `mark id/A1231231Y id/A3213213Y t/T123`)                                                                  |
+| **Unmark a student**            | `unmark id/STUDENT_ID… t/TUTORIAL_ID` <br> (e.g., `unmark id/A1231231Y id/A3213213Y t/T123`)                                                              |
+| **Clear all tutorials**         | `clear`                                                                                                                                                   |
+| **Exit TAbs**                   | `exit`                                                                                                                                                    |
