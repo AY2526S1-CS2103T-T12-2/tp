@@ -63,22 +63,22 @@ it still has the benefits of a Graphical User Interface (GUI).
 **:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
-  e.g. in `add_tutorial t/TUTORIAL_ID`, `TUTORIAL_ID` is a parameter which can be used as
-  `add_tutorial t/T123`.
+  (e.g., in `add_tutorial t/TUTORIAL_ID`, `TUTORIAL_ID` is a parameter which can be used as
+  `add_tutorial t/T123`.)
 
 * Items in square brackets are optional.<br>
-  e.g. `t/TUTORIAL_ID [id/STUDENT]…​` can be used as `t/T123 id/A1234567X` or as `t/T123`.
+  (e.g., `t/TUTORIAL_ID [id/STUDENT]…` can be used as `t/T123 id/A1234567X` or as `t/T123`.)
 
-* Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[id/STUDENT]…​` can be used as ` ` (i.e. 0 times), `id/A1234567X`,
-  `id/A1234567X id/A2234567Y` etc.
+* Items with `…` after them can be used multiple times, including zero times.<br>
+  (e.g., `t/TUTORIAL_ID [id/STUDENT]…` can be used as `t/T123` (i.e., 0 times), `t/T123 id/A1234567X`,
+  `t/T123 id/A1234567X id/A2234567Y`, etc.)
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `t/TUTORIAL_ID m/MODULE_CODE`, `m/MODULE_CODE t/TUTORIAL_ID` is also acceptable.
+  (e.g., if the command specifies `t/TUTORIAL_ID m/MODULE_CODE`, `m/MODULE_CODE t/TUTORIAL_ID` is also acceptable.)
 
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`
   and `clear`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+  (e.g., if the command specifies `help 123`, it will be interpreted as `help`.)
 
 * If you are using a PDF version of this document, be careful when copying and pasting commands that
   span multiple lines as space characters surrounding line-breaks may be omitted when copied over to
@@ -168,7 +168,7 @@ Format: `edit_tutorial from/EXISTING_TUTORIAL_ID [t/NEW_TUTORIAL_ID] [m/NEW_MODU
     * Date (`d/`)
 * The tutorial ID provided with `from/` must exactly match an existing tutorial (case-sensitive).
 * At least one editable field (`t/`, `m/`, or `d/`) must be specified.
-* Editing student lists (e.g. using `id/`) is **not allowed** here — use `add_student` or `delete_student` instead.
+* Editing student lists (e.g., using `id/`) is **not allowed** here — use `add_student` or `delete_student` instead.
 
 Examples:
 * `edit_tutorial from/T123 t/T456` - Renames tutorial `T123` to `T456`.
@@ -182,7 +182,7 @@ Common Errors:
 * The `from/` prefix is **mandatory**, as it tells TAbs which tutorial to edit.
 * Attempting to edit a non-existent tutorial will result in an error:`Tutorial ID not found.`
 * If no editable fields are provided: `At least one field to edit must be provided.`
-* If a student field (e.g. `id/`) is accidentally included:
+* If a student field (e.g., `id/`) is accidentally included:
   `Students cannot be edited via this command. Please use the add_student or delete_student commands instead.`
 
 ### Finding tutorials by keyword: `find`
@@ -214,7 +214,7 @@ Display a list of all the students enrolled in a specific tutorial on TAbs.
 Format: `list_students t/TUTORIAL_ID`
 
 * Lists all the students in a tutorial with the specified `TUTORIAL_ID`.
-* It shows a numbered list of all the `STUDENT_ID` of the students in that tutorial e.g. (1.
+* It shows a numbered list of all the `STUDENT_ID` of the students in that tutorial e.g., (1.
   A1234567X)
 * The `TUTORIAL_ID` refers to the title of the tutorial as displayed in TAbs (beginning with `T`).
 * The input must match the `TUTORIAL_ID` exactly.
@@ -374,7 +374,7 @@ users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
     If your changes to the data file makes its format invalid, TAbs will discard all data and start with an empty data file at the next run. Hence, it is recommended to take a backup of the file before editing it.<br>
-    Furthermore, certain edits can cause TAbs to behave in unexpected ways (e.g. if a value entered is beyond the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
+    Furthermore, certain edits can cause TAbs to behave in unexpected ways (e.g., if a value entered is beyond the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
