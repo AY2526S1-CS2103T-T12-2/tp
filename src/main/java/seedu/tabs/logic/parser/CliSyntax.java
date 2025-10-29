@@ -1,7 +1,5 @@
 package seedu.tabs.logic.parser;
 
-import java.util.stream.Stream;
-
 /**
  * Contains Command Line Interface (CLI) syntax definitions common to multiple commands
  */
@@ -16,13 +14,6 @@ public enum CliSyntax {
 
     CliSyntax(Prefix prefix) {
         this.prefix = prefix;
-    }
-
-    /**
-     * Returns a stream of all available prefixes.
-     */
-    public static Stream<Prefix> getAllPrefixesStream() {
-        return Stream.of(values()).map(syntax -> syntax.prefix);
     }
 
     /**
