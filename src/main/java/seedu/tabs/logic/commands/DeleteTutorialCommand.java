@@ -1,7 +1,7 @@
 package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class DeleteTutorialCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the tutorial identified by the tutorial ID used in the displayed tutorial list.\n"
-            + "Parameters: " + PREFIX_TUTORIAL_ID + "[TUTORIAL_ID]\n"
+            + "Parameters: " + TUTORIAL_ID.prefix + "[TUTORIAL_ID]\n"
             + "Example: " + COMMAND_WORD + " t/T1";
 
     public static final String MESSAGE_DELETE_TUTORIAL_SUCCESS =
