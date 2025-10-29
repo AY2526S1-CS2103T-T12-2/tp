@@ -36,4 +36,9 @@ public enum CliSyntax {
         }
         return prefixes;
     }
+
+    @Override
+    public String toString() {
+        return prefix.getPrefix();
+    }
 }
