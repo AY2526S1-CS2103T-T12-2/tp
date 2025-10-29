@@ -17,7 +17,7 @@ public class TutorialIdMatchesKeywordPredicate implements Predicate<Tutorial> {
 
     @Override
     public boolean test(Tutorial aTutorial) {
-        return keyword.equals(aTutorial.getTutorialId().id);
+        return keyword.equalsIgnoreCase(aTutorial.getTutorialId().id);
     }
 
     @Override
