@@ -30,7 +30,7 @@ public class ModuleCodeTest {
         assertFalse(ModuleCode.isValidModuleCode("91")); // too short
         assertFalse(ModuleCode.isValidModuleCode("moduleCode")); // no numbers
         assertFalse(ModuleCode.isValidModuleCode("C1234")); // only 1 letter prefix
-        assertFalse(ModuleCode.isValidModuleCode("ABCD1234")); // too many letters prefix (4 letters)
+        assertFalse(ModuleCode.isValidModuleCode("ABCDE1234")); // too many letters prefix (5 letters)
         assertFalse(ModuleCode.isValidModuleCode("CS123")); // too few digits
         assertFalse(ModuleCode.isValidModuleCode("CS12345")); // too many digits
 
@@ -41,6 +41,7 @@ public class ModuleCodeTest {
         assertTrue(ModuleCode.isValidModuleCode("MA1521")); // 2 letters + 4 digits
         assertTrue(ModuleCode.isValidModuleCode("ST2334")); // 2 letters + 4 digits
         assertTrue(ModuleCode.isValidModuleCode("ENG1000E")); // 3 letters + 4 digits + 1 letter
+        assertTrue(ModuleCode.isValidModuleCode("GESS1025A")); // 4 letters + 4 digits + 1 letter
     }
 
     @Test
