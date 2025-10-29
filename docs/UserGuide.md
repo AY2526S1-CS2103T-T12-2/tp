@@ -3,11 +3,12 @@ layout: page
 title: User Guide
 ---
 
-Are you an NUS Teaching Assistant (TA) struggling to keep track of your classes?
-If you're looking for a centralised and easy-to-use system to ease up your TA duties, look no further: TAbs is here!<br><br>
-TAbs is a **desktop app for TAs in NUS to manage their classes and students, optimised for use via a Command Line Interface** (
-CLI) while still having the benefits of a Graphical User Interface (GUI).
-If you can type fast, TAbs can get your class management tasks done faster than traditional GUI apps.
+Are you an NUS Teaching Assistant (TA) in the School of Computing (SoC), struggling to keep track of your classes?
+If you're looking for a centralised and user-friendly system to _keep TAbs on_ your TA duties, look no further: **TAbs** is here!
+<br><br>
+With so many students in so many tutorials, labs and recitations, it's easy to lose track of your students' attendance.
+**TAbs** is a desktop app created just for you to manage your classes—while it's optimised for use via a Command Line Interface (CLI),
+it still has the benefits of a Graphical User Interface (GUI).
 
 * Table of Contents
 {:toc}
@@ -16,30 +17,32 @@ If you can type fast, TAbs can get your class management tasks done faster than 
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your Computer.<br>
+1. Ensure you have Java `17` or above installed in your computer.<br>
    **Mac users:** Ensure you have the precise JDK version
    prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. Download the latest `.jar` file
    from [here](https://github.com/AY2526S1-CS2103T-T12-2/tp/releases).
 
-3. Copy the file to the folder you want to use as the _home folder_ for your TAbs.
+3. Copy the file to the folder you want to use as the _home folder_ for TAbs.
 
-4. Open a command terminal, `cd` into the folder you put the `.jar` file in, and use the
-   `java -jar TAbs.jar` command to run the application.<br>
-   A GUI similar to the below should appear in a few seconds. Note that the app may contain sample data.<br>
-   ![Ui](images/Ui.png)
+4. Open a command terminal, `cd` into the folder you put the `.jar` file in, and run the following command to start the application:
+   ```
+    java -jar TAbs.jar
+   ```
+   A GUI similar to the one below should appear in a few seconds. Note that the app may contain sample data.<br><br>
+   ![Ui](images/Ui.png)<br><br>
 
-5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and
-   pressing Enter will open the help window.<br>
+5. Type your commands in the command box and press Enter to execute them, e.g., typing **`help`** and
+   pressing Enter will open the help window.<br><br>
    Some example commands you can try:
 
     * `list`: Lists all tutorials.
 
-    * `add_tutorial t/T123 m/CS2103T d/2025-01-01`: Adds a tutorial with ID `T123` for module
-      CS2103T.
+    * `add_tutorial t/T123 m/CS2103T d/2025-01-01`: Adds a tutorial with ID `T123` for the module
+      `CS2103T`.
 
-    * `list_students t/T1`: Display a list of all the students enrolled in the tutorial with ID
+    * `list_students t/T1`: Displays a list of all the students enrolled in the tutorial with ID
       `T1`.
 
     * `delete_tutorial t/T1`: Deletes the tutorial with ID `T1`.
@@ -47,8 +50,9 @@ If you can type fast, TAbs can get your class management tasks done faster than 
     * `clear`: Deletes all tutorials.
 
     * `exit`: Exits the app.
+   <br><br>
 
-6. Refer to the [Features](#features) below for details of each command.
+6. Refer to the [features](#features) below for details of each command.
 
 --------------------------------------------------------------------------------------------------------------------
 
