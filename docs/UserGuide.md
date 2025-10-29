@@ -164,6 +164,7 @@ Edits the details of an existing tutorial in TAbs.
 Format: `edit_tutorial from/EXISTING_TUTORIAL_ID [t/NEW_TUTORIAL_ID] [m/NEW_MODULE_CODE] [d/NEW_DATE]`
 
 * Updates the details of the tutorial identified by the tutorial ID specified after `from/`.
+  * Attempting to edit a non-existent tutorial will result in an error: `Tutorial ID not found.`
 * You may change **one or more** of the following:
     * Tutorial ID (`t/`)
     * Module code (`m/`)
@@ -179,13 +180,6 @@ Examples:
     * Have new ID `T789`
     * Change its module code to `CS2040S`
     * Set its new date to `2025-08-20`
-
-Common Errors:
-* The `from/` prefix is **mandatory**, as it tells TAbs which tutorial to edit.
-* Attempting to edit a non-existent tutorial will result in an error: `Tutorial ID not found.`
-* If no editable fields are provided: `At least one field to edit must be provided.`
-* If a student field (e.g., `id/`) is accidentally included:
-  `Students cannot be edited via this command. Please use the add_student or delete_student commands instead.`
 
 ### Finding tutorials by keyword: `find`
 
