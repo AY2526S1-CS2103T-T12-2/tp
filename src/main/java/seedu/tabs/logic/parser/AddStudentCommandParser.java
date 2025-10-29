@@ -2,10 +2,10 @@ package seedu.tabs.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.DATE;
+import static seedu.tabs.logic.parser.CliSyntax.MODULE_CODE;
+import static seedu.tabs.logic.parser.CliSyntax.STUDENT;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 
 import java.util.NoSuchElementException;
 import java.util.Set;
@@ -28,21 +28,21 @@ public class AddStudentCommandParser {
     public AddStudentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_STUDENT, PREFIX_TUTORIAL_ID);
+                STUDENT.prefix, TUTORIAL_ID.prefix);
 
-        boolean hasMissingPrefixes = !arePrefixesPresent(argMultimap, PREFIX_STUDENT, PREFIX_TUTORIAL_ID);
+        boolean hasMissingPrefixes = !arePrefixesPresent(argMultimap, STUDENT.prefix, TUTORIAL_ID.prefix);
         boolean hasNonEmptyPreamble = !argMultimap.getPreamble().isEmpty();
         if (hasMissingPrefixes || hasNonEmptyPreamble) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddStudentCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID, PREFIX_MODULE_CODE, PREFIX_DATE);
-        Set<Student> studentSet = ParserUtil.parseStudents(argMultimap.getAllValues(PREFIX_STUDENT));
+        argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix, MODULE_CODE.prefix, DATE.prefix);
+        Set<Student> studentSet = ParserUtil.parseStudents(argMultimap.getAllValues(STUDENT.prefix));
 
         String tutorialId;
         try {
-            tutorialId = argMultimap.getValue(PREFIX_TUTORIAL_ID).orElseThrow();
+            tutorialId = argMultimap.getValue(TUTORIAL_ID.prefix).orElseThrow();
         } catch (NoSuchElementException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddStudentCommand.MESSAGE_USAGE));

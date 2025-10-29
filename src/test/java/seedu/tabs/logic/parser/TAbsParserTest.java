@@ -58,7 +58,7 @@ public class TAbsParserTest {
         EditTutorialDescriptor descriptor = new EditTutorialDescriptorBuilder(aTutorial).build();
 
         String commandString = EditTutorialCommand.COMMAND_WORD + " "
-                + CliSyntax.PREFIX_FROM + aTutorial.getTutorialId().id + " "
+                + CliSyntax.FROM + aTutorial.getTutorialId().id + " "
                 + TutorialUtil.getEditTutorialDescriptorDetails(descriptor);
 
         EditTutorialCommand command =
@@ -83,7 +83,7 @@ public class TAbsParserTest {
     public void parseCommand_find() throws Exception {
         List<String> keywords = Arrays.asList("C0", "T01", "C2");
         FindCommand command = (FindCommand) parser.parseCommand(
-                FindCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_TUTORIAL_ID
+                FindCommand.COMMAND_WORD + " " + CliSyntax.TUTORIAL_ID
                         + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindCommand(new TutorialIdContainsKeywordsPredicate(keywords)), command);
     }

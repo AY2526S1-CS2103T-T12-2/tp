@@ -1,9 +1,9 @@
 package seedu.tabs.testutil;
 
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.DATE;
+import static seedu.tabs.logic.parser.CliSyntax.MODULE_CODE;
+import static seedu.tabs.logic.parser.CliSyntax.STUDENT;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 
 import seedu.tabs.logic.commands.AddTutorialCommand;
 import seedu.tabs.logic.commands.EditTutorialCommand.EditTutorialDescriptor;
@@ -26,11 +26,11 @@ public class TutorialUtil {
      */
     public static String getTutorialDetails(Tutorial aTutorial) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_TUTORIAL_ID + aTutorial.getTutorialId().id + " ");
-        sb.append(PREFIX_MODULE_CODE + aTutorial.getModuleCode().value + " ");
-        sb.append(PREFIX_DATE + aTutorial.getDate().value + " ");
+        sb.append(TUTORIAL_ID.prefix + aTutorial.getTutorialId().id + " ");
+        sb.append(MODULE_CODE.prefix + aTutorial.getModuleCode().value + " ");
+        sb.append(DATE.prefix + aTutorial.getDate().value + " ");
         aTutorial.getStudents().stream().forEach(
-                s -> sb.append(PREFIX_STUDENT + s.studentId + " ")
+                s -> sb.append(STUDENT.prefix + s.studentId + " ")
         );
         return sb.toString();
     }
@@ -40,10 +40,10 @@ public class TutorialUtil {
      */
     public static String getEditTutorialDescriptorDetails(EditTutorialDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getId().ifPresent(tutorialId -> sb.append(PREFIX_TUTORIAL_ID).append(tutorialId.id).append(" "));
-        descriptor.getModuleCode().ifPresent(moduleCode -> sb.append(PREFIX_MODULE_CODE)
+        descriptor.getId().ifPresent(tutorialId -> sb.append(TUTORIAL_ID.prefix).append(tutorialId.id).append(" "));
+        descriptor.getModuleCode().ifPresent(moduleCode -> sb.append(MODULE_CODE.prefix)
                 .append(moduleCode.value).append(" "));
-        descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date.value).append(" "));
+        descriptor.getDate().ifPresent(date -> sb.append(DATE.prefix).append(date.value).append(" "));
         return sb.toString();
     }
 }

@@ -1,7 +1,7 @@
 package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.util.List;
@@ -22,7 +22,7 @@ public class MarkAllCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Mark all the students in the tutorial identified by the tutorial ID as present.\n"
-            + "Parameters: " + PREFIX_TUTORIAL_ID + "[TUTORIAL_ID]\n"
+            + "Parameters: " + TUTORIAL_ID.prefix + "[TUTORIAL_ID]\n"
             + "Example: " + COMMAND_WORD + " t/T1";
 
     public static final String MESSAGE_MARK_ALL_SUCCESS = "The following student(s):\n"

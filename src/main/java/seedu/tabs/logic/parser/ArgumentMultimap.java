@@ -75,4 +75,23 @@ public class ArgumentMultimap {
             throw new ParseException(Messages.getErrorMessageForDuplicatePrefixes(duplicatedPrefixes));
         }
     }
+
+    /**
+     * Throws a {@code ParseException} if there are any prefixes in the ArgumentMultimap that are not
+     * in the given list of expected prefixes.
+     */
+    public void verifyNoExtraPrefixesFor(Prefix... expectedPrefixes) throws ParseException {
+        List<Prefix> expectedPrefixList = Stream.of(expectedPrefixes).toList();
+        Prefix preamblePrefix = new Prefix("");
+        
+        Prefix[] extraPrefixes = argMultimap.keySet().stream()
+                .filter(prefix -> !expectedPrefixList.contains(prefix) && !prefix.equals(preamblePrefix))
+                .toArray(Prefix[]::new);
+
+        if (extraPrefixes.length > 0) {
+            throw new ParseException(Messages.getErrorMessageForExtraPrefixes(extraPrefixes));
+        }
+    }
+
+    
 }

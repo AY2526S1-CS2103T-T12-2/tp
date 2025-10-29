@@ -1,7 +1,7 @@
 package seedu.tabs.logic.parser;
 
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 
 import java.util.stream.Stream;
 
@@ -22,15 +22,15 @@ public class UnmarkAllCommandParser implements Parser<UnmarkAllCommand> {
      */
     public UnmarkAllCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL_ID);
+                ArgumentTokenizer.tokenize(args, TUTORIAL_ID.prefix);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TUTORIAL_ID) || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, TUTORIAL_ID.prefix) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     UnmarkAllCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID);
-        TutorialId tutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
+        argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix);
+        TutorialId tutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(TUTORIAL_ID.prefix).get());
         return new UnmarkAllCommand(new TutorialIdMatchesKeywordPredicate(tutorialId.id));
     }
 

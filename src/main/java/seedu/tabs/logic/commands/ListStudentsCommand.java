@@ -1,7 +1,7 @@
 package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,9 +21,9 @@ public class ListStudentsCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all the students in a tutorial\n"
             + "Parameters: "
-            + PREFIX_TUTORIAL_ID + "TUTORIAL_ID\n"
+            + TUTORIAL_ID.prefix + "TUTORIAL_ID\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TUTORIAL_ID + "T123";
+            + TUTORIAL_ID.prefix + "T123";
 
     private static final String MESSAGE_SUCCESS_TEMPLATE = "Displaying all students enrolled in tutorial %s:\n";
 
