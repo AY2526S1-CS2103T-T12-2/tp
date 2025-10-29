@@ -324,14 +324,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* University student tutors who need to manage a large number of student contacts and related
+* NUS School of Computing Student Teaching Assistants who need to manage a large number of student contacts and related
   information.
 * Prefer desktop apps over mobile or web alternatives
 * Comfortable with typing and prefer keyboard input
 * May not be technical, but are willing to learn simple systems
 * Appreciate clear, straightforward tools that reduce the effort needed to manage information.
 
-**Value proposition**: provide teaching assistants with a way to manage their
+**Value proposition**: Provide teaching assistants with a way to manage their
 classes and their students within each class
 
 ### User stories
