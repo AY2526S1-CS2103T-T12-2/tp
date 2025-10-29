@@ -208,7 +208,7 @@ Examples:
 * `find t/A101 B202` returns tutorials with tutorial ID `A101` OR `B202`
 * `find m/CS2103T t/A101` returns tutorials with module code `CS2103T` AND tutorial ID `A101`
 
-  ![result for 'find CS2103T'](images/findCS2103T.png)
+  ![result for 'find CS2103T'](images/findCommand.png)
 
 ### Listing all the students in a tutorial: `list_students`
 
