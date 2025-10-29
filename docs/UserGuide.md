@@ -291,11 +291,11 @@ Examples:
 
 ### Marking students in a tutorial as present: `mark`
 
-Marks specified students, in a tutorial in TAbs as present.
+Marks specified students in a tutorial in TAbs as present.
 
-Format: `mark t/TUTORIAL_ID id/STUDENT…`
+Format: `mark t/TUTORIAL_ID id/STUDENT_ID…`
 
-* Marks one or more students, identified by their student ID, in the tutorial identified by
+* Marks one or more students, identified by their student ID, in the tutorial identified by the
   tutorial ID as present.
 * You can specify multiple student IDs in a single command, separated by spaces.
 * Each `STUDENT_ID` must follow the format `AXXXXXXX&`, where:
@@ -307,16 +307,31 @@ Format: `mark t/TUTORIAL_ID id/STUDENT…`
 Examples:
 
 * `mark t/C456 id/A1231231Y` marks student `A1231231Y` in tutorial `C456` as present.
-* `mark t/T123 id/A1231231Y id/A3213213Y` marks student `A1231231Y` and student `A3213213Y`
+* `mark t/T123 id/A1231231Y id/A3213213Y` marks students `A1231231Y` and `A3213213Y`
   in tutorial `T123` as present.
+
+
+### Marking ALL students in a tutorial as present: `mark_all`
+
+Marks all students in a tutorial in TAbs as present.
+
+Format: `mark_all t/TUTORIAL_ID`
+
+* Marks all the students as present in the tutorial identified by the tutorial ID.
+* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will mark students from the same tutorial).
+
+Examples:
+
+* `mark_all t/C456` marks every student in the tutorial with ID `C456` as present.
+
 
 ### Unmarking students in a tutorial: `unmark`
 
-Unmarks specified students, in a tutorial in TAbs.
+Unmarks specified students in a tutorial in TAbs.
 
 Format: `unmark t/TUTORIAL_ID id/STUDENT_ID…`
 
-* Unmarks one or more students, identified by their student ID, in the tutorial identified by
+* Unmarks one or more students, identified by their student ID, in the tutorial identified by the
   tutorial ID.
 * You can specify multiple student IDs in a single command, separated by spaces.
 * Each `STUDENT_ID` must follow the format `AXXXXXXX&`, where:
@@ -324,6 +339,20 @@ Format: `unmark t/TUTORIAL_ID id/STUDENT_ID…`
     * Followed by 7 digits (`XXXXXXX`),
     * Ending with an uppercase letter (`&`).
 * `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will unmark students from the same tutorial).
+
+
+### Unmarking ALL students in a tutorial: `unmark_all`
+
+Unmarks all students in a tutorial in TAbs.
+
+Format: `unmark_all t/TUTORIAL_ID`
+
+* Unmarks all the students in the tutorial identified by the tutorial ID.
+* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will unmark students from the same tutorial).
+
+Examples:
+
+* `unmark_all t/C456` unmarks every student in the tutorial with ID `C456`.
 
 
 Examples:
@@ -400,6 +429,8 @@ file that contains the data of your previous TAbs home folder.
 | **Add student(s)**              | `add_student id/STUDENT_ID… t/TUTORIAL_ID` <br> (e.g., `add_student id/A1231231Y id/A3213213Y t/T2`)                                                      |
 | **Delete a student**            | `delete_student id/STUDENT_ID t/TUTORIAL_ID` <br> (e.g., `delete_student id/A3213213Y t/T123`)                                                            |
 | **Mark a student**              | `mark id/STUDENT_ID… t/TUTORIAL_ID` <br> (e.g., `mark id/A1231231Y id/A3213213Y t/T123`)                                                                  |
+| **Mark all students**           | `mark_all t/TUTORIAL_ID` <br> (e.g., `mark_all t/T123`)                                                                                                   |
 | **Unmark a student**            | `unmark id/STUDENT_ID… t/TUTORIAL_ID` <br> (e.g., `unmark id/A1231231Y id/A3213213Y t/T123`)                                                              |
+| **Unmark all students**         | `unmark_all t/TUTORIAL_ID` <br> (e.g., `unmark_all t/T123`)                                                                                               |
 | **Clear all tutorials**         | `clear`                                                                                                                                                   |
 | **Exit TAbs**                   | `exit`                                                                                                                                                    |
