@@ -109,7 +109,7 @@ Format: `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT]…`
 * Adds a tutorial with the specified `TUTORIAL_ID`, `MODULE_CODE`, and `DATE`.
 * The tutorial ID must **start with a single alphabet followed by 1 to 8 digits** (e.g., `A1`, `B123`, `C12345678`).
 * The tutorial ID is case-insensitive (e.g., `t123` will be stored as `T123`).
-* The module code should follow standard NUS module code format (e.g., `CS2103T`).
+* The module code must **start with 2-4 uppercase letters followed by 4 digits and an optional uppercase letter** (e.g., `CS2103T`).
 * The date should be in **YYYY-MM-DD** format.
 * Each student ID must follow the format `AXXXXXXX&`, where:
     * The first letter (`A`) is uppercase,
