@@ -334,6 +334,12 @@ Format: `unmark t/TUTORIAL_ID id/STUDENT_ID…`
     * Ending with an uppercase letter (`&`).
 * `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will unmark students from the same tutorial).
 
+Examples:
+
+* `unmark t/C456 id/A1231231Y` unmarks student `A1231231Y` in tutorial `C456`.
+* `unmark t/T123 id/A1231231Y id/A3213213Y` unmarks student `A1231231Y` and student `A3213213Y`
+  in tutorial `T123`.
+
 
 ### Unmarking ALL students in a tutorial: `unmark_all`
 
@@ -349,12 +355,6 @@ Examples:
 * `unmark_all t/C456` unmarks every student in the tutorial with ID `C456`.
 
 
-Examples:
-
-* `unmark t/C456 id/A1231231Y` unmarks student `A1231231Y` in tutorial `C456`.
-* `unmark t/T123 id/A1231231Y id/A3213213Y` unmarks student `A1231231Y` and student `A3213213Y`
-  in tutorial `T123`.
-
 ### Clearing all tutorials: `clear`
 
 Removes all tutorials from TAbs.
@@ -363,7 +363,7 @@ Format: `clear`
 
 ### Exiting the program: `exit`
 
-Exits the program.
+Exits the TAbs application.
 
 Format: `exit`
 
