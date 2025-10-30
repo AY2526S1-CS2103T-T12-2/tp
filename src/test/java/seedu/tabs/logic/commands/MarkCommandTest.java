@@ -33,8 +33,6 @@ import seedu.tabs.testutil.TutorialBuilder;
  * Contains unit tests for {@code MarkCommand}.
  */
 public class MarkCommandTest {
-
-    private static final TutorialId T01_ID = new TutorialId("T01");
     private static final Student ALICE = new Student("A0000001Z");
     private static final Student BOB = new Student("A0000002Z");
     private static final Student CHARLIE = new Student("A0000003Z");
@@ -158,25 +156,27 @@ public class MarkCommandTest {
 
         @Override
         public void setTutorial(Tutorial target, Tutorial editedTutorial) {
-            // track updates
+            int index = tutorials.indexOf(target);
+            if (index != -1) {
+                tutorials.set(index, editedTutorial);
+            }
         }
 
         @Override
         public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
             // No-op
         }
-
     }
 
     @Test
-    public void execute_validStudents_success() throws Exception {
+    public void execute_validStudent_success() throws Exception {
         Model model = new ModelStubWithTutorials();
         Set<Student> studentsToMark = new HashSet<>(Arrays.asList(ALICE));
         TutorialIdMatchesKeywordPredicate predicate = new TutorialIdMatchesKeywordPredicate("T01");
         MarkCommand markCommand = new MarkCommand(studentsToMark, predicate);
 
         CommandResult result = markCommand.execute(model);
-        assertTrue(result.getFeedbackToUser().contains("marked as present"));
+        assertTrue(result.getFeedbackToUser().contains(MarkCommand.MESSAGE_SUCCESS.split("%1\\$s")[0]));
     }
 
     @Test
@@ -187,7 +187,7 @@ public class MarkCommandTest {
         MarkCommand markCommand = new MarkCommand(studentsToMark, predicate);
 
         CommandResult result = markCommand.execute(model);
-        assertTrue(result.getFeedbackToUser().contains("marked as present"));
+        assertTrue(result.getFeedbackToUser().contains(MarkCommand.MESSAGE_SUCCESS.split("%1\\$s")[0]));
     }
 
     @Test
@@ -200,7 +200,7 @@ public class MarkCommandTest {
         String expectedMessage = String.format(
                 MarkCommand.MESSAGE_NOT_EXISTS,
                 nonExistent,
-                T01_ID
+                "T01"
         );
 
         assertThrows(CommandException.class, expectedMessage, () -> markCommand.execute(model));
@@ -229,23 +229,12 @@ public class MarkCommandTest {
         MarkCommand markTut1StudentB = new MarkCommand(studentsB, predicateT1);
         MarkCommand markTut2StudentA = new MarkCommand(studentsA, predicateT2);
 
-        // same object -> true
-        assertTrue(markTut1StudentA.equals(markTut1StudentA));
-
-        // same values -> true
-        assertTrue(markTut1StudentA.equals(markTut1StudentACopy));
-
-        // different student sets -> false
-        assertFalse(markTut1StudentA.equals(markTut1StudentB));
-
-        // different predicates -> false
-        assertFalse(markTut1StudentA.equals(markTut2StudentA));
-
-        // null -> false
-        assertFalse(markTut1StudentA.equals(null));
-
-        // different type -> false
-        assertFalse(markTut1StudentA.equals(1));
+        assertTrue(markTut1StudentA.equals(markTut1StudentA)); // same object
+        assertTrue(markTut1StudentA.equals(markTut1StudentACopy)); // same values
+        assertFalse(markTut1StudentA.equals(markTut1StudentB)); // different students
+        assertFalse(markTut1StudentA.equals(markTut2StudentA)); // different predicate
+        assertFalse(markTut1StudentA.equals(null)); // null
+        assertFalse(markTut1StudentA.equals(1)); // different type
     }
 
     @Test
@@ -254,7 +243,6 @@ public class MarkCommandTest {
         TutorialIdMatchesKeywordPredicate predicate = new TutorialIdMatchesKeywordPredicate("T01");
         MarkCommand markCommand = new MarkCommand(students, predicate);
 
-        // Since MarkCommand doesn’t override toString(), just check class name consistency
         assertTrue(markCommand.toString().contains("MarkCommand"));
     }
 }

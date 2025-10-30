@@ -338,31 +338,32 @@ classes and their students within each class
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …  | I want to …                                                | So that I can…                                                                         |
-|----------|---------|------------------------------------------------------------|----------------------------------------------------------------------------------------|
-| `* * *`  | TA      | add a student to a class                                   | keep a record of students in my classes                                                |
-| `* * *`  | TA      | delete a student from a class                              | remove students who are no longer in the class                                         |
-| `* * *`  | TA      | view a list of students in a class                         | have an overview of my class roster                                                    |
-| `* * *`  | TA      | add a class                                                | keep a record of my classes                                                            |
-| `* * *`  | TA      | delete a class                                             | remove unused or obsolete classes.                                                     |
-| `* * `   | TA      | add details for my classes                                 | add important details about the classes (e.g. module name, time)                       |
-| `* * `   | TA      | mark a student’s attendance                                | track engagement for tutorials and discussions                                         |
-| `* * `   | TA      | unmark a student’s attendance                              | undo marking a student’s participation in case of a mistake                            |
-| `* * `   | TA      | mark all students' attendance in a tutorial                | track engagement for tutorials and discussions                                         |
-| `* * `   | TA      | unmark all students' attendance in a tutorial              | undo marking a student’s participation in case of a mistake                            |
-| `* * `   | TA      | find a tutorial based on Tutorial ID or Module Code        | quickly locate the tutorials I want without scrolling through the tutorial list        |
-| `* * `   | TA      | edit a student’s details.                                  | fix data entry mistakes without re-creating a new student                              |
-| `* * `   | TA      | search for a student by name or ID                         | quickly locate their details without scrolling through the list                        |
-| `* *`    | TA      | flag students who are underperforming                      | remember which students to follow up with                                              |
-| `* *`    | TA      | tag students via groups                                    | organize students in a neat manner in the UI                                           |
-| `* *`    | TA      | filter students by group tags                              | view only students from a specific group                                               |
-| `* *`    | New TA  | view a help message                                        | see what commands I can use to navigate the app                                        |
-| `* *`    | New TA  | see the correct format for commands after making a mistake | Use the commands correctly thereafter                                                  |
-| `* *`    | Busy TA | see a summary of the overall data                          | quickly glean any urgent information I might need                                      |
-| `* *`    | Busy TA | see a summary of the data for a student                    | quickly check the progress and status of a student                                     |
-| `*`      | TA      | upload profile pictures of my students                     | identify students more easily and match their name to their face                       |
-| `*`      | TA      | export student lists to a file                             | have an organised view of their progress (which is downloadable)                       |
-| `*`      | TA      | import CSV to upload student data                          | easily upload student profiles                                                         |
+| Priority | As a …  | I want to …                                                | So that I can…                                                                        |
+|----------|---------|------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| `* * *`  | TA      | add a student to a class                                   | keep a record of students in my classes                                               |
+| `* * *`  | TA      | delete a student from a class                              | remove students who are no longer in the class                                        |
+| `* * *`  | TA      | view a list of students in a class                         | have an overview of my class roster                                                   |
+| `* * *`  | TA      | add a class                                                | keep a record of my classes                                                           |
+| `* * *`  | TA      | delete a class                                             | remove unused or obsolete classes.                                                    |
+| `* * `   | TA      | copy an existing tutorial with a new ID and date           | reuse the student data for recurring tutorials without re-entering all student data   |
+| `* * `   | TA      | add details for my classes                                 | add important details about the classes (e.g. module name, time)                      |
+| `* * `   | TA      | mark a student’s attendance                                | track engagement for tutorials and discussions                                        |
+| `* * `   | TA      | unmark a student’s attendance                              | undo marking a student’s participation in case of a mistake                           |
+| `* * `   | TA      | mark all students' attendance in a tutorial                | track engagement for tutorials and discussions                                        |
+| `* * `   | TA      | unmark all students' attendance in a tutorial              | undo marking a student’s participation in case of a mistake                           |
+| `* * `   | TA      | find a tutorial based on Tutorial ID or Module Code        | quickly locate the tutorials I want without scrolling through the tutorial list       |
+| `* * `   | TA      | edit a student’s details.                                  | fix data entry mistakes without re-creating a new student                             |
+| `* * `   | TA      | search for a student by name or ID                         | quickly locate their details without scrolling through the list                       |
+| `* *`    | TA      | flag students who are underperforming                      | remember which students to follow up with                                             |
+| `* *`    | TA      | tag students via groups                                    | organize students in a neat manner in the UI                                          |
+| `* *`    | TA      | filter students by group tags                              | view only students from a specific group                                              |
+| `* *`    | New TA  | view a help message                                        | see what commands I can use to navigate the app                                       |
+| `* *`    | New TA  | see the correct format for commands after making a mistake | Use the commands correctly thereafter                                                 |
+| `* *`    | Busy TA | see a summary of the overall data                          | quickly glean any urgent information I might need                                     |
+| `* *`    | Busy TA | see a summary of the data for a student                    | quickly check the progress and status of a student                                    |
+| `*`      | TA      | upload profile pictures of my students                     | identify students more easily and match their name to their face                      |
+| `*`      | TA      | export student lists to a file                             | have an organised view of their progress (which is downloadable)                      |
+| `*`      | TA      | import CSV to upload student data                          | easily upload student profiles                                                        |
 | `*`      | TA      | archive past classes                                       | keep my current workspace clean while still retaining old records for future reference |
 
 ### Use cases
@@ -481,8 +482,27 @@ specified otherwise)
 
       Use case resumes from step 1.
 
+**Use Case: UC6 - Copy an existing tutorial with new ID and date**
 
-**Use case: UC6 - Find specific tutorials in TAbs**
+**MSS**
+
+1. TA requests to copy a tutorial.
+2. TAbs creates a new tutorial by copying an existing tutorial (as specified by TA).
+3. TAbs confirms the creation of the tutorial.
+   Use case ends.
+
+**Extension**
+
+* 1a. Invalid or missing details are provided
+  * 1a1.TAbs informs the TA of the invalid input.
+    
+    Use case resumes from step 1.
+* 2a. TAbs detects that the tutorial ID that TA is trying to copy from does not exist.
+  * 2a1 TAbs informs the TA that the tutorial ID does not exist
+
+    Use case resumes from step 1.
+
+**Use case: UC7 - Find specific tutorials in TAbs**
 
 **MSS**
 
@@ -500,7 +520,6 @@ specified otherwise)
     * 1b1. TAbs informs the TA of the invalid input.
 
       Use case resumes from step 1.
-
 
 **Use case: UCX - Mark all students' attendance in a tutorial**
 
@@ -522,7 +541,6 @@ specified otherwise)
     * 2a1. TAbs informs the TA that the tutorial has no students to be marked as present.
 
       Use case ends.
-
 
 **Use case: UCY - Unmark all students' attendance in a tutorial**
 
@@ -592,6 +610,73 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
+
+### Adding a tutorial
+
+1. Adding a tutorial to TAbs
+
+   1. Prerequisites: Have at least one existing tutorial in the list (can use `list` command to verify).
+
+   2. Test case: `add_tutorial t/T1 m/CS2103T d/2025-11-15`<br>
+      Expected: A new tutorial with ID `T1`, module code `CS2103T`, and date `2025-11-15` is added. Details of the added tutorial are shown in the status message. The tutorial list is displayed showing all tutorials.
+
+   3. Test case: `add_tutorial t/T11 m/CS2103T d/2025-11-15 id/A1234567X`<br>
+      Expected: A new tutorial with ID `T11` is added with one student (A1234567X). Details of the added tutorial are shown in the status message.
+
+   4. Test case: `add_tutorial t/T12 m/CS2103T d/2025-11-15 id/A1234567X id/A7654321Y`<br>
+      Expected: A new tutorial with ID `T12` is added with two students. Details of the added tutorial are shown in the status message.
+
+   5. Test case: `add_tutorial t/T1 m/CS2103T d/2025-11-15` (where `T1` already exists)<br>
+      Expected: No tutorial is added. Error message indicates that the tutorial already exists.
+
+   6. Test case: `add_tutorial t/T13 m/CS2103T d/2025-13-15` (invalid date)<br>
+      Expected: No tutorial is added. Error message indicates invalid date format.
+
+   7. Test case: `add_tutorial t/T14 m/CS2103T` (missing required date)<br>
+      Expected: No tutorial is added. Error message indicates invalid command format.
+
+   8. Test case: `add_tutorial t/T15 m/CS2103T d/2025-11-15 m/CS2040` (duplicate prefix)<br>
+      Expected: No tutorial is added. Error message indicates duplicate prefixes.
+
+   9. Test case: `add_tutorial t/T16 m/CS2103T d/2025-01-01 from/T1` (extra prefix)<br>
+      Expected: No tutorial is added. Error message indicates extra unexpected prefix
+
+### Copying an existing tutorial
+
+1. Copying a tutorial while all tutorials are being shown
+
+   1. Prerequisites: List all tutorials using the `list` command. At least one tutorial (e.g., `T1`) exists in the list.
+
+   2. Test case: `copy_tutorial t/T20 from/T1 d/2025-12-01`<br>
+      Expected: A new tutorial with ID `T20` is created by copying from `T1` with the new date `2025-12-01`. All students from `T1` are copied to `T20`. Details of the copy operation are shown in the status message. The tutorial list is displayed showing all tutorials.
+
+   3. Test case: `copy_tutorial t/T21 from/T1 d/2025-12-02`<br>
+      Expected: Another copy is successfully created with ID `T21`.
+
+   4. Test case: `copy_tutorial t/T1 from/T1 d/2025-12-03` (new ID same as source)<br>
+      Expected: No tutorial is copied. Error message indicates that the tutorial ID already exists.
+
+   5. Test case: `copy_tutorial t/T22 from/T99 d/2025-12-04` (source tutorial doesn't exist)<br>
+      Expected: No tutorial is copied. Error message indicates that the source tutorial ID does not exist.
+
+   6. Test case: `copy_tutorial t/T23 from/T1 d/2025-13-05` (invalid date)<br>
+      Expected: No tutorial is copied. Error message indicates invalid date format.
+
+   7. Test case: `copy_tutorial t/T24 from/T1` (missing required date)<br>
+      Expected: No tutorial is copied. Error message indicates missing required prefix.
+
+   8. Test case: `copy_tutorial t/T25 from/T1 d/2025-12-06 t/T26` (duplicate prefix)<br>
+      Expected: No tutorial is copied. Error message indicates unexpected prefixes.
+
+   9. Test case: `copy_tutorial t/T16 from/T1 d/2025-01-01 m/CS2103T` (extra prefix)<br>
+      Expected: No tutorial is copied. Error message indicates extra unexpected prefix
+
+
+2. Copying a tutorial while only some tutorials are being shown
+
+   1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
+
+   2. Test cases are the same as above, and should produce the same results since the `copy_tutorial` command acts on the entire tutorial list in TAbs. After the command, the displayed list reverts to displaying all tutorials.
 
 ### Deleting a tutorial
 
