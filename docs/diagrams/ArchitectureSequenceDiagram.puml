@@ -14,7 +14,7 @@ activate ui UI_COLOR
 ui -[UI_COLOR]> logic : execute("delete_tutorial t/T1")
 activate logic LOGIC_COLOR
 
-logic -[LOGIC_COLOR]> model : deleteTutorial(t)
+logic -[LOGIC_COLOR]> model : deleteTutorial(T1)
 activate model MODEL_COLOR
 
 model -[MODEL_COLOR]-> logic
