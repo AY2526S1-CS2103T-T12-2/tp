@@ -261,6 +261,11 @@ public class CopyTutorialCommandTest {
         }
 
         @Override
+        public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
+            // Allow the command to reset the filter
+        }
+
+        @Override
         public ReadOnlyTAbs getTAbs() {
             TAbs tabs = new TAbs();
             tabs.addTutorial(tutorial);

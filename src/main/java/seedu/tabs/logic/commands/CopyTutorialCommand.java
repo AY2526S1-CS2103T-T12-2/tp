@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.tabs.logic.parser.CliSyntax.DATE;
 import static seedu.tabs.logic.parser.CliSyntax.FROM;
 import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import seedu.tabs.commons.util.ToStringBuilder;
 import seedu.tabs.logic.commands.exceptions.CommandException;
@@ -76,6 +77,7 @@ public class CopyTutorialCommand extends Command {
 
         // Let model handle the copying
         model.copyTutorial(sourceTutorial, newTutorialId, newDate);
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
 
         // Return success message with tutorial ID, module code, and source ID
         return new CommandResult(String.format(MESSAGE_SUCCESS,

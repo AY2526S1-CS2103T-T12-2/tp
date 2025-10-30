@@ -2,6 +2,7 @@ package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.util.List;
 
@@ -45,6 +46,7 @@ public class DeleteTutorialCommand extends Command {
         }
 
         model.deleteTutorial(tutorialToDelete);
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
         return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_SUCCESS, Messages.format(tutorialToDelete)));
     }
 
