@@ -5,6 +5,7 @@ import static seedu.tabs.logic.parser.CliSyntax.DATE;
 import static seedu.tabs.logic.parser.CliSyntax.MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.STUDENT;
 import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import seedu.tabs.commons.util.ToStringBuilder;
 import seedu.tabs.logic.Messages;
@@ -54,6 +55,7 @@ public class AddTutorialCommand extends Command {
         }
 
         model.addTutorial(toAdd);
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 
