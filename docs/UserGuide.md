@@ -304,6 +304,12 @@ Examples:
 * `mark t/T123 id/A1231231Y id/A3213213Y` marks students `A1231231Y` and `A3213213Y`
   in tutorial `T123` as present.
 
+When a student has been marked as present, the GUI will update the student's ID within the tutorial to green as shown below.
+
+![mark command](images/markCommand.png)
+
+
+
 
 ### Marking ALL students in a tutorial as present: `mark_all`
 
@@ -317,6 +323,7 @@ Format: `mark_all t/TUTORIAL_ID`
 Examples:
 
 * `mark_all t/C456` marks every student in the tutorial with ID `C456` as present.
+
 
 
 ### Unmarking students in a tutorial: `unmark`
