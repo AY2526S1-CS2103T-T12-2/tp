@@ -60,7 +60,6 @@ public class EditTutorialCommandParser implements Parser<EditTutorialCommand> {
             throw new ParseException(EditTutorialCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditTutorialCommand(
-                new TutorialIdMatchesKeywordPredicate(tutorialId.toUpperCase()), editTutorialDescriptor);
+        return new EditTutorialCommand(new TutorialIdMatchesKeywordPredicate(tutorialId), editTutorialDescriptor);
     }
 }

@@ -30,10 +30,10 @@ public class EditTutorialCommand extends Command {
     public static final String COMMAND_WORD = "edit_tutorial";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the tutorial identified "
-            + "by the given tutorial id.\n"
+            + "by the given tutorial ID.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
-            + FROM.prefix + "ORIGINAL_TUTORIAL ID] "
+            + FROM.prefix + "ORIGINAL_TUTORIAL ID "
             + "[" + TUTORIAL_ID.prefix + "NEW_TUTORIAL_ID] "
             + "[" + MODULE_CODE.prefix + "NEW_MODULE_CODE] "
             + "[" + DATE.prefix + "NEW_DATE]\n"
