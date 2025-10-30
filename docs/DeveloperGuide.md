@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -338,28 +338,30 @@ classes and their students within each class
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …  | I want to …                                                | So that I can…                                                                         |
-|----------|---------|------------------------------------------------------------|----------------------------------------------------------------------------------------|
-| `* * *`  | TA      | add a student to a class                                   | keep a record of students in my classes                                                |
-| `* * *`  | TA      | delete a student from a class                              | remove students who are no longer in the class                                         |
-| `* * *`  | TA      | view a list of students in a class                         | have an overview of my class roster                                                    |
-| `* * *`  | TA      | add a class                                                | keep a record of my classes                                                            |
-| `* * *`  | TA      | delete a class                                             | remove ununsed or obsolete classes.                                                    |
-| `* * `   | TA      | add details for my classes                                 | add important details about the classes (e.g. module name, time)                       |
-| `* * `   | TA      | mark a student’s participation                             | track engagement for tutorials and discussions                                         |
-| `* * `   | TA      | unmark a student’s participation                           | undo marking a student’s participation in case of a mistake                            |
-| `* * `   | TA      | edit a student’s details.                                  | fix data entry mistakes without re-creating a new student                              |
-| `* * `   | TA      | search for a student by name or ID                         | quickly locate their details without scrolling through the list                        |
-| `* *`    | TA      | flag students who are underperforming                      | remember which students to follow up with                                              |
-| `* *`    | TA      | tag students via groups                                    | organize students in a neat manner in the UI                                           |
-| `* *`    | TA      | filter students by group tags                              | view only students from a specific group                                               |
-| `* *`    | New TA  | view a help message                                        | see what commands I can use to navigate the app                                        |
-| `* *`    | New TA  | see the correct format for commands after making a mistake | Use the commands correctly thereafter                                                  |
-| `* *`    | Busy TA | see a summary of the overall data                          | quickly glean any urgent information I might need                                      |
-| `* *`    | Busy TA | see a summary of the data for a student                    | quickly check the progress and status of a student                                     |
-| `*`      | TA      | upload profile pictures of my students                     | identify students more easily and match their name to their face                       |
-| `*`      | TA      | export student lists to a file                             | have an organised view of their progress (which is downloadable)                       |
-| `*`      | TA      | import CSV to upload student data                          | easily upload student profiles                                                         |
+| Priority | As a …  | I want to …                                                | So that I can…                                                                        |
+|----------|---------|------------------------------------------------------------|---------------------------------------------------------------------------------------|
+| `* * *`  | TA      | add a student to a class                                   | keep a record of students in my classes                                               |
+| `* * *`  | TA      | delete a student from a class                              | remove students who are no longer in the class                                        |
+| `* * *`  | TA      | view a list of students in a class                         | have an overview of my class roster                                                   |
+| `* * *`  | TA      | add a class                                                | keep a record of my classes                                                           |
+| `* * *`  | TA      | delete a class                                             | remove unused or obsolete classes.                                                    |
+| `* * `   | TA      | add details for my classes                                 | add important details about the classes (e.g. module name, time)                      |
+| `* * `   | TA      | mark a student’s attendance                                | track engagement for tutorials and discussions                                        |
+| `* * `   | TA      | unmark a student’s attendance                              | undo marking a student’s participation in case of a mistake                           |
+| `* * `   | TA      | mark all students' attendance in a tutorial                | track engagement for tutorials and discussions                                        |
+| `* * `   | TA      | unmark all students' attendance in a tutorial              | undo marking a student’s participation in case of a mistake                           |
+| `* * `   | TA      | edit a student’s details.                                  | fix data entry mistakes without re-creating a new student                             |
+| `* * `   | TA      | search for a student by name or ID                         | quickly locate their details without scrolling through the list                       |
+| `* *`    | TA      | flag students who are underperforming                      | remember which students to follow up with                                             |
+| `* *`    | TA      | tag students via groups                                    | organize students in a neat manner in the UI                                          |
+| `* *`    | TA      | filter students by group tags                              | view only students from a specific group                                              |
+| `* *`    | New TA  | view a help message                                        | see what commands I can use to navigate the app                                       |
+| `* *`    | New TA  | see the correct format for commands after making a mistake | Use the commands correctly thereafter                                                 |
+| `* *`    | Busy TA | see a summary of the overall data                          | quickly glean any urgent information I might need                                     |
+| `* *`    | Busy TA | see a summary of the data for a student                    | quickly check the progress and status of a student                                    |
+| `*`      | TA      | upload profile pictures of my students                     | identify students more easily and match their name to their face                      |
+| `*`      | TA      | export student lists to a file                             | have an organised view of their progress (which is downloadable)                      |
+| `*`      | TA      | import CSV to upload student data                          | easily upload student profiles                                                        |
 | `*`      | TA      | archive past classes                                       | keep my current workspace clean while still retaining old records for future reference |
 
 ### Use cases
@@ -478,6 +480,50 @@ specified otherwise)
 
       Use case resumes from step 1.
 
+**Use case: UCX - Mark all students' attendance in a tutorial**
+
+**MSS**
+
+1. TA requests to mark the attendance of every student in a tutorial.
+2. TAbs confirms that every student in the tutorial has been marked as present.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There are no existing tutorials.
+    * 1a1. TAbs displays that there are no tutorials available.
+
+      Use case ends.
+
+* 2a. TAbs detects that the tutorial has no students to be marked as present.
+    * 2a1. TAbs informs the TA that the tutorial has no students to be marked as present.
+
+      Use case ends.
+
+
+**Use case: UCY - Unmark all students' attendance in a tutorial**
+
+**MSS**
+
+1. TA requests to unmark the attendance of every student in a tutorial.
+2. TAbs confirms that every student in the tutorial has been unmarked.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There are no existing tutorials.
+    * 1a1. TAbs displays that there are no tutorials available.
+
+      Use case ends.
+
+* 2a. TAbs detects that the tutorial has no students to be unmarked.
+    * 2a1. TAbs informs the TA that the tutorial has no students to be unmarked.
+
+      Use case ends.
+
+
 ### Non-Functional Requirements
 
 1. Commands execute within 300ms (≤5000 students).
@@ -511,9 +557,9 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the `.jar` file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window
+    1. Double-click the `.jar` file Expected: Shows the GUI with a set of sample contacts. The window
        size may not be optimum.
 
 1. Saving window preferences
@@ -521,7 +567,7 @@ testers are expected to do more *exploratory* testing.
     1. Resize the window to an optimum size. Move the window to a different location. Close the
        window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the `.jar` file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
