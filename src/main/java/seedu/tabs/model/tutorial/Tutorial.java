@@ -71,6 +71,13 @@ public class Tutorial {
     }
 
     /**
+     * Returns the number of students in the tutorial.
+     */
+    public int getNumberOfStudents() {
+        return students.size();
+    }
+
+    /**
      * Marks all the students in the {@code Tutorial} as present.
      */
     public void markAllStudents() {

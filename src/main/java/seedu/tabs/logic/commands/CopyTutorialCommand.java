@@ -1,9 +1,10 @@
 package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_FROM;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.DATE;
+import static seedu.tabs.logic.parser.CliSyntax.FROM;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import seedu.tabs.commons.util.ToStringBuilder;
 import seedu.tabs.logic.commands.exceptions.CommandException;
@@ -19,15 +20,15 @@ import seedu.tabs.model.tutorial.TutorialId;
 public class CopyTutorialCommand extends Command {
     public static final String COMMAND_WORD = "copy_tutorial";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Copies a tutorial and adds it to TAbs.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Copies an existing tutorial and adds it to TAbs.\n"
             + "Parameters: "
-            + PREFIX_TUTORIAL_ID + "NEW_TUTORIAL_ID "
-            + PREFIX_FROM + "EXISTING_TUTORIAL_ID "
-            + PREFIX_DATE + "DATE\n"
+            + TUTORIAL_ID.prefix + "NEW_TUTORIAL_ID "
+            + FROM.prefix + "EXISTING_TUTORIAL_ID "
+            + DATE.prefix + "DATE\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TUTORIAL_ID + "C2 "
-            + PREFIX_FROM + "C1 "
-            + PREFIX_DATE + "2025-01-01";
+            + TUTORIAL_ID.prefix + "C2 "
+            + FROM.prefix + "C1 "
+            + DATE.prefix + "2025-01-01";
 
     public static final String MESSAGE_SUCCESS = "Tutorial %1$s [%2$s] has been copied from %3$s.";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "A tutorial with the TUTORIAL_ID '%1$s' already exists.";
@@ -76,6 +77,7 @@ public class CopyTutorialCommand extends Command {
 
         // Let model handle the copying
         model.copyTutorial(sourceTutorial, newTutorialId, newDate);
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
 
         // Return success message with tutorial ID, module code, and source ID
         return new CommandResult(String.format(MESSAGE_SUCCESS,

@@ -1,10 +1,11 @@
 package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.DATE;
+import static seedu.tabs.logic.parser.CliSyntax.MODULE_CODE;
+import static seedu.tabs.logic.parser.CliSyntax.STUDENT;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import seedu.tabs.commons.util.ToStringBuilder;
 import seedu.tabs.logic.Messages;
@@ -21,16 +22,16 @@ public class AddTutorialCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a tutorial to TAbs.\n"
             + "Parameters: "
-            + PREFIX_TUTORIAL_ID + "TUTORIAL_ID "
-            + PREFIX_MODULE_CODE + "MODULE_CODE "
-            + PREFIX_DATE + "DATE "
-            + "[" + PREFIX_STUDENT + "STUDENT]...\n"
+            + TUTORIAL_ID.prefix + "TUTORIAL_ID "
+            + MODULE_CODE.prefix + "MODULE_CODE "
+            + DATE.prefix + "DATE "
+            + "[" + STUDENT.prefix + "STUDENT]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_TUTORIAL_ID + "T123 "
-            + PREFIX_MODULE_CODE + "CS2103T "
-            + PREFIX_DATE + "2025-03-15 "
-            + PREFIX_STUDENT + "A1231231Y "
-            + PREFIX_STUDENT + "A3213213Y";
+            + TUTORIAL_ID.prefix + "T123 "
+            + MODULE_CODE.prefix + "CS2103T "
+            + DATE.prefix + "2025-03-15 "
+            + STUDENT.prefix + "A1231231Y "
+            + STUDENT.prefix + "A3213213Y";
 
     public static final String MESSAGE_SUCCESS = "A new tutorial has been added: \n%1$s";
     public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in TAbs";
@@ -54,6 +55,7 @@ public class AddTutorialCommand extends Command {
         }
 
         model.addTutorial(toAdd);
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, Messages.format(toAdd)));
     }
 

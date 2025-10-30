@@ -1,6 +1,8 @@
 package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.util.List;
 
@@ -20,6 +22,7 @@ public class DeleteTutorialCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the tutorial identified by the tutorial ID used in the displayed tutorial list.\n"
+            + "Parameters: " + TUTORIAL_ID.prefix + "[TUTORIAL_ID]\n"
             + "Example: " + COMMAND_WORD + " t/T1";
 
     public static final String MESSAGE_DELETE_TUTORIAL_SUCCESS =
@@ -43,6 +46,7 @@ public class DeleteTutorialCommand extends Command {
         }
 
         model.deleteTutorial(tutorialToDelete);
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
         return new CommandResult(String.format(MESSAGE_DELETE_TUTORIAL_SUCCESS, Messages.format(tutorialToDelete)));
     }
 

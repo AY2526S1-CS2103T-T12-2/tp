@@ -4,7 +4,7 @@ title: Developer Guide
 ---
 
 * Table of Contents
-  {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -324,7 +324,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* NUS School of Computing Student Teaching Assistants who need to manage a large number of student contacts and related
+* University student tutors who need to manage a large number of student contacts and related
   information.
 * Prefer desktop apps over mobile or web alternatives
 * Comfortable with typing and prefer keyboard input
@@ -344,13 +344,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | TA      | delete a student from a class                              | remove students who are no longer in the class                                         |
 | `* * *`  | TA      | view a list of students in a class                         | have an overview of my class roster                                                    |
 | `* * *`  | TA      | add a class                                                | keep a record of my classes                                                            |
-| `* * *`  | TA      | delete a class                                             | remove ununsed or obsolete classes.                                                    |
+| `* * *`  | TA      | delete a class                                             | remove unused or obsolete classes.                                                     |
 | `* * `   | TA      | add details for my classes                                 | add important details about the classes (e.g. module name, time)                       |
-| `* * `   | TA      | mark a student’s participation                             | track engagement for tutorials and discussions                                         |
-| `* * `   | TA      | unmark a student’s participation                           | undo marking a student’s participation in case of a mistake                            |
+| `* * `   | TA      | mark a student’s attendance                                | track engagement for tutorials and discussions                                         |
+| `* * `   | TA      | unmark a student’s attendance                              | undo marking a student’s participation in case of a mistake                            |
+| `* * `   | TA      | mark all students' attendance in a tutorial                | track engagement for tutorials and discussions                                         |
+| `* * `   | TA      | unmark all students' attendance in a tutorial              | undo marking a student’s participation in case of a mistake                            |
+| `* * `   | TA      | find a tutorial based on Tutorial ID or Module Code        | quickly locate the tutorials I want without scrolling through the tutorial list        |
 | `* * `   | TA      | edit a student’s details.                                  | fix data entry mistakes without re-creating a new student                              |
-| `* * `   | TA      | edit a student’s details.                                  | fix data entry mistakes without re-creating a new student                              |
-| `* * `   | TA      | find a tutorial based on Tutorial ID or Module Code        | quickly filter the list of tutorials to locate the specific tutorial I am looking for  |
+| `* * `   | TA      | search for a student by name or ID                         | quickly locate their details without scrolling through the list                        |
 | `* *`    | TA      | flag students who are underperforming                      | remember which students to follow up with                                              |
 | `* *`    | TA      | tag students via groups                                    | organize students in a neat manner in the UI                                           |
 | `* *`    | TA      | filter students by group tags                              | view only students from a specific group                                               |
@@ -541,7 +543,7 @@ testers are expected to do more *exploratory* testing.
     1. Resize the window to an optimum size. Move the window to a different location. Close the
        window.
 
-    1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the `.jar` file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_

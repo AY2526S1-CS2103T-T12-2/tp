@@ -2,8 +2,8 @@ package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.STUDENT;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.util.HashSet;
@@ -26,11 +26,11 @@ public class DeleteStudentCommand extends Command {
             + ": Delete a student identified by the given student ID "
             + "from the tutorial identified by the given tutorial ID.\n"
             + "Parameters: "
-            + PREFIX_STUDENT + "[STUDENT_ID] "
-            + PREFIX_TUTORIAL_ID + "[TUTORIAL_ID]\n"
+            + STUDENT.prefix + "[STUDENT_ID] "
+            + TUTORIAL_ID.prefix + "[TUTORIAL_ID]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_STUDENT + "A0123456Z "
-            + PREFIX_TUTORIAL_ID + "T123";
+            + STUDENT.prefix + "A0123456Z "
+            + TUTORIAL_ID.prefix + "T123";
     public static final String MESSAGE_SUCCESS = "Student %1$s deleted from tutorial %2$s.";
     public static final String MESSAGE_NOT_EXISTS = "Student %1$s is not in tutorial %2$s.";
 

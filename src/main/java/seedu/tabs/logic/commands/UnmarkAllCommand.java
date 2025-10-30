@@ -1,7 +1,7 @@
 package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.util.List;
@@ -22,12 +22,14 @@ public class UnmarkAllCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Unmarks all the students in the tutorial identified by the tutorial ID.\n"
-            + "Parameters: " + PREFIX_TUTORIAL_ID + "[TUTORIAL_ID]\n"
+            + "Parameters: " + TUTORIAL_ID.prefix + "[TUTORIAL_ID]\n"
             + "Example: " + COMMAND_WORD + " t/T1";
 
     public static final String MESSAGE_UNMARK_ALL_SUCCESS = "The following student(s):\n"
             + "\t%1$s\n"
             + "were unmarked in tutorial %2$s.";
+
+    public static final String MESSAGE_NO_STUDENTS = "There are no students to be unmarked in tutorial %1$s.";
 
     private final TutorialIdMatchesKeywordPredicate predicate;
 
@@ -57,8 +59,11 @@ public class UnmarkAllCommand extends Command {
         model.setTutorial(tutorialToUnmarkAll, tutorialToUnmarkAll);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
 
-        return new CommandResult(String.format(MESSAGE_UNMARK_ALL_SUCCESS,
-                tutorialToUnmarkAll.getStudents(), predicate.getKeyword()));
+        return new CommandResult(
+                tutorialToUnmarkAll.getNumberOfStudents() > 0
+                        ? String.format(MESSAGE_UNMARK_ALL_SUCCESS,
+                        tutorialToUnmarkAll.getStudents(), predicate.getKeyword())
+                        : String.format(MESSAGE_NO_STUDENTS, tutorialToUnmarkAll.getTutorialId()));
     }
 
     @Override

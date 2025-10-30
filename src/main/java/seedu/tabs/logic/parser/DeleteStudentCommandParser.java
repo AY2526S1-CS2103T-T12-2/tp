@@ -2,8 +2,8 @@ package seedu.tabs.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.STUDENT;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 
 import java.util.stream.Stream;
 
@@ -16,7 +16,7 @@ import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 /**
  * Parses input arguments and creates a new DeleteStudentCommand object.
  */
-public class DeleteStudentCommandParser {
+public class DeleteStudentCommandParser implements Parser<DeleteStudentCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteStudentCommand
      * and returns an DeleteStudentCommand object for execution.
@@ -25,21 +25,21 @@ public class DeleteStudentCommandParser {
      */
     public DeleteStudentCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_STUDENT, PREFIX_TUTORIAL_ID);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefix(args);
 
-        boolean hasMissingPrefixes = !arePrefixesPresent(argMultimap, PREFIX_STUDENT, PREFIX_TUTORIAL_ID);
+        boolean hasMissingPrefixes = !arePrefixesPresent(argMultimap, STUDENT.prefix, TUTORIAL_ID.prefix);
         boolean hasNonEmptyPreamble = !argMultimap.getPreamble().isEmpty();
         if (hasMissingPrefixes || hasNonEmptyPreamble) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     DeleteStudentCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_STUDENT, PREFIX_TUTORIAL_ID);
+        argMultimap.verifyNoDuplicatePrefixesFor(STUDENT.prefix, TUTORIAL_ID.prefix);
+        argMultimap.verifyNoExtraPrefixesExcept(STUDENT.prefix, TUTORIAL_ID.prefix);
 
-        String studentId = argMultimap.getValue(PREFIX_STUDENT).orElse("");
+        String studentId = argMultimap.getValue(STUDENT.prefix).orElse("");
         Student student = ParserUtil.parseStudent(studentId);
-        String tutorialId = argMultimap.getValue(PREFIX_TUTORIAL_ID).orElse("");
+        String tutorialId = argMultimap.getValue(TUTORIAL_ID.prefix).orElse("");
         TutorialId parsedTutorialId = ParserUtil.parseTutorialId(tutorialId);
         TutorialIdMatchesKeywordPredicate predicate = new TutorialIdMatchesKeywordPredicate(parsedTutorialId.id);
 

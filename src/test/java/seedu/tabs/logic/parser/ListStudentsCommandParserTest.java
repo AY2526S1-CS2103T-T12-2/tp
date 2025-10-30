@@ -1,7 +1,7 @@
 package seedu.tabs.logic.parser;
 
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -22,11 +22,11 @@ public class ListStudentsCommandParserTest {
     @Test
     public void parse_validArgs_returnsListStudentsCommand() {
         // Only the tutorial ID prefix and value
-        assertParseSuccess(parser, " " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_ID_STRING,
+        assertParseSuccess(parser, " " + TUTORIAL_ID.prefix + VALID_TUTORIAL_ID_STRING,
                 new ListStudentsCommand(VALID_TUTORIAL_ID));
 
         // Leading and trailing whitespace should be ignored
-        assertParseSuccess(parser, "  " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_ID_STRING + " ",
+        assertParseSuccess(parser, "  " + TUTORIAL_ID.prefix + VALID_TUTORIAL_ID_STRING + " ",
                 new ListStudentsCommand(VALID_TUTORIAL_ID));
     }
 
@@ -43,7 +43,7 @@ public class ListStudentsCommandParserTest {
         String expectedMessage = TutorialId.MESSAGE_CONSTRAINTS;
 
         // missing value after prefix
-        assertParseFailure(parser, " " + PREFIX_TUTORIAL_ID, expectedMessage);
+        assertParseFailure(parser, " " + TUTORIAL_ID.prefix, expectedMessage);
     }
 
     @Test
@@ -52,7 +52,7 @@ public class ListStudentsCommandParserTest {
         String expectedMessage = TutorialId.MESSAGE_CONSTRAINTS;
 
         // Invalid tutorial ID (e.g., empty string which should be caught by parseTutorialId)
-        assertParseFailure(parser, " " + PREFIX_TUTORIAL_ID + " ", expectedMessage);
+        assertParseFailure(parser, " " + TUTORIAL_ID.prefix + " ", expectedMessage);
     }
 
     @Test
@@ -60,9 +60,9 @@ public class ListStudentsCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListStudentsCommand.MESSAGE_USAGE);
 
         // Pre-amble not allowed (unexpected text before the required prefixes)
-        assertParseFailure(parser, "extra words " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_ID_STRING,
+        assertParseFailure(parser, "extra words " + TUTORIAL_ID.prefix + VALID_TUTORIAL_ID_STRING,
                 expectedMessage);
-        assertParseFailure(parser, "1 " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_ID_STRING, expectedMessage);
+        assertParseFailure(parser, "1 " + TUTORIAL_ID.prefix + VALID_TUTORIAL_ID_STRING, expectedMessage);
     }
 
     @Test
@@ -70,8 +70,8 @@ public class ListStudentsCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListStudentsCommand.MESSAGE_USAGE);
 
         // Duplicate tutorial ID prefixes (e.g. list_students t/C999 t/C100)
-        assertParseFailure(parser, " " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_ID_STRING
-                        + " " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_ID_STRING,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
+        assertParseFailure(parser, " " + TUTORIAL_ID.prefix + VALID_TUTORIAL_ID_STRING
+                        + " " + TUTORIAL_ID.prefix + VALID_TUTORIAL_ID_STRING,
+                Messages.getErrorMessageForDuplicatePrefixes(TUTORIAL_ID.prefix));
     }
 }

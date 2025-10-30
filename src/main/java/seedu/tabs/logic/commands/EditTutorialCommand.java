@@ -1,10 +1,10 @@
 package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_FROM;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.DATE;
+import static seedu.tabs.logic.parser.CliSyntax.FROM;
+import static seedu.tabs.logic.parser.CliSyntax.MODULE_CODE;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.util.List;
@@ -30,18 +30,18 @@ public class EditTutorialCommand extends Command {
     public static final String COMMAND_WORD = "edit_tutorial";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the tutorial identified "
-            + "by the given tutorial id. "
+            + "by the given tutorial ID.\n"
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: "
-            + "[" + PREFIX_FROM + "ORIGINAL_TUTORIAL ID] "
-            + "[" + PREFIX_TUTORIAL_ID + "NEW_TUTORIAL ID] "
-            + "[" + PREFIX_MODULE_CODE + "NEW_MODULE CODE] "
-            + "[" + PREFIX_DATE + "NEW_DATE]\n"
+            + FROM.prefix + "ORIGINAL_TUTORIAL ID "
+            + "[" + TUTORIAL_ID.prefix + "NEW_TUTORIAL_ID] "
+            + "[" + MODULE_CODE.prefix + "NEW_MODULE_CODE] "
+            + "[" + DATE.prefix + "NEW_DATE]\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_FROM + "T123 "
-            + PREFIX_TUTORIAL_ID + "T456 "
-            + PREFIX_MODULE_CODE + "CS2103T "
-            + PREFIX_DATE + "2025-10-25";
+            + FROM.prefix + "T123 "
+            + TUTORIAL_ID.prefix + "T456 "
+            + MODULE_CODE.prefix + "CS2103T "
+            + DATE.prefix + "2025-10-25";
 
     public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial: %1$s.";
     public static final String MESSAGE_FROM_TUTORIAL_ID_MISSING = "Tutorial ID of the tutorial to be edited "
