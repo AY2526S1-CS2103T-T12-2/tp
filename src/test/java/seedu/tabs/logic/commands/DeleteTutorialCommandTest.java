@@ -60,7 +60,6 @@ public class DeleteTutorialCommandTest {
 
         Model expectedModel = new ModelManager(model.getTAbs(), new UserPrefs());
         expectedModel.deleteTutorial(tutorialToDelete);
-        showNoTutorial(expectedModel);
 
         assertCommandSuccess(deleteTutorialCommand, model, expectedMessage, expectedModel);
     }

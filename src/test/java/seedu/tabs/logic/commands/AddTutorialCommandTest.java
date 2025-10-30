@@ -221,6 +221,11 @@ public class AddTutorialCommandTest {
         }
 
         @Override
+        public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
+            // Allow the command to reset the filter
+        }
+
+        @Override
         public ReadOnlyTAbs getTAbs() {
             return new TAbs();
         }
