@@ -314,10 +314,10 @@ When a student has been marked as present, the GUI will update the student's ID 
 
 Behaviour:
 
-* After the mark command is ran, the students in the input will be categorised into 3 groups: 
-  successfully marked, already marked and not in the tutorial.
+* After the mark command has been run, the students in the input will be categorised into 3 groups: 
+  successfully marked, already marked, and not in the tutorial.
 * If no students were successfully marked, TAbs will display the message as an error. 
-* If at least one student was successfully marked, Tabs will display a success outcome.
+* If at least one student was successfully marked, TAbs will display a success outcome.
 * The following are messages that will be conditionally displayed based on whether any students
   fall in the respective groups.
    * Students who were successfully marked as present:
@@ -326,7 +326,7 @@ Behaviour:
   [[A1231231Y], [A3213213Y]]
   were marked as present in tutorial T2.
   ```
-    * Students who were already marked:
+    * Students who have already been marked:
   ``` 
   The following student(s):
   [[A1231231Y], [A3213213Y]]
@@ -338,7 +338,7 @@ Behaviour:
   [[A1231231Y], [A3213213Y]]
   are not in tutorial T2.
   ```  
-* If there are no students in that particular group the message for that group will not be shown.
+* If there are no students in that particular group, the message for that group will not be shown.
 
 ### Marking ALL students in a tutorial as present: `mark_all`
 
