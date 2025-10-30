@@ -481,6 +481,7 @@ specified otherwise)
 
       Use case resumes from step 1.
 
+
 **Use case: UC6 - Find specific tutorials in TAbs**
 
 **MSS**
@@ -505,11 +506,8 @@ specified otherwise)
 
 **MSS**
 
-1. TA requests to search for tutorials.
-2. TAbs finds tutorials which match the given specifications.
-3. TAbs displays the updated list of tutorials.
-4. TAbs informs the TA of how many tutorials match the given specification
-5. TAbs displays the updated filtered list of tutorials.
+1. TA requests to mark the attendance of every student in a tutorial.
+2. TAbs confirms that every student in the tutorial has been marked as present.
 
    Use case ends.
 
@@ -621,10 +619,9 @@ testers are expected to do more *exploratory* testing.
 
 2. Deleting a tutorial while only some tutorials are being shown.
 
-    1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
+   1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
 
-    2. Test cases are the same as above, and should produce the same results since the `delete_tutorial` command acts on the entire tutorial list in TAbs.
-
+   2. Test cases are the same as above, and should produce the same results since the `delete_tutorial` command acts on the entire tutorial list in TAbs.
 
 
 ### Marking and unmarking all students in a tutorial
@@ -639,6 +636,7 @@ testers are expected to do more *exploratory* testing.
    
    3. Test case: `mark_all t/T2` or `unmark_all t/T2` (where tutorial with ID `T2` has no students)<br>
       Expected: No change to the tutorial. THe status message states that there are no students to be marked/unmarked.
+
 
 2. Marking/Unmarking all students in a tutorial while only some tutorials are being shown
 
