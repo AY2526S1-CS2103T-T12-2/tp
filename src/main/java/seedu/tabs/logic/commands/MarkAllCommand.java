@@ -29,6 +29,8 @@ public class MarkAllCommand extends Command {
             + "\t%1$s\n"
             + "were marked as present in tutorial %2$s.";
 
+    public static final String MESSAGE_NO_STUDENTS = "There are no students to be marked as present in tutorial %1$s.";
+
     public final TutorialIdMatchesKeywordPredicate predicate;
 
     public MarkAllCommand(TutorialIdMatchesKeywordPredicate predicate) {
@@ -57,8 +59,11 @@ public class MarkAllCommand extends Command {
         model.setTutorial(tutorialToMarkAll, tutorialToMarkAll);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
 
-        return new CommandResult(String.format(MESSAGE_MARK_ALL_SUCCESS,
-                tutorialToMarkAll.getStudents(), predicate.getKeyword()));
+        return new CommandResult(
+                tutorialToMarkAll.getNumberOfStudents() > 0
+                        ? String.format(MESSAGE_MARK_ALL_SUCCESS,
+                        tutorialToMarkAll.getStudents(), predicate.getKeyword())
+                : String.format(MESSAGE_NO_STUDENTS, tutorialToMarkAll.getTutorialId()));
     }
 
     @Override

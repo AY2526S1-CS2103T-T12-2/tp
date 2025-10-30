@@ -29,6 +29,8 @@ public class UnmarkAllCommand extends Command {
             + "\t%1$s\n"
             + "were unmarked in tutorial %2$s.";
 
+    public static final String MESSAGE_NO_STUDENTS = "There are no students to be unmarked in tutorial %1$s.";
+
     private final TutorialIdMatchesKeywordPredicate predicate;
 
     public UnmarkAllCommand(TutorialIdMatchesKeywordPredicate predicate) {
@@ -57,8 +59,11 @@ public class UnmarkAllCommand extends Command {
         model.setTutorial(tutorialToUnmarkAll, tutorialToUnmarkAll);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
 
-        return new CommandResult(String.format(MESSAGE_UNMARK_ALL_SUCCESS,
-                tutorialToUnmarkAll.getStudents(), predicate.getKeyword()));
+        return new CommandResult(
+                tutorialToUnmarkAll.getNumberOfStudents() > 0
+                        ? String.format(MESSAGE_UNMARK_ALL_SUCCESS,
+                        tutorialToUnmarkAll.getStudents(), predicate.getKeyword())
+                        : String.format(MESSAGE_NO_STUDENTS, tutorialToUnmarkAll.getTutorialId()));
     }
 
     @Override
