@@ -576,21 +576,53 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a tutorial while all tutorials are being shown
 
-    1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials in the list.
+   1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials in the list. 
+   
+   2. Test case: `delete_tutorial t/T1`<br>
+      Expected: The tutorial with ID `T1` is deleted. Details of the deleted tutorial are shown in the
+      status message.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the
-       status message. Timestamp in the status bar is updated.
+   3. Test case: `delete_tutorial t/t1`<br>
+      Expected: The tutorial with ID `T1` is still deleted due to case-insensitivity. Details of the deleted tutorial are shown in the
+        status message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No tutorial is deleted. Error details shown in the status message. Status bar
-       remains the same.
+   4. Test case: `delete_tutorial t/0`<br>
+      Expected: No tutorial is deleted as the tutorial ID does not exist. Error details shown in the status message.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than
-       the list size)<br>
-       Expected: Similar to previous.
+   5. Test case: `delete_tutorial m/0`<br>
+      Expected: No tutorial is deleted as the prefix is incorrect. Error details shown in the status message.
 
-1. _{ more test cases …​ }_
+   6. Test case: `delete_tutorial t/T1 t/T2`<br>
+      Expected: No tutorial is deleted as there should only be one `t/` prefix. Error details shown in the status message.
+
+
+2. Deleting a tutorial while only some tutorials are being shown.
+
+   1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
+
+   2. Test cases are the same as above, and should produce the same results since the `delete_tutorial` command acts on the entire tutorial list in TAbs.
+
+
+### Marking and unmarking all students in a tutorial
+
+1. Marking/Unmarking all students in a tutorial while all tutorials are being shown
+
+   1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials in the list.
+
+   2. Test case: `mark_all t/T1` or `unmark_all t/T1` (where tutorial with ID `T1` has students)<br>
+      Expected: All students in the tutorial are marked as present (or unmarked). The students' tags should all turn green
+      (or all turn to the default blue). Details of the students are shown in the status message.
+   
+   3. Test case: `mark_all t/T2` or `unmark_all t/T2` (where tutorial with ID `T2` has no students)<br>
+      Expected: No change to the tutorial. THe status message states that there are no students to be marked/unmarked.
+
+
+2. Marking/Unmarking all students in a tutorial while only some tutorials are being shown
+
+   1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
+
+   2. Test cases are the same as above, and should produce the same results since the both commands act on the entire tutorial list in TAbs.
+      After each command, the displayed list reverts to displaying all tutorials.
 
 ### Saving data
 
