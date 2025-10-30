@@ -17,7 +17,7 @@ import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 /**
  * Parses input arguments and creates a new MarkCommand object
  */
-public class MarkCommandParser {
+public class MarkCommandParser implements Parser<MarkCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the MarkCommand
      * and returns an MarkCommand object for execution.
@@ -36,7 +36,7 @@ public class MarkCommandParser {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix);
-        argMultimap.verifyNoExtraPrefixesExcept(TUTORIAL_ID.prefix);
+        argMultimap.verifyNoExtraPrefixesExcept(TUTORIAL_ID.prefix, STUDENT.prefix);
         Set<Student> studentSet = ParserUtil.parseStudents(argMultimap.getAllValues(STUDENT.prefix));
         String tutorialId = argMultimap.getValue(TUTORIAL_ID.prefix).orElse("");
         TutorialId parsedTutorialId = ParserUtil.parseTutorialId(tutorialId);

@@ -17,7 +17,7 @@ import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
 /**
  * Parses input arguments and creates a new UnmarkCommand object
  */
-public class UnmarkCommandParser {
+public class UnmarkCommandParser implements Parser<UnmarkCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the UnmarkCommand
      * and returns an UnmarkCommand object for execution.
@@ -26,7 +26,7 @@ public class UnmarkCommandParser {
      */
     public UnmarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefix(args);
 
         boolean hasMissingPrefixes = !arePrefixesPresent(argMultimap, STUDENT.prefix, TUTORIAL_ID.prefix);
         boolean hasNonEmptyPreamble = !argMultimap.getPreamble().isEmpty();
@@ -36,7 +36,7 @@ public class UnmarkCommandParser {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix);
-        argMultimap.verifyNoExtraPrefixesExcept(TUTORIAL_ID.prefix);
+        argMultimap.verifyNoExtraPrefixesExcept(TUTORIAL_ID.prefix, STUDENT.prefix);
         Set<Student> studentSet = ParserUtil.parseStudents(argMultimap.getAllValues(STUDENT.prefix));
         String tutorialId = argMultimap.getValue(TUTORIAL_ID.prefix).orElse("");
         TutorialId parsedTutorialId = ParserUtil.parseTutorialId(tutorialId);
