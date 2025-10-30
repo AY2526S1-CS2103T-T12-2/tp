@@ -220,7 +220,7 @@ single TAbs state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete_tutorial t/T102` command to delete the 2nd tutorial in the TAbs. The
+Step 2. The user executes `delete_tutorial t/T102` command to delete the specific tutorial in the TAbs. The
 `delete_tutorial` command calls `Model#commitTAbs()`, causing the modified state of the TAbs
 after the `delete_tutorial t/T102` command executes to be saved in the `tabsStateList`, and the
 `currentStatePointer` is shifted to the newly inserted TAbs state.
