@@ -25,14 +25,14 @@ public class FindCommand extends Command {
             + "If both " + MODULE_CODE.prefix + " and " + TUTORIAL_ID.prefix + " are provided, "
             + "only tutorials matching BOTH criteria are listed.\n"
             + "Parameters: \n"
-            + "1. Search by one field: " + TUTORIAL_ID.prefix + "KEYWORD [MORE_KEYWORDS]... OR "
-            + MODULE_CODE.prefix + "KEYWORD [MORE_KEYWORDS]...\n"
-            + "2. Search by two fields: " + MODULE_CODE.prefix + "KEYWORD [...] "
-            + TUTORIAL_ID.prefix + "KEYWORD [...]\n"
-            + "Example 1 (Module only): " + COMMAND_WORD + " " + MODULE_CODE.prefix + " CS2103T CS2101\n"
-            + "Example 2 (Tutorial ID only): " + COMMAND_WORD + " " + TUTORIAL_ID.prefix + " T10 T12\n"
-            + "Example 3 (Module and Tutorial ID): " + COMMAND_WORD + " " + MODULE_CODE.prefix + " CS2103T "
-            + TUTORIAL_ID.prefix + " T10";
+            + "1. Search by one field: " + TUTORIAL_ID.prefix + "KEYWORD [MORE_KEYWORDS] OR "
+            + MODULE_CODE.prefix + "KEYWORD [MORE_KEYWORDS]\n"
+            + "2. Search by two fields: " + MODULE_CODE.prefix + "KEYWORD [MORE_KEYWORDS] "
+            + TUTORIAL_ID.prefix + "KEYWORD [MORE_KEYWORDS]\n"
+            + "Example 1 (Module Code only): " + COMMAND_WORD + " " + MODULE_CODE.prefix + "CS2103T 2101\n"
+            + "Example 2 (Tutorial ID only): " + COMMAND_WORD + " " + TUTORIAL_ID.prefix + "T10 12\n"
+            + "Example 3 (Module Code and Tutorial ID): " + COMMAND_WORD + " " + MODULE_CODE.prefix + "CS2103T 2101"
+            + TUTORIAL_ID.prefix + "T10 12";
     private final Predicate<Tutorial> predicate;
 
     public FindCommand(Predicate<Tutorial> predicate) {
