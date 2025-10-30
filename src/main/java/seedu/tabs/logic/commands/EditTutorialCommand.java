@@ -43,13 +43,13 @@ public class EditTutorialCommand extends Command {
             + MODULE_CODE.prefix + "CS2103T "
             + DATE.prefix + "2025-10-25";
 
-    public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial: %1$s.";
+    public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial: \n%1$s";
     public static final String MESSAGE_FROM_TUTORIAL_ID_MISSING = "Tutorial ID of the tutorial to be edited "
             + "must be specified.\n%1$s.";
     public static final String MESSAGE_EDIT_STUDENTS_NOT_ALLOWED = "Students cannot be edited via this command.\n"
             + "Please use the add_student or delete_student commands instead.";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in the TAbs.";
+    public static final String MESSAGE_DUPLICATE_TUTORIAL = "This tutorial already exists in TAbs.";
 
 
     private final TutorialIdMatchesKeywordPredicate predicate;
