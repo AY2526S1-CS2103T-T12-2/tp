@@ -662,8 +662,6 @@ specified otherwise)
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Matriculation Number / Student ID**:
-  A unique identification number assigned to each student (e.g., A1234567X). Used as the primary key when managing student records.
 * **Matriculation number**: The unique identification number of each student (e.g., A1938293R)
 * **Tutorial**: Each tutorial is part of a module, which is specified by a module code (e.g.,
   CS1231S)
@@ -795,154 +793,154 @@ testers are expected to do more *exploratory* testing.
 
 1. Adding a new student to an existing tutorial
    
-   1. Prerequisites: List all tutorials using the list command.<br>
-   Tutorial T01 exists and currently has no student with ID A0000001Z.
+   1. Prerequisites: List all tutorials using the `list` command.<br>
+   Tutorial `T01` exists and currently has no student with ID `A0000001Z`.
 
-   2. Test case: add_student id/A0000001Z t/T01<br>
-   Expected: Student A0000001Z (John Tan) is added to tutorial T01.<br>
+   2. Test case: `add_student id/A0000001Z t/T01`<br>
+   Expected: Student `A0000001Z` is added to tutorial `T01`.<br>
    Confirmation message displays the details of the added student.
 
 2. Adding multiple students, with some already in the tutorial
 
-   1. Prerequisites: Tutorial T01 exists and already contains student A0000001Z.
-      Students A0000002Z and A0000003Z are not yet enrolled in the tutorial.
+   1. Prerequisites: Tutorial `T01` exists and already contains student `A0000001Z`.
+      Students `A0000002Z` and `A0000003Z` are not yet enrolled in the tutorial.
    
-   2. Test case: add_student id/A0000001Z id/A0000002Z id/A0000003Z t/T01<br>
-      Expected: Students A0000002Z and A0000003Z are successfully added to tutorial T01. Student A0000001Z is skipped as a duplicate.<br>
+   2. Test case: `add_student id/A0000001Z id/A0000002Z id/A0000003Z t/T01`<br>
+      Expected: Students `A0000002Z` and `A0000003Z` are successfully added to tutorial `T01`. Student `A0000001Z` is skipped as a duplicate.<br>
       Confirmation message indicates which students were successfully added, and which were duplicates
 
 3. Attempting to add a student to a non-existent tutorial
 
-    1. Prerequisites: Tutorial T99 does not exist.
+    1. Prerequisites: Tutorial `T99` does not exist.
 
-    2. Test case: add_student id/A0000001Z t/T99
+    2. Test case: `add_student id/A0000001Z t/T99`
        Expected: No student is added.
-       Error message indicates that the tutorial T99 does not exist.
+       Error message indicates that the tutorial `T99` does not exist.
 
 4. Attempting to add a student to a non-existent tutorial
 
-    1. Prerequisites: Tutorial T99 does not exist.
+    1. Prerequisites: Tutorial `T99` does not exist.
 
-    2. Test case: add_student id/A0000001Z t/T99
+    2. Test case: `add_student id/A0000001Z t/T99`
        Expected: No student is added.
-       Error message indicates that the tutorial T99 does not exist.
+       Error message indicates that the tutorial `T99` does not exist.
 
 5. Missing or invalid prefixes
 
     1. Prerequisites: None.
 
-    2. Test case: add_student A0000001Z t/T01<br>
+    2. Test case: `add_student A0000001Z t/T01`<br>
        Expected: Invalid command usage error is thrown.
 
 ### Deleting a student from a tutorial
 
 1. Deleting an existing student from a tutorial
 
-    1. Prerequisites: List all tutorials using the list command.
-       Tutorial T01 exists and contains student A0000001Z.
+    1. Prerequisites: List all tutorials using the `list` command.
+       Tutorial `T01` exists and contains student `A0000001Z`.
 
-    2. Test case: delete_student id/A0000001Z t/T01
-       Expected: Student A0000001Z is deleted from tutorial T01.
+    2. Test case: `delete_student id/A0000001Z t/T01`
+       Expected: Student `A0000001Z` is deleted from tutorial `T01`.
 
 2. Attempting to delete a student not in the tutorial
 
-    1. Prerequisites: Tutorial T01 exists, but student A0000002Z is not enrolled in it.
+    1. Prerequisites: Tutorial `T01` exists, but student `A0000002Z` is not enrolled in it.
 
-    2. Test case: delete_student id/A0000002Z t/T01
+    2. Test case: `delete_student id/A0000002Z t/T01`
        Expected: Error saying the student is not in the tutorial is shown.
 
 3. Attempting to delete a student from a non-existent tutorial
 
-    1. Prerequisites: Tutorial T99 does not exist. Student A0000001Z exists in another tutorial.
+    1. Prerequisites: Tutorial `T99` does not exist. Student `A0000001Z` exists in another tutorial.
 
-    2. Test case: delete_student id/A0000001Z t/T99
+    2. Test case: `delete_student id/A0000001Z t/T99`
        Expected: Error saying the tutorial does not exist is shown.
 
 4. Missing or invalid prefixes
 
     1. Prerequisites: None.
 
-    2. Test case: delete_student A0000001Z t/T01
+    2. Test case: `delete_student A0000001Z t/T01`
        Expected: Invalid command usage error is thrown.
 
 ### Marking students in a tutorial
 
 1. Marking one or more valid students in an existing tutorial
     
-    1. Prerequisites: List all tutorials using the list command. 
-       Tutorial T01 exists and contains student A0000001Z who is currently unmarked.
+    1. Prerequisites: List all tutorials using the `list` command. 
+       Tutorial `T01` exists and contains student `A0000001Z` who is currently unmarked.
 
-    2. Test case: mark id/A0000001Z t/T01
-       Expected: Student A0000001Z becomes marked in tutorial T01.
+    2. Test case: `mark id/A0000001Z t/T01`
+       Expected: Student `A0000001Z` becomes marked in tutorial `T01`.
 
 2. Attempting to mark an already marked student
 
-    1. Prerequisites: Tutorial T01 exists and student A0000001Z is already marked.
+    1. Prerequisites: Tutorial `T01` exists and student `A0000001Z` is already marked.
 
-    2. Test case: mark id/A0000001Z t/T01
+    2. Test case: `mark id/A0000001Z t/T01`
        Expected: No student is marked. 
-       An error message, saying Student A0000001Z is already marked, is shown.
+       An error message, saying Student `A0000001Z` is already marked, is shown.
 
 3. Attempting to mark a non-existent student
 
-    1. Prerequisites: Tutorial T01 exists. Student A9999999Z does not exist.
+    1. Prerequisites: Tutorial `T01` exists. Student `A9999999Z` does not exist.
 
-    2. Test case: mark id/A9999999Z t/T01
+    2. Test case: `mark id/A9999999Z t/T01`
        Expected: No student is marked. 
-       An error message, saying Student A0000001Z does not exist, is shown. 
+       An error message, saying Student `A0000001Z` does not exist, is shown. 
    
 4. Attempting to mark in a non-existent tutorial
 
-    1. Prerequisites: Tutorial T99 does not exist.
+    1. Prerequisites: Tutorial `T99` does not exist.
 
-    2. Test case: mark id/A0000001Z t/T99
+    2. Test case: `mark id/A0000001Z t/T99`
        Expected: An error message, saying the tutorial does not exist is shown.
 
 5. Missing or invalid prefixes
 
     1. Prerequisites: None
    
-    2. Test case: mark id/A0000001Z t/T01
+    2. Test case: `mark student/A0000001Z t/T01`
        Expected: An invalid command format error is shown. 
 
 ### Unmarking students in a tutorial
 
 1. Unmarking one or more valid students in an existing tutorial
 
-    1. Prerequisites: List all tutorials using the list command.
-       Tutorial T01 exists and contains student A0000001Z who is currently marked.
+    1. Prerequisites: List all tutorials using the `list` command.
+       Tutorial `T01` exists and contains student `A0000001Z` who is currently marked.
 
-    2. Test case: unmark id/A0000001Z t/T01
-       Expected: Student A0000001Z becomes unmarked in tutorial T01.
+    2. Test case: `unmark id/A0000001Z t/T01`
+       Expected: Student `A0000001Z` becomes unmarked in tutorial `T01`.
 
 2. Attempting to unmark an already unmarked student
 
-    1. Prerequisites: Tutorial T01 exists and student A0000001Z is already unmarked.
+    1. Prerequisites: Tutorial `T01` exists and student `A0000001Z` is already unmarked.
 
-    2. Test case: unmark id/A0000001Z t/T01
+    2. Test case: `unmark student/A0000001Z t/T01`
        Expected: No student is unmarked.
-       An error message, saying Student A0000001Z is already unmarked, is shown.
+       An error message, saying Student `A0000001Z` is already unmarked, is shown.
 
 3. Attempting to unmark a non-existent student
 
-    1. Prerequisites: Tutorial T01 exists. Student A9999999Z does not exist.
+    1. Prerequisites: Tutorial `T01` exists. Student `A9999999Z` does not exist.
 
-    2. Test case: unmark id/A9999999Z t/T01
+    2. Test case: `unmark id/A9999999Z t/T01`
        Expected: No student is unmarked.
-       An error message, saying Student A0000001Z does not exist, is shown.
+       An error message, saying Student `A0000001Z` does not exist, is shown.
 
 4. Attempting to unmark in a non-existent tutorial
 
-    1. Prerequisites: Tutorial T99 does not exist.
+    1. Prerequisites: Tutorial `T99` does not exist.
 
-    2. Test case: unmark id/A0000001Z t/T99
+    2. Test case: `unmark id/A0000001Z t/T99`
        Expected: An error message, saying the tutorial does not exist is shown.
 
 5. Missing or invalid prefixes
 
     1. Prerequisites: None
 
-    2. Test case: unmark id/A0000001Z t/T01
+    2. Test case: `unmark id/A0000001Z t/T01`
        Expected: An invalid command format error is shown.
 
 ### Copying an existing tutorial
@@ -986,27 +984,28 @@ testers are expected to do more *exploratory* testing.
 
 1. Editing a tutorial while all tutorials are being shown
 
-   1. Prerequisites: List all tutorials using the list command. At least one tutorial (e.g., T1) exists in the list.
+   1. Prerequisites: List all tutorials using the `list` command. At least one tutorial (e.g., `T1`) exists in the list.
 
-   2. Test case: edit_tutorial from/T1 m/CS2101 d/2025-11-20<br>
-      Expected: The tutorial with ID T1 is updated to have module code CS2101 and date 2025-11-20. Details of the updated tutorial are shown in the status message.
+   2. Test case: `edit_tutorial from/T1 m/CS2101 d/2025-11-20`<br>
+      Expected: The tutorial with ID `T1` is updated to have module code `CS2101` and date `2025-11-20`.
+      Details of the updated tutorial are shown in the status message.
 
-   3. Test case: edit_tutorial from/T1 t/T2<br>
-      Expected: Tutorial T1 is renamed to T2. The date and tutorial ID remain unchanged.
+   3. Test case: `edit_tutorial from/T1 t/T2`<br>
+      Expected: Tutorial `T1` is renamed to `T2`. The date and tutorial ID remain unchanged.
 
-   4. Test case: edit_tutorial from/T1 m/CS2103T<br>
-      Expected: Only the module code for tutorial T1 is updated. The date and tutorial ID remain unchanged.
+   4. Test case: `edit_tutorial from/T1 m/CS2103T`<br>
+      Expected: Only the module code for tutorial `T1` is updated. The date and tutorial ID remain unchanged.
 
-   5. Test case: edit_tutorial from/T99 m/CS2103T d/2025-12-01 (nonexistent tutorial)<br>
+   5. Test case: `edit_tutorial from/T99 m/CS2103T d/2025-12-01` (nonexistent tutorial)<br>
       Expected: No tutorial is updated. Error message indicates that the specified tutorial ID does not exist.
 
-   6. Test case: edit_tutorial from/T1 m/CS2103T d/2025-13-01 (invalid date)<br>
+   6. Test case: `edit_tutorial from/T1 m/CS2103T d/2025-13-01` (invalid date)<br>
       Expected: No tutorial is updated. Error message indicates invalid date format.
 
-   7. Test case: edit_tutorial from/T2 t/T1 m/CS2103 (duplicate prefix)<br>
+   7. Test case: `edit_tutorial from/T2 t/T1 m/CS2103` (duplicate prefix)<br>
       Expected: No tutorial is updated. Error message indicates specified tutorial ID already exists.
       
-   8. Test case: edit_tutorial t/T1 id/A1234567Z (attempt to add student)<br>
+   8. Test case: `edit_tutorial t/T1 id/A1234567Z` (attempt to add student)<br>
       Expected: No tutorial is updated. Error message indicates that students should be managed via the student specific commands
 
 2. Editing a tutorial while only some tutorials are being shown.
@@ -1078,7 +1077,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. To simulate a missing file: delete the data file manually (/data/tabs.json or equivalent) and restart TAbs.<br>
+   1. To simulate a missing file: delete the data file manually (`/data/tabs.json` or equivalent) and restart TAbs.<br>
    Expected: A new, empty data file is automatically created. No data from previous sessions is restored.
 
    2. To simulate a corrupted file: edit the data file manually and remove required brackets or fields.<br>
