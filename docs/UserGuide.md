@@ -157,7 +157,7 @@ Examples:
 * `copy_tutorial t/T202 from/T201 d/2025-05-15` copies the tutorial `T201` to create a new tutorial `T202`
   with the date `2025-05-15`.
 
-Below is an example of the copy command being used:
+Below is an example of the copy command being used.
 
 ![copy command](images/copyCommand.png)
 
