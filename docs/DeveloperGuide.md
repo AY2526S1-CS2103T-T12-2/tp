@@ -345,6 +345,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | TA      | view a list of students in a class                         | have an overview of my class roster                                                   |
 | `* * *`  | TA      | add a class                                                | keep a record of my classes                                                           |
 | `* * *`  | TA      | delete a class                                             | remove unused or obsolete classes.                                                    |
+| `* * `   | TA      | copy an existing tutorial with a new ID and date           | reuse the student data for recurring tutorials without re-entering all student data |
 | `* * `   | TA      | add details for my classes                                 | add important details about the classes (e.g. module name, time)                      |
 | `* * `   | TA      | mark a student’s attendance                                | track engagement for tutorials and discussions                                        |
 | `* * `   | TA      | unmark a student’s attendance                              | undo marking a student’s participation in case of a mistake                           |
@@ -480,6 +481,26 @@ specified otherwise)
 
       Use case resumes from step 1.
 
+**Use Case: UC6 - Copy an existing tutorial with new ID and date**
+
+**MSS**
+
+1. TA requests to copy a tutorial.
+2. TAbs creates a new tutorial by copying an existing tutorial (as specified by TA).
+3. TAbs confirms the creation of the tutorial.
+   Use case ends.
+
+**Extension**
+
+* 1a. Invalid or missing details are provided
+  * 1a1.TAbs informs the TA of the invalid input.
+    
+    Use case resumes from step 1.
+* 2a. TAbs detects that the tutorial ID that TA is trying to copy from does not exist.
+  * 2a1 TAbs informs the TA that the tutorial ID does not exist
+
+    Use case resumes from step 1.
+
 **Use case: UCX - Mark all students' attendance in a tutorial**
 
 **MSS**
@@ -500,7 +521,6 @@ specified otherwise)
     * 2a1. TAbs informs the TA that the tutorial has no students to be marked as present.
 
       Use case ends.
-
 
 **Use case: UCY - Unmark all students' attendance in a tutorial**
 
