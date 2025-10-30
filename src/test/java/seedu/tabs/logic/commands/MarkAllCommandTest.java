@@ -69,7 +69,7 @@ public class MarkAllCommandTest {
 
     @Test
     public void execute_invalidKeywordFilteredList_throwsCommandException() {
-        showTutorialWithTutorialId(model, TypicalTutorials.TUTORIAL_CS2103T_C101.getTutorialId());
+        showTutorialWithTutorialId(model, TypicalTutorials.TUTORIAL_CS2103T_A101.getTutorialId());
 
         MarkAllCommand markAllCommand = new MarkAllCommand(PREDICATE_KEYWORD_C102);
         assertCommandFailure(markAllCommand, model,

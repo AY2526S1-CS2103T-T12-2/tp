@@ -19,6 +19,8 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d tutorials listed!";
     public static final String MESSAGE_DUPLICATE_FIELDS =
                 "Multiple values specified for the following single-valued field(s): ";
+    public static final String MESSAGE_EXTRA_PREFIXES =
+                "Unexpected prefix(es) found: ";
     public static final String MESSAGES_STUDENTS_LISTED_OVERVIEW = "Displaying all students enrolled in tutorial!";
 
 
@@ -35,18 +37,31 @@ public class Messages {
     }
 
     /**
+     * Returns an error message indicating the extra prefixes.
+     */
+    public static String getErrorMessageForExtraPrefixes(Prefix... extraPrefixes) {
+        assert extraPrefixes.length > 0;
+
+        Set<String> extraFields =
+                Stream.of(extraPrefixes).map(Prefix::toString).collect(Collectors.toSet());
+
+        return MESSAGE_EXTRA_PREFIXES + String.join(" ", extraFields);
+    }
+
+    /**
      * Formats the {@code tutorial} for display to the user.
      */
     public static String format(Tutorial aTutorial) {
         final StringBuilder builder = new StringBuilder();
-        builder.append("TutorialID: ")
+        builder.append("Tutorial ID: ")
                 .append(aTutorial.getTutorialId())
-                .append("; ModuleCode: ")
+                .append("\nModule Code: ")
                 .append(aTutorial.getModuleCode())
-                .append("; Date: ")
+                .append("\nDate: ")
                 .append(aTutorial.getDate())
-                .append("; Students: ");
-        aTutorial.getStudents().forEach(builder::append);
+                .append("\nStudents: ")
+                .append(aTutorial.getStudentsAsString());
+
         return builder.toString();
     }
 

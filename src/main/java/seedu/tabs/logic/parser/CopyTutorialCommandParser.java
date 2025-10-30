@@ -1,9 +1,9 @@
 package seedu.tabs.logic.parser;
 
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_FROM;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.DATE;
+import static seedu.tabs.logic.parser.CliSyntax.FROM;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 
 import java.util.stream.Stream;
 
@@ -23,19 +23,19 @@ public class CopyTutorialCommandParser implements Parser<CopyTutorialCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public CopyTutorialCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL_ID, PREFIX_FROM, PREFIX_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefix(args);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TUTORIAL_ID, PREFIX_FROM, PREFIX_DATE)
+        if (!arePrefixesPresent(argMultimap, TUTORIAL_ID.prefix, FROM.prefix, DATE.prefix)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     CopyTutorialCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID, PREFIX_FROM, PREFIX_DATE);
-        TutorialId newTutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
-        TutorialId sourceTutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(PREFIX_FROM).get());
-        Date newDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix, FROM.prefix, DATE.prefix);
+        argMultimap.verifyNoExtraPrefixesExcept(TUTORIAL_ID.prefix, FROM.prefix, DATE.prefix);
+        TutorialId newTutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(TUTORIAL_ID.prefix).get());
+        TutorialId sourceTutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(FROM.prefix).get());
+        Date newDate = ParserUtil.parseDate(argMultimap.getValue(DATE.prefix).get());
 
         return new CopyTutorialCommand(newTutorialId, sourceTutorialId, newDate);
     }

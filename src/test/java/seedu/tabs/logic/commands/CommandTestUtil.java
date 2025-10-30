@@ -2,11 +2,11 @@ package seedu.tabs.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_FROM;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.DATE;
+import static seedu.tabs.logic.parser.CliSyntax.FROM;
+import static seedu.tabs.logic.parser.CliSyntax.MODULE_CODE;
+import static seedu.tabs.logic.parser.CliSyntax.STUDENT;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 import static seedu.tabs.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -38,25 +38,25 @@ public class CommandTestUtil {
     public static final String VALID_STUDENT_A = "A1231231Y";
     public static final String VALID_STUDENT_B = "A3213213Y";
 
-    public static final String TUTORIAL_DESC_C123 = " " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_C123;
-    public static final String TUTORIAL_DESC_T456 = " " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_T456;
-    public static final String TUTORIAL_DESC_C2 = " " + PREFIX_TUTORIAL_ID + VALID_TUTORIAL_C2;
-    public static final String FROM_DESC_C123 = " " + PREFIX_FROM + VALID_TUTORIAL_C123;
-    public static final String FROM_DESC_T456 = " " + PREFIX_FROM + VALID_TUTORIAL_T456;
-    public static final String FROM_DESC_NONEXISTENT = " " + PREFIX_FROM + NON_EXISTENT_TUTORIAL_ID;
-    public static final String MODULE_CODE_DESC_CS2103T = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_CS2103T;
-    public static final String MODULE_CODE_DESC_MA1521 = " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE_MA1521;
-    public static final String DATE_DESC_C123 = " " + PREFIX_DATE + VALID_DATE_C123;
-    public static final String DATE_DESC_T456 = " " + PREFIX_DATE + VALID_DATE_T456;
-    public static final String DATE_DESC_C2 = " " + PREFIX_DATE + VALID_DATE_C2;
-    public static final String STUDENT_DESC_A = " " + PREFIX_STUDENT + VALID_STUDENT_A;
-    public static final String STUDENT_DESC_B = " " + PREFIX_STUDENT + VALID_STUDENT_B;
+    public static final String TUTORIAL_DESC_C123 = " " + TUTORIAL_ID.prefix + VALID_TUTORIAL_C123;
+    public static final String TUTORIAL_DESC_T456 = " " + TUTORIAL_ID.prefix + VALID_TUTORIAL_T456;
+    public static final String TUTORIAL_DESC_C2 = " " + TUTORIAL_ID.prefix + VALID_TUTORIAL_C2;
+    public static final String FROM_DESC_C123 = " " + FROM.prefix + VALID_TUTORIAL_C123;
+    public static final String FROM_DESC_T456 = " " + FROM.prefix + VALID_TUTORIAL_T456;
+    public static final String FROM_DESC_NONEXISTENT = " " + FROM.prefix + NON_EXISTENT_TUTORIAL_ID;
+    public static final String MODULE_CODE_DESC_CS2103T = " " + MODULE_CODE.prefix + VALID_MODULE_CODE_CS2103T;
+    public static final String MODULE_CODE_DESC_MA1521 = " " + MODULE_CODE.prefix + VALID_MODULE_CODE_MA1521;
+    public static final String DATE_DESC_C123 = " " + DATE.prefix + VALID_DATE_C123;
+    public static final String DATE_DESC_T456 = " " + DATE.prefix + VALID_DATE_T456;
+    public static final String DATE_DESC_C2 = " " + DATE.prefix + VALID_DATE_C2;
+    public static final String STUDENT_DESC_A = " " + STUDENT.prefix + VALID_STUDENT_A;
+    public static final String STUDENT_DESC_B = " " + STUDENT.prefix + VALID_STUDENT_B;
 
-    public static final String INVALID_TUTORIAL_DESC = " " + PREFIX_TUTORIAL_ID + "James&"; // '&' not allowed
-    public static final String INVALID_FROM_DESC = " " + PREFIX_FROM + "Invalid&"; // '&' not allowed
-    public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + "911a"; // 'a' not allowed
-    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "bob!yahoo"; // invalid date format
-    public static final String INVALID_STUDENT_DESC = " " + PREFIX_STUDENT + "hubby*"; // '*' not allowed in students
+    public static final String INVALID_TUTORIAL_DESC = " " + TUTORIAL_ID.prefix + "James&"; // '&' not allowed
+    public static final String INVALID_FROM_DESC = " " + FROM.prefix + "Invalid&"; // '&' not allowed
+    public static final String INVALID_MODULE_CODE_DESC = " " + MODULE_CODE.prefix + "911a"; // 'a' not allowed
+    public static final String INVALID_DATE_DESC = " " + DATE.prefix + "bob!yahoo"; // invalid date format
+    public static final String INVALID_STUDENT_DESC = " " + STUDENT.prefix + "hubby*"; // '*' not allowed in students
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";

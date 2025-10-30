@@ -245,7 +245,7 @@ Behaviour and duplicate handling:
 
   ```
   The following student(s):
-    [A1231231Y, A3213213Y]
+    [[A1231231Y], [A3213213Y]]
   are already in tutorial T2!
   ```
 * If some students already exist but others are new, TAbs will:
@@ -256,11 +256,11 @@ Behaviour and duplicate handling:
 
   ```
   The following student(s):
-    [A2223334B]
-  were added to tutorial T2
+    [[A2223334B]]
+  were added to tutorial T2.
 
   The following student(s):
-    [A1231231Y, A3213213Y]
+    [[A1231231Y], [A3213213Y]]
   are already in tutorial T2!
   ```
 
@@ -308,8 +308,33 @@ When a student has been marked as present, the GUI will update the student's ID 
 
 ![mark command](images/markCommand.png)
 
+Behaviour:
 
-
+* After the mark command is ran, the students in the input will be categorised into 3 groups: 
+  successfully marked, already marked and not in the tutorial.
+* If no students were successfully marked, TAbs will display the message as an error. 
+* If at least one student was successfully marked, Tabs will display a success outcome.
+* The following are messages that will be conditionally displayed based on whether any students
+  fall in the respective groups.
+   * Students who were successfully marked as present:
+  ``` 
+  The following student(s):
+  [[A1231231Y], [A3213213Y]]
+  were marked as present in tutorial T2.
+  ```
+    * Students who were already marked:
+  ``` 
+  The following student(s):
+  [[A1231231Y], [A3213213Y]]
+  were already marked as present.
+  ```  
+    * Students who do not exist in the tutorial:
+  ``` 
+  The following student(s):
+  [[A1231231Y], [A3213213Y]]
+  are not in tutorial T2.
+  ```  
+* If there are no students in that particular group the message for that group will not be shown.
 
 ### Marking ALL students in a tutorial as present: `mark_all`
 
@@ -346,6 +371,11 @@ Examples:
 * `unmark t/C456 id/A1231231Y` unmarks student `A1231231Y` in tutorial `C456`.
 * `unmark t/T123 id/A1231231Y id/A3213213Y` unmarks student `A1231231Y` and student `A3213213Y`
   in tutorial `T123`.
+
+Behaviour:
+* The behaviour of unmark is similar to that of mark. Kindly refer to the behaviour section of the 
+  mark command above.
+
 
 
 ### Unmarking ALL students in a tutorial: `unmark_all`

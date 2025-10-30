@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 import static seedu.tabs.testutil.Assert.assertThrows;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_MA1521_T202;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_A101;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_MA1521_B202;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasTutorial_tutorialNotInTAbs_returnsFalse() {
-        assertFalse(modelManager.hasTutorial(TUTORIAL_CS2103T_C101));
+        assertFalse(modelManager.hasTutorial(TUTORIAL_CS2103T_A101));
     }
 
     @Test
     public void hasTutorial_tutorialInTAbs_returnsTrue() {
-        modelManager.addTutorial(TUTORIAL_CS2103T_C101);
-        assertTrue(modelManager.hasTutorial(TUTORIAL_CS2103T_C101));
+        modelManager.addTutorial(TUTORIAL_CS2103T_A101);
+        assertTrue(modelManager.hasTutorial(TUTORIAL_CS2103T_A101));
     }
 
     @Test
@@ -95,12 +95,12 @@ public class ModelManagerTest {
 
     @Test
     public void copyTutorial_validTutorial_copySuccessful() {
-        modelManager.addTutorial(TUTORIAL_CS2103T_C101);
+        modelManager.addTutorial(TUTORIAL_CS2103T_A101);
 
         // Copy the tutorial with new ID and date
         seedu.tabs.model.tutorial.TutorialId newTutorialId = new seedu.tabs.model.tutorial.TutorialId("C102");
         seedu.tabs.model.tutorial.Date newDate = new seedu.tabs.model.tutorial.Date("2025-12-15");
-        modelManager.copyTutorial(TUTORIAL_CS2103T_C101, newTutorialId, newDate);
+        modelManager.copyTutorial(TUTORIAL_CS2103T_A101, newTutorialId, newDate);
 
         // Verify the new tutorial exists
         seedu.tabs.model.tutorial.Tutorial copiedTutorial = modelManager.getFilteredTutorialList().stream()
@@ -111,21 +111,21 @@ public class ModelManagerTest {
         assertTrue(copiedTutorial != null);
         assertEquals(newTutorialId, copiedTutorial.getTutorialId());
         assertEquals(newDate, copiedTutorial.getDate());
-        assertEquals(TUTORIAL_CS2103T_C101.getModuleCode(), copiedTutorial.getModuleCode());
+        assertEquals(TUTORIAL_CS2103T_A101.getModuleCode(), copiedTutorial.getModuleCode());
     }
 
     @Test
     public void copyTutorial_studentsDeepCopied_studentsAreIndependent() {
-        modelManager.addTutorial(TUTORIAL_CS2103T_C101);
+        modelManager.addTutorial(TUTORIAL_CS2103T_A101);
 
         // Copy the tutorial
         seedu.tabs.model.tutorial.TutorialId newTutorialId = new seedu.tabs.model.tutorial.TutorialId("C102");
         seedu.tabs.model.tutorial.Date newDate = new seedu.tabs.model.tutorial.Date("2025-12-15");
-        modelManager.copyTutorial(TUTORIAL_CS2103T_C101, newTutorialId, newDate);
+        modelManager.copyTutorial(TUTORIAL_CS2103T_A101, newTutorialId, newDate);
 
         // Get both tutorials
         seedu.tabs.model.tutorial.Tutorial originalTutorial = modelManager.getFilteredTutorialList().stream()
-                .filter(t -> t.getTutorialId().equals(TUTORIAL_CS2103T_C101.getTutorialId()))
+                .filter(t -> t.getTutorialId().equals(TUTORIAL_CS2103T_A101.getTutorialId()))
                 .findFirst()
                 .orElse(null);
 
@@ -144,7 +144,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        TAbs tabs = new TAbsBuilder().withTutorial(TUTORIAL_CS2103T_C101).withTutorial(TUTORIAL_MA1521_T202).build();
+        TAbs tabs = new TAbsBuilder().withTutorial(TUTORIAL_CS2103T_A101).withTutorial(TUTORIAL_MA1521_B202).build();
         TAbs differentTAbs = new TAbs();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -166,7 +166,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentTAbs, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = TUTORIAL_CS2103T_C101.getTutorialId().id.split("\\s+");
+        String[] keywords = TUTORIAL_CS2103T_A101.getTutorialId().id.split("\\s+");
         modelManager.updateFilteredTutorialList(new TutorialIdContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(tabs, userPrefs)));
 

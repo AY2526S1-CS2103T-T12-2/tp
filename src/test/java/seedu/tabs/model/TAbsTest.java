@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_STUDENT_A;
 import static seedu.tabs.testutil.Assert.assertThrows;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_A101;
 import static seedu.tabs.testutil.TypicalTutorials.getTypicalTAbs;
 
 import java.util.Arrays;
@@ -45,9 +45,9 @@ public class TAbsTest {
     @Test
     public void resetData_withDuplicateTutorials_throwsDuplicateTutorialException() {
         // Two tutorials with the same identity fields
-        Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withStudents(VALID_STUDENT_A)
+        Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_A101).withStudents(VALID_STUDENT_A)
                 .build();
-        List<Tutorial> newTutorials = Arrays.asList(TUTORIAL_CS2103T_C101, editedAlice);
+        List<Tutorial> newTutorials = Arrays.asList(TUTORIAL_CS2103T_A101, editedAlice);
         TAbsStub newData = new TAbsStub(newTutorials);
 
         assertThrows(DuplicateTutorialException.class, () -> tabs.resetData(newData));
@@ -60,19 +60,19 @@ public class TAbsTest {
 
     @Test
     public void hasTutorial_tutorialNotInTAbs_returnsFalse() {
-        assertFalse(tabs.hasTutorial(TUTORIAL_CS2103T_C101));
+        assertFalse(tabs.hasTutorial(TUTORIAL_CS2103T_A101));
     }
 
     @Test
     public void hasTutorial_tutorialInTAbs_returnsTrue() {
-        tabs.addTutorial(TUTORIAL_CS2103T_C101);
-        assertTrue(tabs.hasTutorial(TUTORIAL_CS2103T_C101));
+        tabs.addTutorial(TUTORIAL_CS2103T_A101);
+        assertTrue(tabs.hasTutorial(TUTORIAL_CS2103T_A101));
     }
 
     @Test
     public void hasTutorial_tutorialWithSameIdentityFieldsInTAbs_returnsTrue() {
-        tabs.addTutorial(TUTORIAL_CS2103T_C101);
-        Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101).withStudents(VALID_STUDENT_A)
+        tabs.addTutorial(TUTORIAL_CS2103T_A101);
+        Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_A101).withStudents(VALID_STUDENT_A)
                 .build();
         assertTrue(tabs.hasTutorial(editedAlice));
     }

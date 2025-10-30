@@ -11,8 +11,8 @@ import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_C123;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_T456;
 import static seedu.tabs.testutil.Assert.assertThrows;
 import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS1010_C303;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2040_C505;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2040_E505;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_A101;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -215,7 +215,7 @@ public class AddStudentCommandTest {
     @Test
     public void execute_addSingleStudent_success() throws Exception {
         // Use an empty tutorial from TypicalTutorials (e.g., C505)
-        Tutorial emptyTutorial = TUTORIAL_CS2040_C505;
+        Tutorial emptyTutorial = TUTORIAL_CS2040_E505;
         TutorialId emptyTutorialId = emptyTutorial.getTutorialId();
 
         ModelStubWithTutorials model = new ModelStubWithTutorials(emptyTutorial);
@@ -241,7 +241,7 @@ public class AddStudentCommandTest {
     @Test
     public void execute_addMultipleStudentsPartialDuplicate_success() throws Exception {
         // C101 already has STUDENT_A per TypicalTutorials
-        Tutorial tutorialWithA = TUTORIAL_CS2103T_C101;
+        Tutorial tutorialWithA = TUTORIAL_CS2103T_A101;
         TutorialId tutorialWithAId = tutorialWithA.getTutorialId();
 
         ModelStubWithTutorials model = new ModelStubWithTutorials(tutorialWithA);
@@ -267,7 +267,7 @@ public class AddStudentCommandTest {
     @Test
     public void execute_allDuplicates_throwsCommandException() {
         // C101 has STUDENT_A; try to add STUDENT_A only → all duplicates
-        Tutorial tutorialWithA = TUTORIAL_CS2103T_C101;
+        Tutorial tutorialWithA = TUTORIAL_CS2103T_A101;
         TutorialId tutorialWithAId = tutorialWithA.getTutorialId();
 
         ModelStubWithTutorials model = new ModelStubWithTutorials(tutorialWithA);
@@ -288,7 +288,7 @@ public class AddStudentCommandTest {
     public void execute_tutorialNotFound_throwsCommandException() {
         // Model has some tutorials, but we query a non-existent id
         ModelStubWithTutorials model = new ModelStubWithTutorials(
-                TUTORIAL_CS2103T_C101, TUTORIAL_CS1010_C303);
+                TUTORIAL_CS2103T_A101, TUTORIAL_CS1010_C303);
         Set<Student> toAdd = new HashSet<>(Set.of(STUDENT_B));
         AddStudentCommand cmd = new AddStudentCommand(
                 toAdd,

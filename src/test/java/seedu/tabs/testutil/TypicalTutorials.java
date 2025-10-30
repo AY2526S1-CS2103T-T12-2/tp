@@ -22,28 +22,29 @@ import seedu.tabs.model.tutorial.Tutorial;
  */
 public class TypicalTutorials {
 
-    public static final Tutorial TUTORIAL_CS2103T_C101 = new TutorialBuilder().withId("C101")
+    public static final Tutorial TUTORIAL_CS2103T_A101 = new TutorialBuilder().withId("A101")
             .withDate("2025-01-10")
             .withModuleCode("CS2103T")
             .withStudents(VALID_STUDENT_A).build();
-    public static final Tutorial TUTORIAL_MA1521_T202 = new TutorialBuilder().withId("T202")
+    public static final Tutorial TUTORIAL_MA1521_B202 = new TutorialBuilder().withId("B202")
             .withDate("2025-01-15").withModuleCode("MA1521")
             .withStudents(VALID_STUDENT_A).build();
     public static final Tutorial TUTORIAL_CS1010_C303 = new TutorialBuilder().withId("C303").withModuleCode("CS1010")
-            .withDate("2025-01-20").withStudents(VALID_STUDENT_A, VALID_STUDENT_B).build();
-    public static final Tutorial TUTORIAL_ST2334_T404 = new TutorialBuilder().withId("T404").withModuleCode("ST2334")
+            .withDate("2025-01-20")
+            .withStudents(VALID_STUDENT_A, VALID_STUDENT_B).build();;
+    public static final Tutorial TUTORIAL_ST2334_D404 = new TutorialBuilder().withId("D404").withModuleCode("ST2334")
             .withDate("2025-01-25").withStudents(VALID_STUDENT_A).build();
-    public static final Tutorial TUTORIAL_CS2040_C505 = new TutorialBuilder().withId("C505").withModuleCode("CS2040")
+    public static final Tutorial TUTORIAL_CS2040_E505 = new TutorialBuilder().withId("E505").withModuleCode("CS2040")
             .withDate("2025-02-01").build();
-    public static final Tutorial TUTORIAL_MA2001_T606 = new TutorialBuilder().withId("T606").withModuleCode("MA2001")
+    public static final Tutorial TUTORIAL_MA2001_F606 = new TutorialBuilder().withId("F606").withModuleCode("MA2001")
             .withDate("2025-02-05").build();
-    public static final Tutorial TUTORIAL_EE2026_C707 = new TutorialBuilder().withId("C707").withModuleCode("EE2026")
+    public static final Tutorial TUTORIAL_EE2026_G707 = new TutorialBuilder().withId("G707").withModuleCode("EE2026")
             .withDate("2025-02-10").build();
 
     // Manually added
-    public static final Tutorial TUTORIAL_GE1401_T808 = new TutorialBuilder().withId("T808").withModuleCode("GE1401")
+    public static final Tutorial TUTORIAL_GE1401_H808 = new TutorialBuilder().withId("H808").withModuleCode("GE1401")
             .withDate("2025-02-15").build();
-    public static final Tutorial TUTORIAL_CS3230_C909 = new TutorialBuilder().withId("C909").withModuleCode("CS3230")
+    public static final Tutorial TUTORIAL_CS3230_G909 = new TutorialBuilder().withId("I909").withModuleCode("CS3230")
             .withDate("2025-02-20").build();
 
     // Manually added - Tutorial's details found in {@code CommandTestUtil}
@@ -71,7 +72,7 @@ public class TypicalTutorials {
     }
 
     public static List<Tutorial> getTypicalTutorials() {
-        return new ArrayList<>(Arrays.asList(TUTORIAL_CS2103T_C101, TUTORIAL_MA1521_T202, TUTORIAL_CS1010_C303,
-                TUTORIAL_ST2334_T404, TUTORIAL_CS2040_C505, TUTORIAL_MA2001_T606, TUTORIAL_EE2026_C707));
+        return new ArrayList<>(Arrays.asList(TUTORIAL_CS2103T_A101, TUTORIAL_MA1521_B202, TUTORIAL_CS1010_C303,
+                TUTORIAL_ST2334_D404, TUTORIAL_CS2040_E505, TUTORIAL_MA2001_F606, TUTORIAL_EE2026_G707));
     }
 }

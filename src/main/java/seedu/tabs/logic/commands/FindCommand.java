@@ -1,8 +1,8 @@
 package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.MODULE_CODE;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 
 import java.util.function.Predicate;
 
@@ -19,14 +19,20 @@ public class FindCommand extends Command {
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Finds all tutorials whose module codes or tutorial IDs "
+            + ": Finds all tutorials whose module codes and/or tutorial IDs "
             + "contain any of the specified keywords (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: "
-            + PREFIX_TUTORIAL_ID + "KEYWORD [MORE_KEYWORDS]... OR "
-            + PREFIX_MODULE_CODE + "KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + " CS2103T CS2101"
-            + " or " + COMMAND_WORD + " " + PREFIX_TUTORIAL_ID + " T10 W12";
+            + "If both " + MODULE_CODE.prefix + " and " + TUTORIAL_ID.prefix + " are provided, "
+            + "only tutorials matching BOTH criteria are listed.\n"
+            + "Parameters: \n"
+            + "1. Search by one field: " + TUTORIAL_ID.prefix + "KEYWORD [MORE_KEYWORDS]... OR "
+            + MODULE_CODE.prefix + "KEYWORD [MORE_KEYWORDS]...\n"
+            + "2. Search by two fields: " + MODULE_CODE.prefix + "KEYWORD [...] "
+            + TUTORIAL_ID.prefix + "KEYWORD [...]\n"
+            + "Example 1 (Module only): " + COMMAND_WORD + " " + MODULE_CODE.prefix + " CS2103T CS2101\n"
+            + "Example 2 (Tutorial ID only): " + COMMAND_WORD + " " + TUTORIAL_ID.prefix + " T10 T12\n"
+            + "Example 3 (Module and Tutorial ID): " + COMMAND_WORD + " " + MODULE_CODE.prefix + " CS2103T "
+            + TUTORIAL_ID.prefix + " T10";
     private final Predicate<Tutorial> predicate;
 
     public FindCommand(Predicate<Tutorial> predicate) {

@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.testutil.Assert.assertThrows;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_MA1521_T202;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_A101;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_MA1521_B202;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -48,16 +48,16 @@ public class CopyTutorialCommandTest {
 
     @Test
     public void execute_tutorialCopiedSuccessfully_success() throws Exception {
-        ModelStubWithTutorial modelStub = new ModelStubWithTutorial(TUTORIAL_CS2103T_C101);
+        ModelStubWithTutorial modelStub = new ModelStubWithTutorial(TUTORIAL_CS2103T_A101);
 
         TutorialId newTutorialId = new TutorialId("C2");
-        TutorialId sourceTutorialId = new TutorialId("C101");
+        TutorialId sourceTutorialId = new TutorialId("A101");
         Date newDate = new Date("2025-03-10");
 
         CopyTutorialCommand copyCommand = new CopyTutorialCommand(newTutorialId, sourceTutorialId, newDate);
         CommandResult commandResult = copyCommand.execute(modelStub);
 
-        assertEquals(String.format(CopyTutorialCommand.MESSAGE_SUCCESS, "C2", "CS2103T", "C101"),
+        assertEquals(String.format(CopyTutorialCommand.MESSAGE_SUCCESS, "C2", "CS2103T", "A101"),
                 commandResult.getFeedbackToUser());
         assertTrue(modelStub.copyCalled);
     }
@@ -65,22 +65,22 @@ public class CopyTutorialCommandTest {
     @Test
     public void execute_duplicateTutorialId_throwsCommandException() {
         ModelStubWithMultipleTutorials modelStub = new ModelStubWithMultipleTutorials(
-                TUTORIAL_CS2103T_C101, TUTORIAL_MA1521_T202);
+                TUTORIAL_CS2103T_A101, TUTORIAL_MA1521_B202);
 
-        TutorialId newTutorialId = new TutorialId("T202"); // Already exists
-        TutorialId sourceTutorialId = new TutorialId("C101");
+        TutorialId newTutorialId = new TutorialId("B202"); // Already exists
+        TutorialId sourceTutorialId = new TutorialId("A101");
         Date newDate = new Date("2025-03-10");
 
         CopyTutorialCommand copyCommand = new CopyTutorialCommand(newTutorialId, sourceTutorialId, newDate);
 
         assertThrows(CommandException.class,
-                String.format(CopyTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL, "T202"), () ->
+                String.format(CopyTutorialCommand.MESSAGE_DUPLICATE_TUTORIAL, "B202"), () ->
                         copyCommand.execute(modelStub));
     }
 
     @Test
     public void execute_sourceTutorialNotFound_throwsCommandException() {
-        ModelStubWithTutorial modelStub = new ModelStubWithTutorial(TUTORIAL_CS2103T_C101);
+        ModelStubWithTutorial modelStub = new ModelStubWithTutorial(TUTORIAL_CS2103T_A101);
 
         TutorialId newTutorialId = new TutorialId("C2");
         TutorialId sourceTutorialId = new TutorialId("C99"); // Non-existent

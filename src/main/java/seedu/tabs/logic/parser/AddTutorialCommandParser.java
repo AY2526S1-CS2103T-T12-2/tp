@@ -1,10 +1,10 @@
 package seedu.tabs.logic.parser;
 
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_STUDENT;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.DATE;
+import static seedu.tabs.logic.parser.CliSyntax.MODULE_CODE;
+import static seedu.tabs.logic.parser.CliSyntax.STUDENT;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -28,22 +28,21 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddTutorialCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TUTORIAL_ID, PREFIX_MODULE_CODE, PREFIX_DATE,
-                        PREFIX_STUDENT);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefix(args);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TUTORIAL_ID, PREFIX_MODULE_CODE, PREFIX_DATE)
+        if (!arePrefixesPresent(argMultimap, TUTORIAL_ID.prefix, MODULE_CODE.prefix, DATE.prefix)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE));
         }
 
-        argMultimap.verifyNoDuplicatePrefixesFor(PREFIX_TUTORIAL_ID, PREFIX_MODULE_CODE, PREFIX_DATE);
-        TutorialId tutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(PREFIX_TUTORIAL_ID).get());
-        ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE_CODE).get());
-        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix, MODULE_CODE.prefix, DATE.prefix);
+        argMultimap.verifyNoExtraPrefixesExcept(TUTORIAL_ID.prefix, MODULE_CODE.prefix, DATE.prefix, STUDENT.prefix);
+        TutorialId tutorialId = ParserUtil.parseTutorialId(argMultimap.getValue(TUTORIAL_ID.prefix).get());
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(MODULE_CODE.prefix).get());
+        Date date = ParserUtil.parseDate(argMultimap.getValue(DATE.prefix).get());
 
         // Students are optional - use empty set if not provided
-        Set<Student> studentList = ParserUtil.parseStudents(argMultimap.getAllValues(PREFIX_STUDENT));
+        Set<Student> studentList = ParserUtil.parseStudents(argMultimap.getAllValues(STUDENT.prefix));
 
         Tutorial tutorial = new Tutorial(tutorialId, moduleCode, date, studentList);
         return new AddTutorialCommand(tutorial);

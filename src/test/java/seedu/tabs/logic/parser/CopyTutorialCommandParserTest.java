@@ -15,9 +15,9 @@ import static seedu.tabs.logic.commands.CommandTestUtil.TUTORIAL_DESC_T456;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_DATE_C2;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_C123;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_TUTORIAL_C2;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_DATE;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_FROM;
-import static seedu.tabs.logic.parser.CliSyntax.PREFIX_TUTORIAL_ID;
+import static seedu.tabs.logic.parser.CliSyntax.DATE;
+import static seedu.tabs.logic.parser.CliSyntax.FROM;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -111,48 +111,48 @@ public class CopyTutorialCommandParserTest {
 
         // multiple new tutorial IDs
         assertParseFailure(parser, TUTORIAL_DESC_T456 + validCommand,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
+                Messages.getErrorMessageForDuplicatePrefixes(TUTORIAL_ID.prefix));
 
         // multiple source tutorial IDs
         assertParseFailure(parser, FROM_DESC_T456 + validCommand,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_FROM));
+                Messages.getErrorMessageForDuplicatePrefixes(FROM.prefix));
 
         // multiple dates
         assertParseFailure(parser, DATE_DESC_C123 + validCommand,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE));
+                Messages.getErrorMessageForDuplicatePrefixes(DATE.prefix));
 
         // multiple fields repeated
         assertParseFailure(parser,
                 validCommand + TUTORIAL_DESC_T456 + FROM_DESC_T456 + DATE_DESC_C123,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID, PREFIX_FROM, PREFIX_DATE));
+                Messages.getErrorMessageForDuplicatePrefixes(TUTORIAL_ID.prefix, FROM.prefix, DATE.prefix));
 
         // invalid value followed by valid value
 
         // invalid new tutorial ID
         assertParseFailure(parser, INVALID_TUTORIAL_DESC + validCommand,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
+                Messages.getErrorMessageForDuplicatePrefixes(TUTORIAL_ID.prefix));
 
         // invalid source tutorial ID
         assertParseFailure(parser, INVALID_FROM_DESC + validCommand,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_FROM));
+                Messages.getErrorMessageForDuplicatePrefixes(FROM.prefix));
 
         // invalid date
         assertParseFailure(parser, INVALID_DATE_DESC + validCommand,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE));
+                Messages.getErrorMessageForDuplicatePrefixes(DATE.prefix));
 
         // valid value followed by invalid value
 
         // invalid new tutorial ID
         assertParseFailure(parser, validCommand + INVALID_TUTORIAL_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_TUTORIAL_ID));
+                Messages.getErrorMessageForDuplicatePrefixes(TUTORIAL_ID.prefix));
 
         // invalid source tutorial ID
         assertParseFailure(parser, validCommand + INVALID_FROM_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_FROM));
+                Messages.getErrorMessageForDuplicatePrefixes(FROM.prefix));
 
         // invalid date
         assertParseFailure(parser, validCommand + INVALID_DATE_DESC,
-                Messages.getErrorMessageForDuplicatePrefixes(PREFIX_DATE));
+                Messages.getErrorMessageForDuplicatePrefixes(DATE.prefix));
     }
 
     @Test

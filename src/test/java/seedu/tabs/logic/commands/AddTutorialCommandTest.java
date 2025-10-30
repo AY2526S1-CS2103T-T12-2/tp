@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.testutil.Assert.assertThrows;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_A101;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -94,8 +94,8 @@ public class AddTutorialCommandTest {
 
     @Test
     public void toStringMethod() {
-        AddTutorialCommand addCommand = new AddTutorialCommand(TUTORIAL_CS2103T_C101);
-        String expected = AddTutorialCommand.class.getCanonicalName() + "{toAdd=" + TUTORIAL_CS2103T_C101 + "}";
+        AddTutorialCommand addCommand = new AddTutorialCommand(TUTORIAL_CS2103T_A101);
+        String expected = AddTutorialCommand.class.getCanonicalName() + "{toAdd=" + TUTORIAL_CS2103T_A101 + "}";
         assertEquals(expected, addCommand.toString());
     }
 

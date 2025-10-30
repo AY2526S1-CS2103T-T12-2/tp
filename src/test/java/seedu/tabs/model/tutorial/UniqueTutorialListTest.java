@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.tabs.logic.commands.CommandTestUtil.VALID_STUDENT_A;
 import static seedu.tabs.testutil.Assert.assertThrows;
-import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_C101;
+import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_CS2103T_A101;
 import static seedu.tabs.testutil.TypicalTutorials.TUTORIAL_TEST_T456;
 
 import java.util.Arrays;
@@ -30,19 +30,19 @@ public class UniqueTutorialListTest {
 
     @Test
     public void contains_tutorialNotInList_returnsFalse() {
-        assertFalse(uniqueTutorialList.contains(TUTORIAL_CS2103T_C101));
+        assertFalse(uniqueTutorialList.contains(TUTORIAL_CS2103T_A101));
     }
 
     @Test
     public void contains_tutorialInList_returnsTrue() {
-        uniqueTutorialList.add(TUTORIAL_CS2103T_C101);
-        assertTrue(uniqueTutorialList.contains(TUTORIAL_CS2103T_C101));
+        uniqueTutorialList.add(TUTORIAL_CS2103T_A101);
+        assertTrue(uniqueTutorialList.contains(TUTORIAL_CS2103T_A101));
     }
 
     @Test
     public void contains_tutorialWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueTutorialList.add(TUTORIAL_CS2103T_C101);
-        Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_C101)
+        uniqueTutorialList.add(TUTORIAL_CS2103T_A101);
+        Tutorial editedAlice = new TutorialBuilder(TUTORIAL_CS2103T_A101)
                 .withStudents(VALID_STUDENT_A).build();
         assertTrue(uniqueTutorialList.contains(editedAlice));
     }
@@ -54,44 +54,44 @@ public class UniqueTutorialListTest {
 
     @Test
     public void add_duplicateTutorial_throwsDuplicateTutorialException() {
-        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_C101);
+        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_A101);
         assertThrows(DuplicateTutorialException.class, () -> uniqueTutorialList
-                .add(TypicalTutorials.TUTORIAL_CS2103T_C101));
+                .add(TypicalTutorials.TUTORIAL_CS2103T_A101));
     }
 
     @Test
     public void setTutorial_nullTargetTutorial_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueTutorialList
-                .setTutorial(null, TypicalTutorials.TUTORIAL_CS2103T_C101));
+                .setTutorial(null, TypicalTutorials.TUTORIAL_CS2103T_A101));
     }
 
     @Test
     public void setTutorial_nullEditedTutorial_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueTutorialList
-                .setTutorial(TypicalTutorials.TUTORIAL_CS2103T_C101, null));
+                .setTutorial(TypicalTutorials.TUTORIAL_CS2103T_A101, null));
     }
 
     @Test
     public void setTutorial_targetTutorialNotInList_throwsTutorialNotFoundException() {
         assertThrows(TutorialNotFoundException.class, () -> uniqueTutorialList
-                .setTutorial(TypicalTutorials.TUTORIAL_CS2103T_C101, TypicalTutorials.TUTORIAL_CS2103T_C101));
+                .setTutorial(TypicalTutorials.TUTORIAL_CS2103T_A101, TypicalTutorials.TUTORIAL_CS2103T_A101));
     }
 
     @Test
     public void setTutorial_editedTutorialIsSameTutorial_success() {
-        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_C101);
-        uniqueTutorialList.setTutorial(TypicalTutorials.TUTORIAL_CS2103T_C101, TypicalTutorials.TUTORIAL_CS2103T_C101);
+        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_A101);
+        uniqueTutorialList.setTutorial(TypicalTutorials.TUTORIAL_CS2103T_A101, TypicalTutorials.TUTORIAL_CS2103T_A101);
         UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();
-        expectedUniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_C101);
+        expectedUniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_A101);
         assertEquals(expectedUniqueTutorialList, uniqueTutorialList);
     }
 
     @Test
     public void setTutorial_editedTutorialHasSameIdentity_success() {
-        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_C101);
-        Tutorial editedAlice = new TutorialBuilder(TypicalTutorials.TUTORIAL_CS2103T_C101)
+        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_A101);
+        Tutorial editedAlice = new TutorialBuilder(TypicalTutorials.TUTORIAL_CS2103T_A101)
                 .withStudents(VALID_STUDENT_A).build();
-        uniqueTutorialList.setTutorial(TypicalTutorials.TUTORIAL_CS2103T_C101, editedAlice);
+        uniqueTutorialList.setTutorial(TypicalTutorials.TUTORIAL_CS2103T_A101, editedAlice);
         UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();
         expectedUniqueTutorialList.add(editedAlice);
         assertEquals(expectedUniqueTutorialList, uniqueTutorialList);
@@ -99,8 +99,8 @@ public class UniqueTutorialListTest {
 
     @Test
     public void setTutorial_editedTutorialHasDifferentIdentity_success() {
-        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_C101);
-        uniqueTutorialList.setTutorial(TypicalTutorials.TUTORIAL_CS2103T_C101, TUTORIAL_TEST_T456);
+        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_A101);
+        uniqueTutorialList.setTutorial(TypicalTutorials.TUTORIAL_CS2103T_A101, TUTORIAL_TEST_T456);
         UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();
         expectedUniqueTutorialList.add(TUTORIAL_TEST_T456);
         assertEquals(expectedUniqueTutorialList, uniqueTutorialList);
@@ -108,10 +108,10 @@ public class UniqueTutorialListTest {
 
     @Test
     public void setTutorial_editedTutorialHasNonUniqueIdentity_throwsDuplicateTutorialException() {
-        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_C101);
+        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_A101);
         uniqueTutorialList.add(TUTORIAL_TEST_T456);
         assertThrows(DuplicateTutorialException.class, () -> uniqueTutorialList
-                .setTutorial(TypicalTutorials.TUTORIAL_CS2103T_C101, TUTORIAL_TEST_T456));
+                .setTutorial(TypicalTutorials.TUTORIAL_CS2103T_A101, TUTORIAL_TEST_T456));
     }
 
     @Test
@@ -122,13 +122,13 @@ public class UniqueTutorialListTest {
     @Test
     public void remove_tutorialDoesNotExist_throwsTutorialNotFoundException() {
         assertThrows(TutorialNotFoundException.class, () -> uniqueTutorialList
-                .remove(TypicalTutorials.TUTORIAL_CS2103T_C101));
+                .remove(TypicalTutorials.TUTORIAL_CS2103T_A101));
     }
 
     @Test
     public void remove_existingTutorial_removesTutorial() {
-        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_C101);
-        uniqueTutorialList.remove(TypicalTutorials.TUTORIAL_CS2103T_C101);
+        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_A101);
+        uniqueTutorialList.remove(TypicalTutorials.TUTORIAL_CS2103T_A101);
         UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();
         assertEquals(expectedUniqueTutorialList, uniqueTutorialList);
     }
@@ -140,7 +140,7 @@ public class UniqueTutorialListTest {
 
     @Test
     public void setTutorials_uniqueTutorialList_replacesOwnListWithProvidedUniqueTutorialList() {
-        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_C101);
+        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_A101);
         UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();
         expectedUniqueTutorialList.add(TUTORIAL_TEST_T456);
         uniqueTutorialList.setTutorials(expectedUniqueTutorialList);
@@ -154,7 +154,7 @@ public class UniqueTutorialListTest {
 
     @Test
     public void setTutorials_list_replacesOwnListWithProvidedList() {
-        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_C101);
+        uniqueTutorialList.add(TypicalTutorials.TUTORIAL_CS2103T_A101);
         List<Tutorial> tutorialList = Collections.singletonList(TUTORIAL_TEST_T456);
         uniqueTutorialList.setTutorials(tutorialList);
         UniqueTutorialList expectedUniqueTutorialList = new UniqueTutorialList();
@@ -164,8 +164,8 @@ public class UniqueTutorialListTest {
 
     @Test
     public void setTutorials_listWithDuplicateTutorials_throwsDuplicateTutorialException() {
-        List<Tutorial> listWithDuplicateTutorials = Arrays.asList(TypicalTutorials.TUTORIAL_CS2103T_C101,
-                TypicalTutorials.TUTORIAL_CS2103T_C101);
+        List<Tutorial> listWithDuplicateTutorials = Arrays.asList(TypicalTutorials.TUTORIAL_CS2103T_A101,
+                TypicalTutorials.TUTORIAL_CS2103T_A101);
         assertThrows(DuplicateTutorialException.class, () -> uniqueTutorialList.setTutorials(
                 listWithDuplicateTutorials));
     }
