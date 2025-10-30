@@ -324,47 +324,55 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* University student tutors who need to manage a large number of student contacts and related
-  information.
-* Prefer desktop apps over mobile or web alternatives
-* Comfortable with typing and prefer keyboard input
-* May not be technical, but are willing to learn simple systems
-* Appreciate clear, straightforward tools that reduce the effort needed to manage information.
+TAbs is designed for School of Computing (SoC) Teaching Assistants (TAs) in the National University of Singapore (NUS) who need a reliable and structured way to manage tutorial sessions and student attendance.
 
-**Value proposition**: Provide teaching assistants with a way to manage their
-classes and their students within each class
+These users typically:
+* Conduct multiple tutorials or lab sessions across different modules.
+* Manage a large number of students across classes.
+* Prefer a desktop-based, offline-capable tool for privacy and reliability.
+* Are comfortable typing commands in a CLI environment, but also appreciate a simple GUI for readability.
+* Value efficiency, accuracy, and minimal administrative friction in tracking tutorial progress.
+
+**Value proposition**:
+TAbs provides a centralised system for SoC TAs to manage their classes, students, and attendance efficiently — all within a lightweight desktop app.
+It automates repetitive administrative tasks like adding or copying tutorials, recording attendance, and viewing class lists.
+
+By combining the speed of a command-line interface with the clarity of a graphical display, TAbs enables TAs to focus on teaching rather than manual record-keeping.
+This results in smoother class preparation, faster attendance tracking, and better oversight of student engagement.
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …  | I want to …                                                | So that I can…                                                                        |
-|----------|---------|------------------------------------------------------------|---------------------------------------------------------------------------------------|
-| `* * *`  | TA      | add a student to a class                                   | keep a record of students in my classes                                               |
-| `* * *`  | TA      | delete a student from a class                              | remove students who are no longer in the class                                        |
-| `* * *`  | TA      | view a list of students in a class                         | have an overview of my class roster                                                   |
-| `* * *`  | TA      | add a class                                                | keep a record of my classes                                                           |
-| `* * *`  | TA      | delete a class                                             | remove unused or obsolete classes.                                                    |
-| `* * `   | TA      | copy an existing tutorial with a new ID and date           | reuse the student data for recurring tutorials without re-entering all student data   |
-| `* * `   | TA      | add details for my classes                                 | add important details about the classes (e.g. module name, time)                      |
-| `* * `   | TA      | mark a student’s attendance                                | track engagement for tutorials and discussions                                        |
-| `* * `   | TA      | unmark a student’s attendance                              | undo marking a student’s participation in case of a mistake                           |
-| `* * `   | TA      | mark all students' attendance in a tutorial                | track engagement for tutorials and discussions                                        |
-| `* * `   | TA      | unmark all students' attendance in a tutorial              | undo marking a student’s participation in case of a mistake                           |
-| `* * `   | TA      | find a tutorial based on Tutorial ID or Module Code        | quickly locate the tutorials I want without scrolling through the tutorial list       |
-| `* * `   | TA      | edit a student’s details.                                  | fix data entry mistakes without re-creating a new student                             |
-| `* * `   | TA      | search for a student by name or ID                         | quickly locate their details without scrolling through the list                       |
-| `* *`    | TA      | flag students who are underperforming                      | remember which students to follow up with                                             |
-| `* *`    | TA      | tag students via groups                                    | organize students in a neat manner in the UI                                          |
-| `* *`    | TA      | filter students by group tags                              | view only students from a specific group                                              |
-| `* *`    | New TA  | view a help message                                        | see what commands I can use to navigate the app                                       |
-| `* *`    | New TA  | see the correct format for commands after making a mistake | Use the commands correctly thereafter                                                 |
-| `* *`    | Busy TA | see a summary of the overall data                          | quickly glean any urgent information I might need                                     |
-| `* *`    | Busy TA | see a summary of the data for a student                    | quickly check the progress and status of a student                                    |
-| `*`      | TA      | upload profile pictures of my students                     | identify students more easily and match their name to their face                      |
-| `*`      | TA      | export student lists to a file                             | have an organised view of their progress (which is downloadable)                      |
-| `*`      | TA      | import CSV to upload student data                          | easily upload student profiles                                                        |
-| `*`      | TA      | archive past classes                                       | keep my current workspace clean while still retaining old records for future reference |
+| Priority | As a … | I want to …                                                  | So that I can…                                                                                   |
+|----------|--------|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| `***`    | TA     | add a tutorial class                                         | keep a record of my tutorials in one place                                                       |
+| `***`    | TA     | delete a tutorial class                                      | remove outdated or cancelled tutorials                                                           |
+| `***`    | TA     | view a list of all my tutorial classes                       | have an overview of my teaching schedule                                                         |
+| `***`    | TA     | view all students in a specific tutorial                     | see my class roster at a glance                                                                  |
+| `***`    | TA     | add a student to a specific tutorial                         | keep a record of students attending that tutorial                                                |
+| `***`    | TA     | delete a student from a tutorial                             | remove students who have dropped the class                                                       |
+| `***`    | TA     | mark a student’s attendance in a tutorial                    | track which students attended a particular session                                               |
+| `***`    | TA     | unmark a student’s attendance                                | correct mistakes or update attendance records                                                    |
+| `**`     | TA     | copy an existing tutorial with a new ID and date             | reuse student data for recurring tutorial sessions                                               |
+| `**`     | TA     | edit a tutorial’s details                                    | update the module code, date, or tutorial ID without deleting the tutorial                       |
+| `** `    | TA     | search for a tutorial based on Tutorial ID or Module Code    | quickly locate the tutorials I want without scrolling through the tutorial list                  |
+| `**`     | TA     | mark all students in a tutorial as present                   | quickly record attendance for the entire class when everyone is present                          |
+| `**`     | TA     | unmark all students in a tutorial                            | efficiently reset or correct attendance for the entire class in one command                      |
+| `**`     | TA     | sort the tutorial list by date                               | view my upcoming tutorials in chronological order and plan my teaching schedule more easily      |
+| `**`     | TA     | find tutorials by date                                       | quickly locate tutorials happening on a specific day without manually scrolling through the list |
+| `**`     | TA     | search for a student by name or ID                           | quickly locate a student’s record within large tutorials                                         |
+| `**`     | TA     | tag students into groups                                     | organize my tutorial more efficiently for activities or grading                                  |
+| `**`     | TA     | filter students by group tag                                 | view only students from a specific group                                                         |
+| `**`     | TA     | view a summary of attendance for a tutorial                  | get an overview of participation and absences                                                    |
+| `**`     | TA     | view a summary of a student’s participation across tutorials | identify students who may need follow-up                                                         |
+| `**`     | New TA | view help messages or usage hints                            | learn how to use commands effectively                                                            |
+| `**`     | New TA | see the correct format after entering an invalid command     | fix mistakes quickly and continue using the app                                                  |
+| `*`      | TA     | import a CSV file of student data                            | upload student lists easily from other sources                                                   |
+| `*`      | TA     | export student lists or attendance records to a file         | keep offline records or share them with module coordinators                                      |
+| `*`      | TA     | upload profile pictures of students                          | better associate student names with faces                                                        |
+| `*`      | TA     | archive past tutorials                                       | keep my workspace tidy while retaining historical data                                           |
+
 
 ### Use cases
 
@@ -482,46 +490,7 @@ specified otherwise)
 
       Use case resumes from step 1.
 
-**Use Case: UC6 - Copy an existing tutorial with new ID and date**
-
-**MSS**
-
-1. TA requests to copy a tutorial.
-2. TAbs creates a new tutorial by copying an existing tutorial (as specified by TA).
-3. TAbs confirms the creation of the tutorial.
-   Use case ends.
-
-**Extension**
-
-* 1a. Invalid or missing details are provided
-  * 1a1.TAbs informs the TA of the invalid input.
-    
-    Use case resumes from step 1.
-* 2a. TAbs detects that the tutorial ID that TA is trying to copy from does not exist.
-  * 2a1 TAbs informs the TA that the tutorial ID does not exist
-
-    Use case resumes from step 1.
-
-**Use case: UC7 - Find specific tutorials in TAbs**
-
-**MSS**
-
-1. TA requests to search for tutorials.
-2. TAbs finds tutorials which match the given specifications.
-3. TAbs displays the updated list of tutorials.
-4. TAbs informs the TA of how many tutorials match the given specification
-5. TAbs displays the updated filtered list of tutorials.
-
-   Use case ends.
-
-**Extensions**
-
-* 1a. Invalid or missing details are provided.
-    * 1b1. TAbs informs the TA of the invalid input.
-
-      Use case resumes from step 1.
-
-**Use case: UC8 - Mark students in a tutorial as present**
+**Use case: UC6 - Mark students in a tutorial as present**
 
 **MSS**
 
@@ -535,9 +504,9 @@ specified otherwise)
 
 * 1a. One or more of the specified students do not exist in the tutorial.
     * 1a1. Those students are ignored and not marked.
-  
+
       Use case resumes from step 2 for the remaining students.
-  
+
 * 1b. One or more of the specified students in the tutorial were already marked.
     * 1a1. Those students are ignored and not remarked.
 
@@ -548,7 +517,7 @@ specified otherwise)
 
       Use case resumes from step 1.
 
-**Use case: UC9 - Unmark students in a tutorial**
+**Use case: UC7 - Unmark students in a tutorial**
 
 **MSS**
 
@@ -575,7 +544,71 @@ specified otherwise)
 
       Use case resumes from step 1.
 
-**Use case: UC10 - Mark all students' attendance in a tutorial**
+**Use Case: UC8 - Copy an existing tutorial with new ID and date**
+
+**MSS**
+
+1. TA requests to copy a tutorial.
+2. TAbs creates a new tutorial by copying an existing tutorial (as specified by TA).
+3. TAbs confirms the creation of the tutorial.
+   Use case ends.
+
+**Extension**
+
+* 1a. Invalid or missing details are provided
+    * 1a1.TAbs informs the TA of the invalid input.
+
+      Use case resumes from step 1.
+* 2a. TAbs detects that the tutorial ID that TA is trying to copy from does not exist.
+    * 2a1. TAbs informs the TA that the tutorial ID does not exist
+
+      Use case resumes from step 1.
+
+**Use Case: UC9 - Edit a tutorial’s details**
+
+**MSS**
+
+1. TA requests to edit an existing tutorial’s details (e.g., ID, module code, or date).
+2. TAbs updates the specified tutorial with the new details.
+3. TAbs confirms that the tutorial has been successfully updated.
+   Use case ends.
+
+**Extension**
+
+* 1a. Invalid or missing details are provided.
+    * 1a1. TAbs informs the TA of the invalid input.
+
+      Use case resumes from step 1.
+* 1b. The tutorial specified by the TA does not exist.
+    * 1a1. TAbs informs the TA that the tutorial ID does not exist.
+
+      Use case resumes from step 1.
+* 1c. The new tutorial ID entered already exists.
+    * 2a1. TAbs informs the TA that the tutorial ID is already in use.
+
+      Use case ends.
+
+
+**Use case: UC10 - Find specific tutorials in TAbs**
+
+**MSS**
+
+1. TA requests to search for tutorials.
+2. TAbs finds tutorials which match the given specifications.
+3. TAbs displays the updated list of tutorials.
+4. TAbs informs the TA of how many tutorials match the given specification
+5. TAbs displays the updated filtered list of tutorials.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Invalid or missing details are provided.
+    * 1b1. TAbs informs the TA of the invalid input.
+
+      Use case resumes from step 1.
+
+**Use case: UC11 - Mark all students' attendance in a tutorial**
 
 **MSS**
 
@@ -596,7 +629,7 @@ specified otherwise)
 
       Use case ends.
 
-**Use case: UC11 - Unmark all students' attendance in a tutorial**
+**Use case: UC12 - Unmark all students' attendance in a tutorial**
 
 **MSS**
 
@@ -695,204 +728,34 @@ testers are expected to do more *exploratory* testing.
    9. Test case: `add_tutorial t/T16 m/CS2103T d/2025-01-01 from/T1` (extra prefix)<br>
       Expected: No tutorial is added. Error message indicates extra unexpected prefix
 
-### Copying an existing tutorial
-
-1. Copying a tutorial while all tutorials are being shown
-
-   1. Prerequisites: List all tutorials using the `list` command. At least one tutorial (e.g., `T1`) exists in the list.
-
-   2. Test case: `copy_tutorial t/T20 from/T1 d/2025-12-01`<br>
-      Expected: A new tutorial with ID `T20` is created by copying from `T1` with the new date `2025-12-01`. All students from `T1` are copied to `T20`. Details of the copy operation are shown in the status message. The tutorial list is displayed showing all tutorials.
-
-   3. Test case: `copy_tutorial t/T21 from/T1 d/2025-12-02`<br>
-      Expected: Another copy is successfully created with ID `T21`.
-
-   4. Test case: `copy_tutorial t/T1 from/T1 d/2025-12-03` (new ID same as source)<br>
-      Expected: No tutorial is copied. Error message indicates that the tutorial ID already exists.
-
-   5. Test case: `copy_tutorial t/T22 from/T99 d/2025-12-04` (source tutorial doesn't exist)<br>
-      Expected: No tutorial is copied. Error message indicates that the source tutorial ID does not exist.
-
-   6. Test case: `copy_tutorial t/T23 from/T1 d/2025-13-05` (invalid date)<br>
-      Expected: No tutorial is copied. Error message indicates invalid date format.
-
-   7. Test case: `copy_tutorial t/T24 from/T1` (missing required date)<br>
-      Expected: No tutorial is copied. Error message indicates missing required prefix.
-
-   8. Test case: `copy_tutorial t/T25 from/T1 d/2025-12-06 t/T26` (duplicate prefix)<br>
-      Expected: No tutorial is copied. Error message indicates unexpected prefixes.
-
-   9. Test case: `copy_tutorial t/T16 from/T1 d/2025-01-01 m/CS2103T` (extra prefix)<br>
-      Expected: No tutorial is copied. Error message indicates extra unexpected prefix
-
-
-2. Copying a tutorial while only some tutorials are being shown
-
-   1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
-
-   2. Test cases are the same as above, and should produce the same results since the `copy_tutorial` command acts on the entire tutorial list in TAbs. After the command, the displayed list reverts to displaying all tutorials.
-
 ### Deleting a tutorial
 
 1. Deleting a tutorial while all tutorials are being shown
 
-   1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials in the list. 
+    1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials in the list.
 
-   2. Test case: `delete_tutorial t/T1`<br>
-      Expected: The tutorial with ID `T1` is deleted. Details of the deleted tutorial are shown in the
-      status message.
+    2. Test case: `delete_tutorial t/T1`<br>
+       Expected: The tutorial with ID `T1` is deleted. Details of the deleted tutorial are shown in the
+       status message.
 
-   3. Test case: `delete_tutorial t/t1`<br>
-      Expected: The tutorial with ID `T1` is still deleted due to case-insensitivity. Details of the deleted tutorial are shown in the
-      status message.
+    3. Test case: `delete_tutorial t/t1`<br>
+       Expected: The tutorial with ID `T1` is still deleted due to case-insensitivity. Details of the deleted tutorial are shown in the
+       status message.
 
-   4. Test case: `delete_tutorial t/0`<br>
-      Expected: No tutorial is deleted as the tutorial ID does not exist. Error details shown in the status message.
+    4. Test case: `delete_tutorial t/0`<br>
+       Expected: No tutorial is deleted as the tutorial ID does not exist. Error details shown in the status message.
 
-   5. Test case: `delete_tutorial m/0`<br>
-      Expected: No tutorial is deleted as the prefix is incorrect. Error details shown in the status message.
+    5. Test case: `delete_tutorial m/0`<br>
+       Expected: No tutorial is deleted as the prefix is incorrect. Error details shown in the status message.
 
-   6. Test case: `delete_tutorial t/T1 t/T2`<br>
-      Expected: No tutorial is deleted as there should only be one `t/` prefix. Error details shown in the status message.
+    6. Test case: `delete_tutorial t/T1 t/T2`<br>
+       Expected: No tutorial is deleted as there should only be one `t/` prefix. Error details shown in the status message.
 
 2. Deleting a tutorial while only some tutorials are being shown.
 
-   1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
+    1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
 
-   2. Test cases are the same as above, and should produce the same results since the `delete_tutorial` command acts on the entire tutorial list in TAbs.
-
-### Marking students in a tutorial
-
-1. Marking one or more valid students in an existing tutorial
-    
-    1. Prerequisites: List all tutorials using the list command. 
-       Tutorial T01 exists and contains student A0000001Z who is currently unmarked.
-
-    2. Test case: mark id/A0000001Z t/T01
-       Expected: Student A0000001Z becomes marked in tutorial T01.
-
-2. Attempting to mark an already marked student
-
-    1. Prerequisites: Tutorial T01 exists and student A0000001Z is already marked.
-
-    2. Test case: mark id/A0000001Z t/T01
-       Expected: No student is marked. 
-       An error message, saying Student A0000001Z is already marked, is shown.
-
-3. Attempting to mark a non-existent student
-
-    1. Prerequisites: Tutorial T01 exists. Student A9999999Z does not exist.
-
-    2. Test case: mark id/A9999999Z t/T01
-       Expected: No student is marked. 
-       An error message, saying Student A0000001Z does not exist, is shown. 
-   
-4. Attempting to mark in a non-existent tutorial
-
-    1. Prerequisites: Tutorial T99 does not exist.
-
-    2. Test case: mark id/A0000001Z t/T99
-       Expected: An error message, saying the tutorial does not exist is shown.
-
-5. Missing or invalid prefixes
-
-    1. Prerequisites: None
-   
-    2. Test case: mark id/A0000001Z t/T01
-       Expected: An invalid command format error is shown. 
-
-### Unmarking students in a tutorial
-
-1. Unmarking one or more valid students in an existing tutorial
-
-    1. Prerequisites: List all tutorials using the list command.
-       Tutorial T01 exists and contains student A0000001Z who is currently marked.
-
-    2. Test case: unmark id/A0000001Z t/T01
-       Expected: Student A0000001Z becomes unmarked in tutorial T01.
-
-2. Attempting to unmark an already unmarked student
-
-    1. Prerequisites: Tutorial T01 exists and student A0000001Z is already unmarked.
-
-    2. Test case: unmark id/A0000001Z t/T01
-       Expected: No student is unmarked.
-       An error message, saying Student A0000001Z is already unmarked, is shown.
-
-3. Attempting to unmark a non-existent student
-
-    1. Prerequisites: Tutorial T01 exists. Student A9999999Z does not exist.
-
-    2. Test case: unmark id/A9999999Z t/T01
-       Expected: No student is unmarked.
-       An error message, saying Student A0000001Z does not exist, is shown.
-
-4. Attempting to unmark in a non-existent tutorial
-
-    1. Prerequisites: Tutorial T99 does not exist.
-
-    2. Test case: unmark id/A0000001Z t/T99
-       Expected: An error message, saying the tutorial does not exist is shown.
-
-5. Missing or invalid prefixes
-
-    1. Prerequisites: None
-
-    2. Test case: unmark id/A0000001Z t/T01
-       Expected: An invalid command format error is shown.
-
-### Marking and unmarking all students in a tutorial
-
-1. Marking/Unmarking all students in a tutorial while all tutorials are being shown
-
-   1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials in the list.
-
-   2. Test case: `mark_all t/T1` or `unmark_all t/T1` (where tutorial with ID `T1` has students)<br>
-      Expected: All students in the tutorial are marked as present (or unmarked). The students' tags should all turn green
-      (or all turn to the default blue). Details of the students are shown in the status message.
-   
-   3. Test case: `mark_all t/T2` or `unmark_all t/T2` (where tutorial with ID `T2` has no students)<br>
-      Expected: No change to the tutorial. THe status message states that there are no students to be marked/unmarked.
-
-
-2. Marking/Unmarking all students in a tutorial while only some tutorials are being shown
-
-   1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
-
-   2. Test cases are the same as above, and should produce the same results since the both commands act on the entire tutorial list in TAbs.
-      After each command, the displayed list reverts to displaying all tutorials.
-
-
-### Deleting a student from a tutorial
-
-1. Deleting an existing student from a tutorial
-
-    1. Prerequisites: List all tutorials using the list command.
-       Tutorial T01 exists and contains student A0000001Z.
-
-       2. Test case: delete_student id/A0000001Z t/T01
-          Expected: Student A0000001Z is deleted from tutorial T01.
-
-2. Attempting to delete a student not in the tutorial
-
-    1. Prerequisites: Tutorial T01 exists, but student A0000002Z is not enrolled in it.
-
-    2. Test case: delete_student id/A0000002Z t/T01
-       Expected: Error saying the student is not in the tutorial is shown.
-
-3. Attempting to delete a student from a non-existent tutorial
-
-    1. Prerequisites: Tutorial T99 does not exist. Student A0000001Z exists in another tutorial.
-
-    2. Test case: delete_student id/A0000001Z t/T99
-       Expected: Error saying the tutorial does not exist is shown.
-
-4. Missing or invalid prefixes
-
-    1. Prerequisites: None.
-
-    2. Test case: delete_student A0000001Z t/T01
-       Expected: Invalid command usage error is thrown.
+    2. Test cases are the same as above, and should produce the same results since the `delete_tutorial` command acts on the entire tutorial list in TAbs.
 
 ### Listing all the students in a tutorial
 
@@ -925,6 +788,231 @@ testers are expected to do more *exploratory* testing.
 
     2. Test cases are the same as above, and should produce the same results since the `list_students` command acts on the entire tutorial list in TAbs.
        After each command, the displayed list reverts to displaying all tutorials.
+
+### Adding a student to a tutorial
+
+1. Adding a new student to an existing tutorial
+   
+   1. Prerequisites: List all tutorials using the `list` command.<br>
+   Tutorial `T01` exists and currently has no student with ID `A0000001Z`.
+
+   2. Test case: `add_student id/A0000001Z t/T01`<br>
+   Expected: Student `A0000001Z` is added to tutorial `T01`.<br>
+   Confirmation message displays the details of the added student.
+
+2. Adding multiple students, with some already in the tutorial
+
+   1. Prerequisites: Tutorial `T01` exists and already contains student `A0000001Z`.
+      Students `A0000002Z` and `A0000003Z` are not yet enrolled in the tutorial.
+   
+   2. Test case: `add_student id/A0000001Z id/A0000002Z id/A0000003Z t/T01`<br>
+      Expected: Students `A0000002Z` and `A0000003Z` are successfully added to tutorial `T01`. Student `A0000001Z` is skipped as a duplicate.<br>
+      Confirmation message indicates which students were successfully added, and which were duplicates
+
+3. Attempting to add a student to a non-existent tutorial
+
+    1. Prerequisites: Tutorial `T99` does not exist.
+
+    2. Test case: `add_student id/A0000001Z t/T99`
+       Expected: No student is added.
+       Error message indicates that the tutorial `T99` does not exist.
+
+4. Attempting to add a student to a non-existent tutorial
+
+    1. Prerequisites: Tutorial `T99` does not exist.
+
+    2. Test case: `add_student id/A0000001Z t/T99`
+       Expected: No student is added.
+       Error message indicates that the tutorial `T99` does not exist.
+
+5. Missing or invalid prefixes
+
+    1. Prerequisites: None.
+
+    2. Test case: `add_student A0000001Z t/T01`<br>
+       Expected: Invalid command usage error is thrown.
+
+### Deleting a student from a tutorial
+
+1. Deleting an existing student from a tutorial
+
+    1. Prerequisites: List all tutorials using the `list` command.
+       Tutorial `T01` exists and contains student `A0000001Z`.
+
+    2. Test case: `delete_student id/A0000001Z t/T01`
+       Expected: Student `A0000001Z` is deleted from tutorial `T01`.
+
+2. Attempting to delete a student not in the tutorial
+
+    1. Prerequisites: Tutorial `T01` exists, but student `A0000002Z` is not enrolled in it.
+
+    2. Test case: `delete_student id/A0000002Z t/T01`
+       Expected: Error saying the student is not in the tutorial is shown.
+
+3. Attempting to delete a student from a non-existent tutorial
+
+    1. Prerequisites: Tutorial `T99` does not exist. Student `A0000001Z` exists in another tutorial.
+
+    2. Test case: `delete_student id/A0000001Z t/T99`
+       Expected: Error saying the tutorial does not exist is shown.
+
+4. Missing or invalid prefixes
+
+    1. Prerequisites: None.
+
+    2. Test case: `delete_student A0000001Z t/T01`
+       Expected: Invalid command usage error is thrown.
+
+### Marking students in a tutorial
+
+1. Marking one or more valid students in an existing tutorial
+    
+    1. Prerequisites: List all tutorials using the `list` command. 
+       Tutorial `T01` exists and contains student `A0000001Z` who is currently unmarked.
+
+    2. Test case: `mark id/A0000001Z t/T01`
+       Expected: Student `A0000001Z` becomes marked in tutorial `T01`.
+
+2. Attempting to mark an already marked student
+
+    1. Prerequisites: Tutorial `T01` exists and student `A0000001Z` is already marked.
+
+    2. Test case: `mark id/A0000001Z t/T01`
+       Expected: No student is marked. 
+       An error message, saying Student `A0000001Z` is already marked, is shown.
+
+3. Attempting to mark a non-existent student
+
+    1. Prerequisites: Tutorial `T01` exists. Student `A9999999Z` does not exist.
+
+    2. Test case: `mark id/A9999999Z t/T01`
+       Expected: No student is marked. 
+       An error message, saying Student `A0000001Z` does not exist, is shown. 
+   
+4. Attempting to mark in a non-existent tutorial
+
+    1. Prerequisites: Tutorial `T99` does not exist.
+
+    2. Test case: `mark id/A0000001Z t/T99`
+       Expected: An error message, saying the tutorial does not exist is shown.
+
+5. Missing or invalid prefixes
+
+    1. Prerequisites: None
+   
+    2. Test case: `mark student/A0000001Z t/T01`
+       Expected: An invalid command format error is shown. 
+
+### Unmarking students in a tutorial
+
+1. Unmarking one or more valid students in an existing tutorial
+
+    1. Prerequisites: List all tutorials using the `list` command.
+       Tutorial `T01` exists and contains student `A0000001Z` who is currently marked.
+
+    2. Test case: `unmark id/A0000001Z t/T01`
+       Expected: Student `A0000001Z` becomes unmarked in tutorial `T01`.
+
+2. Attempting to unmark an already unmarked student
+
+    1. Prerequisites: Tutorial `T01` exists and student `A0000001Z` is already unmarked.
+
+    2. Test case: `unmark student/A0000001Z t/T01`
+       Expected: No student is unmarked.
+       An error message, saying Student `A0000001Z` is already unmarked, is shown.
+
+3. Attempting to unmark a non-existent student
+
+    1. Prerequisites: Tutorial `T01` exists. Student `A9999999Z` does not exist.
+
+    2. Test case: `unmark id/A9999999Z t/T01`
+       Expected: No student is unmarked.
+       An error message, saying Student `A0000001Z` does not exist, is shown.
+
+4. Attempting to unmark in a non-existent tutorial
+
+    1. Prerequisites: Tutorial `T99` does not exist.
+
+    2. Test case: `unmark id/A0000001Z t/T99`
+       Expected: An error message, saying the tutorial does not exist is shown.
+
+5. Missing or invalid prefixes
+
+    1. Prerequisites: None
+
+    2. Test case: `unmark id/A0000001Z t/T01`
+       Expected: An invalid command format error is shown.
+
+### Copying an existing tutorial
+
+1. Copying a tutorial while all tutorials are being shown
+
+    1. Prerequisites: List all tutorials using the `list` command. At least one tutorial (e.g., `T1`) exists in the list.
+
+    2. Test case: `copy_tutorial t/T20 from/T1 d/2025-12-01`<br>
+       Expected: A new tutorial with ID `T20` is created by copying from `T1` with the new date `2025-12-01`. All students from `T1` are copied to `T20`. Details of the copy operation are shown in the status message. The tutorial list is displayed showing all tutorials.
+
+    3. Test case: `copy_tutorial t/T21 from/T1 d/2025-12-02`<br>
+       Expected: Another copy is successfully created with ID `T21`.
+
+    4. Test case: `copy_tutorial t/T1 from/T1 d/2025-12-03` (new ID same as source)<br>
+       Expected: No tutorial is copied. Error message indicates that the tutorial ID already exists.
+
+    5. Test case: `copy_tutorial t/T22 from/T99 d/2025-12-04` (source tutorial doesn't exist)<br>
+       Expected: No tutorial is copied. Error message indicates that the source tutorial ID does not exist.
+
+    6. Test case: `copy_tutorial t/T23 from/T1 d/2025-13-05` (invalid date)<br>
+       Expected: No tutorial is copied. Error message indicates invalid date format.
+
+    7. Test case: `copy_tutorial t/T24 from/T1` (missing required date)<br>
+       Expected: No tutorial is copied. Error message indicates missing required prefix.
+
+    8. Test case: `copy_tutorial t/T25 from/T1 d/2025-12-06 t/T26` (duplicate prefix)<br>
+       Expected: No tutorial is copied. Error message indicates unexpected prefixes.
+
+    9. Test case: `copy_tutorial t/T16 from/T1 d/2025-01-01 m/CS2103T` (extra prefix)<br>
+       Expected: No tutorial is copied. Error message indicates extra unexpected prefix
+
+
+2. Copying a tutorial while only some tutorials are being shown
+
+    1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
+
+    2. Test cases are the same as above, and should produce the same results since the `copy_tutorial` command acts on the entire tutorial list in TAbs. After the command, the displayed list reverts to displaying all tutorials.
+
+### Editing a tutorial
+
+1. Editing a tutorial while all tutorials are being shown
+
+   1. Prerequisites: List all tutorials using the `list` command. At least one tutorial (e.g., `T1`) exists in the list.
+
+   2. Test case: `edit_tutorial from/T1 m/CS2101 d/2025-11-20`<br>
+      Expected: The tutorial with ID `T1` is updated to have module code `CS2101` and date `2025-11-20`.
+      Details of the updated tutorial are shown in the status message.
+
+   3. Test case: `edit_tutorial from/T1 t/T2`<br>
+      Expected: Tutorial `T1` is renamed to `T2`. The date and tutorial ID remain unchanged.
+
+   4. Test case: `edit_tutorial from/T1 m/CS2103T`<br>
+      Expected: Only the module code for tutorial `T1` is updated. The date and tutorial ID remain unchanged.
+
+   5. Test case: `edit_tutorial from/T99 m/CS2103T d/2025-12-01` (nonexistent tutorial)<br>
+      Expected: No tutorial is updated. Error message indicates that the specified tutorial ID does not exist.
+
+   6. Test case: `edit_tutorial from/T1 m/CS2103T d/2025-13-01` (invalid date)<br>
+      Expected: No tutorial is updated. Error message indicates invalid date format.
+
+   7. Test case: `edit_tutorial from/T2 t/T1 m/CS2103` (duplicate prefix)<br>
+      Expected: No tutorial is updated. Error message indicates specified tutorial ID already exists.
+      
+   8. Test case: `edit_tutorial t/T1 id/A1234567Z` (attempt to add student)<br>
+      Expected: No tutorial is updated. Error message indicates that students should be managed via the student specific commands
+
+2. Editing a tutorial while only some tutorials are being shown.
+
+    1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
+
+    2. Test cases are the same as above, and should produce the same results since the `edit_tutorial` command acts on the entire tutorial list in TAbs.
 
 ### Finding tutorials by keyword
 
@@ -964,11 +1052,34 @@ testers are expected to do more *exploratory* testing.
     2. Test cases are the same as above, and should produce the same results since the `find` command acts on the entire tutorial list in TAbs.
        After each command, the displayed list updates to show the tutorials matching the search criteria.
 
+### Marking and unmarking all students in a tutorial
+
+1. Marking/Unmarking all students in a tutorial while all tutorials are being shown
+
+    1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials in the list.
+
+    2. Test case: `mark_all t/T1` or `unmark_all t/T1` (where tutorial with ID `T1` has students)<br>
+       Expected: All students in the tutorial are marked as present (or unmarked). The students' tags should all turn green
+       (or all turn to the default blue). Details of the students are shown in the status message.
+
+    3. Test case: `mark_all t/T2` or `unmark_all t/T2` (where tutorial with ID `T2` has no students)<br>
+       Expected: No change to the tutorial. THe status message states that there are no students to be marked/unmarked.
+
+
+2. Marking/Unmarking all students in a tutorial while only some tutorials are being shown
+
+    1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
+
+    2. Test cases are the same as above, and should produce the same results since the both commands act on the entire tutorial list in TAbs.
+       After each command, the displayed list reverts to displaying all tutorials.
 
 ### Saving data
 
 1. Dealing with missing/corrupted data files
 
-    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. To simulate a missing file: delete the data file manually (`/data/tabs.json` or equivalent) and restart TAbs.<br>
+   Expected: A new, empty data file is automatically created. No data from previous sessions is restored.
 
-1. _{ more test cases …​ }_
+   2. To simulate a corrupted file: edit the data file manually and remove required brackets or fields.<br>
+   Expected: TAbs detects invalid file format and resets storage. A new, empty data file is created with a warning message shown in the status area.
+
