@@ -38,7 +38,7 @@ Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
 XYZCommand -up-|> Command
-note bottom of XYZCommand: XYZCommand AddTutorialCommand, FindCommand, ListCommand, etc.
+note bottom of XYZCommand: XYZCommand = AddTutorialCommand, FindCommand, ListCommand, etc.
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult
