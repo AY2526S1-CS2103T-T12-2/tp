@@ -36,7 +36,7 @@ public class MarkCommandParser implements Parser<MarkCommand> {
         }
 
         argMultimap.verifyNoDuplicatePrefixesFor(TUTORIAL_ID.prefix);
-        argMultimap.verifyNoExtraPrefixesExcept(TUTORIAL_ID.prefix);
+        argMultimap.verifyNoExtraPrefixesExcept(TUTORIAL_ID.prefix, STUDENT.prefix);
         Set<Student> studentSet = ParserUtil.parseStudents(argMultimap.getAllValues(STUDENT.prefix));
         String tutorialId = argMultimap.getValue(TUTORIAL_ID.prefix).orElse("");
         TutorialId parsedTutorialId = ParserUtil.parseTutorialId(tutorialId);

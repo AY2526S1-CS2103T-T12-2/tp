@@ -1,6 +1,7 @@
 package seedu.tabs.logic.parser;
 
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.tabs.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -23,7 +24,6 @@ public class MarkCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsMarkCommand() {
-        //Tutorial id and student id given
         String userInput = CommandTestUtil.TUTORIAL_DESC_C123 + CommandTestUtil.STUDENT_DESC_A;
         assertParseSuccess(parser, userInput,
                 new MarkCommand(studentSet, TypicalPredicates.PREDICATE_KEYWORD_C123));
@@ -40,7 +40,7 @@ public class MarkCommandParserTest {
     @Test
     public void parse_missingTutorialIdValue_failure() {
         // missing tutorial Id after prefix
-        String userInput = CliSyntax.PREFIX_TUTORIAL_ID + CommandTestUtil.STUDENT_DESC_A;
+        String userInput = TUTORIAL_ID.prefix + CommandTestUtil.STUDENT_DESC_A;
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE);
         assertParseFailure(parser, userInput, expectedMessage);
     }
@@ -56,7 +56,7 @@ public class MarkCommandParserTest {
     @Test
     public void parse_missingStudentIdValue_failure() {
         // missing student id after prefix
-        String userInput = CommandTestUtil.TUTORIAL_DESC_C123 + CliSyntax.PREFIX_STUDENT;
+        String userInput = CommandTestUtil.TUTORIAL_DESC_C123 + CliSyntax.STUDENT.prefix;
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE);
         assertParseFailure(parser, userInput, expectedMessage);
     }
