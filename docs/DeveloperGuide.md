@@ -205,46 +205,46 @@ The proposed undo/redo mechanism is facilitated by `VersionedTAbs`. It extends `
 with an undo/redo history, stored internally as an `tabsStateList` and `currentStatePointer`.
 Additionally, it implements the following operations:
 
-* `VersionedTAbs#commit()`— Saves the current addressbook state in its history.
-* `VersionedTAbs#undo()`— Restores the previous addressbook state from its history.
-* `VersionedTAbs#redo()`— Restores a previously undone addressbook state from its history.
+* `VersionedTAbs#commit()`— Saves the current TAbs state in its history.
+* `VersionedTAbs#undo()`— Restores the previous TAbs state from its history.
+* `VersionedTAbs#redo()`— Restores a previously undone TAbs state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitaddressbook()`,
-`Model#undoaddressbook()` and `Model#redoaddressbook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitTAbs()`,
+`Model#undoTAbs()` and `Model#redoTAbs()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
 Step 1. The user launches the application for the first time. The `VersionedTAbs` will be
-initialized with the initial addressbook state, and the `currentStatePointer` pointing to that
-single addressbook state.
+initialized with the initial TAbs state, and the `currentStatePointer` pointing to that
+single TAbs state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th tutorial in the addressbook. The
-`delete` command calls `Model#commitaddressbook()`, causing the modified state of the addressbook
+Step 2. The user executes `delete 5` command to delete the 5th tutorial in the TAbs. The
+`delete` command calls `Model#commitTAbs()`, causing the modified state of the TAbs
 after the `delete 5` command executes to be saved in the `tabsStateList`, and the
-`currentStatePointer` is shifted to the newly inserted addressbook state.
+`currentStatePointer` is shifted to the newly inserted TAbs state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
 Step 3. The user executes `add n/David …​` to add a new tutorial. The `add` command also calls
-`Model#commitaddressbook()`, causing another modified addressbook state to be saved into the
+`Model#commitTAbs()`, causing another modified TAbs state to be saved into the
 `tabsStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitaddressbook()`, so the addressbook state will not be saved into the `tabsStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTAbs()`, so the TAbs state will not be saved into the `tabsStateList`.
 
 </div>
 
 Step 4. The user now decides that adding the tutorial was a mistake, and decides to undo that action
-by executing the `undo` command. The `undo` command will call `Model#undoaddressbook()`, which will
-shift the `currentStatePointer` once to the left, pointing it to the previous addressbook state, and
-restores the addressbook to that state.
+by executing the `undo` command. The `undo` command will call `Model#undoTAbs()`, which will
+shift the `currentStatePointer` once to the left, pointing it to the previous TAbs state, and
+restores the TAbs to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial addressbook state, then there are no previous addressbook states to restore. The `undo` command uses `Model#canUndoaddressbook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial TAbs state, then there are no previous TAbs states to restore. The `undo` command uses `Model#canUndoTAbs()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -261,22 +261,22 @@ Similarly, how an undo operation goes through the `Model` component is shown bel
 
 ![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
 
-The `redo` command does the opposite — it calls `Model#redoaddressbook()`, which shifts the
+The `redo` command does the opposite — it calls `Model#redoTAbs()`, which shifts the
 `currentStatePointer` once to the right, pointing to the previously undone state, and restores the
-addressbook to that state.
+TAbs to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `tabsStateList.size() - 1`, pointing to the latest addressbook state, then there are no undone addressbook states to restore. The `redo` command uses `Model#canRedoaddressbook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `tabsStateList.size() - 1`, pointing to the latest TAbs state, then there are no undone TAbs states to restore. The `redo` command uses `Model#canRedoTAbs()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
 Step 5. The user then decides to execute the command `list`. Commands that do not modify the
-addressbook, such as `list`, will usually not call `Model#commitaddressbook()`,
-`Model#undoaddressbook()` or `Model#redoaddressbook()`. Thus, the `tabsStateList` remains unchanged.
+TAbs, such as `list`, will usually not call `Model#commitTAbs()`,
+`Model#undoTAbs()` or `Model#redoTAbs()`. Thus, the `tabsStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitaddressbook()`. Since the
-`currentStatePointer` is not pointing at the end of the `tabsStateList`, all addressbook states
+Step 6. The user executes `clear`, which calls `Model#commitTAbs()`. Since the
+`currentStatePointer` is not pointing at the end of the `tabsStateList`, all TAbs states
 after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the
 `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
@@ -290,7 +290,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire addressbook.
+* **Alternative 1 (current choice):** Saves the entire of TAbs.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
@@ -472,10 +472,10 @@ specified otherwise)
 
 **Extensions**
 
-* 1a. The student list for the tutorial is empty.
-    * 1a1. TAbs informs the TA that there are no students to be deleted.
+* 1a. The student does not exist in the tutorial.
+    * 1a1. TAbs informs the TA that the student does not exist in the tutorial.
 
-      Use case ends.
+      Use case ends resumes from step 1.
 
 * 1b. Invalid or missing details are provided.
     * 1b1. TAbs informs the TA of the invalid input.
@@ -521,7 +521,61 @@ specified otherwise)
 
       Use case resumes from step 1.
 
-**Use case: UCX - Mark all students' attendance in a tutorial**
+**Use case: UC8 - Mark students in a tutorial as present**
+
+**MSS**
+
+1. TA requests to mark students in a tutorial.
+2. TAbs marks the specified students, in the specified tutorial, as present.
+3. TAbs displays the list of students who were marked.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. One or more of the specified students do not exist in the tutorial.
+    * 1a1. Those students are ignored and not marked.
+  
+      Use case resumes from step 2 for the remaining students.
+  
+* 1b. One or more of the specified students in the tutorial were already marked.
+    * 1a1. Those students are ignored and not remarked.
+
+      Use case resumes from step 2 for the remaining students.
+
+* 1c. Invalid or missing details are provided.
+    * 1b1. TAbs informs the TA of the invalid input.
+
+      Use case resumes from step 1.
+
+**Use case: UC9 - Unmark students in a tutorial**
+
+**MSS**
+
+1. TA requests to unmark the attendance of some students in a tutorial.
+2. TAbs unmarks the specified students in the specified tutorial.
+3. TAbs displays the list of students who were unmarked.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. One or more of the specified students do not exist in the tutorial.
+    * 1a1. Those students are ignored and not unmarked.
+
+      Use case resumes from step 2 for the remaining students.
+
+* 1b. One or more of the specified students in the tutorial were already unmarked.
+    * 1a1. Those students are ignored and not unmarked.
+
+      Use case resumes from step 2 for the remaining students.
+
+* 1c. Invalid or missing details are provided.
+    * 1b1. TAbs informs the TA of the invalid input.
+
+      Use case resumes from step 1.
+
+**Use case: UC10 - Mark all students' attendance in a tutorial**
 
 **MSS**
 
@@ -542,7 +596,7 @@ specified otherwise)
 
       Use case ends.
 
-**Use case: UCY - Unmark all students' attendance in a tutorial**
+**Use case: UC11 - Unmark all students' attendance in a tutorial**
 
 **MSS**
 
@@ -701,13 +755,91 @@ testers are expected to do more *exploratory* testing.
    6. Test case: `delete_tutorial t/T1 t/T2`<br>
       Expected: No tutorial is deleted as there should only be one `t/` prefix. Error details shown in the status message.
 
-
 2. Deleting a tutorial while only some tutorials are being shown.
 
    1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
 
    2. Test cases are the same as above, and should produce the same results since the `delete_tutorial` command acts on the entire tutorial list in TAbs.
 
+### Marking students in a tutorial
+
+1. Marking one or more valid students in an existing tutorial
+    
+    1. Prerequisites: List all tutorials using the list command. 
+       Tutorial T01 exists and contains student A0000001Z who is currently unmarked.
+
+    2. Test case: mark id/A0000001Z t/T01
+       Expected: Student A0000001Z becomes marked in tutorial T01.
+
+2. Attempting to mark an already marked student
+
+    1. Prerequisites: Tutorial T01 exists and student A0000001Z is already marked.
+
+    2. Test case: mark id/A0000001Z t/T01
+       Expected: No student is marked. 
+       An error message, saying Student A0000001Z is already marked, is shown.
+
+3. Attempting to mark a non-existent student
+
+    1. Prerequisites: Tutorial T01 exists. Student A9999999Z does not exist.
+
+    2. Test case: mark id/A9999999Z t/T01
+       Expected: No student is marked. 
+       An error message, saying Student A0000001Z does not exist, is shown. 
+   
+4. Attempting to mark in a non-existent tutorial
+
+    1. Prerequisites: Tutorial T99 does not exist.
+
+    2. Test case: mark id/A0000001Z t/T99
+       Expected: An error message, saying the tutorial does not exist is shown.
+
+5. Missing or invalid prefixes
+
+    1. Prerequisites: None
+   
+    2. Test case: mark id/A0000001Z t/T01
+       Expected: An invalid command format error is shown. 
+
+### Unmarking students in a tutorial
+
+1. Unmarking one or more valid students in an existing tutorial
+
+    1. Prerequisites: List all tutorials using the list command.
+       Tutorial T01 exists and contains student A0000001Z who is currently marked.
+
+    2. Test case: unmark id/A0000001Z t/T01
+       Expected: Student A0000001Z becomes unmarked in tutorial T01.
+
+2. Attempting to unmark an already unmarked student
+
+    1. Prerequisites: Tutorial T01 exists and student A0000001Z is already unmarked.
+
+    2. Test case: unmark id/A0000001Z t/T01
+       Expected: No student is unmarked.
+       An error message, saying Student A0000001Z is already unmarked, is shown.
+
+3. Attempting to unmark a non-existent student
+
+    1. Prerequisites: Tutorial T01 exists. Student A9999999Z does not exist.
+
+    2. Test case: unmark id/A9999999Z t/T01
+       Expected: No student is unmarked.
+       An error message, saying Student A0000001Z does not exist, is shown.
+
+4. Attempting to unmark in a non-existent tutorial
+
+    1. Prerequisites: Tutorial T99 does not exist.
+
+    2. Test case: unmark id/A0000001Z t/T99
+       Expected: An error message, saying the tutorial does not exist is shown.
+
+5. Missing or invalid prefixes
+
+    1. Prerequisites: None
+
+    2. Test case: unmark id/A0000001Z t/T01
+       Expected: An invalid command format error is shown.
 
 ### Marking and unmarking all students in a tutorial
 
@@ -730,6 +862,37 @@ testers are expected to do more *exploratory* testing.
    2. Test cases are the same as above, and should produce the same results since the both commands act on the entire tutorial list in TAbs.
       After each command, the displayed list reverts to displaying all tutorials.
 
+
+### Deleting a student from a tutorial
+
+1. Deleting an existing student from a tutorial
+
+    1. Prerequisites: List all tutorials using the list command.
+       Tutorial T01 exists and contains student A0000001Z.
+
+       2. Test case: delete_student id/A0000001Z t/T01
+          Expected: Student A0000001Z is deleted from tutorial T01.
+
+2. Attempting to delete a student not in the tutorial
+
+    1. Prerequisites: Tutorial T01 exists, but student A0000002Z is not enrolled in it.
+
+    2. Test case: delete_student id/A0000002Z t/T01
+       Expected: Error saying the student is not in the tutorial is shown.
+
+3. Attempting to delete a student from a non-existent tutorial
+
+    1. Prerequisites: Tutorial T99 does not exist. Student A0000001Z exists in another tutorial.
+
+    2. Test case: delete_student id/A0000001Z t/T99
+       Expected: Error saying the tutorial does not exist is shown.
+
+4. Missing or invalid prefixes
+
+    1. Prerequisites: None.
+
+    2. Test case: delete_student A0000001Z t/T01
+       Expected: Invalid command usage error is thrown.
 
 ### Listing all the students in a tutorial
 
@@ -762,8 +925,6 @@ testers are expected to do more *exploratory* testing.
 
     2. Test cases are the same as above, and should produce the same results since the `list_students` command acts on the entire tutorial list in TAbs.
        After each command, the displayed list reverts to displaying all tutorials.
-
-
 
 ### Finding tutorials by keyword
 
