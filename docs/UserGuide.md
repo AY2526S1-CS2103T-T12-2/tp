@@ -146,7 +146,7 @@ Format: `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE`
 * `NEW_TUTORIAL_ID` must not already exist in TAbs.
 * `NEW_TUTORIAL_ID` and `EXISTING_TUTORIAL_ID` are case-insensitive (e.g., both `t/t123` and `t/T123` will be stored as/refer to the same tutorial).
 * The existing tutorial ID must exist in TAbs.
-* All students from the existing tutorial will be copied to the new tutorial.
+* All students from the existing tutorial will be copied to the new tutorial with their attendance reset to being unmarked.
 * The module code will be copied from the existing tutorial.
 * `DATE` should be in **YYYY-MM-DD** format.
 
@@ -156,6 +156,10 @@ Examples:
   the date `2025-04-10`.
 * `copy_tutorial t/T202 from/T201 d/2025-05-15` copies the tutorial `T201` to create a new tutorial `T202`
   with the date `2025-05-15`.
+
+Below is an example of the copy command being used:
+
+![copy command](images/copyCommand.png)
 
 ### Editing a tutorial: `edit_tutorial`
 
