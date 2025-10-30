@@ -118,7 +118,7 @@ The `UI` component,
 
 Here's a (partial) class diagram of the `Logic` component:
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/UpdatedLogicClassDiagram.png" width="550"/>
 
 The sequence diagram below illustrates the interactions within the `Logic` component, taking
 `execute("delete_tutorial t/T1")` API call as an example.
@@ -161,7 +161,7 @@ How the parsing works:
 **API** : [
 `Model.java`](https://github.com/AY2526S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/tabs/model/Model.java)
 
-<img src="images/UpdatedModelClassDiagram.png" width="450" />
+<img src="images/UpdatedModelClassDiagram.png" width="600" />
 
 
 The `Model` component,
