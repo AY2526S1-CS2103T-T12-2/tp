@@ -26,8 +26,8 @@ public class DeleteStudentCommand extends Command {
             + ": Delete a student identified by the given student ID "
             + "from the tutorial identified by the given tutorial ID.\n"
             + "Parameters: "
-            + STUDENT.prefix + "[STUDENT_ID] "
-            + TUTORIAL_ID.prefix + "[TUTORIAL_ID]\n"
+            + STUDENT.prefix + "STUDENT_ID "
+            + TUTORIAL_ID.prefix + "TUTORIAL_ID\n"
             + "Example: " + COMMAND_WORD + " "
             + STUDENT.prefix + "A0123456Z "
             + TUTORIAL_ID.prefix + "T123";

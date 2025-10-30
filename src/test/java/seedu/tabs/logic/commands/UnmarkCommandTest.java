@@ -24,6 +24,7 @@ import seedu.tabs.model.ReadOnlyUserPrefs;
 import seedu.tabs.model.TAbs;
 import seedu.tabs.model.student.Student;
 import seedu.tabs.model.tutorial.Date;
+import seedu.tabs.model.tutorial.ModuleCode;
 import seedu.tabs.model.tutorial.Tutorial;
 import seedu.tabs.model.tutorial.TutorialId;
 import seedu.tabs.model.tutorial.TutorialIdMatchesKeywordPredicate;
@@ -38,20 +39,6 @@ public class UnmarkCommandTest {
     private final Student alice = new Student("A0000001Z");
     private final Student bob = new Student("A0000002Z");
     private final Student charlie = new Student("A0000003Z");
-
-    private final Tutorial t1WithMarkedStudents = new TutorialBuilder()
-            .withId("T01")
-            .withModuleCode("CS2103T")
-            .withDate("2025-10-14")
-            .withStudents(alice.studentId, bob.studentId)
-            .build();
-
-    private final Tutorial t2Empty = new TutorialBuilder()
-            .withId("T02")
-            .withModuleCode("CS2103T")
-            .withDate("2025-10-14")
-            .withStudents()
-            .build();
 
     UnmarkCommandTest() {
         alice.mark();
@@ -149,8 +136,26 @@ public class UnmarkCommandTest {
     private class ModelStubWithTutorials extends ModelStub {
         private final List<Tutorial> tutorials;
         private final TAbs tAbs;
+        private final Set<Student> markedStudents = new HashSet<>();
+        private final Tutorial t2Empty = new TutorialBuilder()
+                .withId("T02")
+                .withModuleCode("CS2103T")
+                .withDate("2025-10-14")
+                .withStudents()
+                .build();
 
         ModelStubWithTutorials() {
+            Student alice = new Student("A0000001Z");
+            Student bob = new Student("A0000002Z");
+            alice.mark();
+            alice.mark();
+            markedStudents.add(alice);
+            markedStudents.add(bob);
+            Tutorial t1WithMarkedStudents = new Tutorial(
+                    new TutorialId("T01"),
+                    new ModuleCode("CS2103T"),
+                    new Date("2025-10-14"),
+                    markedStudents);
             this.tutorials = new ArrayList<>(Arrays.asList(t1WithMarkedStudents, t2Empty));
             this.tAbs = new TAbs();
             this.tAbs.setTutorials(this.tutorials);
