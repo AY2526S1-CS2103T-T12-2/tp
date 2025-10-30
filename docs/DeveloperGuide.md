@@ -500,6 +500,53 @@ specified otherwise)
 
       Use case resumes from step 1.
 
+
+**Use case: UCX - Mark all students' attendance in a tutorial**
+
+**MSS**
+
+1. TA requests to search for tutorials.
+2. TAbs finds tutorials which match the given specifications.
+3. TAbs displays the updated list of tutorials.
+4. TAbs informs the TA of how many tutorials match the given specification
+5. TAbs displays the updated filtered list of tutorials.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There are no existing tutorials.
+    * 1a1. TAbs displays that there are no tutorials available.
+
+      Use case ends.
+
+* 2a. TAbs detects that the tutorial has no students to be marked as present.
+    * 2a1. TAbs informs the TA that the tutorial has no students to be marked as present.
+
+      Use case ends.
+
+
+**Use case: UCY - Unmark all students' attendance in a tutorial**
+
+**MSS**
+
+1. TA requests to unmark the attendance of every student in a tutorial.
+2. TAbs confirms that every student in the tutorial has been unmarked.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There are no existing tutorials.
+    * 1a1. TAbs displays that there are no tutorials available.
+
+      Use case ends.
+
+* 2a. TAbs detects that the tutorial has no students to be unmarked.
+    * 2a1. TAbs informs the TA that the tutorial has no students to be unmarked.
+
+      Use case ends.
+
 ### Non-Functional Requirements
 
 1. Commands execute within 300ms (≤5000 students).
@@ -533,10 +580,10 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the jar file and copy into an empty folder
+    1. Download the `.jar` file and copy into an empty folder
 
-    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window
-       size may not be optimum.
+   1. Double-click the `.jar` file Expected: Shows the GUI with a set of sample contacts. The window
+      size may not be optimum.
 
 1. Saving window preferences
 
@@ -554,17 +601,43 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials in the list.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the
-       status message. Timestamp in the status bar is updated.
+    2. Test case: `delete_tutorial t/T1`<br>
+       Expected: The tutorial with ID `T1` is deleted. Details of the deleted tutorial are shown in the
+       status message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No tutorial is deleted. Error details shown in the status message. Status bar
-       remains the same.
+    3. Test case: `delete_tutorial t/t1`<br>
+       Expected: The tutorial with ID `T1` is still deleted due to case-insensitivity. Details of the deleted tutorial are shown in the
+       status message.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than
-       the list size)<br>
-       Expected: Similar to previous.
+    4. Test case: `delete_tutorial t/0`<br>
+       Expected: No tutorial is deleted as the tutorial ID does not exist. Error details shown in the status message.
+
+    5. Test case: `delete_tutorial m/0`<br>
+       Expected: No tutorial is deleted as the prefix is incorrect. Error details shown in the status message.
+
+    6. Test case: `delete_tutorial t/T1 t/T2`<br>
+       Expected: No tutorial is deleted as there should only be one `t/` prefix. Error details shown in the status message.
+
+
+### Marking and unmarking all students in a tutorial
+
+1. Marking/Unmarking all students in a tutorial while all tutorials are being shown
+
+    1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials in the list.
+
+    2. Test case: `mark_all t/T1` or `unmark_all t/T1` (where tutorial with ID `T1` has students)<br>
+       Expected: All students in the tutorial are marked as present (or unmarked). The students' tags should all turn green
+       (or all turn to the default blue). Details of the students are shown in the status message.
+
+    3. Test case: `mark_all t/T2` or `unmark_all t/T2` (where tutorial with ID `T2` has no students)<br>
+       Expected: No change to the tutorial. THe status message states that there are no students to be marked/unmarked.
+
+2. Marking/Unmarking all students in a tutorial while only some tutorials are being shown
+
+    1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
+
+    2. Test cases are the same as above, and should produce the same results since the both commands act on the entire tutorial list in TAbs.
+       After each command, the displayed list reverts to displaying all tutorials.
 
 1. _{ more test cases …​ }_
 
