@@ -583,7 +583,7 @@ testers are expected to do more *exploratory* testing.
     1. Download the `.jar` file and copy into an empty folder
 
     1. Double-click the `.jar` file Expected: Shows the GUI with a set of sample contacts. The window
-      size may not be optimum.
+       size may not be optimum.
 
 1. Saving window preferences
 
@@ -599,8 +599,8 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a tutorial while all tutorials are being shown
 
-   1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials in the list.
-    
+   1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials in the list. 
+
    2. Test case: `delete_tutorial t/T1`<br>
       Expected: The tutorial with ID `T1` is deleted. Details of the deleted tutorial are shown in the
       status message.
@@ -619,6 +619,14 @@ testers are expected to do more *exploratory* testing.
       Expected: No tutorial is deleted as there should only be one `t/` prefix. Error details shown in the status message.
 
 
+2. Deleting a tutorial while only some tutorials are being shown.
+
+    1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
+
+    2. Test cases are the same as above, and should produce the same results since the `delete_tutorial` command acts on the entire tutorial list in TAbs.
+
+
+
 ### Marking and unmarking all students in a tutorial
 
 1. Marking/Unmarking all students in a tutorial while all tutorials are being shown
@@ -626,9 +634,9 @@ testers are expected to do more *exploratory* testing.
    1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials in the list.
 
    2. Test case: `mark_all t/T1` or `unmark_all t/T1` (where tutorial with ID `T1` has students)<br>
-   Expected: All students in the tutorial are marked as present (or unmarked). The students' tags should all turn green
-   (or all turn to the default blue). Details of the students are shown in the status message.
-
+      Expected: All students in the tutorial are marked as present (or unmarked). The students' tags should all turn green
+      (or all turn to the default blue). Details of the students are shown in the status message.
+   
    3. Test case: `mark_all t/T2` or `unmark_all t/T2` (where tutorial with ID `T2` has no students)<br>
       Expected: No change to the tutorial. THe status message states that there are no students to be marked/unmarked.
 
@@ -639,7 +647,79 @@ testers are expected to do more *exploratory* testing.
    2. Test cases are the same as above, and should produce the same results since the both commands act on the entire tutorial list in TAbs.
       After each command, the displayed list reverts to displaying all tutorials.
 
-1. _{ more test cases …​ }_
+
+### Listing all the students in a tutorial
+
+1. Listing all students while all tutorials are being shown
+
+    1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials in the list, and at least one tutorial (e.g., `T1`) has students enrolled.
+
+    2. Test case: `list_students t/T1`<br>
+       Expected: A numbered list of all student IDs in tutorial `T1` is displayed (e.g., `1. A1234567X`, `2. A7654321B`). The status message confirms that the students in `T1` are listed.
+
+    3. Test case: `list_students t/t1`<br>
+       Expected: Same result as above since tutorial IDs are case-insensitive. The same list of students from `T1` is displayed.
+
+    4. Test case: `list_students t/T2` (where tutorial `T2` has no students)<br>
+       Expected: An empty student list is displayed. The status message indicates that there are no students enrolled in tutorial `T2`.
+
+    5. Test case: `list_students t/0`<br>
+       Expected: No students are listed as the tutorial ID does not exist. Error details shown in the status message.
+
+    6. Test case: `list_students m/CS2103T`<br>
+       Expected: No students are listed as the prefix is incorrect. Error details shown in the status message.
+
+    7. Test case: `list_students t/T1 t/T2`<br>
+       Expected: No students are listed as there should only be one `t/` prefix. Error details shown in the status message.
+
+
+2. Listing all students while only some tutorials are being shown.
+
+    1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
+
+    2. Test cases are the same as above, and should produce the same results since the `list_students` command acts on the entire tutorial list in TAbs.
+       After each command, the displayed list reverts to displaying all tutorials.
+
+
+
+### Finding tutorials by keyword
+
+1. Finding tutorials while all tutorials are being shown
+
+    1. Prerequisites: List all tutorials using the `list` command. Multiple tutorials exist with various tutorial IDs and module codes.
+
+    2. Test case: `find t/T1`<br>
+       Expected: Tutorials whose tutorial IDs contain `T1` (case-insensitive) are displayed. For example, `T1`, `T101`, and `t12` will all appear in the list.
+
+    3. Test case: `find m/CS2103T`<br>
+       Expected: Tutorials whose module code contains `CS2103T` (case-insensitive) are displayed. Partial matches such as `CS2103T-1` will also appear.
+
+    4. Test case: `find t/T1 T2`<br>
+       Expected: Tutorials whose tutorial ID contains `T1` or `T2` are displayed (OR search within same field).
+
+    5. Test case: `find m/CS2103T CS2101`<br>
+       Expected: Tutorials with module code containing either `CS2103T` or `CS2101` are displayed (OR search within same field).
+
+    6. Test case: `find m/CS2103T t/T1`<br>
+       Expected: Only tutorials that match both criteria are displayed — tutorials whose module code contains `CS2103T` and whose tutorial ID contains `T1`.
+
+    7. Test case: `find m/CS2103T t/T1 T2`<br>
+       Expected: Tutorials whose module code contains `CS2103T` and whose tutorial ID contains either `T1` or `T2` are displayed (AND between fields, OR within each field).
+
+    8. Test case: `find t/` or `find m/` (empty keyword after prefix)<br>
+       Expected: No tutorials are displayed. Error details shown in the status message.
+
+    9. Test case: `find x/T1`<br>
+       Expected: No tutorials are displayed as the prefix `x/` is invalid. Error details shown in the status message.
+
+
+2. Finding tutorials while only some tutorials are being shown.
+
+    1. Prerequisites: List only some tutorials by using the `find m/CS2103T` command to display tutorials under module `CS2103T`.
+
+    2. Test cases are the same as above, and should produce the same results since the `find` command acts on the entire tutorial list in TAbs.
+       After each command, the displayed list updates to show the tutorials matching the search criteria.
+
 
 ### Saving data
 
