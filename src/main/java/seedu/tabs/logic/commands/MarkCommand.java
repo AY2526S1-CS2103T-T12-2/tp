@@ -34,14 +34,18 @@ public class MarkCommand extends Command {
             + STUDENT.prefix + "A3213213Y";
     public static final String MESSAGE_SUCCESS = "The following student(s):\n"
             + "\t%1$s\n"
-            + "were marked as present in tutorial %2$s.";
+            + "were marked as present in tutorial %2$s.\n";
+    public static final String MESSAGE_ALREADY_MARKED = "The following student(s):\n"
+            + "\t%1$s\n"
+            + "were already marked in tutorial %2$s.\n";
     public static final String MESSAGE_NOT_EXISTS = "The following student(s):\n"
             + "\t%1$s\n"
-            + "are not in tutorial %2$s.";
+            + "are not in tutorial %2$s.\n";
 
     private final Set<Student> newStudentsList;
-    private final Set<Student> affectedStudentsList;
+    private final Set<Student> successfullyMarkedStudents;
     private final Set<Student> nonExistentStudents;
+    private final Set<Student> alreadyMarkedStudents;
     private final TutorialIdMatchesKeywordPredicate predicate;
 
     /**
@@ -52,8 +56,9 @@ public class MarkCommand extends Command {
         requireAllNonNull(newStudentsList, predicate);
 
         this.newStudentsList = newStudentsList;
-        this.affectedStudentsList = new HashSet<>();
-        this.nonExistentStudents = newStudentsList;
+        this.successfullyMarkedStudents = new HashSet<>();
+        this.alreadyMarkedStudents = new HashSet<>();
+        this.nonExistentStudents = new HashSet<>(newStudentsList);
         this.predicate = predicate;
     }
 
@@ -72,13 +77,25 @@ public class MarkCommand extends Command {
         model.setTutorial(tutorial, updatedTutorial);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
 
-        String resultMessage = affectedStudentsList.isEmpty()
-                ? "No students were unmarked."
-                : String.format(MESSAGE_SUCCESS, affectedStudentsList, updatedTutorial.getTutorialId());
+        String resultMessage = "";
+
+        if (!successfullyMarkedStudents.isEmpty()) {
+            resultMessage += String.format(MESSAGE_SUCCESS, successfullyMarkedStudents,
+                    updatedTutorial.getTutorialId());
+        }
+
+        if (!alreadyMarkedStudents.isEmpty()) {
+            resultMessage += String.format(MESSAGE_ALREADY_MARKED, alreadyMarkedStudents,
+                    updatedTutorial.getTutorialId());
+        }
 
         if (!nonExistentStudents.isEmpty()) {
-            resultMessage += "\n" + String.format(MESSAGE_NOT_EXISTS, nonExistentStudents,
+            resultMessage += String.format(MESSAGE_NOT_EXISTS, nonExistentStudents,
                     updatedTutorial.getTutorialId());
+        }
+
+        if (successfullyMarkedStudents.isEmpty()) {
+            throw new CommandException(resultMessage);
         }
 
         return new CommandResult(resultMessage);
@@ -88,21 +105,20 @@ public class MarkCommand extends Command {
      * Creates and returns a {@code Tutorial} with the newly marked students of {@code tutorialToEdit}
      */
     private Tutorial markStudents(Tutorial tutorial,
-                                  Set<Student> studentsToMark) throws CommandException {
+                                  Set<Student> studentsToMark) {
         assert tutorial != null;
 
         Set<Student> currStudents = tutorial.getStudents();
         for (Student student : currStudents) {
             if (studentsToMark.contains(student)) {
-                student.mark();
-                affectedStudentsList.add(student);
+                if (student.getAttendance()) {
+                    alreadyMarkedStudents.add(student);
+                } else {
+                    student.mark();
+                    successfullyMarkedStudents.add(student);
+                }
                 nonExistentStudents.remove(student);
             }
-        }
-
-        if (affectedStudentsList.isEmpty()) {
-            throw new CommandException(
-                    String.format(MESSAGE_NOT_EXISTS, newStudentsList, tutorial.getTutorialId()));
         }
 
         return new Tutorial(
