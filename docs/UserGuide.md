@@ -157,7 +157,7 @@ Examples:
 * `copy_tutorial t/T202 from/T201 d/2025-05-15` copies the tutorial `T201` to create a new tutorial `T202`
   with the date `2025-05-15`.
 
-Below is an example of the copy command being used:
+Below is an example of the copy command being used.
 
 ![copy command](images/copyCommand.png)
 
@@ -314,10 +314,10 @@ When a student has been marked as present, the GUI will update the student's ID 
 
 Behaviour:
 
-* After the mark command is ran, the students in the input will be categorised into 3 groups: 
-  successfully marked, already marked and not in the tutorial.
+* After the mark command has been run, the students in the input will be categorised into 3 groups: 
+  successfully marked, already marked, and not in the tutorial.
 * If no students were successfully marked, TAbs will display the message as an error. 
-* If at least one student was successfully marked, Tabs will display a success outcome.
+* If at least one student was successfully marked, TAbs will display a success outcome.
 * The following are messages that will be conditionally displayed based on whether any students
   fall in the respective groups.
    * Students who were successfully marked as present:
@@ -326,7 +326,7 @@ Behaviour:
   [[A1231231Y], [A3213213Y]]
   were marked as present in tutorial T2.
   ```
-    * Students who were already marked:
+    * Students who have already been marked:
   ``` 
   The following student(s):
   [[A1231231Y], [A3213213Y]]
@@ -338,7 +338,7 @@ Behaviour:
   [[A1231231Y], [A3213213Y]]
   are not in tutorial T2.
   ```  
-* If there are no students in that particular group the message for that group will not be shown.
+* If there are no students in that particular group, the message for that group will not be shown.
 
 ### Marking ALL students in a tutorial as present: `mark_all`
 
@@ -433,8 +433,10 @@ featuring a proper user interface without the need of a CLI.
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the
-file that contains the data of your previous TAbs home folder.
+**A**: Install the app on the other computer and run it once to generate the initial data file. 
+Close the app, then overwrite the `TAbs.json` file it creates (which contains sample data) with the 
+`TAbs.json` file that contains your data from your previous TAbs home folder. The file can be found at 
+`[JAR file location]/data/TAbs.json`. After replacing the file, run the app again to use your transferred data.
 
 --------------------------------------------------------------------------------------------------------------------
 
