@@ -433,7 +433,10 @@ featuring a proper user interface without the need of a CLI.
 ## FAQ
 
 **Q**: How do I transfer my data to another computer?<br>
-**A**: Install the app on the other computer and run it once to generate the initial data file. Close the app, then overwrite the `TAbs.json` file it creates (which contains sample data) with the `TAbs.json` file that contains your data from your previous TAbs home folder. The file can be found at `[JAR file location]/data/TAbs.json`. After replacing the file, run the app again to use your transferred data.
+**A**: Install the app on the other computer and run it once to generate the initial data file. 
+Close the app, then overwrite the `TAbs.json` file it creates (which contains sample data) with the 
+`TAbs.json` file that contains your data from your previous TAbs home folder. The file can be found at 
+`[JAR file location]/data/TAbs.json`. After replacing the file, run the app again to use your transferred data.
 
 --------------------------------------------------------------------------------------------------------------------
 
