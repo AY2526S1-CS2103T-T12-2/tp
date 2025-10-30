@@ -592,6 +592,73 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a tutorial
+
+1. Adding a tutorial to TAbs
+
+   1. Prerequisites: Have at least one existing tutorial in the list (can use `list` command to verify).
+
+   2. Test case: `add_tutorial t/T1 m/CS2103T d/2025-11-15`<br>
+      Expected: A new tutorial with ID `T1`, module code `CS2103T`, and date `2025-11-15` is added. Details of the added tutorial are shown in the status message. The tutorial list is displayed showing all tutorials.
+
+   3. Test case: `add_tutorial t/T11 m/CS2103T d/2025-11-15 id/A1234567X`<br>
+      Expected: A new tutorial with ID `T11` is added with one student (A1234567X). Details of the added tutorial are shown in the status message.
+
+   4. Test case: `add_tutorial t/T12 m/CS2103T d/2025-11-15 id/A1234567X id/A7654321Y`<br>
+      Expected: A new tutorial with ID `T12` is added with two students. Details of the added tutorial are shown in the status message.
+
+   5. Test case: `add_tutorial t/T1 m/CS2103T d/2025-11-15` (where `T1` already exists)<br>
+      Expected: No tutorial is added. Error message indicates that the tutorial already exists.
+
+   6. Test case: `add_tutorial t/T13 m/CS2103T d/2025-13-15` (invalid date)<br>
+      Expected: No tutorial is added. Error message indicates invalid date format.
+
+   7. Test case: `add_tutorial t/T14 m/CS2103T` (missing required date)<br>
+      Expected: No tutorial is added. Error message indicates invalid command format.
+
+   8. Test case: `add_tutorial t/T15 m/CS2103T d/2025-11-15 m/CS2040` (duplicate prefix)<br>
+      Expected: No tutorial is added. Error message indicates duplicate prefixes.
+
+   9. Test case: `add_tutorial t/T16 m/CS2103T d/2025-01-01 from/T1` (extra prefix)<br>
+      Expected: No tutorial is added. Error message indicates extra unexpected prefix
+
+### Copying an existing tutorial
+
+1. Copying a tutorial while all tutorials are being shown
+
+   1. Prerequisites: List all tutorials using the `list` command. At least one tutorial (e.g., `T1`) exists in the list.
+
+   2. Test case: `copy_tutorial t/T20 from/T1 d/2025-12-01`<br>
+      Expected: A new tutorial with ID `T20` is created by copying from `T1` with the new date `2025-12-01`. All students from `T1` are copied to `T20`. Details of the copy operation are shown in the status message. The tutorial list is displayed showing all tutorials.
+
+   3. Test case: `copy_tutorial t/T21 from/T1 d/2025-12-02`<br>
+      Expected: Another copy is successfully created with ID `T21`.
+
+   4. Test case: `copy_tutorial t/T1 from/T1 d/2025-12-03` (new ID same as source)<br>
+      Expected: No tutorial is copied. Error message indicates that the tutorial ID already exists.
+
+   5. Test case: `copy_tutorial t/T22 from/T99 d/2025-12-04` (source tutorial doesn't exist)<br>
+      Expected: No tutorial is copied. Error message indicates that the source tutorial ID does not exist.
+
+   6. Test case: `copy_tutorial t/T23 from/T1 d/2025-13-05` (invalid date)<br>
+      Expected: No tutorial is copied. Error message indicates invalid date format.
+
+   7. Test case: `copy_tutorial t/T24 from/T1` (missing required date)<br>
+      Expected: No tutorial is copied. Error message indicates missing required prefix.
+
+   8. Test case: `copy_tutorial t/T25 from/T1 d/2025-12-06 t/T26` (duplicate prefix)<br>
+      Expected: No tutorial is copied. Error message indicates unexpected prefixes.
+
+   9. Test case: `copy_tutorial t/T16 from/T1 d/2025-01-01 m/CS2103T` (extra prefix)<br>
+      Expected: No tutorial is copied. Error message indicates extra unexpected prefix
+
+
+2. Copying a tutorial while only some tutorials are being shown
+
+   1. Prerequisites: List only some tutorials by using the `find t/1` command to display only tutorials with IDs containing `1`.
+
+   2. Test cases are the same as above, and should produce the same results since the `copy_tutorial` command acts on the entire tutorial list in TAbs. After the command, the displayed list reverts to displaying all tutorials.
+
 ### Deleting a tutorial
 
 1. Deleting a tutorial while all tutorials are being shown
