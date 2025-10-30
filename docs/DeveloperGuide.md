@@ -220,14 +220,14 @@ single TAbs state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th tutorial in the TAbs. The
-`delete` command calls `Model#commitTAbs()`, causing the modified state of the TAbs
-after the `delete 5` command executes to be saved in the `tabsStateList`, and the
+Step 2. The user executes `delete_tutorial t/T102` command to delete the 2nd tutorial in the TAbs. The
+`delete_tutorial` command calls `Model#commitTAbs()`, causing the modified state of the TAbs
+after the `delete_tutorial t/T102` command executes to be saved in the `tabsStateList`, and the
 `currentStatePointer` is shifted to the newly inserted TAbs state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new tutorial. The `add` command also calls
+Step 3. The user executes `add_tutorial t/T101 …​` to add a new tutorial. The `add_tutorial` command also calls
 `Model#commitTAbs()`, causing another modified TAbs state to be saved into the
 `tabsStateList`.
 
@@ -298,13 +298,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the tutorial being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
