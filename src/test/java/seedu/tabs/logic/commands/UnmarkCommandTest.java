@@ -34,24 +34,29 @@ import seedu.tabs.testutil.TutorialBuilder;
  */
 public class UnmarkCommandTest {
 
-    private static final TutorialId T01_ID = new TutorialId("T01");
-    private static final Student ALICE = new Student("A0000001Z");
-    private static final Student BOB = new Student("A0000002Z");
-    private static final Student CHARLIE = new Student("A0000003Z");
+    private final TutorialId t1Id = new TutorialId("T01");
+    private final Student alice = new Student("A0000001Z");
+    private final Student bob = new Student("A0000002Z");
+    private final Student charlie = new Student("A0000003Z");
 
-    private static final Tutorial T01_WITH_MARKED_STUDENTS = new TutorialBuilder()
+    private final Tutorial t1WithMarkedStudents = new TutorialBuilder()
             .withId("T01")
             .withModuleCode("CS2103T")
             .withDate("2025-10-14")
-            .withStudents(ALICE.studentId, BOB.studentId)
+            .withStudents(alice.studentId, bob.studentId)
             .build();
 
-    private static final Tutorial T02_EMPTY = new TutorialBuilder()
+    private final Tutorial t2Empty = new TutorialBuilder()
             .withId("T02")
             .withModuleCode("CS2103T")
             .withDate("2025-10-14")
             .withStudents()
             .build();
+
+    UnmarkCommandTest() {
+        alice.mark();
+        bob.mark();
+    }
 
     /**
      * A default model stub that has all methods throwing by default.
@@ -146,7 +151,7 @@ public class UnmarkCommandTest {
         private final TAbs tAbs;
 
         ModelStubWithTutorials() {
-            this.tutorials = new ArrayList<>(Arrays.asList(T01_WITH_MARKED_STUDENTS, T02_EMPTY));
+            this.tutorials = new ArrayList<>(Arrays.asList(t1WithMarkedStudents, t2Empty));
             this.tAbs = new TAbs();
             this.tAbs.setTutorials(this.tutorials);
         }
@@ -171,7 +176,7 @@ public class UnmarkCommandTest {
     @Test
     public void execute_validStudents_success() throws Exception {
         Model model = new ModelStubWithTutorials();
-        Set<Student> studentsToUnmark = new HashSet<>(Arrays.asList(ALICE));
+        Set<Student> studentsToUnmark = new HashSet<>(Arrays.asList(alice));
         TutorialIdMatchesKeywordPredicate predicate = new TutorialIdMatchesKeywordPredicate("T01");
         UnmarkCommand unmarkCommand = new UnmarkCommand(studentsToUnmark, predicate);
 
@@ -182,14 +187,14 @@ public class UnmarkCommandTest {
     @Test
     public void execute_studentNotInTutorial_throwsCommandException() {
         Model model = new ModelStubWithTutorials();
-        Set<Student> nonExistent = new HashSet<>(Arrays.asList(CHARLIE));
+        Set<Student> nonExistent = new HashSet<>(Arrays.asList(charlie));
         TutorialIdMatchesKeywordPredicate predicate = new TutorialIdMatchesKeywordPredicate("T01");
         UnmarkCommand unmarkCommand = new UnmarkCommand(nonExistent, predicate);
 
         String expectedMessage = String.format(
                 UnmarkCommand.MESSAGE_NOT_EXISTS,
                 nonExistent,
-                T01_ID
+                t1Id
         );
 
         assertThrows(CommandException.class, expectedMessage, () -> unmarkCommand.execute(model));
@@ -198,7 +203,7 @@ public class UnmarkCommandTest {
     @Test
     public void execute_tutorialNotFound_throwsCommandException() {
         Model model = new ModelStubWithTutorials();
-        Set<Student> students = new HashSet<>(Arrays.asList(ALICE));
+        Set<Student> students = new HashSet<>(Arrays.asList(alice));
         TutorialIdMatchesKeywordPredicate invalidPredicate = new TutorialIdMatchesKeywordPredicate("T99");
         UnmarkCommand unmarkCommand = new UnmarkCommand(students, invalidPredicate);
 
@@ -208,21 +213,21 @@ public class UnmarkCommandTest {
 
     @Test
     public void equals() {
-        Set<Student> studentsA = new HashSet<>(Arrays.asList(ALICE));
-        Set<Student> studentsB = new HashSet<>(Arrays.asList(BOB));
+        Set<Student> studentsA = new HashSet<>(Arrays.asList(alice));
+        Set<Student> studentsB = new HashSet<>(Arrays.asList(bob));
         TutorialIdMatchesKeywordPredicate predicateT01 = new TutorialIdMatchesKeywordPredicate("T01");
         TutorialIdMatchesKeywordPredicate predicateT02 = new TutorialIdMatchesKeywordPredicate("T02");
 
-        MarkCommand markTut01StudentA = new MarkCommand(studentsA, predicateT01);
-        MarkCommand markTut01StudentA_copy = new MarkCommand(studentsA, predicateT01);
-        MarkCommand markTut01StudentB = new MarkCommand(studentsB, predicateT01);
-        MarkCommand markTut02StudentA = new MarkCommand(studentsA, predicateT02);
+        UnmarkCommand markTut01StudentA = new UnmarkCommand(studentsA, predicateT01);
+        UnmarkCommand markTut01StudentACopy = new UnmarkCommand(studentsA, predicateT01);
+        UnmarkCommand markTut01StudentB = new UnmarkCommand(studentsB, predicateT01);
+        UnmarkCommand markTut02StudentA = new UnmarkCommand(studentsA, predicateT02);
 
         // same object -> true
         assertTrue(markTut01StudentA.equals(markTut01StudentA));
 
         // same values -> true
-        assertTrue(markTut01StudentA.equals(markTut01StudentA_copy));
+        assertTrue(markTut01StudentA.equals(markTut01StudentACopy));
 
         // different student sets -> false
         assertFalse(markTut01StudentA.equals(markTut01StudentB));
@@ -239,7 +244,7 @@ public class UnmarkCommandTest {
 
     @Test
     public void toStringMethod() {
-        Set<Student> students = new HashSet<>(Arrays.asList(ALICE, BOB));
+        Set<Student> students = new HashSet<>(Arrays.asList(alice, bob));
         TutorialIdMatchesKeywordPredicate predicate = new TutorialIdMatchesKeywordPredicate("T01");
         UnmarkCommand unmarkCommand = new UnmarkCommand(students, predicate);
 

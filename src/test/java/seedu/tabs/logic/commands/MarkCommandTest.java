@@ -180,6 +180,17 @@ public class MarkCommandTest {
     }
 
     @Test
+    public void execute_validMultipleStudents_success() throws Exception {
+        Model model = new ModelStubWithTutorials();
+        Set<Student> studentsToMark = new HashSet<>(Arrays.asList(ALICE, BOB));
+        TutorialIdMatchesKeywordPredicate predicate = new TutorialIdMatchesKeywordPredicate("T01");
+        MarkCommand markCommand = new MarkCommand(studentsToMark, predicate);
+
+        CommandResult result = markCommand.execute(model);
+        assertTrue(result.getFeedbackToUser().contains("marked as present"));
+    }
+
+    @Test
     public void execute_studentNotInTutorial_throwsCommandException() {
         Model model = new ModelStubWithTutorials();
         Set<Student> nonExistent = new HashSet<>(Arrays.asList(CHARLIE));
@@ -210,31 +221,31 @@ public class MarkCommandTest {
     public void equals() {
         Set<Student> studentsA = new HashSet<>(Arrays.asList(ALICE));
         Set<Student> studentsB = new HashSet<>(Arrays.asList(BOB));
-        TutorialIdMatchesKeywordPredicate predicateT01 = new TutorialIdMatchesKeywordPredicate("T01");
-        TutorialIdMatchesKeywordPredicate predicateT02 = new TutorialIdMatchesKeywordPredicate("T02");
+        TutorialIdMatchesKeywordPredicate predicateT1 = new TutorialIdMatchesKeywordPredicate("T01");
+        TutorialIdMatchesKeywordPredicate predicateT2 = new TutorialIdMatchesKeywordPredicate("T02");
 
-        MarkCommand markTut01StudentA = new MarkCommand(studentsA, predicateT01);
-        MarkCommand markTut01StudentA_copy = new MarkCommand(studentsA, predicateT01);
-        MarkCommand markTut01StudentB = new MarkCommand(studentsB, predicateT01);
-        MarkCommand markTut02StudentA = new MarkCommand(studentsA, predicateT02);
+        MarkCommand markTut1StudentA = new MarkCommand(studentsA, predicateT1);
+        MarkCommand markTut1StudentACopy = new MarkCommand(studentsA, predicateT1);
+        MarkCommand markTut1StudentB = new MarkCommand(studentsB, predicateT1);
+        MarkCommand markTut2StudentA = new MarkCommand(studentsA, predicateT2);
 
         // same object -> true
-        assertTrue(markTut01StudentA.equals(markTut01StudentA));
+        assertTrue(markTut1StudentA.equals(markTut1StudentA));
 
         // same values -> true
-        assertTrue(markTut01StudentA.equals(markTut01StudentA_copy));
+        assertTrue(markTut1StudentA.equals(markTut1StudentACopy));
 
         // different student sets -> false
-        assertFalse(markTut01StudentA.equals(markTut01StudentB));
+        assertFalse(markTut1StudentA.equals(markTut1StudentB));
 
         // different predicates -> false
-        assertFalse(markTut01StudentA.equals(markTut02StudentA));
+        assertFalse(markTut1StudentA.equals(markTut2StudentA));
 
         // null -> false
-        assertFalse(markTut01StudentA.equals(null));
+        assertFalse(markTut1StudentA.equals(null));
 
         // different type -> false
-        assertFalse(markTut01StudentA.equals(1));
+        assertFalse(markTut1StudentA.equals(1));
     }
 
     @Test
