@@ -17,8 +17,8 @@ it still has the benefits of a Graphical User Interface (GUI).
 
 ## Quick start
 
-1. Ensure you have Java `17` or above installed in your computer.<br>
-   **Mac users:** Ensure you have the precise JDK version
+1. It is recommended to have Java `17` installed in your computer in order to run this application.<br>
+   **Mac users:** Ensure you have the recommended JDK version
    prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. Download the latest `.jar` file
@@ -356,8 +356,10 @@ Marks all students in a tutorial in TAbs as present.
 
 Format: `mark_all t/TUTORIAL_ID`
 
-* Marks all the students as present in the tutorial identified by the tutorial ID.
+* Marks all the students as present in the tutorial identified by the tutorial ID. 
 * The `TUTORIAL_ID` must already exist in TAbs.
+* Note: Unlike `mark`, `mark_all` does not notify the user as to which students have already been marked, since 
+  such a notification is unlikely to be meaningful.
 
 Examples:
 
@@ -396,6 +398,8 @@ Format: `unmark_all t/TUTORIAL_ID`
 
 * Unmarks all the students in the tutorial identified by the tutorial ID.
 * The `TUTORIAL_ID` must already exist in TAbs.
+* Note: Unlike `unmark`, `unmark_all` does not notify the user as to which students have already been unmarked, since such a
+  notification is unlikely to be meaningful.
 
 Examples:
 
@@ -429,7 +433,7 @@ users are welcome to update data directly by editing that data file.
     Furthermore, certain edits can cause TAbs to behave in unexpected ways (e.g., if a value entered is beyond the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Future plans `[coming in v2.0]`
+### Future plans (current version: v1.6; coming in `v2.0`)
 
 We intend to release an even more user-friendly version to the wider NUS community, 
 featuring a proper user interface without the need of a CLI.
