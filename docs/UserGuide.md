@@ -423,7 +423,7 @@ users are welcome to update data directly by editing that data file.
     Furthermore, certain edits can cause TAbs to behave in unexpected ways (e.g., if a value entered is beyond the acceptable range). Therefore, edit the data file only if you are confident that you can update it correctly.
 </div>
 
-### Future plans `[coming in v2.0]`
+### Future plans (current version: v1.6; coming in `v2.0`)
 
 We intend to release an even more user-friendly version to the wider NUS community, 
 featuring a proper user interface without the need of a CLI.
