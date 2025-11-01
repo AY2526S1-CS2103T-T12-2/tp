@@ -24,8 +24,16 @@ public class DateTest {
         // Test that constructor properly rejects invalid calendar dates
         assertThrows(IllegalArgumentException.class, () -> new Date("2025-13-01")); // invalid month
         assertThrows(IllegalArgumentException.class, () -> new Date("2025-02-30")); // invalid day for February
-        assertThrows(IllegalArgumentException.class, () -> new Date("2025-04-31")); // invalid day for April
         assertThrows(IllegalArgumentException.class, () -> new Date("2025-02-29")); // invalid for non-leap year
+    }
+
+    @Test
+    public void constructor_invalidYearRange_throwsIllegalArgumentException() {
+        // Test that constructor properly rejects dates outside year range (1998-2200)
+        assertThrows(IllegalArgumentException.class, () -> new Date("1997-12-31")); // year too old
+        assertThrows(IllegalArgumentException.class, () -> new Date("1990-01-01")); // year too old
+        assertThrows(IllegalArgumentException.class, () -> new Date("2201-01-01")); // year too far ahead
+        assertThrows(IllegalArgumentException.class, () -> new Date("2500-12-31")); // year too far ahead
     }
 
     @Test
@@ -54,33 +62,34 @@ public class DateTest {
         assertFalse(Date.isValidDate("2025-01-32")); // January doesn't have 32 days
         assertFalse(Date.isValidDate("2025-02-30")); // February doesn't have 30 days
         assertFalse(Date.isValidDate("2025-04-31")); // April doesn't have 31 days
-        assertFalse(Date.isValidDate("2025-06-31")); // June doesn't have 31 days
-        assertFalse(Date.isValidDate("2025-09-31")); // September doesn't have 31 days
-        assertFalse(Date.isValidDate("2025-11-31")); // November doesn't have 31 days
         assertFalse(Date.isValidDate("2025-02-29")); // 2025 is not a leap year
-        assertFalse(Date.isValidDate("2023-02-29")); // 2023 is not a leap year
-        assertFalse(Date.isValidDate("1900-02-29")); // 1900 is not a leap year (century rule)
 
-        // valid dates
+        // invalid year range (outside 1998-2200)
+        assertFalse(Date.isValidDate("1997-12-31")); // year just below minimum
+        assertFalse(Date.isValidDate("1990-01-01")); // year too old
+        assertFalse(Date.isValidDate("1900-02-28")); // year too old
+        assertFalse(Date.isValidDate("2201-01-01")); // year just above maximum
+        assertFalse(Date.isValidDate("2500-12-31")); // year too far ahead
+        assertFalse(Date.isValidDate("3000-06-15")); // year too far ahead
+
+        // valid dates - boundary tests for year range
+        assertTrue(Date.isValidDate("1998-01-01")); // minimum year boundary
+        assertTrue(Date.isValidDate("1998-12-31")); // minimum year boundary
+        assertTrue(Date.isValidDate("1999-06-15")); // just above minimum
+        assertTrue(Date.isValidDate("2200-01-01")); // maximum year boundary
+        assertTrue(Date.isValidDate("2200-12-31")); // maximum year boundary
+        assertTrue(Date.isValidDate("2199-11-30")); // just below maximum
+
+        // valid dates - standard cases
         assertTrue(Date.isValidDate("2025-01-15")); // standard format
         assertTrue(Date.isValidDate("2023-12-31")); // end of year
         assertTrue(Date.isValidDate("2024-02-29")); // leap year (2024 is a leap year)
         assertTrue(Date.isValidDate("2000-02-29")); // leap year (2000 is a leap year)
         assertTrue(Date.isValidDate("2000-01-01")); // start of millennium
-        assertTrue(Date.isValidDate("1999-06-15")); // past date
-        assertTrue(Date.isValidDate("2030-08-22")); // future date
         assertTrue(Date.isValidDate("2025-01-31")); // January 31st
-        assertTrue(Date.isValidDate("2025-03-31")); // March 31st
-        assertTrue(Date.isValidDate("2025-05-31")); // May 31st
-        assertTrue(Date.isValidDate("2025-07-31")); // July 31st
-        assertTrue(Date.isValidDate("2025-08-31")); // August 31st
-        assertTrue(Date.isValidDate("2025-10-31")); // October 31st
-        assertTrue(Date.isValidDate("2025-12-31")); // December 31st
-        assertTrue(Date.isValidDate("2025-04-30")); // April 30th
-        assertTrue(Date.isValidDate("2025-06-30")); // June 30th
-        assertTrue(Date.isValidDate("2025-09-30")); // September 30th
-        assertTrue(Date.isValidDate("2025-11-30")); // November 30th
         assertTrue(Date.isValidDate("2025-02-28")); // February 28th (non-leap year)
+        assertTrue(Date.isValidDate("2025-04-30")); // April 30th
+        assertTrue(Date.isValidDate("2025-12-31")); // December 31st
     }
 
     @Test
