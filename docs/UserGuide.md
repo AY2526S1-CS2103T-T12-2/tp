@@ -348,6 +348,8 @@ Format: `mark_all t/TUTORIAL_ID`
 
 * Marks all the students as present in the tutorial identified by the tutorial ID.
 * `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will mark students from the same tutorial).
+* Note: Unlike `mark`, `mark_all` does not notify the user as to which students have already been marked, since such a 
+  notification is unlikely to be meaningful.
 
 Examples:
 
@@ -390,6 +392,8 @@ Format: `unmark_all t/TUTORIAL_ID`
 
 * Unmarks all the students in the tutorial identified by the tutorial ID.
 * `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will unmark students from the same tutorial).
+* Note: Unlike `unmark`, `unmark_all` does not notify the user as to which students have already been unmarked, since such a
+  notification is unlikely to be meaningful.
 
 Examples:
 
