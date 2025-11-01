@@ -20,7 +20,7 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all tutorials whose module codes and/or tutorial IDs "
-            + "contain any of the specified keywords (case-insensitive) "
+            + "that partially matches any of the specified keywords (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
             + "If both " + MODULE_CODE.prefix + " and " + TUTORIAL_ID.prefix + " are provided, "
             + "only tutorials matching BOTH criteria are listed.\n"
@@ -31,7 +31,7 @@ public class FindCommand extends Command {
             + TUTORIAL_ID.prefix + "KEYWORD [MORE_KEYWORDS]\n"
             + "Example 1 (Module Code only): " + COMMAND_WORD + " " + MODULE_CODE.prefix + "CS2103T 2101\n"
             + "Example 2 (Tutorial ID only): " + COMMAND_WORD + " " + TUTORIAL_ID.prefix + "T10 12\n"
-            + "Example 3 (Module Code and Tutorial ID): " + COMMAND_WORD + " " + MODULE_CODE.prefix + "CS2103T 2101"
+            + "Example 3 (Module Code and Tutorial ID): " + COMMAND_WORD + " " + MODULE_CODE.prefix + "CS2103T 2101 "
             + TUTORIAL_ID.prefix + "T10 12";
     private final Predicate<Tutorial> predicate;
 
