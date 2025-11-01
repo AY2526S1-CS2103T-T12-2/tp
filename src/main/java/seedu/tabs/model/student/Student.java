@@ -10,9 +10,9 @@ import static seedu.tabs.commons.util.AppUtil.checkArgument;
 public class Student {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Invalid format: Student IDs should follow the format, 'AXXXXXXX&',\n"
-                    + "where the 'X's represent any 7 single-digit numbers\n"
-                    + "and the '&' represents any capital letter.";
+            "Invalid format: Student IDs should follow the format 'AXXXXXXX&',\n"
+                    + "where the 'X's represent any 7 single-digit numbers and "
+                    + "'&' represents any letter (case-insensitive).";
     public static final String VALIDATION_REGEX = "A\\d{7}[A-Z]";
 
     public final String studentId;
@@ -26,7 +26,7 @@ public class Student {
     public Student(String studentId) {
         requireNonNull(studentId);
         checkArgument(isValidStudentId(studentId), MESSAGE_CONSTRAINTS);
-        this.studentId = studentId;
+        this.studentId = studentId.toUpperCase();
         this.isPresent = false;
     }
 
@@ -45,7 +45,7 @@ public class Student {
      * Returns true if a given string is a valid student ID.
      */
     public static boolean isValidStudentId(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return test.toUpperCase().matches(VALIDATION_REGEX);
     }
 
     public void mark() {
