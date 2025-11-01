@@ -31,6 +31,10 @@ public class FindCommandParser implements Parser<FindCommand> {
         // Tokenize the input string based on the allowed prefixes
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenizeAllPrefix(args);
 
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
         boolean hasModuleCode = argMultimap.getValue(MODULE_CODE.prefix).isPresent();
         boolean hasTutorialId = argMultimap.getValue(TUTORIAL_ID.prefix).isPresent();
 

@@ -19,7 +19,7 @@ Class "<<interface>>\nTAbsStorage" as TAbsStorage
 Class JsonTAbsStorage
 Class JsonSerializableTAbs
 Class JsonAdaptedTutorial
-Class JsonAdaptedTag
+Class JsonAdaptedStudent
 }
 
 }
@@ -38,6 +38,6 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonTAbsStorage .up.|> TAbsStorage
 JsonTAbsStorage ..> JsonSerializableTAbs
 JsonSerializableTAbs --> "*" JsonAdaptedTutorial
-JsonAdaptedTutorial --> "*" JsonAdaptedTag
+JsonAdaptedTutorial --> "*" JsonAdaptedStudent
 
 @enduml

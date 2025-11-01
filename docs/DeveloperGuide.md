@@ -176,7 +176,7 @@ The `Model` component,
 **API** : [
 `Storage.java`](https://github.com/AY2526S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/tabs/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/UpdatedStorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 
@@ -353,7 +353,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**`     | TA     | mark all students in a tutorial as present                   | quickly record attendance for the entire class when everyone is present                          |
 | `**`     | TA     | unmark all students in a tutorial                            | efficiently reset or correct attendance for the entire class in one command                      |
 | `**`     | TA     | sort the tutorial list by date                               | view my upcoming tutorials in chronological order and plan my teaching schedule more easily      |
-| `**`     | TA     | find tutorials by date                                       | quickly locate tutorials happening on a specific day without manually scrolling through the list |
 | `**`     | TA     | search for a student by name or ID                           | quickly locate a student’s record within large tutorials                                         |
 | `**`     | TA     | tag students into groups                                     | organize my tutorial more efficiently for activities or grading                                  |
 | `**`     | TA     | filter students by group tag                                 | view only students from a specific group                                                         |
@@ -361,10 +360,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**`     | TA     | view a summary of a student’s participation across tutorials | identify students who may need follow-up                                                         |
 | `**`     | New TA | view help messages or usage hints                            | learn how to use commands effectively                                                            |
 | `**`     | New TA | see the correct format after entering an invalid command     | fix mistakes quickly and continue using the app                                                  |
+| `**`     | TA     | find tutorials by date                                       | quickly locate tutorials happening on a specific day without manually scrolling through the list |
 | `*`      | TA     | import a CSV file of student data                            | upload student lists easily from other sources                                                   |
 | `*`      | TA     | export student lists or attendance records to a file         | keep offline records or share them with module coordinators                                      |
 | `*`      | TA     | upload profile pictures of students                          | better associate student names with faces                                                        |
 | `*`      | TA     | archive past tutorials                                       | keep my workspace tidy while retaining historical data                                           |
+
 
 
 ### Use cases
@@ -429,7 +430,6 @@ specified otherwise)
 
 * 1a. TAbs detects that the tutorial does not exist.
     * 1a1. TAbs informs the TA that the tutorial ID does not exist.
-    * 1a2. TA prompts the TA to view students in another tutorial.
 
       Use case resumes from step 1.
 
@@ -597,7 +597,7 @@ specified otherwise)
 **Extensions**
 
 * 1a. Invalid or missing details are provided.
-    * 1b1. TAbs informs the TA of the invalid input.
+    * 1a1. TAbs informs the TA of the invalid input.
 
       Use case resumes from step 1.
 
@@ -645,12 +645,16 @@ specified otherwise)
 
 ### Non-Functional Requirements
 
-1. Commands execute within 300ms (≤5000 students).
+1. Local data manipulation commands (e.g., `add`, `delete`, `edit`, `mark`) must execute within **500ms** for a 
+   database containing up to 5000 students and 100 tutorials. Verification should be conducted on a target environment 
+   with a minimum of 8GB **RAM** and an **SSD** storage drive.
 2. Handles up to 100 classes and 5000 students.
 3. Runs on Windows, macOS, Linux with Java 17+.
-4. A user with above average typing speed for regular English text (i.e. not code, not system admin
-   commands) should be able to accomplish most of the tasks faster using commands than using the
-   mouse.
+4. A user demonstrating a typing speed of **40** WPM should be able to complete 80% of all defined 
+   data manipulation tasks (e.g., `add`, `delete`, `edit`, `mark`) at least **20% faster** using the command line 
+   interface than by using the equivalent mouse-based operation.
+5. The application must automatically save all user changes to the local data file 
+   after every successful command execution.
 
 ### Glossary
 
