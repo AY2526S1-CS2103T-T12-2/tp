@@ -291,7 +291,7 @@ Examples:
 
 Marks specified students in a tutorial in TAbs as present.
 
-Format: `mark t/TUTORIAL_ID id/STUDENT_ID…`
+Format: `mark id/STUDENT_ID… t/TUTORIAL_ID`
 
 * Marks one or more students, identified by their student ID, in the tutorial identified by the
   tutorial ID as present.
@@ -304,8 +304,8 @@ Format: `mark t/TUTORIAL_ID id/STUDENT_ID…`
 
 Examples:
 
-* `mark t/C456 id/A1231231Y` marks student `A1231231Y` in tutorial `C456` as present.
-* `mark t/T123 id/A1231231Y id/A3213213Y` marks students `A1231231Y` and `A3213213Y`
+* `mark id/A1231231Y t/C456` marks student `A1231231Y` in tutorial `C456` as present.
+* `mark id/A1231231Y id/A3213213Y t/T123` marks students `A1231231Y` and `A3213213Y`
   in tutorial `T123` as present.
 
 When a student has been marked as present, the GUI will update the student's ID within the tutorial to green as shown below.
@@ -359,7 +359,7 @@ Examples:
 
 Unmarks specified students in a tutorial in TAbs.
 
-Format: `unmark t/TUTORIAL_ID id/STUDENT_ID…`
+Format: `unmark id/STUDENT_ID… t/TUTORIAL_ID`
 
 * Unmarks one or more students, identified by their student ID, in the tutorial identified by the
   tutorial ID.
@@ -372,8 +372,8 @@ Format: `unmark t/TUTORIAL_ID id/STUDENT_ID…`
 
 Examples:
 
-* `unmark t/C456 id/A1231231Y` unmarks student `A1231231Y` in tutorial `C456`.
-* `unmark t/T123 id/A1231231Y id/A3213213Y` unmarks student `A1231231Y` and student `A3213213Y`
+* `unmark id/A1231231Y t/C456` unmarks student `A1231231Y` in tutorial `C456`.
+* `unmark id/A1231231Y id/A3213213Y t/T123` unmarks student `A1231231Y` and student `A3213213Y`
   in tutorial `T123`.
 
 Behaviour:
