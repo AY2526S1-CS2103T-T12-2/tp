@@ -17,7 +17,7 @@ public class Date {
             + "with year between 1998 and 2200";
 
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
-    
+
     private static final int MIN_YEAR = 1998;
     private static final int MAX_YEAR = 2200;
 
