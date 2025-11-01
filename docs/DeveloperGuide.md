@@ -338,33 +338,33 @@ This results in smoother class preparation, faster attendance tracking, and bett
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a … | I want to …                                                  | So that I can…                                                                                   |
-|---------|--------|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
-| `***`   | TA     | add a tutorial class                                         | keep a record of my tutorials in one place                                                       |
-| `***`   | TA     | delete a tutorial class                                      | remove outdated or cancelled tutorials                                                           |
-| `***`   | TA     | view a list of all my tutorial classes                       | have an overview of my teaching schedule                                                         |
-| `***`   | TA     | view all students in a specific tutorial                     | see my class roster at a glance                                                                  |
-| `***`   | TA     | add a student to a specific tutorial                         | keep a record of students attending that tutorial                                                |
-| `***`   | TA     | delete a student from a tutorial                             | remove students who have dropped the class                                                       |
-| `***`   | TA     | mark a student’s attendance in a tutorial                    | track which students attended a particular session                                               |
-| `***`   | TA     | unmark a student’s attendance                                | correct mistakes or update attendance records                                                    |
-| `**`    | TA     | copy an existing tutorial with a new ID and date             | reuse student data for recurring tutorial sessions                                               |
-| `**`    | TA     | edit a tutorial’s details                                    | update the module code, date, or tutorial ID without deleting the tutorial                       |
-| `** `   | TA     | search for a tutorial based on Tutorial ID or Module Code    | quickly locate the tutorials I want without scrolling through the tutorial list                  |
-| `**`    | TA     | mark all students in a tutorial as present                   | quickly record attendance for the entire class when everyone is present                          |
-| `**`    | TA     | unmark all students in a tutorial                            | efficiently reset or correct attendance for the entire class in one command                      |
-| `**`    | TA     | sort the tutorial list by date                               | view my upcoming tutorials in chronological order and plan my teaching schedule more easily      |
-| `**`    | TA     | search for a student by name or ID                           | quickly locate a student’s record within large tutorials                                         |
-| `**`    | TA     | tag students into groups                                     | organize my tutorial more efficiently for activities or grading                                  |
-| `**`    | TA     | filter students by group tag                                 | view only students from a specific group                                                         |
-| `**`    | TA     | view a summary of attendance for a tutorial                  | get an overview of participation and absences                                                    |
-| `**`    | TA     | view a summary of a student’s participation across tutorials | identify students who may need follow-up                                                         |
-| `**`    | New TA | view help messages or usage hints                            | learn how to use commands effectively                                                            |
-| `**`    | New TA | see the correct format after entering an invalid command     | fix mistakes quickly and continue using the app                                                  |
-| `*`     | TA     | find tutorials by date                                       | quickly locate tutorials happening on a specific day without manually scrolling through the list |
-| `*`     | TA     | import a CSV file of student data                            | upload student lists easily from other sources                                                   |
-| `*`     | TA     | export student lists or attendance records to a file         | keep offline records or share them with module coordinators                                      |
-| `*`     | TA     | upload profile pictures of students                          | better associate student names with faces                                                        |
-| `*`     | TA     | archive past tutorials                                       | keep my workspace tidy while retaining historical data                                           |
+|----------|--------|--------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| `***`    | TA     | add a tutorial class                                         | keep a record of my tutorials in one place                                                       |
+| `***`    | TA     | delete a tutorial class                                      | remove outdated or cancelled tutorials                                                           |
+| `***`    | TA     | view a list of all my tutorial classes                       | have an overview of my teaching schedule                                                         |
+| `***`    | TA     | view all students in a specific tutorial                     | see my class roster at a glance                                                                  |
+| `***`    | TA     | add a student to a specific tutorial                         | keep a record of students attending that tutorial                                                |
+| `***`    | TA     | delete a student from a tutorial                             | remove students who have dropped the class                                                       |
+| `***`    | TA     | mark a student’s attendance in a tutorial                    | track which students attended a particular session                                               |
+| `***`    | TA     | unmark a student’s attendance                                | correct mistakes or update attendance records                                                    |
+| `**`     | TA     | copy an existing tutorial with a new ID and date             | reuse student data for recurring tutorial sessions                                               |
+| `**`     | TA     | edit a tutorial’s details                                    | update the module code, date, or tutorial ID without deleting the tutorial                       |
+| `** `    | TA     | search for a tutorial based on Tutorial ID or Module Code    | quickly locate the tutorials I want without scrolling through the tutorial list                  |
+| `**`     | TA     | mark all students in a tutorial as present                   | quickly record attendance for the entire class when everyone is present                          |
+| `**`     | TA     | unmark all students in a tutorial                            | efficiently reset or correct attendance for the entire class in one command                      |
+| `**`     | TA     | sort the tutorial list by date                               | view my upcoming tutorials in chronological order and plan my teaching schedule more easily      |
+| `**`     | TA     | search for a student by name or ID                           | quickly locate a student’s record within large tutorials                                         |
+| `**`     | TA     | tag students into groups                                     | organize my tutorial more efficiently for activities or grading                                  |
+| `**`     | TA     | filter students by group tag                                 | view only students from a specific group                                                         |
+| `**`     | TA     | view a summary of attendance for a tutorial                  | get an overview of participation and absences                                                    |
+| `**`     | TA     | view a summary of a student’s participation across tutorials | identify students who may need follow-up                                                         |
+| `**`     | New TA | view help messages or usage hints                            | learn how to use commands effectively                                                            |
+| `**`     | New TA | see the correct format after entering an invalid command     | fix mistakes quickly and continue using the app                                                  |
+| `*`      | TA     | find tutorials by date                                       | quickly locate tutorials happening on a specific day without manually scrolling through the list |
+| `*`      | TA     | import a CSV file of student data                            | upload student lists easily from other sources                                                   |
+| `*`      | TA     | export student lists or attendance records to a file         | keep offline records or share them with module coordinators                                      |
+| `*`      | TA     | upload profile pictures of students                          | better associate student names with faces                                                        |
+| `*`      | TA     | archive past tutorials                                       | keep my workspace tidy while retaining historical data                                           |
 
 
 
