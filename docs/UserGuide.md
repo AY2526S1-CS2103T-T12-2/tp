@@ -17,8 +17,8 @@ it still has the benefits of a Graphical User Interface (GUI).
 
 ## Quick start
 
-1. Ensure you have Java `17` (exact version) installed in your computer.<br>
-   **Mac users:** Ensure you have the precise JDK version
+1. Ensure you have Java `17` or above installed in your computer.<br>
+   **Mac users:** Ensure you have (at least) the JDK version
    prescribed [here](https://se-education.org/guides/tutorials/javaInstallationMac.html).
 
 2. Download the latest `.jar` file
