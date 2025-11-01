@@ -13,9 +13,13 @@ import java.time.format.DateTimeParseException;
 public class Date {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should be in YYYY-MM-DD format (e.g., 2025-03-15) and represent a valid calendar date";
+            "Dates should be in YYYY-MM-DD format (e.g., 2025-03-15) and represent a valid calendar date"
+            + "with year between 1998 and 2200";
 
     public static final String VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
+    
+    private static final int MIN_YEAR = 1998;
+    private static final int MAX_YEAR = 2200;
 
     public final String value;
 
@@ -39,8 +43,9 @@ public class Date {
         }
 
         try {
-            LocalDate.parse(test);
-            return true;
+            LocalDate date = LocalDate.parse(test);
+            int year = date.getYear();
+            return year >= MIN_YEAR && year <= MAX_YEAR;
         } catch (DateTimeParseException e) {
             return false;
         }
