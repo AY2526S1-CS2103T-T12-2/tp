@@ -116,11 +116,18 @@ Format: `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT_ID]…`
     * Followed by 7 digits (`XXXXXXX`),
     * Ending with an uppercase letter (`&`).
 * Multiple students can be added to the same tutorial.
+* If duplicate student IDs are specified in the same command, only unique students will be added (duplicates are automatically ignored).
 
 Examples:
 
 * `add_tutorial t/C456 m/CS2101 d/2025-01-01`
 * `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y id/A3213213Y`
+
+After a tutorial has been added, the GUI will display the newly created tutorial card in the tutorial list as shown below. 
+The card shows the tutorial's tutorial ID, module code, date, and the list of enrolled students (if any). 
+All students in the new tutorial will initially be unmarked (displayed with their IDs in grey color).
+
+![add tutorial command](images/addTutorialCommand.png)
 
 ### Deleting a tutorial: `delete_tutorial`
 
@@ -220,6 +227,10 @@ Format: `list_students t/TUTORIAL_ID`
 Examples:
 
 * `list_students t/T2` lists all the students in the tutorial with ID `T2` in TAbs.
+
+The list of students will be displayed in the output box as shown below.
+
+![list students command](images/listStudentsCommand.png)
 
 ### Adding students to a tutorial: `add_student`
 
