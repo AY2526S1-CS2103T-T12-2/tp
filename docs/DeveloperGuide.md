@@ -195,109 +195,30 @@ Classes used by multiple components are in the `seedu.tabs.commons` package.
 
 ## **Implementation**
 
+
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
 
-#### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedTAbs`. It extends `TAbs`
-with an undo/redo history, stored internally as an `tabsStateList` and `currentStatePointer`.
-Additionally, it implements the following operations:
+### Current delete_student command implementation 
 
-* `VersionedTAbs#commit()`— Saves the current TAbs state in its history.
-* `VersionedTAbs#undo()`— Restores the previous TAbs state from its history.
-* `VersionedTAbs#redo()`— Restores a previously undone TAbs state from its history.
+* As of the latest release version of TAbs, delete_students allows only one student to be deleted
+from one tutorial at a time. 
+* Our reason for doing so is that deleting a student is a potentially high-impact operation.
+Accidental bulk deletions could cause data loss and disrupt tutorial records. Restricting deletions 
+to one student at a time encourages users to review each action carefully, reducing the likelihood 
+of human error.
+* Furthermore, user testing showed that deleting students is a relatively infrequent action
+compared to adding or editing them, so the slight decrease in efficiency is outweighed by the 
+increase in safety and clarity.
+* Thus, we decided to limit the command to one student at a time.
 
-These operations are exposed in the `Model` interface as `Model#commitTAbs()`,
-`Model#undoTAbs()` and `Model#redoTAbs()` respectively.
+### Proposed delete_student command implementation
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedTAbs` will be
-initialized with the initial TAbs state, and the `currentStatePointer` pointing to that
-single TAbs state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete_tutorial t/T102` command to delete the specific tutorial in the TAbs. The
-`delete_tutorial` command calls `Model#commitTAbs()`, causing the modified state of the TAbs
-after the `delete_tutorial t/T102` command executes to be saved in the `tabsStateList`, and the
-`currentStatePointer` is shifted to the newly inserted TAbs state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add_tutorial t/T101 …​` to add a new tutorial. The `add_tutorial` command also calls
-`Model#commitTAbs()`, causing another modified TAbs state to be saved into the
-`tabsStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitTAbs()`, so the TAbs state will not be saved into the `tabsStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the tutorial was a mistake, and decides to undo that action
-by executing the `undo` command. The `undo` command will call `Model#undoTAbs()`, which will
-shift the `currentStatePointer` once to the left, pointing it to the previous TAbs state, and
-restores the TAbs to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial TAbs state, then there are no previous TAbs states to restore. The `undo` command uses `Model#canUndoTAbs()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how an undo operation goes through the `Logic` component:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Logic.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-Similarly, how an undo operation goes through the `Model` component is shown below:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram-Model.png)
-
-The `redo` command does the opposite — it calls `Model#redoTAbs()`, which shifts the
-`currentStatePointer` once to the right, pointing to the previously undone state, and restores the
-TAbs to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `tabsStateList.size() - 1`, pointing to the latest TAbs state, then there are no undone TAbs states to restore. The `redo` command uses `Model#canRedoTAbs()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the
-TAbs, such as `list`, will usually not call `Model#commitTAbs()`,
-`Model#undoTAbs()` or `Model#redoTAbs()`. Thus, the `tabsStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitTAbs()`. Since the
-`currentStatePointer` is not pointing at the end of the `tabsStateList`, all TAbs states
-after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the
-`add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/UpdatedCommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire of TAbs.
-    * Pros: Easy to implement.
-    * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the tutorial being deleted).
-    * Cons: We must ensure that the implementation of each individual command are correct.
+* In future releases, we may consider extending delete_student to support bulk deletions, 
+similar to how add_students allows adding multiple students at once.
+* Such an enhancement would include confirmation safeguards (e.g., deletion preview or undo support)
+to preserve the current safety guarantees while improving efficiency for advanced users.
 
 --------------------------------------------------------------------------------------------------------------------
 
