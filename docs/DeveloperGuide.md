@@ -659,13 +659,8 @@ specified otherwise)
 5. Documentation:
    - User Guide: A complete user guide will be provided for the tutor, detailing every command.
    - Developer Guide: Comprehensive developer guide will be available, to facilitate future development and maintenance.
-6. Error handling: 
-   - System should handle at least 90% of incorrect inputs (incorrect formats, missing fields, etc.) 
-    without crashing and should provide meaningful error messages to guide users to correct the input.
 7. Quality:
    - Ease of Use: System should include intuitive CLI commands and user-friendly prompts.
-   - Testing coverage: Unit tests should cover at least 70% of codebase, 
-     ensuring high reliability during future updates.
 
 ### Glossary
 
