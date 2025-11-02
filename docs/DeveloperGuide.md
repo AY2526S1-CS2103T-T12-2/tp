@@ -176,7 +176,7 @@ The `Model` component,
 **API** : [
 `Storage.java`](https://github.com/AY2526S1-CS2103T-T12-2/tp/blob/master/src/main/java/seedu/tabs/storage/Storage.java)
 
-<img src="images/UpdatedStorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
 
@@ -645,16 +645,27 @@ specified otherwise)
 
 ### Non-Functional Requirements
 
-1. Local data manipulation commands (e.g., `add`, `delete`, `edit`, `mark`) must execute within **500ms** for a 
-   database containing up to 5000 students and 100 tutorials. Verification should be conducted on a target environment 
-   with a minimum of 8GB **RAM** and an **SSD** storage drive.
-2. Handles up to 100 classes and 5000 students.
-3. Runs on Windows, macOS, Linux with Java 17+.
-4. A user demonstrating a typing speed of **40** WPM should be able to complete 80% of all defined 
-   data manipulation tasks (e.g., `add`, `delete`, `edit`, `mark`) at least **20% faster** using the command line 
-   interface than by using the equivalent mouse-based operation.
-5. The application must automatically save all user changes to the local data file 
-   after every successful command execution.
+1. A user with above average typing speed (> 40 WPM) for regular English text (i.e. not code, not system admin commands) 
+   should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. Data Requirements:
+   - Size: System must be able to handle at least 100 tutorials and 5000 students. 
+   - Data persistency: All tutorials and students data should be stored and retrievable until entry has been deleted.
+3. Environment Requirements:
+   - Technical Compatibility: System must be compatible with Mainstream OS as long as it has Java 17 installed.
+   - Server Requirements: Stored locally.
+4. Capacity:
+   - User Capacity: System is designed for local use and therefore for 1 local user.
+   - Data Capacity: As mentioned above within Data Requirements.
+5. Documentation:
+   - User Guide: A complete user guide will be provided for the tutor, detailing every command.
+   - Developer Guide: Comprehensive developer guide will be available, to facilitate future development and maintenance.
+6. Error handling: 
+   - System should handle at least 90% of incorrect inputs (incorrect formats, missing fields, etc.) 
+    without crashing and should provide meaningful error messages to guide users to correct the input.
+7. Quality:
+   - Ease of Use: System should include intuitive CLI commands and user-friendly prompts.
+   - Testing coverage: Unit tests should cover at least 70% of codebase, 
+     ensuring high reliability during future updates.
 
 ### Glossary
 
