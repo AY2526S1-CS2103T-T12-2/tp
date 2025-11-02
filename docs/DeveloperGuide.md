@@ -653,14 +653,11 @@ specified otherwise)
    mouse.
 
 ### Glossary
-
-* **Mainstream OS**: Windows, Linux, Unix, MacOS
-* **Matriculation number**: The unique identification number of each student (e.g., A1938293R)
-* **Tutorial**: Each tutorial is part of a module, which is specified by a module code (e.g.,
-  CS1231S)
-  and a timeslot (e.g., Wednesdays 2pm to 4pm). Students can be marked as being present for each
-  tutorial.
-
+* **Tutorial**: A lesson managed and taught by the user. It consists of a unique tutorial ID, 
+ a module code and a a date. A tutorial can contain any number of students.
+* **Student**: A person in a tutorial who can be marked as present or absent for that tutorial. 
+A student is uniquely identified by their student ID. 
+* **TAbs**: The name of the application.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
