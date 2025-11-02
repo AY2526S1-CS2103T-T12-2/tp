@@ -659,7 +659,7 @@ specified otherwise)
 5. Documentation:
    - User Guide: A complete user guide will be provided for the tutor, detailing every command.
    - Developer Guide: Comprehensive developer guide will be available, to facilitate future development and maintenance.
-7. Quality:
+6. Quality:
    - Ease of Use: System should include intuitive CLI commands and user-friendly prompts.
 
 ### Glossary
@@ -686,20 +686,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the `.jar` file and copy into an empty folder
+    1. Download the `.jar` file and copy the file to the folder you want to use as the home folder for TAbs.
 
-    1. Double-click the `.jar` file Expected: Shows the GUI with a set of sample contacts. The window
-       size may not be optimum.
+    2. Open a command terminal, navigate (`cd`) to the folder containing the `.jar` file, and run the following command to start the application:
+       `java -jar TAbs.jar`
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the
        window.
 
-    1. Re-launch the app by double-clicking the `.jar` file.<br>
+    2. Re-launch the app following the same steps as in **1.2.**
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Adding a tutorial
 
