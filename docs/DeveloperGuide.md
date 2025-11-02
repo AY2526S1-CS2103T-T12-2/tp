@@ -653,11 +653,13 @@ specified otherwise)
    mouse.
 
 ### Glossary
+* **TAbs**: The name of the application.
 * **Tutorial**: A lesson managed and taught by the user. It consists of a unique tutorial ID, 
  a module code and a a date. A tutorial can contain any number of students.
+* **Module code**: A code that uniquely identifies a module offered by the School of Computing in NUS.
 * **Student**: A person in a tutorial who can be marked as present or absent for that tutorial. 
 A student is uniquely identified by their student ID. 
-* **TAbs**: The name of the application.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
