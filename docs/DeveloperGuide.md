@@ -353,7 +353,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**`     | TA     | mark all students in a tutorial as present                   | quickly record attendance for the entire class when everyone is present                          |
 | `**`     | TA     | unmark all students in a tutorial                            | efficiently reset or correct attendance for the entire class in one command                      |
 | `**`     | TA     | sort the tutorial list by date                               | view my upcoming tutorials in chronological order and plan my teaching schedule more easily      |
-| `**`     | TA     | find tutorials by date                                       | quickly locate tutorials happening on a specific day without manually scrolling through the list |
 | `**`     | TA     | search for a student by name or ID                           | quickly locate a student’s record within large tutorials                                         |
 | `**`     | TA     | tag students into groups                                     | organize my tutorial more efficiently for activities or grading                                  |
 | `**`     | TA     | filter students by group tag                                 | view only students from a specific group                                                         |
@@ -361,10 +360,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**`     | TA     | view a summary of a student’s participation across tutorials | identify students who may need follow-up                                                         |
 | `**`     | New TA | view help messages or usage hints                            | learn how to use commands effectively                                                            |
 | `**`     | New TA | see the correct format after entering an invalid command     | fix mistakes quickly and continue using the app                                                  |
+| `*`      | TA     | find tutorials by date                                       | quickly locate tutorials happening on a specific day without manually scrolling through the list |
 | `*`      | TA     | import a CSV file of student data                            | upload student lists easily from other sources                                                   |
 | `*`      | TA     | export student lists or attendance records to a file         | keep offline records or share them with module coordinators                                      |
 | `*`      | TA     | upload profile pictures of students                          | better associate student names with faces                                                        |
 | `*`      | TA     | archive past tutorials                                       | keep my workspace tidy while retaining historical data                                           |
+
 
 
 ### Use cases
@@ -429,7 +430,6 @@ specified otherwise)
 
 * 1a. TAbs detects that the tutorial does not exist.
     * 1a1. TAbs informs the TA that the tutorial ID does not exist.
-    * 1a2. TA prompts the TA to view students in another tutorial.
 
       Use case resumes from step 1.
 
@@ -597,7 +597,7 @@ specified otherwise)
 **Extensions**
 
 * 1a. Invalid or missing details are provided.
-    * 1b1. TAbs informs the TA of the invalid input.
+    * 1a1. TAbs informs the TA of the invalid input.
 
       Use case resumes from step 1.
 
@@ -645,12 +645,22 @@ specified otherwise)
 
 ### Non-Functional Requirements
 
-1. Commands execute within 300ms (≤5000 students).
-2. Handles up to 100 classes and 5000 students.
-3. Runs on Windows, macOS, Linux with Java 17+.
-4. A user with above average typing speed for regular English text (i.e. not code, not system admin
-   commands) should be able to accomplish most of the tasks faster using commands than using the
-   mouse.
+1. A user with above average typing speed (> 40 WPM) for regular English text (i.e. not code, not system admin commands) 
+   should be able to accomplish most of the tasks faster using commands than using the mouse.
+2. Data Requirements:
+   - Size: System must be able to handle at least 100 tutorials and 5000 students. 
+   - Data persistency: All tutorials and students data should be stored and retrievable until entry has been deleted.
+3. Environment Requirements:
+   - Technical Compatibility: System must be compatible with Mainstream OS as long as it has Java 17 installed.
+   - Server Requirements: Stored locally.
+4. Capacity:
+   - User Capacity: System is designed for local use and therefore for 1 local user.
+   - Data Capacity: As mentioned above within Data Requirements.
+5. Documentation:
+   - User Guide: A complete user guide will be provided for the tutor, detailing every command.
+   - Developer Guide: Comprehensive developer guide will be available, to facilitate future development and maintenance.
+6. Quality:
+   - Ease of Use: System should include intuitive CLI commands and user-friendly prompts.
 
 ### Glossary
 
@@ -676,20 +686,19 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-    1. Download the `.jar` file and copy into an empty folder
+    1. Download the `.jar` file and copy the file to the folder you want to use as the home folder for TAbs.
 
-    1. Double-click the `.jar` file Expected: Shows the GUI with a set of sample contacts. The window
-       size may not be optimum.
+    2. Open a command terminal, navigate (`cd`) to the folder containing the `.jar` file, and run the following command to start the application:
+       `java -jar TAbs.jar`
 
-1. Saving window preferences
+2. Saving window preferences
 
     1. Resize the window to an optimum size. Move the window to a different location. Close the
        window.
 
-    1. Re-launch the app by double-clicking the `.jar` file.<br>
+    2. Re-launch the app following the same steps as in **1.2.**
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
 
 ### Adding a tutorial
 
