@@ -86,6 +86,29 @@ it still has the benefits of a Graphical User Interface (GUI).
 
 </div>
 
+### Input Field Validation
+
+TAbs validates all input fields to ensure data integrity. Below are the validation rules for each field type:
+
+| Field Type | Prefix | Format Requirements | Valid Examples | Invalid Examples |
+|------------|--------|---------------------|----------------|------------------|
+| **Tutorial ID** | `t/` | - Single letter (case-insensitive)<br>- Followed by 1-8 digits<br>- **Automatically converted to uppercase** | `T1` or `t1`<br>`A123` or `a123`<br>`B12345678` or `b12345678` | `12T` (starts with digit)<br>`TT123` (two letters)<br>`T123456789` (too many digits) |
+| **Module Code** | `m/` | - 2-4 letters (case-insensitive)<br>- Followed by 4 digits<br>- Optional letter at end (case-insensitive)<br>- **Automatically converted to uppercase** | `CS2103T` or `cs2103t`<br>`MA1521` or `ma1521`<br>`GESS1000` or `gess1000` | `CS210` (too few digits)<br>`COMPUTING2103` (too many letters)<br>`CS21033` (too many digits) |
+| **Date** | `d/` | - Format: YYYY-MM-DD<br>- Must be valid calendar date<br>- Year must be between 1998 and 2200 | `2025-01-01`, `2024-12-31`, `2025-03-15` | `01-01-2025` (wrong order)<br>`2025/01/01` (wrong separator)<br>`2025-02-30` (invalid date)<br>`1997-01-01` (year too old)<br>`2201-01-01` (year too far ahead) |
+| **Student ID** | `id/` | - Pattern: `AXXXXXXX&` (case-insensitive)<br>- First char: Letter 'A'<br>- Next 7 chars: Digits<br>- Last char: Any letter<br>- **Automatically converted to uppercase** | `A1234567X` or `a1234567x`<br>`A9876543B` or `a9876543b`<br>`A0123456C` or `a0123456c` | `B1234567X` (doesn't start with 'A')<br>`A123456X` (too few digits)<br>`A12345678X` (too many digits) |
+| **Source Tutorial** | `from/` | - Same rules as Tutorial ID<br>- Used in `copy_tutorial` and `edit_tutorial`<br>- **Automatically converted to uppercase** | `T1` or `t1`<br>`C101` or `c101`<br>`A12345678` or `a12345678` | Same as Tutorial ID invalid examples |
+
+<div markdown="span" class="alert alert-info">
+
+**:information_source: Validation Tips:**<br>
+
+* **All text fields are case-insensitive** and will be automatically converted to uppercase for consistency.
+* TAbs will display specific error messages when validation fails, indicating which field has an issue and what format is expected.
+* If multiple fields are invalid, TAbs will report the first invalid field encountered.
+* All validation is performed before any changes are made to your data, ensuring data integrity.
+
+</div>
+
 ### Viewing help: `help`
 
 Shows a message explaining how to access the help page.
@@ -107,20 +130,19 @@ Adds a tutorial to TAbs.
 Format: `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT_ID]…`
 
 * Adds a tutorial with the specified tutorial ID, module code and date.
-* `TUTORIAL_ID` must **start with a single alphabet followed by 1 to 8 digits** (e.g., `A1`, `B123`, `C12345678`).
-* `TUTORIAL_ID` is case-insensitive (i.e., `t123` will be stored as `T123`).
-* `MODULE_CODE` must **start with 2-4 uppercase letters followed by 4 digits and an optional uppercase letter** (e.g., `CS2103T`).
-* `DATE` should be in **YYYY-MM-DD** format.
-* Each `STUDENT_ID` must follow the format `AXXXXXXX&`, where:
-    * The first letter (`A`) is uppercase,
-    * Followed by 7 digits (`XXXXXXX`),
-    * Ending with an uppercase letter (`&`).
 * Multiple students can be added to the same tutorial.
+* If duplicate student IDs are specified in the same command, only unique students will be added (duplicates are automatically ignored).
 
 Examples:
 
 * `add_tutorial t/C456 m/CS2101 d/2025-01-01`
 * `add_tutorial t/T123 m/CS2103T d/2025-01-01 id/A1231231Y id/A3213213Y`
+
+After a tutorial has been added, the GUI will display the newly created tutorial card in the tutorial list as shown below. 
+The card shows the tutorial's tutorial ID, module code, date, and the list of enrolled students (if any). 
+All students in the new tutorial will initially be unmarked (displayed with their IDs in grey color).
+
+![add tutorial command](images/addTutorialCommand.png)
 
 ### Deleting a tutorial: `delete_tutorial`
 
@@ -129,7 +151,7 @@ Deletes the specified tutorial from TAbs.
 Format: `delete_tutorial t/TUTORIAL_ID`
 
 * Deletes the tutorial with the specified `TUTORIAL_ID`.
-* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will delete the same tutorial).
+* `TUTORIAL_ID` must already exist in TAbs.
 
 Examples:
 
@@ -142,13 +164,10 @@ Creates a copy of an existing tutorial with a new tutorial ID and date.
 Format: `copy_tutorial t/NEW_TUTORIAL_ID from/EXISTING_TUTORIAL_ID d/DATE`
 
 * Copies an existing tutorial identified by the existing tutorial's ID and creates a new tutorial with a new ID and the specified date.
-* `NEW_TUTORIAL_ID` must **start with a single alphabet followed by 1 to 8 digits** (e.g., `A1`, `B123`, `C12345678`).
 * `NEW_TUTORIAL_ID` must not already exist in TAbs.
-* `NEW_TUTORIAL_ID` and `EXISTING_TUTORIAL_ID` are case-insensitive (e.g., both `t/t123` and `t/T123` will be stored as/refer to the same tutorial).
-* The existing tutorial ID must exist in TAbs.
+* The `EXISTING_TUTORIAL_ID` must exist in TAbs.
 * All students from the existing tutorial will be copied to the new tutorial with their attendance reset to being unmarked.
 * The module code will be copied from the existing tutorial.
-* `DATE` should be in **YYYY-MM-DD** format.
 
 Examples:
 
@@ -173,7 +192,6 @@ Format: `edit_tutorial from/EXISTING_TUTORIAL_ID [t/NEW_TUTORIAL_ID] [m/NEW_MODU
     * Tutorial ID (`t/`)
     * Module code (`m/`)
     * Date (`d/`)
-* `EXISTING_TUTORIAL_ID` and `NEW_TUTORIAL_ID` are case-insensitive (e.g., both `t/t123` and `t/T123` refer to the same tutorial).
 * At least one editable field (`t/`, `m/`, or `d/`) must be specified.
 * Editing student lists (i.e., using `id/`) is **not allowed** here — use `add_student` or `delete_student` instead.
 
@@ -215,11 +233,15 @@ Format: `list_students t/TUTORIAL_ID`
 
 * Lists all the students in a tutorial with the specified tutorial ID.
 * It shows a numbered list of all the student IDs of the students in that tutorial (e.g., `1. A1234567X`).
-* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will list students from the same tutorial).
+`TUTORIAL_ID` must already exist in TAbs.
 
 Examples:
 
 * `list_students t/T2` lists all the students in the tutorial with ID `T2` in TAbs.
+
+The list of students will be displayed in the output box as shown below.
+
+![list students command](images/listStudentsCommand.png)
 
 ### Adding students to a tutorial: `add_student`
 
@@ -229,11 +251,7 @@ Format: `add_student id/STUDENT_ID… t/TUTORIAL_ID`
 
 * Adds one or more students, identified by their student IDs, to the tutorial identified by the tutorial ID.
 * You can specify multiple student IDs in a single command, separated by spaces.
-* Each `STUDENT_ID` must follow the format `AXXXXXXX&`, where:
-    * The first letter (`A`) is uppercase,
-    * Followed by 7 digits (`XXXXXXX`),
-    * Ending with an uppercase letter (`&`).
-* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will add students to the same tutorial).
+* `TUTORIAL_ID` must already exist in TAbs.
 
 
 Examples:
@@ -277,11 +295,7 @@ Deletes the specified student from the specified tutorial from TAbs.
 Format: `delete_student id/STUDENT_ID t/TUTORIAL_ID`
 
 * Delete a single student, identified by the student ID, from the tutorial identified by the tutorial ID.
-* The `STUDENT_ID` must follow the format `AXXXXXXX&`, where:
-    * The first letter (`A`) is uppercase,
-    * Followed by 7 digits (`XXXXXXX`),
-    * Ending with an uppercase letter (`&`).
-* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will delete students from the same tutorial).
+* The `TUTORIAL_ID` must already exist in TAbs.
 
 Examples:
 
@@ -296,11 +310,7 @@ Format: `mark id/STUDENT_ID… t/TUTORIAL_ID`
 * Marks one or more students, identified by their student ID, in the tutorial identified by the
   tutorial ID as present.
 * You can specify multiple student IDs in a single command, separated by spaces.
-* Each `STUDENT_ID` must follow the format `AXXXXXXX&`, where:
-    * The first letter (`A`) is uppercase,
-    * Followed by 7 digits (`XXXXXXX`),
-    * Ending with an uppercase letter (`&`).
-* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will mark students from the same tutorial).
+* The `TUTORIAL_ID` must already exist in TAbs.
 
 Examples:
 
@@ -346,10 +356,10 @@ Marks all students in a tutorial in TAbs as present.
 
 Format: `mark_all t/TUTORIAL_ID`
 
-* Marks all the students as present in the tutorial identified by the tutorial ID.
-* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will mark students from the same tutorial).
-* Note: Unlike `mark`, `mark_all` does not notify the user as to which students have already been marked, since such a 
-  notification is unlikely to be meaningful.
+* Marks all the students as present in the tutorial identified by the tutorial ID. 
+* The `TUTORIAL_ID` must already exist in TAbs.
+* Note: Unlike `mark`, `mark_all` does not notify the user as to which students have already been marked, since 
+  such a notification is unlikely to be meaningful.
 
 Examples:
 
@@ -366,11 +376,7 @@ Format: `unmark id/STUDENT_ID… t/TUTORIAL_ID`
 * Unmarks one or more students, identified by their student ID, in the tutorial identified by the
   tutorial ID.
 * You can specify multiple student IDs in a single command, separated by spaces.
-* Each `STUDENT_ID` must follow the format `AXXXXXXX&`, where:
-    * The first letter (`A`) is uppercase,
-    * Followed by 7 digits (`XXXXXXX`),
-    * Ending with an uppercase letter (`&`).
-* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will unmark students from the same tutorial).
+* The `TUTORIAL_ID` must already exist in TAbs.
 
 Examples:
 
@@ -391,7 +397,7 @@ Unmarks all students in a tutorial in TAbs.
 Format: `unmark_all t/TUTORIAL_ID`
 
 * Unmarks all the students in the tutorial identified by the tutorial ID.
-* `TUTORIAL_ID` is case-insensitive (e.g., both `t/t123` and `t/T123` will unmark students from the same tutorial).
+* The `TUTORIAL_ID` must already exist in TAbs.
 * Note: Unlike `unmark`, `unmark_all` does not notify the user as to which students have already been unmarked, since such a
   notification is unlikely to be meaningful.
 
