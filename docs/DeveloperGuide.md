@@ -422,12 +422,12 @@ specified otherwise)
       Use case resumes from step 2 for the remaining students.
 
 * 1b. One or more of the specified students in the tutorial were already marked.
-    * 1a1. Those students are ignored and not remarked.
+    * 1b1. Those students are ignored and not remarked.
 
       Use case resumes from step 2 for the remaining students.
 
 * 1c. Invalid or missing details are provided.
-    * 1b1. TAbs informs the TA of the invalid input.
+    * 1c1. TAbs informs the TA of the invalid input.
 
       Use case resumes from step 1.
 
@@ -494,11 +494,11 @@ specified otherwise)
 
       Use case resumes from step 1.
 * 1b. The tutorial specified by the TA does not exist.
-    * 1a1. TAbs informs the TA that the tutorial ID does not exist.
+    * 1b1. TAbs informs the TA that the tutorial ID does not exist.
 
       Use case resumes from step 1.
 * 1c. The new tutorial ID entered already exists.
-    * 2a1. TAbs informs the TA that the tutorial ID is already in use.
+    * 1c1. TAbs informs the TA that the tutorial ID is already in use.
 
       Use case ends.
 
