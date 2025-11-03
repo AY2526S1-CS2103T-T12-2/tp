@@ -252,7 +252,7 @@ TAbs provides a centralised system for SoC TAs to manage their classes, students
 It automates repetitive administrative tasks like adding or copying tutorials, recording attendance, and viewing class lists.
 
 By combining the speed of a command-line interface with the clarity of a graphical display, TAbs enables TAs to focus on teaching rather than manual record-keeping.
-This results in smoother class preparation, faster attendance tracking, and better oversight of student engagement.
+This results in smoother class administration work, faster attendance tracking, and better oversight of student engagement.
 
 ### User stories
 
@@ -275,7 +275,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**`     | TA     | unmark all students in a tutorial                            | efficiently reset or correct attendance for the entire class in one command                      |
 | `**`     | TA     | sort the tutorial list by date                               | view my upcoming tutorials in chronological order and plan my teaching schedule more easily      |
 | `**`     | TA     | search for a student by name or ID                           | quickly locate a student’s record within large tutorials                                         |
-| `**`     | TA     | tag students into groups                                     | organize my tutorial more efficiently for activities or grading                                  |
+| `**`     | TA     | tag students into groups                                     | so that I can easily filter or process students by group tag                                     |
 | `**`     | TA     | filter students by group tag                                 | view only students from a specific group                                                         |
 | `**`     | TA     | view a summary of attendance for a tutorial                  | get an overview of participation and absences                                                    |
 | `**`     | TA     | view a summary of a student’s participation across tutorials | identify students who may need follow-up                                                         |
@@ -607,7 +607,8 @@ testers are expected to do more *exploratory* testing.
     1. Download the `.jar` file and copy the file to the folder you want to use as the home folder for TAbs.
 
     2. Open a command terminal, navigate (`cd`) to the folder containing the `.jar` file, and run the following command to start the application:
-       `java -jar TAbs.jar`
+       `java -jar TAbs.jar`<br>
+        Expected: Shows the GUI with a set of sample tutorials. The window size may not be optimum.
 
 2. Saving window preferences
 
