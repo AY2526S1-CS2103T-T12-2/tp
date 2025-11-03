@@ -65,4 +65,37 @@ public class Messages {
         return builder.toString();
     }
 
+    /**
+     * Formats the {@code editedTutorial} for display to the user,
+     * marking fields that have been edited compared to {@code originalTutorial}.
+     */
+    public static String formatEditedTutorial(Tutorial originalTutorial, Tutorial editedTutorial) {
+        final StringBuilder builder = new StringBuilder();
+
+        builder.append("Tutorial ID: ")
+                .append(editedTutorial.getTutorialId());
+        if (!originalTutorial.getTutorialId().equals(editedTutorial.getTutorialId())) {
+            builder.append(" (edited)");
+        }
+
+        builder.append("\nModule Code: ")
+                .append(editedTutorial.getModuleCode());
+        if (!originalTutorial.getModuleCode().equals(editedTutorial.getModuleCode())) {
+            builder.append(" (edited)");
+        }
+
+        builder.append("\nDate: ")
+                .append(editedTutorial.getDate());
+        if (!originalTutorial.getDate().equals(editedTutorial.getDate())) {
+            builder.append(" (edited)");
+        }
+
+        builder.append("\nStudents: ")
+                .append(editedTutorial.getStudentsAsString());
+        if (!originalTutorial.getStudentsAsString().equals(editedTutorial.getStudentsAsString())) {
+            builder.append(" (edited)");
+        }
+
+        return builder.toString();
+    }
 }
