@@ -508,9 +508,8 @@ specified otherwise)
 
 1. TA requests to search for tutorials.
 2. TAbs finds tutorials which match the given specifications.
-3. TAbs displays the updated list of tutorials.
+3. TAbs displays the updated filtered list of tutorials.
 4. TAbs informs the TA of how many tutorials match the given specification
-5. TAbs displays the updated filtered list of tutorials.
 
    Use case ends.
 
