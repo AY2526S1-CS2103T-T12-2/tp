@@ -76,6 +76,10 @@ it still has the benefits of a Graphical User Interface (GUI).
 * Parameters can be in any order.<br>
   (e.g., if the command specifies `t/TUTORIAL_ID m/MODULE_CODE`, `m/MODULE_CODE t/TUTORIAL_ID` is also acceptable.)
 
+* **Command names are case-sensitive** and must be in lowercase (e.g., `add_tutorial`, not `ADD_TUTORIAL`).<br>
+
+* **Prefixes are also case-sensitive** and must be in lowercase (e.g., `t/`, `m/`, `id/`, not `T/`, `M/`, `ID/`).<br>
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit`
   and `clear`) will be ignored.<br>
   (e.g., if the command specifies `help 123`, it will be interpreted as `help`.)
@@ -90,15 +94,15 @@ it still has the benefits of a Graphical User Interface (GUI).
 
 TAbs validates all input fields to ensure data integrity. Below are the validation rules for each field type:
 
-| Field Type | Prefix | Format Requirements | Valid Examples | Invalid Examples |
-|------------|--------|---------------------|----------------|------------------|
-| **Tutorial ID** | `t/` | - Single letter (case-insensitive)<br>- Followed by 1-8 digits<br>- **Automatically converted to uppercase** | `T1` or `t1`<br>`A123` or `a123`<br>`B12345678` or `b12345678` | `12T` (starts with digit)<br>`TT123` (two letters)<br>`T123456789` (too many digits) |
-| **Module Code** | `m/` | - 2-4 letters (case-insensitive)<br>- Followed by 4 digits<br>- Optional letter at end (case-insensitive)<br>- **Automatically converted to uppercase** | `CS2103T` or `cs2103t`<br>`MA1521` or `ma1521`<br>`GESS1000` or `gess1000` | `CS210` (too few digits)<br>`COMPUTING2103` (too many letters)<br>`CS21033` (too many digits) |
-| **Date** | `d/` | - Format: YYYY-MM-DD<br>- Must be valid calendar date<br>- Year must be between 1998 and 2200 | `2025-01-01`, `2024-12-31`, `2025-03-15` | `01-01-2025` (wrong order)<br>`2025/01/01` (wrong separator)<br>`2025-02-30` (invalid date)<br>`1997-01-01` (year too old)<br>`2201-01-01` (year too far ahead) |
-| **Student ID** | `id/` | - Pattern: `AXXXXXXX&` (case-insensitive)<br>- First char: Letter 'A'<br>- Next 7 chars: Digits<br>- Last char: Any letter<br>- **Automatically converted to uppercase** | `A1234567X` or `a1234567x`<br>`A9876543B` or `a9876543b`<br>`A0123456C` or `a0123456c` | `B1234567X` (doesn't start with 'A')<br>`A123456X` (too few digits)<br>`A12345678X` (too many digits) |
-| **Source Tutorial** | `from/` | - Same rules as Tutorial ID<br>- Used in `copy_tutorial` and `edit_tutorial`<br>- **Automatically converted to uppercase** | `T1` or `t1`<br>`C101` or `c101`<br>`A12345678` or `a12345678` | Same as Tutorial ID invalid examples |
+| Field Type | Prefix | Format Requirements                                                                                                                                                                     | Valid Examples | Invalid Examples |
+|------------|--------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------|------------------|
+| **Tutorial ID** | `t/` | - Single letter (case-insensitive)<br>- Followed by 1-8 digits<br>- **Automatically converted to uppercase**                                                                            | `T1` or `t1`<br>`A123` or `a123`<br>`B12345678` or `b12345678` | `12T` (starts with digit)<br>`TT123` (two letters)<br>`T123456789` (too many digits) |
+| **Module Code** | `m/` | - 2-4 letters (case-insensitive)<br>- Followed by 4 digits<br>- Optional letter at end (case-insensitive)<br>- **Automatically converted to uppercase**                                 | `CS2103T` or `cs2103t`<br>`MA1521` or `ma1521`<br>`GESS1000` or `gess1000` | `CS210` (too few digits)<br>`COMPUTING2103` (too many letters)<br>`CS21033` (too many digits) |
+| **Date** | `d/` | - Format: YYYY-MM-DD<br>- Must be valid calendar date<br>- Year must be between 1998 and 2200                                                                                           | `2025-01-01`, `2024-12-31`, `2025-03-15` | `01-01-2025` (wrong order)<br>`2025/01/01` (wrong separator)<br>`2025-02-30` (invalid date)<br>`1997-01-01` (year too old)<br>`2201-01-01` (year too far ahead) |
+| **Student ID** | `id/` | - Pattern: `AXXXXXXX&` (case-insensitive)<br>- First character: Letter 'A'<br>- Next 7 characters: Digits<br>- Last character: Any letter<br>- **Automatically converted to uppercase** | `A1234567X` or `a1234567x`<br>`A9876543B` or `a9876543b`<br>`A0123456C` or `a0123456c` | `B1234567X` (doesn't start with 'A')<br>`A123456X` (too few digits)<br>`A12345678X` (too many digits) |
+| **Source Tutorial** | `from/` | - Same rules as Tutorial ID<br>- Used in `copy_tutorial` and `edit_tutorial`<br>- **Automatically converted to uppercase**                                                              | `T1` or `t1`<br>`C101` or `c101`<br>`A12345678` or `a12345678` | Same as Tutorial ID invalid examples |
 
-<div markdown="span" class="alert alert-info">
+<div markdown="block" class="alert alert-info">
 
 **:information_source: Validation Tips:**<br>
 
