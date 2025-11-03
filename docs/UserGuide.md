@@ -207,6 +207,9 @@ Examples:
     * Change its module code to `CS2040S`
     * Set its new date to `2025-08-20`
 
+Below is an example of the edit command being used.
+  ![result for 'edit_tutorial from/T101 t/L101 m/CS2030S'](images/editTutorialCommand.png)
+
 ### Finding tutorials by keyword: `find`
 
 Finds tutorials whose tutorial ID and/or module code contain any of the given keywords.
