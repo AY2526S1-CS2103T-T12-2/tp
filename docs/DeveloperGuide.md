@@ -614,7 +614,7 @@ testers are expected to do more *exploratory* testing.
     1. Resize the window to an optimum size. Move the window to a different location. Close the
        window.
 
-    2. Re-launch the app following the same steps as in **1.2.**
+    2. Re-launch the app following the same steps as in **1.2.**<br>
        Expected: The most recent window size and location is retained.
 
 
