@@ -110,6 +110,7 @@ TAbs validates all input fields to ensure data integrity. Below are the validati
 * TAbs will display specific error messages when validation fails, indicating which field has an issue and what format is expected.
 * If multiple fields are invalid, TAbs will report the first invalid field encountered.
 * All validation is performed before any changes are made to your data, ensuring data integrity.
+* **Note:** The `find` command is the only command that does not enforce strict format validation on the prefix values. It only requires that keywords are alphanumeric (letters and digits only).
 
 </div>
 
@@ -225,6 +226,7 @@ Format:
 * When searching by **both fields**, tutorials must match at least one keyword from **each field** (i.e., `AND` between fields, `OR` within each field).
 * The search is case-insensitive (e.g., `t01` will match `T01`).
 * Tutorial IDs or module codes which contain the keyword partially will also be matched (e.g., `CS2103` will match `CS2103T`).
+* **Note:** The `find` command does not enforce strict format validation on Tutorial IDs or Module Codes. Keywords only need to be alphanumeric, allowing for more flexible searching compared to other commands that require exact format compliance.
 
 Examples:
 
