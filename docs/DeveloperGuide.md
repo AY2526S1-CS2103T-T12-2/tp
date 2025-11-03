@@ -275,7 +275,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `**`     | TA     | unmark all students in a tutorial                            | efficiently reset or correct attendance for the entire class in one command                      |
 | `**`     | TA     | sort the tutorial list by date                               | view my upcoming tutorials in chronological order and plan my teaching schedule more easily      |
 | `**`     | TA     | search for a student by name or ID                           | quickly locate a student’s record within large tutorials                                         |
-| `**`     | TA     | tag students into groups                                     | organize my tutorial more efficiently for activities or grading                                  |
+| `**`     | TA     | tag students into groups                                     | so that I can easily filter or process students by group tag                                     |
 | `**`     | TA     | filter students by group tag                                 | view only students from a specific group                                                         |
 | `**`     | TA     | view a summary of attendance for a tutorial                  | get an overview of participation and absences                                                    |
 | `**`     | TA     | view a summary of a student’s participation across tutorials | identify students who may need follow-up                                                         |
