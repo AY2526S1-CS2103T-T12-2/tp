@@ -44,8 +44,12 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
         // Students are optional - use empty set if not provided
         Set<Student> studentList = ParserUtil.parseStudents(argMultimap.getAllValues(STUDENT.prefix));
 
-        Tutorial tutorial = new Tutorial(tutorialId, moduleCode, date, studentList);
-        return new AddTutorialCommand(tutorial);
+        try {
+            Tutorial tutorial = new Tutorial(tutorialId, moduleCode, date, studentList);
+            return new AddTutorialCommand(tutorial);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(e.getMessage());
+        }
     }
 
     /**
