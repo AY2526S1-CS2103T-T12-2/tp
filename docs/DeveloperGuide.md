@@ -252,7 +252,7 @@ TAbs provides a centralised system for SoC TAs to manage their classes, students
 It automates repetitive administrative tasks like adding or copying tutorials, recording attendance, and viewing class lists.
 
 By combining the speed of a command-line interface with the clarity of a graphical display, TAbs enables TAs to focus on teaching rather than manual record-keeping.
-This results in smoother class preparation, faster attendance tracking, and better oversight of student engagement.
+This results in smoother class administration work, faster attendance tracking, and better oversight of student engagement.
 
 ### User stories
 
@@ -607,7 +607,8 @@ testers are expected to do more *exploratory* testing.
     1. Download the `.jar` file and copy the file to the folder you want to use as the home folder for TAbs.
 
     2. Open a command terminal, navigate (`cd`) to the folder containing the `.jar` file, and run the following command to start the application:
-       `java -jar TAbs.jar`
+       `java -jar TAbs.jar`<br>
+        Expected: Shows the GUI with a set of sample tutorials. The window size may not be optimum.
 
 2. Saving window preferences
 
