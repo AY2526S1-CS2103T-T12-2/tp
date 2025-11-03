@@ -44,6 +44,7 @@ public class EditTutorialCommand extends Command {
             + DATE.prefix + "2025-10-25";
 
     public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial: \n%1$s";
+    public static final String MESSAGE_TUTORIAL_UNEDITED = "No fields were edited in the specified tutorial: \n%1$s";
     public static final String MESSAGE_FROM_TUTORIAL_ID_MISSING = "Tutorial ID of the tutorial to be edited "
             + "must be specified.\n%1$s.";
     public static final String MESSAGE_EDIT_STUDENTS_NOT_ALLOWED = "Students cannot be edited via this command.\n"
@@ -86,7 +87,12 @@ public class EditTutorialCommand extends Command {
 
         model.setTutorial(tutorialToEdit, editedTutorial);
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
-        return new CommandResult(String.format(MESSAGE_EDIT_TUTORIAL_SUCCESS, Messages.format(editedTutorial)));
+        if (tutorialToEdit.equals(editedTutorial)) {
+            return new CommandResult(String.format(
+                    MESSAGE_TUTORIAL_UNEDITED, Messages.formatEditedTutorial(tutorialToEdit, editedTutorial)));
+        }
+        return new CommandResult(String.format(
+                MESSAGE_EDIT_TUTORIAL_SUCCESS, Messages.formatEditedTutorial(tutorialToEdit, editedTutorial)));
     }
 
     /**
