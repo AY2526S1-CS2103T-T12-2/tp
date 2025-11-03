@@ -2,6 +2,7 @@ package seedu.tabs.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
+import static seedu.tabs.model.Model.PREDICATE_SHOW_ALL_TUTORIALS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,6 +72,7 @@ public class ListStudentsCommand extends Command {
             listOfStudents = listOfStudents + (i + 1) + ". " + studentList.get(i).studentId + "\n";
         }
 
+        model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
         return new CommandResult(String.format(MESSAGE_SUCCESS_TEMPLATE, tutorialId) + listOfStudents);
     }
 
