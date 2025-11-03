@@ -334,7 +334,6 @@ specified otherwise)
 
 * 1b. TAbs detects that the tutorial does not exist.
     * 1b1. TAbs informs the TA that the tutorial does not exist.
-    * 1b2. TAbs prompts the TA to delete another tutorial.
 
       Use case resumes from step 1.
 
@@ -397,7 +396,7 @@ specified otherwise)
 * 1a. The student does not exist in the tutorial.
     * 1a1. TAbs informs the TA that the student does not exist in the tutorial.
 
-      Use case ends resumes from step 1.
+      Use case resumes from step 1.
 
 * 1b. Invalid or missing details are provided.
     * 1b1. TAbs informs the TA of the invalid input.
@@ -422,12 +421,12 @@ specified otherwise)
       Use case resumes from step 2 for the remaining students.
 
 * 1b. One or more of the specified students in the tutorial were already marked.
-    * 1a1. Those students are ignored and not remarked.
+    * 1b1. Those students are ignored and not remarked.
 
       Use case resumes from step 2 for the remaining students.
 
 * 1c. Invalid or missing details are provided.
-    * 1b1. TAbs informs the TA of the invalid input.
+    * 1c1. TAbs informs the TA of the invalid input.
 
       Use case resumes from step 1.
 
@@ -449,12 +448,12 @@ specified otherwise)
       Use case resumes from step 2 for the remaining students.
 
 * 1b. One or more of the specified students in the tutorial were already unmarked.
-    * 1a1. Those students are ignored and not unmarked.
+    * 1b1. Those students are ignored and not unmarked.
 
       Use case resumes from step 2 for the remaining students.
 
 * 1c. Invalid or missing details are provided.
-    * 1b1. TAbs informs the TA of the invalid input.
+    * 1c1. TAbs informs the TA of the invalid input.
 
       Use case resumes from step 1.
 
@@ -494,11 +493,11 @@ specified otherwise)
 
       Use case resumes from step 1.
 * 1b. The tutorial specified by the TA does not exist.
-    * 1a1. TAbs informs the TA that the tutorial ID does not exist.
+    * 1b1. TAbs informs the TA that the tutorial ID does not exist.
 
       Use case resumes from step 1.
 * 1c. The new tutorial ID entered already exists.
-    * 2a1. TAbs informs the TA that the tutorial ID is already in use.
+    * 1c1. TAbs informs the TA that the tutorial ID is already in use.
 
       Use case ends.
 
@@ -509,9 +508,8 @@ specified otherwise)
 
 1. TA requests to search for tutorials.
 2. TAbs finds tutorials which match the given specifications.
-3. TAbs displays the updated list of tutorials.
+3. TAbs displays the updated filtered list of tutorials.
 4. TAbs informs the TA of how many tutorials match the given specification
-5. TAbs displays the updated filtered list of tutorials.
 
    Use case ends.
 
