@@ -134,4 +134,19 @@ public class FindCommandParserTest {
         assertParseFailure(parser, " " + TUTORIAL_ID.prefix + " " + VALID_TUTORIAL_C123 + " "
                 + TUTORIAL_ID.prefix + " " + VALID_TUTORIAL_T456, expectedMessage);
     }
+
+    @Test
+    public void parse_nonAlphanumericModuleCode_throwsParseException() {
+        // contains symbol '!'
+        assertParseFailure(parser, " m/CS2103T!",
+                "Keywords should only contain alphanumeric characters (letters and digits).");
+    }
+
+    @Test
+    public void parse_nonAlphanumericTutorialId_throwsParseException() {
+        // contains symbol '@'
+        assertParseFailure(parser, " t/T@1",
+                "Keywords should only contain alphanumeric characters (letters and digits).");
+    }
+
 }
