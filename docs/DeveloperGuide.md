@@ -397,7 +397,7 @@ specified otherwise)
 * 1a. The student does not exist in the tutorial.
     * 1a1. TAbs informs the TA that the student does not exist in the tutorial.
 
-      Use case ends resumes from step 1.
+      Use case resumes from step 1.
 
 * 1b. Invalid or missing details are provided.
     * 1b1. TAbs informs the TA of the invalid input.
