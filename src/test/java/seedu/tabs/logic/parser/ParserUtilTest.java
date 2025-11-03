@@ -169,4 +169,16 @@ public class ParserUtilTest {
 
         assertEquals(expectedStudentSet, actualStudentSet);
     }
+
+    @Test
+    public void validateAlphanumericKeywords_validKeywords_success() throws Exception {
+        String[] validKeywords = {"CS2103T", "T12", "A1B2C3"};
+        ParserUtil.validateAlphanumericKeywords(validKeywords);
+    }
+
+    @Test
+    public void validateAlphanumericKeywords_invalidKeywords_throwsParseException() {
+        String[] invalidKeywords = {"C$2103", "T@2", "#123"};
+        assertThrows(ParseException.class, () -> ParserUtil.validateAlphanumericKeywords(invalidKeywords));
+    }
 }

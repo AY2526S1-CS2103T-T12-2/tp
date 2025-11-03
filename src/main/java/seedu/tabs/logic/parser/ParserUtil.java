@@ -19,7 +19,10 @@ import seedu.tabs.model.tutorial.TutorialId;
  */
 public class ParserUtil {
 
+    public static final String ALPHANUMERIC_PATTERN = "^[a-zA-Z0-9]+$";
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final String MESSAGE_INVALID_KEYWORD =
+            "Keywords should only contain alphanumeric characters (letters and digits).";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -104,5 +107,20 @@ public class ParserUtil {
             studentSet.add(parseStudent(studentId));
         }
         return studentSet;
+    }
+
+    /**
+     * Validates that all given keywords are alphanumeric.
+     *
+     * @param keywords array of keywords to validate.
+     * @throws ParseException if any keyword contains non-alphanumeric characters.
+     */
+    public static void validateAlphanumericKeywords(String[] keywords) throws ParseException {
+        requireNonNull(keywords);
+        for (String keyword : keywords) {
+            if (!keyword.matches(ALPHANUMERIC_PATTERN)) {
+                throw new ParseException(MESSAGE_INVALID_KEYWORD);
+            }
+        }
     }
 }

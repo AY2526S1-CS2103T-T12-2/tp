@@ -215,6 +215,7 @@ Format:
 1. **Search by one field:** `find t/KEYWORD [MORE_KEYWORDS]…` or `find m/KEYWORD [MORE_KEYWORDS]…`
 2. **Search by both fields (AND condition):** `find m/KEYWORD [MORE_KEYWORDS]… t/KEYWORD [MORE_KEYWORDS]…`
 
+* Each keyword must contain only alphanumeric characters (letters and digits).
 * You can search by tutorial ID (`t/`), module code (`m/`), or both.
 * Within each field, tutorials matching **at least one keyword** will be returned (i.e., `OR` search).
 * When searching by **both fields**, tutorials must match at least one keyword from **each field** (i.e., `AND` between fields, `OR` within each field).

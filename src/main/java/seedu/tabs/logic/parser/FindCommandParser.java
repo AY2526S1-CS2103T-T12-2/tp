@@ -3,6 +3,7 @@ package seedu.tabs.logic.parser;
 import static seedu.tabs.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.tabs.logic.parser.CliSyntax.MODULE_CODE;
 import static seedu.tabs.logic.parser.CliSyntax.TUTORIAL_ID;
+import static seedu.tabs.logic.parser.ParserUtil.validateAlphanumericKeywords;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -59,6 +60,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
             // Split the argument string by one or more whitespace
             String[] idKeywords = tutorialIdArgs.split("\\s+");
+            validateAlphanumericKeywords(idKeywords);
             predicates.add(new TutorialIdContainsKeywordsPredicate(Arrays.asList(idKeywords)));
         }
         if (hasModuleCode) { // Must be hasModuleCode based on earlier checks
@@ -68,6 +70,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
             // Split the argument string by one or more whitespace
             String[] moduleKeywords = moduleCodeArgs.split("\\s+");
+            validateAlphanumericKeywords(moduleKeywords);
             predicates.add(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(moduleKeywords)));
         }
 

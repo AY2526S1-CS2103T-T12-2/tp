@@ -95,7 +95,7 @@ public class FindCommandTest {
     @Test
     public void execute_moduleCodeKeywords_singleTutorialFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
-        // Use ModuleCodeContainsKeywordsPredicate (Crucial fix)
+        // Use ModuleCodeContainsKeywordsPredicate
         ModuleCodeContainsKeywordsPredicate predicate = prepareModuleCodePredicate("CS1010");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTutorialList(predicate);
@@ -106,7 +106,7 @@ public class FindCommandTest {
     @Test
     public void execute_tutorialIdKeywords_multipleTutorialsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        // Use TutorialIdContainsKeywordsPredicate and search for IDs (Crucial fix)
+        // Use TutorialIdContainsKeywordsPredicate and search for IDs
         TutorialIdContainsKeywordsPredicate predicate = prepareTutorialIdPredicate("C303 E505 F606");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredTutorialList(predicate);
