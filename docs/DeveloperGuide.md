@@ -334,7 +334,6 @@ specified otherwise)
 
 * 1b. TAbs detects that the tutorial does not exist.
     * 1b1. TAbs informs the TA that the tutorial does not exist.
-    * 1b2. TAbs prompts the TA to delete another tutorial.
 
       Use case resumes from step 1.
 
