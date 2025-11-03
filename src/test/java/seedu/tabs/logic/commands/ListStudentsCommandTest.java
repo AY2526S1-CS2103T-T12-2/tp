@@ -155,6 +155,11 @@ public class ListStudentsCommandTest {
         }
 
         @Override
+        public void updateFilteredTutorialList(Predicate<Tutorial> predicate) {
+            // do nothing, this is expected to be called by ListStudentsCommand
+        }
+
+        @Override
         public ReadOnlyTAbs getTAbs() {
             return tAbs;
         }

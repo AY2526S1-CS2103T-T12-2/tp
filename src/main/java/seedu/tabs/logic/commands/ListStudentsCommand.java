@@ -73,6 +73,7 @@ public class ListStudentsCommand extends Command {
         }
 
         model.updateFilteredTutorialList(PREDICATE_SHOW_ALL_TUTORIALS);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS_TEMPLATE, tutorialId) + listOfStudents);
     }
 
