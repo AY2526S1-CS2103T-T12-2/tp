@@ -1043,7 +1043,7 @@ testers are expected to do more *exploratory* testing.
     8. Test case: `find t/` or `find m/` (empty keyword after prefix)<br>
        Expected: No tutorials are displayed. Error details shown in the status message.
 
-    9. Test case: `find t/!*$()` or `find m/@#%?` (non-alphanumeric characters after prefix)<br>
+    9. Test case: `find t/T@1` or `find m/C$2100` (non-alphanumeric characters after prefix)<br>
        Expected: No tutorials are displayed. Error details shown in the status message.
 
     10. Test case: `find x/T1`<br>
