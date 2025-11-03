@@ -202,7 +202,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Current delete_student command implementation 
 
-* As of the latest release version of TAbs, delete_students allows only one student to be deleted
+* As of the latest release version of TAbs, `delete_student` allows only one student to be deleted
 from one tutorial at a time. 
 * Our reason for doing so is that deleting a student is a potentially high-impact operation.
 Accidental bulk deletions could cause data loss and disrupt tutorial records. Restricting deletions 
@@ -215,7 +215,7 @@ increase in safety and clarity.
 
 ### Proposed delete_student command implementation
 
-* In future releases, we may consider extending delete_student to support bulk deletions, 
+* In future releases, we may consider extending `delete_student` to support bulk deletions, 
 similar to how add_students allows adding multiple students at once.
 * Such an enhancement would include confirmation safeguards (e.g., deletion preview or undo support)
 to preserve the current safety guarantees while improving efficiency for advanced users.
