@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.regex.Pattern;
 
 import seedu.tabs.logic.commands.FindCommand;
 import seedu.tabs.logic.parser.exceptions.ParseException;
@@ -20,6 +21,10 @@ import seedu.tabs.model.tutorial.TutorialIdContainsKeywordsPredicate;
  * Parses input arguments and creates a new FindCommand object
  */
 public class FindCommandParser implements Parser<FindCommand> {
+
+    private static final Pattern ALPHANUMERIC_PATTERN = Pattern.compile("^[a-zA-Z0-9]+$");
+    private static final String MESSAGE_INVALID_KEYWORD =
+            "Keywords should only contain alphanumeric characters (letters and digits).";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
@@ -59,6 +64,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
             // Split the argument string by one or more whitespace
             String[] idKeywords = tutorialIdArgs.split("\\s+");
+            validateAlphanumericKeywords(idKeywords);
             predicates.add(new TutorialIdContainsKeywordsPredicate(Arrays.asList(idKeywords)));
         }
         if (hasModuleCode) { // Must be hasModuleCode based on earlier checks
@@ -68,6 +74,7 @@ public class FindCommandParser implements Parser<FindCommand> {
             }
             // Split the argument string by one or more whitespace
             String[] moduleKeywords = moduleCodeArgs.split("\\s+");
+            validateAlphanumericKeywords(moduleKeywords);
             predicates.add(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(moduleKeywords)));
         }
 
@@ -78,6 +85,18 @@ public class FindCommandParser implements Parser<FindCommand> {
         } else {
             // Must be size 2, meaning both t/ and m/ were present. Use the AND predicate.
             return new FindCommand(new ModuleCodeAndTutorialIdContainsKeywordsPredicate(predicates));
+        }
+    }
+
+    /**
+     * Validates that all given keywords are alphanumeric.
+     * @throws ParseException if any keyword contains non-alphanumeric characters
+     */
+    private void validateAlphanumericKeywords(String[] keywords) throws ParseException {
+        for (String keyword : keywords) {
+            if (!ALPHANUMERIC_PATTERN.matcher(keyword).matches()) {
+                throw new ParseException(MESSAGE_INVALID_KEYWORD);
+            }
         }
     }
 }

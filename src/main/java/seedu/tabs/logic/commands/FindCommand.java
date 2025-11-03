@@ -20,10 +20,11 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all tutorials whose module codes and/or tutorial IDs "
-            + "that partially matches any of the specified keywords (case-insensitive) "
+            + "partially matches any of the specified keywords (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
             + "If both " + MODULE_CODE.prefix + " and " + TUTORIAL_ID.prefix + " are provided, "
             + "only tutorials matching BOTH criteria are listed.\n"
+            + "Each keyword must contain only alphanumeric characters (letters and digits).\n"
             + "Parameters: \n"
             + "1. Search by one field: " + TUTORIAL_ID.prefix + "KEYWORD [MORE_KEYWORDS] OR "
             + MODULE_CODE.prefix + "KEYWORD [MORE_KEYWORDS]\n"
