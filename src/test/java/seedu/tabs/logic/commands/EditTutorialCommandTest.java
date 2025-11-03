@@ -45,7 +45,7 @@ public class EditTutorialCommandTest {
                 descriptor);
 
         String expectedMessage = String.format(EditTutorialCommand.MESSAGE_EDIT_TUTORIAL_SUCCESS,
-                seedu.tabs.logic.Messages.format(editedTutorial));
+                seedu.tabs.logic.Messages.formatEditedTutorial(original, editedTutorial));
 
         Model expectedModel = new ModelManager(new TAbs(model.getTAbs()), new UserPrefs());
         expectedModel.setTutorial(original, editedTutorial);
@@ -74,7 +74,7 @@ public class EditTutorialCommandTest {
                 descriptor);
 
         String expectedMessage = String.format(EditTutorialCommand.MESSAGE_EDIT_TUTORIAL_SUCCESS,
-                Messages.format(editedTutorial));
+                Messages.formatEditedTutorial(lastTutorial, editedTutorial));
 
         Model expectedModel = new ModelManager(new TAbs(model.getTAbs()), new UserPrefs());
         expectedModel.setTutorial(lastTutorial, editedTutorial);
@@ -90,8 +90,8 @@ public class EditTutorialCommandTest {
                 new TutorialIdMatchesKeywordPredicate(target.getTutorialId().id),
                 new EditTutorialDescriptor());
 
-        String expectedMessage = String.format(EditTutorialCommand.MESSAGE_EDIT_TUTORIAL_SUCCESS,
-                Messages.format(target));
+        String expectedMessage = String.format(EditTutorialCommand.MESSAGE_TUTORIAL_UNEDITED,
+                Messages.formatEditedTutorial(target, target));
 
         Model expectedModel = new ModelManager(new TAbs(model.getTAbs()), new UserPrefs());
 
@@ -112,7 +112,7 @@ public class EditTutorialCommandTest {
                 new EditTutorialDescriptorBuilder().withId(VALID_TUTORIAL_T456).build());
 
         String expectedMessage = String.format(EditTutorialCommand.MESSAGE_EDIT_TUTORIAL_SUCCESS,
-                Messages.format(editedTutorial));
+                Messages.formatEditedTutorial(tutorialInFilteredList, editedTutorial));
 
         Model expectedModel = new ModelManager(new TAbs(model.getTAbs()), new UserPrefs());
         expectedModel.setTutorial(tutorialInFilteredList, editedTutorial);
