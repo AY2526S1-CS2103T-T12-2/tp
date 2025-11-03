@@ -17,6 +17,10 @@ import seedu.tabs.model.student.Student;
  */
 public class Tutorial {
 
+    public static final int MAX_STUDENTS_PER_TUTORIAL = 100;
+    public static final String MESSAGE_CONSTRAINTS = "A tutorial cannot have more than "
+            + MAX_STUDENTS_PER_TUTORIAL + " students.";
+
     // Identity fields
     private final TutorialId tutorialId;
     private final ModuleCode moduleCode;
@@ -30,10 +34,14 @@ public class Tutorial {
      */
     public Tutorial(TutorialId tutorialId, ModuleCode moduleCode, Date date, Set<Student> students) {
         requireAllNonNull(tutorialId, moduleCode, date);
+        Set<Student> studentSet = students != null ? students : new HashSet<>();
+        if (studentSet.size() > MAX_STUDENTS_PER_TUTORIAL) {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
         this.tutorialId = tutorialId;
         this.moduleCode = moduleCode;
         this.date = date;
-        this.students.addAll(students != null ? students : new HashSet<>());
+        this.students.addAll(studentSet);
     }
 
     public TutorialId getTutorialId() {
@@ -76,7 +84,7 @@ public class Tutorial {
     public int getNumberOfStudents() {
         return students.size();
     }
-
+    
     /**
      * Marks all the students in the {@code Tutorial} as present.
      */

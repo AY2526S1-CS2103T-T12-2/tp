@@ -136,6 +136,7 @@ Format: `add_tutorial t/TUTORIAL_ID m/MODULE_CODE d/DATE [id/STUDENT_ID]…`
 * Adds a tutorial with the specified tutorial ID, module code and date.
 * Multiple students can be added to the same tutorial.
 * If duplicate student IDs are specified in the same command, only unique students will be added (duplicates are automatically ignored).
+* **Maximum limit:** Each tutorial can have a maximum of 100 students. Attempting to create a tutorial with more than 100 students will be rejected.
 
 Examples:
 
@@ -257,6 +258,7 @@ Format: `add_student id/STUDENT_ID… t/TUTORIAL_ID`
 * Adds one or more students, identified by their student IDs, to the tutorial identified by the tutorial ID.
 * You can specify multiple student IDs in a single command, separated by spaces.
 * `TUTORIAL_ID` must already exist in TAbs.
+* **Maximum limit:** Each tutorial can have a maximum of 100 students. Adding students that would exceed this limit will be rejected.
 
 
 Examples:
