@@ -90,11 +90,9 @@ public class Messages {
             builder.append(" (edited)");
         }
 
+        // Student cannot be edited via the edit_tutorial command
         builder.append("\nStudents: ")
                 .append(editedTutorial.getStudentsAsString());
-        if (!originalTutorial.getStudentsAsString().equals(editedTutorial.getStudentsAsString())) {
-            builder.append(" (edited)");
-        }
 
         return builder.toString();
     }
