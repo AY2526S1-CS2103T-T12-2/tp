@@ -31,7 +31,7 @@ public class DeleteStudentCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + STUDENT.prefix + "A0123456Z "
             + TUTORIAL_ID.prefix + "T123";
-    public static final String MESSAGE_SUCCESS = "Student %1$s deleted from tutorial %2$s.";
+    public static final String MESSAGE_SUCCESS = "Student %1$s has been deleted from tutorial %2$s.";
     public static final String MESSAGE_NOT_EXISTS = "Student %1$s is not in tutorial %2$s.";
 
     private final TutorialIdMatchesKeywordPredicate predicate;
