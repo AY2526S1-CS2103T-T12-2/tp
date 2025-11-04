@@ -663,14 +663,14 @@ testers are expected to do more *exploratory* testing.
        Expected: The tutorial with ID `T1` is still deleted due to case-insensitivity. Details of the deleted tutorial are shown in the
        status message.
 
-    4. Test case: `delete_tutorial t/0`<br>
-       Expected: No tutorial is deleted as the tutorial ID does not exist. Error details shown in the status message.
+    4. Test case: `delete_tutorial t/T999`<br>
+       Expected: No tutorial is deleted. Error message indicates that tutorial ID does not exist. 
 
     5. Test case: `delete_tutorial m/0`<br>
-       Expected: No tutorial is deleted as the prefix is incorrect. Error details shown in the status message.
+       Expected: No tutorial is deleted as the prefix is incorrect. Error message indicates invalid command format.
 
     6. Test case: `delete_tutorial t/T1 t/T2`<br>
-       Expected: No tutorial is deleted as there should only be one `t/` prefix. Error details shown in the status message.
+       Expected: No tutorial is deleted as there should only be one `t/` prefix. Error message indicates duplicate prefixes.
 
 2. Deleting a tutorial while only some tutorials are being shown.
 
@@ -691,16 +691,16 @@ testers are expected to do more *exploratory* testing.
        Expected: Same result as above since tutorial IDs are case-insensitive. The same list of students from `T1` is displayed.
 
     4. Test case: `list_students t/T2` (where tutorial `T2` has no students)<br>
-       Expected: An empty student list is displayed. The status message indicates that there are no students enrolled in tutorial `T2`.
+       Expected: No students are displayed. Error message indicates that there are no students enrolled in tutorial `T2`.
 
-    5. Test case: `list_students t/0`<br>
-       Expected: No students are listed as the tutorial ID does not exist. Error details shown in the status message.
+    5. Test case: `list_students t/T999`<br>
+       Expected: No students are listed. Error message indicates that tutorial ID does not exist.
 
     6. Test case: `list_students m/CS2103T`<br>
-       Expected: No students are listed as the prefix is incorrect. Error details shown in the status message.
+       Expected: No students are listed as the prefix is incorrect. Error message indicates an invalid command format.
 
     7. Test case: `list_students t/T1 t/T2`<br>
-       Expected: No students are listed as there should only be one `t/` prefix. Error details shown in the status message.
+       Expected: No students are listed as there should only be one `t/` prefix. Error message indicate duplicate prefixes present.
 
 
 2. Listing all students while only some tutorials are being shown.
@@ -821,7 +821,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: None
    
-    2. Test case: `mark student/A0000001Z t/T01`
+    2. Test case: `mark s/A0000001Z t/T01`
        Expected: An invalid command format error is shown. 
 
 ### Unmarking students in a tutorial
@@ -838,7 +838,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: Tutorial `T01` exists and student `A0000001Z` is already unmarked.
 
-    2. Test case: `unmark student/A0000001Z t/T01`
+    2. Test case: `unmark id/A0000001Z t/T01`
        Expected: No student is unmarked.
        An error message, saying Student `A0000001Z` is already unmarked, is shown.
 
@@ -861,7 +861,7 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: None
 
-    2. Test case: `unmark id/A0000001Z t/T01`
+    2. Test case: `unmark id/A0000001Z x/T01`
        Expected: An invalid command format error is shown.
 
 ### Copying an existing tutorial
@@ -883,7 +883,8 @@ testers are expected to do more *exploratory* testing.
        Expected: No tutorial is copied. Error message indicates that the source tutorial ID does not exist.
 
     6. Test case: `copy_tutorial t/T23 from/T1 d/2025-13-05` (invalid date)<br>
-       Expected: No tutorial is copied. Error message indicates invalid date format.
+       Expected: No tutorial is copied. Invalid command format shown. Error message indicates 
+       invalid date format.
 
     7. Test case: `copy_tutorial t/T24 from/T1` (missing required date)<br>
        Expected: No tutorial is copied. Error message indicates missing required prefix.
@@ -922,11 +923,8 @@ testers are expected to do more *exploratory* testing.
 
    6. Test case: `edit_tutorial from/T1 m/CS2103T d/2025-13-01` (invalid date)<br>
       Expected: No tutorial is updated. Error message indicates invalid date format.
-
-   7. Test case: `edit_tutorial from/T2 t/T1 m/CS2103` (duplicate prefix)<br>
-      Expected: No tutorial is updated. Error message indicates specified tutorial ID already exists.
-      
-   8. Test case: `edit_tutorial t/T1 id/A1234567Z` (attempt to add student)<br>
+ 
+   7. Test case: `edit_tutorial from/T1 t/T1 id/A1234567Z` (attempt to add student)<br>
       Expected: No tutorial is updated. Error message indicates that students should be managed via the student specific commands
 
 2. Editing a tutorial while only some tutorials are being shown.
@@ -960,13 +958,13 @@ testers are expected to do more *exploratory* testing.
        Expected: Tutorials whose module code contains `CS2103T` and whose tutorial ID contains either `T1` or `T2` are displayed (AND between fields, OR within each field).
 
     8. Test case: `find t/` or `find m/` (empty keyword after prefix)<br>
-       Expected: No tutorials are displayed. Error details shown in the status message.
+       Expected: No tutorials are displayed. Error message indicates invalid command format.
 
     9. Test case: `find t/T@1` or `find m/C$2100` (non-alphanumeric characters after prefix)<br>
-       Expected: No tutorials are displayed. Error details shown in the status message.
+       Expected: No tutorials are displayed. Error message indicates the keywords should only contain alphanumeric characters. 
 
     10. Test case: `find x/T1`<br>
-       Expected: No tutorials are displayed as the prefix `x/` is invalid. Error details shown in the status message.
+       Expected: No tutorials are displayed as the prefix `x/` is invalid. Error message indicates invalid command format. 
 
 
 2. Finding tutorials while only some tutorials are being shown.
