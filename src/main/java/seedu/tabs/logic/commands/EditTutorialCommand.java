@@ -43,7 +43,7 @@ public class EditTutorialCommand extends Command {
             + MODULE_CODE.prefix + "CS2103T "
             + DATE.prefix + "2025-10-25";
 
-    public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "Edited Tutorial: \n%1$s";
+    public static final String MESSAGE_EDIT_TUTORIAL_SUCCESS = "The following tutorial has been edited: \n%1$s";
     public static final String MESSAGE_TUTORIAL_UNEDITED = "No fields were edited in the specified tutorial: \n%1$s";
     public static final String MESSAGE_FROM_TUTORIAL_ID_MISSING = "Tutorial ID of the tutorial to be edited "
             + "must be specified.\n%1$s.";
