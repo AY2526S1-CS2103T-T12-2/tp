@@ -39,10 +39,7 @@ public class AddStudentCommand extends Command {
             + "\t%1$s\n"
             + "are already in tutorial %2$s!";
     public static final String MESSAGE_EXCEEDS_MAX_STUDENTS = "Cannot add student(s) to tutorial %1$s.\n"
-            + "This would exceed the maximum limit of %2$d students per tutorial.\n"
-            + "Current student count: %3$d\n"
-            + "Students to add: %4$d\n"
-            + "Total after adding: %5$d";
+            + "This would exceed the maximum limit of %2$d students per tutorial.";
 
     private final Set<Student> newStudentsList;
     private final TutorialIdMatchesKeywordPredicate predicate;
@@ -125,16 +122,10 @@ public class AddStudentCommand extends Command {
                     tutorialToAdd.getDate(),
                     updatedStudents);
         } catch (IllegalArgumentException e) {
-            int currentCount = tutorialToAdd.getNumberOfStudents();
-            int studentsToAdd = updatedStudents.size() - currentCount;
-            int totalAfterAdding = updatedStudents.size();
             throw new CommandException(
                     String.format(MESSAGE_EXCEEDS_MAX_STUDENTS,
                             tutorialToAdd.getTutorialId(),
-                            Tutorial.MAX_STUDENTS_PER_TUTORIAL,
-                            currentCount,
-                            studentsToAdd,
-                            totalAfterAdding));
+                            Tutorial.MAX_STUDENTS_PER_TUTORIAL));
         }
     }
 
